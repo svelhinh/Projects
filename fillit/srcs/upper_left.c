@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 11:11:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/17 13:30:31 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/17 14:00:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,25 @@ void	ft_placex(t_coord **first, int x)
 	}
 }
 
-void	ft_placey(t_coord **first, int x)
+void	ft_placey(t_coord **first, int y)
 {
-	int xmin;
+	int ymin;
 	int blk;
 
 	blk = 0;
-	xmin = ft_xmin(*first);
+	ymin = ft_ymin(*first);
 	while (blk != 4)
 	{
-		(*first)->x[blk] = (*first)->x[blk] - xmin + x;
-		printf("x[%d] = %d\n\n", blk, (*first)->x[blk]);
+		(*first)->y[blk] = (*first)->y[blk] - ymin + y;
+		printf("y[%d] = %d\n\n", blk, (*first)->y[blk]);
 		blk++;
 	}
 }
 
 char	*ft_upper_left(t_coord **first, int x, int y)
 {
-	(void)y;
 	ft_placex(first, x);
+	printf("\n");
+	ft_placey(first, y);
 	return ("yolo");
 }

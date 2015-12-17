@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:51:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/17 12:51:08 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/17 14:00:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			main(int ac, char **av)
 	ft_puttab(v.file, 4, 16);
 	ft_putstr("// -------------------------------- \\\\\n\n");
 	coord = ft_store(v.file);
-	ft_upper_left(coord, 0, 0);
+	ft_upper_left(coord, 0, 2);
 	while (*coord)
 	{
 		printf("c = %c\n\n", (*coord)->c);
