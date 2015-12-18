@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2015/12/17 17:41:12 by svelhinh         ###   ########.fr        #
+#    Updated: 2015/12/18 17:59:40 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fillit
 
 SRC = \
 		srcs/main.c srcs/errors.c srcs/get_next_line.c srcs/fonctions.c \
-		srcs/store.c srcs/upper_left.c srcs/display.c
+		srcs/store_file.c srcs/move.c srcs/backtracking.c srcs/store_tab.c
 
 LIB = lib/libft.a
 

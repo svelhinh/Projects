@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 13:56:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/18 13:43:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/18 17:16:57 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,29 @@ char		*ft_letters(char *file)
 	return (file);
 }
 
-char		**ft_empty(char **tab)
+char		**ft_empty(char **tab, int tablen)
 {
 	int y;
 	int x;
-	int tablen;
 
 	y = 0;
-	tablen = 26;
 	if (!(tab = (char **)malloc(sizeof(char *) * tablen)))
 	{
 		ft_putstr("error\n");
 		exit(0);
 	}
-	while (y < tablen - 1)
+	while (y < tablen/* - 1*/)
 	{
 		tab[y] = ft_strnew(tablen);
 		x = 0;
-		while (x < tablen - 1)
+		while (x < tablen/* - 1*/)
 		{
 			tab[y][x] = '.';
 			x++;
 		}
+		printf("%s\n", tab[y]);
 		y++;
 	}
+	printf("\n\n");
 	return (tab);
 }

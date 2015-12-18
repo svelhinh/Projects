@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 13:58:00 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/18 11:35:53 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/18 17:53:16 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ int					ft_errors(int fd, char **file);
 void				ft_init(int *nblines, int *error, int *gnlret, int *blk);
 char				*ft_letters(char *file);
 t_coord				**ft_store(char *file);
-t_coord				**ft_upper_left(t_coord **first, int x, int y);
-void				ft_display(t_coord **coord);
-char				**ft_empty(char **tab);
+t_coord				**ft_move(t_coord **first, int x, int y);
+void				ft_tab_store(char **tab, t_coord **coord);
+char				**ft_empty(char **tab, int tablen);
+void	ft_backtracking(t_coord **first);
 
 #endif
