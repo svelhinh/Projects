@@ -5,6 +5,8 @@ echo "\033[93mfonctionnel_sujet :"
 ./fillit tests/fonctionnel_sujet
 echo "\033[93mfonctionnel3 :"
 ./fillit tests/fonctionnel3
+echo "\033[93mfonctionnel_5blk :"
+./fillit tests/fonctionnel_5blk
 echo "\033[93me_blkm :"
 ./fillit tests/e_blkm
 echo "\033[93me_blkp :"

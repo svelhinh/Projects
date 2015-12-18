@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 13:58:00 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/17 15:42:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/18 11:35:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ char				*ft_letters(char *file);
 t_coord				**ft_store(char *file);
 t_coord				**ft_upper_left(t_coord **first, int x, int y);
 void				ft_display(t_coord **coord);
+char				**ft_empty(char **tab);
 
 #endif

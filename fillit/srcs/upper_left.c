@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 11:11:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/17 17:35:45 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/18 13:43:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			ft_xmin(t_coord *coord)
 	return (xmin);
 }
 
-void	ft_placex(t_coord **first, int x)
+void		ft_placex(t_coord **first, int x)
 {
 	int xmin;
 	int blk;
@@ -39,7 +39,6 @@ void	ft_placex(t_coord **first, int x)
 	while (blk != 4)
 	{
 		(*first)->x[blk] = (*first)->x[blk] - xmin + x;
-		printf("x[%d] = %d\n\n", blk, (*first)->x[blk]);
 		blk++;
 	}
 }
@@ -60,7 +59,7 @@ int			ft_ymin(t_coord *coord)
 	return (ymin);
 }
 
-void	ft_placey(t_coord **first, int y)
+void		ft_placey(t_coord **first, int y)
 {
 	int ymin;
 	int blk;
@@ -70,12 +69,11 @@ void	ft_placey(t_coord **first, int y)
 	while (blk != 4)
 	{
 		(*first)->y[blk] = (*first)->y[blk] - ymin + y;
-		printf("y[%d] = %d\n\n", blk, (*first)->y[blk]);
 		blk++;
 	}
 }
 
-t_coord	**ft_upper_left(t_coord **first, int x, int y)
+t_coord		**ft_upper_left(t_coord **first, int x, int y)
 {
 	ft_placex(first, x);
 	ft_placey(first, y);
