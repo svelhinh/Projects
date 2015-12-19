@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 11:11:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/18 17:10:49 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/19 19:07:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void		ft_placey(t_coord **first, int y)
 	}
 }
 
-t_coord		**ft_move(t_coord **first, int x, int y)
+t_coord		*ft_move(t_coord **first, int x, int y)
 {
 	ft_placex(first, x);
 	ft_placey(first, y);
-	return (first);
+	return (*first);
 }

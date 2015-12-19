@@ -5,65 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/19 14:53:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/19 19:12:36 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/18 17:03:51 by svelhinh          #+#    #+#             */
+/*   Updated: 2015/12/19 12:49:05 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-int		ft_check(t_coord *coord, int tablen, char **tab)
+int		ft_check(t_coord *coord, int tablen)
 {
 	int blk;
-	t_varf v;
 
 	blk = 0;
-	v.x = 0;
-	v.y = 0;
-	while (!ft_check_tab(tab, &coord, tablen) && v.y < tablen)
+	while (blk < 4)
 	{
-		if (v.x == tablen)
-		{
-			v.x = 0;
-			v.y++;
-		}
-		coord = ft_move(&coord, v.x, v.y);
-		v.x++;
+		if (coord->x[blk] >= tablen || coord->y[blk] >= tablen)
+			return (0);
+		blk++;
 	}
-	if (v.y == tablen)
-		return (0);
 	return (1);
 }
 
-char	**ft_backtracking(t_coord *coord, int tablen, char **tab)
+void	ft_backtracking(t_coord **first)
 {
-	if (ft_check(coord, tablen, tab))
-	{
-		tab = ft_tab_store(tab, coord, tablen);
-		coord = coord->next;
-		ft_backtracking(coord, tablen, tab);
-		return (tab);
-	}
-	return (NULL);
-}
-
-char	**ft_resize_tab(t_coord *first)
-{
+	t_coord *coord;
+	t_varf v;
 	char **tab;
 	int tablen;
-	t_varf v;
 
-	tablen = 2;
 	tab = NULL;
+	tablen = 2;
 	v.x = 0;
 	v.y = 0;
+	coord = *first;
 	tab = ft_empty(tab, tablen);
-	first = ft_move(&first, v.x, v.y);
-	while (!ft_check(first, tablen, tab))
+	while (coord)
 	{
-		tablen++;
-		tab = ft_empty(tab, tablen);
+		coord = ft_move(&coord, v.x, v.y);
+		if (ft_check(coord, tablen))
+			tab = ft_display(&coord, tab, tablen);
+		else
+		{
+			if (coord == *first)
+			{
+				tablen++;
+				tab = ft_empty(tab, tablen);
+			}
+		}
 	}
-	return (tab);
 }

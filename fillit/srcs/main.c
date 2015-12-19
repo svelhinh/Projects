@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:51:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/18 17:57:34 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/19 18:23:15 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			main(int ac, char **av)
 {
 	int		error;
 	int		fd;
-	int		i;
 	t_coord	**coord;
 	t_varf	v;
 
@@ -41,19 +40,7 @@ int			main(int ac, char **av)
 	ft_puttab(v.file, 4, 16);
 	ft_putstr("// -------------------------------- \\\\\n\n");
 	coord = ft_store(v.file);
-	ft_backtracking(coord);
-	while (*coord)
-	{
-		printf("c = %c\n\n", (*coord)->c);
-		i = 0;
-		while (i < 4)
-		{
-			printf("x = %d\n", (*coord)->x[i]);
-			printf("y = %d\n\n", (*coord)->y[i]);
-			i++;
-		}
-		(*coord) = (*coord)->next;
-	}
+	ft_resize_tab(*coord);
 	ft_putcolor("default");
 	return (0);
 }

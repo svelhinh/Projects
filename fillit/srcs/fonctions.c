@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 13:56:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/18 17:16:57 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/19 19:02:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ char		**ft_empty(char **tab, int tablen)
 		ft_putstr("error\n");
 		exit(0);
 	}
-	while (y < tablen/* - 1*/)
+	while (y < tablen)
 	{
 		tab[y] = ft_strnew(tablen);
 		x = 0;
-		while (x < tablen/* - 1*/)
+		while (x < tablen)
 		{
 			tab[y][x] = '.';
 			x++;
@@ -70,6 +70,6 @@ char		**ft_empty(char **tab, int tablen)
 		printf("%s\n", tab[y]);
 		y++;
 	}
-	printf("\n\n");
+	printf("\n");
 	return (tab);
 }
