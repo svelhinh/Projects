@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 10:22:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/21 11:15:25 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/21 13:30:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <sys/uio.h>
 # include <fcntl.h>
 # include "libft.h"
-# define BUFF_SIZE 10
+# define BUFF_SIZE 100
 
 typedef struct	s_alcu
 {

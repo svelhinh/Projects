@@ -6,11 +6,25 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 11:00:45 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/21 11:12:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/21 13:37:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alcu.h"
+
+void		ft_display_players(int turn)
+{
+	if (turn)
+	{
+		ft_putcolor("green");
+		ft_putstr("\nPlayer :\n");
+	}
+	else
+	{
+		ft_putcolor("red");
+		ft_putstr("\nIA :\n");
+	}
+}
 
 int			ft_game(char **m)
 {
@@ -24,6 +38,7 @@ int			ft_game(char **m)
 		ft_putcolor("cyan");
 		ft_display_matches(m);
 		v.nbm = ft_nbmatches(m);
+		ft_display_players(v.turn);
 		if (v.turn)
 			m = ft_player(m, v.nbm, &v.turn);
 		else
@@ -32,6 +47,7 @@ int			ft_game(char **m)
 		if (v.nbm == 0)
 			v.winner = v.turn;
 	}
+	free(m);
 	return (v.winner);
 }
 
