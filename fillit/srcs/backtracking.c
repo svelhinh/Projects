@@ -5,65 +5,105 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/19 14:53:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/19 19:12:36 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/18 17:03:51 by svelhinh          #+#    #+#             */
+/*   Updated: 2015/12/21 19:09:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-int		ft_check(t_coord *coord, int tablen, char **tab)
+/*int		ft_check_tab(char **tab, t_coord *coord, int tablen)
 {
-	int blk;
-	t_varf v;
+	int x;
+	int y;
 
-	blk = 0;
-	v.x = 0;
-	v.y = 0;
-	while (!ft_check_tab(tab, &coord, tablen) && v.y < tablen)
+	y = 0;
+	x = 0;
+	while (!ft_check(tab, &coord, tablen) && y < tablen)
 	{
-		if (v.x == tablen)
+		if (x == tablen)
 		{
-			v.x = 0;
-			v.y++;
+			x = 0;
+			y++;
 		}
-		coord = ft_move(&coord, v.x, v.y);
-		v.x++;
+		else
+			x++;
+		coord = *ft_move(&coord, x, y);
 	}
-	if (v.y == tablen)
+	if (!ft_check(tab, &coord, tablen))
 		return (0);
+	if (coord->c == 'A')
+		coord = *ft_move(&coord, 0, 0);
 	return (1);
 }
 
-char	**ft_backtracking(t_coord *coord, int tablen, char **tab)
+char	**ft_backtracking(char **tab, t_coord *coord, int tablen)
 {
-	if (ft_check(coord, tablen, tab))
+	if (coord)
 	{
-		tab = ft_tab_store(tab, coord, tablen);
-		coord = coord->next;
-		ft_backtracking(coord, tablen, tab);
-		return (tab);
-	}
-	return (NULL);
-}
-
-char	**ft_resize_tab(t_coord *first)
-{
-	char **tab;
-	int tablen;
-	t_varf v;
-
-	tablen = 2;
-	tab = NULL;
-	v.x = 0;
-	v.y = 0;
-	tab = ft_empty(tab, tablen);
-	first = ft_move(&first, v.x, v.y);
-	while (!ft_check(first, tablen, tab))
-	{
-		tablen++;
-		tab = ft_empty(tab, tablen);
+		//printf("\ncoord c = %c\n", coord->c);
+		if (ft_check_tab(tab, coord, tablen))
+		{
+			tab = ft_tab_store(tab, &coord, tablen);
+			coord = coord->next;
+		}
+		else if (coord->c == 'A')
+		{
+			tablen++;
+			tab = ft_empty(tab, tablen);
+		}
+		ft_backtracking(tab, coord, tablen);
 	}
 	return (tab);
+}*/
+
+void	ft_move_blk(t_coord *coord)
+{
+	int x;
+	int y;
+	char **tab;
+	int tablen;
+	
+	tablen = 2;
+	y = tablen;
+	tab = NULL;
+	while (y >= tablen)
+	{
+		x = 0;
+		y = 0;
+		tab = ft_empty(tab, tablen);
+		/*while (x < 4)
+		{
+			printf("avant :\n\ncoord x = %d\ncoord y = %d\n\n", coord->x[x], coord->y[x]);
+			x++;
+		}
+		x = 0;*/
+		coord = ft_move(coord, x, y);
+		/*while (x < 4)
+		{
+			printf("apres :\n\ncoord x = %d\ncoord y = %d\n\n", coord->x[x], coord->y[x]);
+			x++;
+		}
+		x = 0;*/
+		/*printf("tab = %s\ntablen = %d\n\n", tab[0], tablen);
+		printf("tab = %s\ntablen = %d\n\n", tab[1], tablen);
+		printf("tab = %s\ntablen = %d\n\n", tab[2], tablen);
+		printf("tab = %s\ntablen = %d\n\n", tab[3], tablen);*/
+		printf("ft_check = %d\n\n", ft_check(tab, coord, tablen));
+		while (!ft_check(tab, coord, tablen) && y <= tablen)
+		{
+			if (x == tablen)
+			{
+				x = 0;
+				y++;
+			}
+			else
+				x++;
+			coord = ft_move(coord, x, y);
+		}
+		if (y >= tablen)		// Pas sur
+			tablen++;
+	}
+	tab = ft_tab_store(tab, coord, tablen);
 }

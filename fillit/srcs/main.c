@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:51:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/19 18:23:15 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/21 18:18:55 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int			main(int ac, char **av)
 	int		fd;
 	t_coord	**coord;
 	t_varf	v;
+	char **tab;
 
 	(void)ac;
+	tab = NULL;
 	v.file = ft_strnew(1);
 	ft_putcolor("light green");
 	fd = open(av[1], O_RDONLY);
@@ -40,7 +42,7 @@ int			main(int ac, char **av)
 	ft_puttab(v.file, 4, 16);
 	ft_putstr("// -------------------------------- \\\\\n\n");
 	coord = ft_store(v.file);
-	ft_resize_tab(*coord);
+	ft_move_blk(*coord);
 	ft_putcolor("default");
 	return (0);
 }
