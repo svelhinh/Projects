@@ -6,12 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 17:39:38 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 13:46:35 by stoussay         ###   ########.fr       */
+/*   Updated: 2015/12/23 17:33:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-int			ft_check(char **tab, t_coord **coord, int tablen)
+
+int			ft_check(char **tab, t_coord *coord, int tablen)
 {
 	int		x;
 	int		y;
@@ -24,10 +25,10 @@ int			ft_check(char **tab, t_coord **coord, int tablen)
 		x = 0;
 		while (x < tablen)
 		{
-			if ((*coord)->x[blk] == x && (*coord)->y[blk] == y
+			if (coord->x[blk] == x && coord->y[blk] == y
 					&& tab[y][x] != '.')
 				return (0);
-			else if ((*coord)->x[blk] == x && (*coord)->y[blk] == y)
+			else if (coord->x[blk] == x && coord->y[blk] == y)
 				blk++;
 			x++;
 		}
@@ -35,10 +36,10 @@ int			ft_check(char **tab, t_coord **coord, int tablen)
 	}
 	if (blk < 4)
 		return (0);
-		return (1);
+	return (1);
 }
 
-char		**ft_tab_store(char **tab, t_coord **coord, int tablen)
+char		**ft_tab_store(char **tab, t_coord *coord, int tablen)
 {
 	int		x;
 	int		y;
@@ -51,9 +52,9 @@ char		**ft_tab_store(char **tab, t_coord **coord, int tablen)
 		x = 0;
 		while (x < tablen)
 		{
-			if ((*coord)->x[blk] == x && (*coord)->y[blk] == y)
+			if (coord->x[blk] == x && coord->y[blk] == y)
 			{
-				tab[y][x] = (*coord)->c;
+				tab[y][x] = coord->c;
 				blk++;
 			}
 			x++;

@@ -6,20 +6,20 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:54:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/11 14:52:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/23 17:37:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strend(char *str, int start)
+static int	ft_strend(char *str, int start)
 {
 	while (str[start])
 		start++;
 	return (start);
 }
 
-char	*ft_read(char *swap, size_t fd, int *nblines, size_t *start)
+static char	*ft_read(char *swap, size_t fd, int *nblines, size_t *start)
 {
 	t_varg v;
 
@@ -39,13 +39,13 @@ char	*ft_read(char *swap, size_t fd, int *nblines, size_t *start)
 	return (swap);
 }
 
-void	ft_plus_plus(size_t *start, size_t *len)
+static void	ft_plus_plus(size_t *start, size_t *len)
 {
 	(*start)++;
 	(*len)++;
 }
 
-int		get_next_line(int const fd, char **line)
+int			get_next_line(int const fd, char **line)
 {
 	static int		nblines = 0;
 	static char		*swap = NULL;

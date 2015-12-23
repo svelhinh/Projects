@@ -6,13 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 17:03:51 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 13:46:20 by stoussay         ###   ########.fr       */
+/*   Updated: 2015/12/23 18:50:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**ft_delete_blk(char **tab, t_coord *coord, int tablen)
+static char	**ft_delete_blk(char **tab, t_coord *coord, int tablen)
 {
 	int x;
 	int y;
@@ -32,11 +32,11 @@ char	**ft_delete_blk(char **tab, t_coord *coord, int tablen)
 	return (tab);
 }
 
-char **ft_backtracking(char **tab, t_coord *coord, int tablen)
+static char	**ft_backtracking(char **tab, t_coord *coord, int tablen)
 {
-	int x;
-	int y;
-	char**tmp;
+	int		x;
+	int		y;
+	char	**tmp;
 
 	if (!coord)
 		return (tab);
@@ -47,9 +47,10 @@ char **ft_backtracking(char **tab, t_coord *coord, int tablen)
 		x = 0;
 		while (x < tablen)
 		{
-			coord = *ft_move(&coord, x, y);
-			if (ft_check(tab, &coord, tablen))
-				tmp = ft_backtracking(ft_tab_store(tab, &coord, tablen), coord->next, tablen);
+			coord = ft_move(coord, x, y);
+			if (ft_check(tab, coord, tablen))
+				tmp = ft_backtracking(ft_tab_store(tab, coord, tablen),
+						coord->next, tablen);
 			if (tmp)
 				return (tmp);
 			tab = ft_delete_blk(tab, coord, tablen);
@@ -60,7 +61,7 @@ char **ft_backtracking(char **tab, t_coord *coord, int tablen)
 	return (NULL);
 }
 
-char**solve(t_coord *coord, int tablen)
+char		**ft_result(t_coord *coord, int tablen)
 {
 	char **tab;
 

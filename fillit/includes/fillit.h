@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 13:58:00 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 12:39:03 by stoussay         ###   ########.fr       */
+/*   Updated: 2015/12/23 15:30:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct		s_varf
 	int				x;
 	int				blky;
 	int				y;
+	char			**tab;
+	int				fd;
 }					t_varf;
 
 typedef struct		s_coord
@@ -47,12 +49,10 @@ int					ft_errors(int fd, char **file);
 void				ft_init(int *nblines, int *error, int *gnlret, int *blk);
 char				*ft_letters(char *file);
 t_coord				**ft_store(char *file);
-t_coord				**ft_move(t_coord **first, int x, int y);
-char				**ft_tab_store(char **tab, t_coord **coord, int tablen);
+t_coord				*ft_move(t_coord *first, int x, int y);
+char				**ft_tab_store(char **tab, t_coord *coord, int tablen);
 char				**ft_empty(char **tab, int tablen);
-char				**ft_resize_tab(t_coord *first, int *tablen, char **tab);
-int					ft_check(char **tab, t_coord **coord, int tablen);
-char				**ft_backtracking(char **tab, t_coord *coord, int tablen);
-char				**solve(t_coord *coord, int tablen);
+int					ft_check(char **tab, t_coord *coord, int tablen);
+char				**ft_result(t_coord *coord, int tablen);
 
 #endif

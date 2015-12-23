@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2015/12/19 19:49:04 by stoussay         ###   ########.fr        #
+#    Updated: 2015/12/23 17:23:00 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fillit
 
 SRC = \
 		srcs/main.c srcs/errors.c srcs/get_next_line.c srcs/fonctions.c \
-		srcs/store_file.c srcs/move.c srcs/backtracking.c srcs/display.c
+		srcs/store_file.c srcs/move.c srcs/backtracking.c srcs/check_store.c
 
 LIB = lib/libft.a
 
@@ -32,3 +32,5 @@ fclean: clean
 		rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

@@ -6,17 +6,21 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 15:01:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 13:46:45 by stoussay         ###   ########.fr       */
+/*   Updated: 2015/12/23 17:36:10 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_tetri(char *coord)
+static int		ft_tetri(char *coord)
 {
 	int x;
+	int blk;
+	int i;
 
 	x = 0;
+	i = 0;
+	blk = 0;
 	while (coord[x])
 	{
 		if (coord[x] == '#' && coord[x + 4] != '#'
@@ -28,7 +32,7 @@ int		ft_tetri(char *coord)
 	return (0);
 }
 
-int		ft_line(char *line, int *blk)
+static int		ft_line(char *line, int *blk)
 {
 	int	x;
 
@@ -46,7 +50,7 @@ int		ft_line(char *line, int *blk)
 	return (0);
 }
 
-int		ft_endblk(char *coord, int *nblines, int *blk)
+static int		ft_endblk(char *coord, int *nblines, int *blk)
 {
 	if (ft_tetri(coord) == -1 || *nblines != 4 || *blk != 4)
 		return (-1);
@@ -55,7 +59,7 @@ int		ft_endblk(char *coord, int *nblines, int *blk)
 	return (0);
 }
 
-int		ft_nblines(char *line, int fd, char ***file)
+static int		ft_nblines(char *line, int fd, char ***file)
 {
 	t_varf	v;
 
@@ -65,14 +69,13 @@ int		ft_nblines(char *line, int fd, char ***file)
 	{
 		if (!(v.gnlret = get_next_line(fd, &line)))
 			return (0);
-		if (ft_strcmp(line, "\0"))
+		if (ft_strcmp(line, "\0") && ++v.nblines)
 		{
 			v.coord = ft_strjoin(v.coord, line);
 			**file = ft_strjoin(**file, line);
 			(v.gnlret) ? (v.error = ft_line(line, &v.blk)) : (42);
 			if (v.error == -1)
 				return (-1);
-			v.nblines++;
 		}
 		else
 		{
@@ -85,7 +88,7 @@ int		ft_nblines(char *line, int fd, char ***file)
 	return (0);
 }
 
-int		ft_errors(int fd, char **file)
+int				ft_errors(int fd, char **file)
 {
 	t_varf v;
 

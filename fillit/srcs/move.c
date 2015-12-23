@@ -6,13 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 11:11:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 13:47:36 by stoussay         ###   ########.fr       */
+/*   Updated: 2015/12/23 17:36:58 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_xmin(t_coord *coord)
+static int	ft_xmin(t_coord *coord)
 {
 	int xmin;
 	int blk;
@@ -28,21 +28,21 @@ int			ft_xmin(t_coord *coord)
 	return (xmin);
 }
 
-void		ft_placex(t_coord **first, int x)
+static void	ft_placex(t_coord *first, int x)
 {
 	int xmin;
 	int blk;
 
 	blk = 0;
-	xmin = ft_xmin(*first);
+	xmin = ft_xmin(first);
 	while (blk != 4)
 	{
-		(*first)->x[blk] = (*first)->x[blk] - xmin + x;
+		first->x[blk] = first->x[blk] - xmin + x;
 		blk++;
 	}
 }
 
-int			ft_ymin(t_coord *coord)
+static int	ft_ymin(t_coord *coord)
 {
 	int ymin;
 	int blk;
@@ -58,21 +58,21 @@ int			ft_ymin(t_coord *coord)
 	return (ymin);
 }
 
-void		ft_placey(t_coord **first, int y)
+static void	ft_placey(t_coord *first, int y)
 {
 	int ymin;
 	int blk;
 
 	blk = 0;
-	ymin = ft_ymin(*first);
+	ymin = ft_ymin(first);
 	while (blk != 4)
 	{
-		(*first)->y[blk] = (*first)->y[blk] - ymin + y;
+		first->y[blk] = first->y[blk] - ymin + y;
 		blk++;
 	}
 }
 
-t_coord		**ft_move(t_coord **first, int x, int y)
+t_coord		*ft_move(t_coord *first, int x, int y)
 {
 	ft_placex(first, x);
 	ft_placey(first, y);

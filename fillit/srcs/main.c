@@ -6,49 +6,96 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:51:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 13:46:55 by stoussay         ###   ########.fr       */
+/*   Updated: 2015/12/23 18:52:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			main(int ac, char **av)
+static int		ft_nbr_blk(t_coord *coord)
 {
-	int		error;
-	int		fd;
-	t_coord	**coord;
-	t_varf	v;
-	char **tab;
+	int i;
+	int tablen;
+
+	i = 0;
+	tablen = 2;
+	while (coord)
+	{
+		coord = coord->next;
+		i++;
+	}
+	while (tablen * tablen < i * 4)
+		tablen++;
+	return (tablen);
+}
+
+static void		ft_display(char **tab)
+{
 	int y;
 
-	(void)ac;
-	tab = NULL;
-	v.file = ft_strnew(1);
-	ft_putcolor("light green");
-	fd = open(av[1], O_RDONLY);
 	y = 0;
-	if (fd == -1 || (error = ft_errors(fd, &v.file) == -1))
-	{
-		ft_putstr("error\n\n");
-		ft_putcolor("default");
-		return (0);
-	}
-	if (close(fd) == -1)
-	{
-		ft_putstr("error");
-		ft_putcolor("default");
-		return (0);
-	}
-	v.file = ft_letters(v.file);
-	coord = ft_store(v.file);
-	tab = solve((*coord), 2);
 	while (tab[y])
 	{
 		ft_putstr(tab[y]);
 		ft_putchar('\n');
 		y++;
 	}
-	ft_putchar('\n');
-	ft_putcolor("default");
+}
+
+static void		ft_exit(void)
+{
+	ft_putstr("error\n");
+	exit(0);
+}
+
+static void		ft_notetri(t_coord **coord)
+{
+	t_coord	*tmp;
+	int		i;
+
+	tmp = *coord;
+	i = 0;
+	while (tmp)
+	{
+		if (i > 26)
+			ft_exit();
+		if (tmp->y[2] > tmp->y[1] + 1 || (tmp->x[0] != tmp->x[2]
+					&& tmp->x[0] != tmp->x[3] && tmp->x[1] != tmp->x[2]
+					&& tmp->x[1] != tmp->x[3] && tmp->y[0] != tmp->y[2]
+					&& tmp->y[0] != tmp->y[3] && tmp->y[1] != tmp->y[2]
+					&& tmp->y[1] != tmp->y[3]) || (tmp->x[0] == tmp->x[2]
+					&& tmp->x[1] == tmp->x[3] && tmp->x[1] > tmp->x[0] + 1
+					&& tmp->x[3] > tmp->x[2] + 1))
+		{
+			free(coord);
+			free(tmp);
+			ft_exit();
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	free(tmp);
+}
+
+int				main(int ac, char **av)
+{
+	t_coord	**coord;
+	t_varf	v;
+
+	(ac == 1) ? (ft_exit()) : (42);
+	v.tab = NULL;
+	v.file = ft_strnew(1);
+	v.fd = open(av[1], O_RDONLY);
+	v.y = 0;
+	(v.fd == -1 || (v.error = ft_errors(v.fd, &v.file) == -1)
+			|| close(v.fd) == -1) ? (ft_exit()) : ("yo");
+	v.file = ft_letters(v.file);
+	coord = ft_store(v.file);
+	free(v.file);
+	ft_notetri(coord);
+	v.tab = ft_result(*coord, ft_nbr_blk(*coord));
+	free(coord);
+	ft_display(v.tab);
+	free(v.tab);
 	return (0);
 }
