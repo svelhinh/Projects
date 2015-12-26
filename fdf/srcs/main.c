@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 14:19:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/26 14:22:39 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
+/*   Updated: 2015/12/26 18:01:22 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 5000
-# include <unistd.h>
-# include "libft.h"
+#include <mlx.h>
+#include <unistd.h>
 
-int					get_next_line(int const fd, char **line);
-typedef struct		s_varg
+int		main(void)
 {
-	char			buf[BUFF_SIZE + 1];
-	size_t			ret;
-	size_t			len;
-	size_t			start;
-	size_t			result;
-}					t_varg;
+	void	*mlx;
+	void	*win;
+	int x;
+	int y;
+	int r;
+	int g;
 
-#endif
+	y = 100;
+	r = 255;
+	g = 127;
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 1000, 1000, "42");
+	sleep(2);
+	while (y < 500)
+	{
+		x = 100;
+		while (x < 500)
+		{
+			mlx_pixel_put(mlx, win, x, y, 0xAAFF00);
+			x++;
+		}
+		y++;
+	}
+	mlx_loop(mlx);
+	return (0);
+}
