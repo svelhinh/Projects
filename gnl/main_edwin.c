@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 09:40:41 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/11 11:14:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/26 12:48:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,24 @@ int         main(int ac, char **av)
 
 	fd = open(av[1], O_RDONLY);
 	i = 0;
-	while ((ret = get_next_line(fd, &line)) != 0)
+	while ((ret = get_next_line(fd, &line)) > 0)
+	{
+		if (ret == -1)
+		{
+			write(2, "error\n", 6);
+			break ;
+		}
+		else if (ret > 0)
+		{
+			printf("line %d: %s\n", i, line);
+			free(line);
+			line = NULL;
+		}
+		i++;
+	}
+	fd = open(av[2], O_RDONLY);
+	i = 0;
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (ret == -1)
 		{
@@ -45,6 +62,6 @@ int         main(int ac, char **av)
 	free(line);
 	line = NULL;
 	close(fd);
-	while(42);
+	//while(42);
 	return (0);
 }

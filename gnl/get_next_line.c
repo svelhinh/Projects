@@ -6,34 +6,35 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:54:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/26 10:31:19 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/26 13:15:28 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strend(char *str, int start)
+int		ft_strend(char *str, int len)
 {
-	while (str[start])
-		start++;
-	return (start);
+	while (str[len])
+		len++;
+	return (len);
 }
 
-char	*ft_read(char *swap, size_t fd, int *nblines, size_t *start)
+char	*ft_read(char *swap, size_t fd, int *nblines)
 {
 	t_varg v;
+	size_t i;
 
-	*start = 0;
+	i = 0;
 	while (!ft_strchr(swap, '\n') && (v.ret = read(fd, v.buf, BUFF_SIZE)))
 	{
 		v.buf[v.ret] = '\0';
 		swap = ft_strjoin(swap, v.buf);
 		if (ft_strchr(swap, '\n'))
-			while (swap[*start])
+			while (swap[i])
 			{
-				if (swap[*start] == '\n')
+				if (swap[i] == '\n')
 					(*nblines)++;
-				(*start)++;
+				i++;
 			}
 	}
 	return (swap);
@@ -50,15 +51,14 @@ int		get_next_line(int const fd, char **line)
 	static int		nblines = 0;
 	static char		*swap = NULL;
 	t_varg			var;
-	char			*tmp;
 
-	tmp = NULL;
 	var.len = 0;
-	if (fd == -1 || read(fd, tmp, 0))
+	if (fd == -1 || read(fd, var.buf, 0) == -1)
 		return (-1);
-	(!swap) ? (swap = ft_strnew(BUFF_SIZE + 1)) : ("yo");
-	swap = ft_read(swap, fd, &nblines, &var.start);
-	if (nblines > 0 && ft_strchr(swap, '\n'))
+	(nblines == -1) ? (nblines = 0) : (42);
+	(!swap) ? (swap = ft_strnew(BUFF_SIZE)) : ("yo");
+	swap = ft_read(swap, fd, &nblines);
+	if (nblines > 0)
 	{
 		var.start = 0;
 		while (swap[var.start] != '\n')
@@ -68,10 +68,8 @@ int		get_next_line(int const fd, char **line)
 		nblines--;
 		return (1);
 	}
-	if (nblines-- == 0)
-	{
-		*line = ft_strdup(swap);
+	if (swap[0] != '\0' && nblines-- == 0 && (*line = ft_strdup(swap))
+			&& (swap = ft_strnew(BUFF_SIZE)))
 		return (1);
-	}
 	return (0);
 }
