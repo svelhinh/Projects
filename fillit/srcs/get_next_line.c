@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:54:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/26 13:15:28 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/28 15:50:00 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*ft_read(char *swap, size_t fd, int *nblines)
 	size_t i;
 
 	i = 0;
+	v.buf = ft_strnew(BUFF_SIZE);
 	while (!ft_strchr(swap, '\n') && (v.ret = read(fd, v.buf, BUFF_SIZE)))
 	{
 		v.buf[v.ret] = '\0';
@@ -37,6 +38,7 @@ char	*ft_read(char *swap, size_t fd, int *nblines)
 				i++;
 			}
 	}
+	free(v.buf);
 	return (swap);
 }
 

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:51:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 18:52:52 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/28 15:52:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				main(int ac, char **av)
 	t_coord	**coord;
 	t_varf	v;
 
-	(ac == 1) ? (ft_exit()) : (42);
+	(ac != 2) ? (ft_exit()) : (42);
 	v.tab = NULL;
 	v.file = ft_strnew(1);
 	v.fd = open(av[1], O_RDONLY);

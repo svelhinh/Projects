@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 14:19:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/28 16:42:17 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
+/*   Updated: 2015/12/28 10:52:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 11000
-# include <unistd.h>
-# include "../lib/libft.h"
+#ifndef FDF_H
+# define FDF_H
+# include <mlx.h>
+# include <stdlib.h>
 
-int					get_next_line(int const fd, char **line);
-typedef struct		s_varg
+typedef struct	s_env
 {
-	char			*buf;
-	size_t			ret;
-	size_t			len;
-	size_t			start;
-	size_t			result;
-}					t_varg;
-
+	void		*mlx;
+	void		*win;
+}				t_env;
+typedef struct	s_xy
+{
+	int			xmin;
+	int			ymin;
+	int			xmax;
+	int			ymax;
+	int			x;
+	int			y;
+	int			color;
+}				t_xy;
+void			xline(t_xy c, void *mlx, void *win);
+void			yline(t_xy c, void *mlx, void *wini);
 #endif

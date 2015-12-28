@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   square.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 14:19:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/28 16:42:17 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
+/*   Updated: 2015/12/28 10:52:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 11000
-# include <unistd.h>
-# include "../lib/libft.h"
+#include "fdf.h"
 
-int					get_next_line(int const fd, char **line);
-typedef struct		s_varg
+void	xline(t_xy c, void *mlx, void *win)
 {
-	char			*buf;
-	size_t			ret;
-	size_t			len;
-	size_t			start;
-	size_t			result;
-}					t_varg;
+	while (c.xmin < c.xmax)
+	{
+		mlx_pixel_put(mlx, win, c.xmin, c.y, c.color);
+		c.xmin++;
+	}
+}
 
-#endif
+void	yline(t_xy c, void *mlx, void *win)
+{
+	while (c.ymin < c.ymax)
+	{
+		mlx_pixel_put(mlx, win, c.x, c.ymin, c.color);
+		c.ymin++;
+	}
+}

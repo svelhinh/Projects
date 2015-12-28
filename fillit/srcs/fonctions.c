@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 13:56:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 18:40:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/28 15:57:23 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		**ft_empty(char **tab, int tablen)
 	int x;
 
 	y = 0;
-	if (!(tab = (char **)malloc(sizeof(char *) * tablen + 1)))
+	if (!(tab = (char **)malloc(sizeof(char *) * (tablen + 1))))
 		return (NULL);
 	while (y < tablen)
 	{

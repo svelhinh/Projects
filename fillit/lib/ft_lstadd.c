@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 14:19:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/28 16:42:17 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/29 09:16:21 by svelhinh          #+#    #+#             */
+/*   Updated: 2015/11/30 16:26:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 11000
-# include <unistd.h>
-# include "../lib/libft.h"
+#include "libft.h"
 
-int					get_next_line(int const fd, char **line);
-typedef struct		s_varg
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	char			*buf;
-	size_t			ret;
-	size_t			len;
-	size_t			start;
-	size_t			result;
-}					t_varg;
-
-#endif
+	if (*alst)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
+	else
+		*alst = new;
+}

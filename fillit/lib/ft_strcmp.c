@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 14:19:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/28 16:42:17 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/24 17:09:15 by svelhinh          #+#    #+#             */
+/*   Updated: 2015/11/30 12:22:58 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 11000
-# include <unistd.h>
-# include "../lib/libft.h"
-
-int					get_next_line(int const fd, char **line);
-typedef struct		s_varg
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	char			*buf;
-	size_t			ret;
-	size_t			len;
-	size_t			start;
-	size_t			result;
-}					t_varg;
+	int i;
 
-#endif
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+		i++;
+	if (s1[i] == '\0' && s2[i] == '\0')
+		return (0);
+	else
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}

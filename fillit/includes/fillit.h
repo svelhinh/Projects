@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 13:58:00 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/23 15:30:08 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/28 16:41:55 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "libft.h"
+# include "../lib/libft.h"
 # include "get_next_line.h"
 
 typedef struct		s_varf
