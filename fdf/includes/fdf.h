@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/28 17:40:42 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/29 16:11:21 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ typedef struct	s_env
 }				t_env;
 typedef struct	s_xy
 {
-	int			xmin;
-	int			ymin;
-	int			xmax;
-	int			ymax;
+	float		xmin;
+	float		ymin;
+	float		xmax;
+	float		ymax;
 	int			color;
 }				t_xy;
-void			line(t_xy c, void *mlx, void *win);
+void			line(t_xy c, void *mlx, void *win, int nblines);
 #endif
