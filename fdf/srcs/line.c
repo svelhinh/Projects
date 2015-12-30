@@ -6,70 +6,94 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/29 17:16:24 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/30 16:38:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	line(t_xy c, void *mlx, void *win, int nblines)
+void	ft_swap(float *a, float *b)
 {
-	float len;
+	int c;
+
+	c = *b;
+	*b = *a;
+	*a = c;
+}
+
+void	line_horizon(t_xy c, void *mlx, void *win)
+{
+	float x;
+
+	x = c.xmin;
+	while (x <= c.xmax)
+	{
+		mlx_pixel_put(mlx, win, x, c.ymin, c.color);
+		x++;
+	}
+}
+
+void	line_verti(t_xy c, void *mlx, void *win)
+{
+	float y;
+
+	y = c.ymin;
+	while (y <= c.ymax)
+	{
+		mlx_pixel_put(mlx, win, c.xmin, y, c.color);
+		y++;
+	}
+}
+
+void	line_diago(t_xy c, void *mlx, void *win)
+{
+	int x;
 	float dx;
 	float dy;
-	float x;
+	float m;
 	float y;
-	int i;
-	int j;
-	int coeff;
 
-	if ((c.xmax - c.xmin) >= (c.ymax - c.ymin))
-		len = c.xmax - c.xmin;
-	else
-		len = c.ymax - c.ymin;
-	dx = (c.xmax - c.xmin) / len;
-	dy = (c.ymax - c.ymin) / len;
-	j = 0;
-	x = c.xmin;
+	dx = c.xmax - c.xmin;
+	dy = c.ymax - c.ymin;
+	m = dy / dx;
 	y = c.ymin;
-	coeff = 20;
-	while (j < nblines)
-	{
-		i = 0;
-		while (i < len)
-		{
-			mlx_pixel_put(mlx, win, x, y, c.color);
-			x += dx;
-			y += dy;
-			i++;
-		}
-		j++;
-		x = c.xmin + j * coeff;
-		y = c.ymin + j * coeff;
-	}
-	i = 0;
-	c.xmax = c.xmin + (coeff * (nblines - 1));
-	c.ymax = c.ymin + (coeff * (nblines - 1));
-	if ((c.xmax - c.xmin) >= (c.ymax - c.ymin))
-		len = c.xmax - c.xmin;
-	else
-		len = c.ymax - c.ymin;
-	dx = (c.xmax - c.xmin) / len;
-	dy = (c.ymax - c.ymin) / len;
-	j = 0;
 	x = c.xmin;
-	y = c.ymin;
-	while (j < nblines)
+	while (x <= c.xmax)
 	{
-		while (i < len)
-		{
-			mlx_pixel_put(mlx, win, x, y, c.color);
-			x += dx;
-			y += dy;
-			i++;
-		}
-		j++;
-		x = c.xmin + j * coeff;
-		//y = c.ymin + j * coeff;
+		mlx_pixel_put(mlx, win, x, y, c.color);
+		y += m;
+		x++;
 	}
+}
+
+void	yo(t_xy c, void *mlx, void *win)
+{
+	if (c.xmin > c.xmax && c.ymin > c.ymax)
+	{
+		ft_swap(&c.ymin, &c.ymax);
+		ft_swap(&c.xmin, &c.xmax);
+	}
+	else
+	{
+		if (c.ymin > c.ymax)
+		{
+			if (c.xmin < c.xmax)
+				ft_swap(&c.xmin, &c.xmax);
+			else if (c.xmin > c.xmax)
+				ft_swap(&c.ymin, &c.ymax);
+			else
+				ft_swap(&c.ymin, &c.ymax);
+		}
+		if (c.xmin > c.xmax)
+		{
+			(c.ymin < c.ymax) ? ft_swap(&c.ymin, &c.ymax) : (NULL);
+			ft_swap(&c.xmin, &c.xmax);
+		}
+	}
+	if (c.xmax == c.xmin)
+		line_verti(c, mlx, win);
+	else if (c.ymax == c.ymin)
+		line_horizon(c, mlx, win);
+	else
+		line_diago(c, mlx, win);
 }

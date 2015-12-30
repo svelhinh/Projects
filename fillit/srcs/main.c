@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:51:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/28 15:52:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/30 18:41:50 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void		ft_display(char **tab)
 	}
 }
 
-static void		ft_exit(void)
+void			ft_exit(void)
 {
 	ft_putstr("error\n");
 	exit(0);
@@ -86,7 +86,11 @@ int				main(int ac, char **av)
 	v.tab = NULL;
 	v.file = ft_strnew(1);
 	v.fd = open(av[1], O_RDONLY);
+	(v.fd == -1) ? (ft_exit()) : ("yo");
 	v.y = 0;
+	ft_check_endl(v.fd);
+	(close(v.fd) == -1) ? (ft_exit()) : ("yo");
+	v.fd = open(av[1], O_RDONLY);
 	(v.fd == -1 || (v.error = ft_errors(v.fd, &v.file) == -1)
 			|| close(v.fd) == -1) ? (ft_exit()) : ("yo");
 	v.file = ft_letters(v.file);

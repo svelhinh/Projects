@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 13:58:00 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/28 16:41:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/30 19:00:33 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct		s_varf
 	int				y;
 	char			**tab;
 	int				fd;
+	int				contact;
+	int				ret;
 }					t_varf;
 
 typedef struct		s_coord
@@ -54,5 +56,7 @@ char				**ft_tab_store(char **tab, t_coord *coord, int tablen);
 char				**ft_empty(char **tab, int tablen);
 int					ft_check(char **tab, t_coord *coord, int tablen);
 char				**ft_result(t_coord *coord, int tablen);
+void				ft_exit(void);
+void				ft_check_endl(int fd);
 
 #endif
