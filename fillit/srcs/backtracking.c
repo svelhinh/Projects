@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 17:03:51 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/31 12:46:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/31 15:40:57 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	**ft_delete_blk(char **tab, t_coord *coord, int tablen)
 	int x;
 	int y;
 
-	printf("yo\n");
 	y = 0;
 	while (y < tablen)
 	{
