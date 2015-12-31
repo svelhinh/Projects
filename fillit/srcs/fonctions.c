@@ -6,19 +6,17 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 13:56:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/30 19:21:15 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:44:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-void		ft_init(int *nblines, int *error, int *gnlret, int *blk)
+void		ft_init(int *nblines, int *error, int *gnlret)
 {
 	*nblines = 0;
 	*error = 0;
 	*gnlret = 1;
-	*blk = 0;
 }
 
 char		*ft_letters(char *file)
@@ -76,6 +74,7 @@ void		ft_tmblk(char *file)
 
 	v.i = 0;
 	v.nblines = 0;
+	v.contact = 0;
 	v.blk = 0;
 	while (file[v.i])
 	{
@@ -98,42 +97,20 @@ void		ft_tmblk(char *file)
 	}
 }
 
-void		ft_check_endl(int fd)
+void		ft_check_tetri(int fd)
 {
 	char	buf[BUFF_SIZE];
 	t_varf	v;
 
-	v.i = 0;
 	v.file = ft_strnew(1);
-	v.contact = 0;
 	while ((v.ret = read(fd, buf, BUFF_SIZE)))
 	{
 		buf[v.ret] = '\0';
 		v.file = ft_strjoin(v.file, buf);
 	}
 	ft_tmblk(v.file);
-	while (v.file[v.i])
-	{
-		printf("contact = %d\nnblines = %d\n\n", v.contact, v.nblines);
-		if (v.file[v.i] == '#')
-		{
-			(v.file[v.i + 1] == '#') ? (v.contact++) : ('y');
-			(v.file[v.i - 1] == '#') ? (v.contact++) : ('y');
-			(v.file[v.i + 5] == '#') ? (v.contact++) : ('y');
-			(v.file[v.i - 5] == '#') ? (v.contact++) : ('y');
-		}
-		if (v.file[v.i] == '\n')
-			v.nblines++;
-		if (v.nblines == 5)
-		{
-			if (v.contact < 6 || v.contact > 8)
-				ft_exit();
-			v.contact = 0;
-			v.nblines = 0;
-			v.i++;
-		}
-		v.i++;
-	}
-	if (v.file[ft_strlen(v.file) - 1] == '\n' && v.file[ft_strlen(v.file) - 2] == '\n')
-		ft_exit();
+	ft_contact(v);
+	(v.file[ft_strlen(v.file) - 1] == '\n'
+	&& v.file[ft_strlen(v.file) - 2] == '\n') ? (ft_exit()) : (0);
+	free(v.file);
 }

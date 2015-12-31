@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:54:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/28 15:50:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:26:25 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int		get_next_line(int const fd, char **line)
 	var.len = 0;
 	if (fd == -1 || read(fd, var.buf, 0) == -1)
 		return (-1);
-	(nblines == -1) ? (nblines = 0) : (42);
-	(!swap) ? (swap = ft_strnew(BUFF_SIZE)) : ("yo");
+	(nblines == -1) ? (nblines = 0) : (0);
+	(!swap) ? (swap = ft_strnew(BUFF_SIZE)) : (0);
 	swap = ft_read(swap, fd, &nblines);
 	if (nblines > 0)
 	{

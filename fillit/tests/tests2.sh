@@ -7,6 +7,10 @@ echo "\n\033[93m5blk :\n\033[92m"
 ./PcsGen.py 5 > yo
 time ./../fillit yo
 rm yo
+echo "\n\033[93m7blk :\n\033[92m"
+./PcsGen.py 7 > yo
+time ./../fillit yo
+rm yo
 echo "\n\033[93m9blk :\n\033[92m"
 ./PcsGen.py 9 > yo
 time ./../fillit yo

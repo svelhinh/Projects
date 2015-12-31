@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:51:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/30 18:41:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:34:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,55 +48,23 @@ void			ft_exit(void)
 	exit(0);
 }
 
-static void		ft_notetri(t_coord **coord)
-{
-	t_coord	*tmp;
-	int		i;
-
-	tmp = *coord;
-	i = 0;
-	while (tmp)
-	{
-		if (i > 26)
-			ft_exit();
-		if (tmp->y[2] > tmp->y[1] + 1 || (tmp->x[0] != tmp->x[2]
-					&& tmp->x[0] != tmp->x[3] && tmp->x[1] != tmp->x[2]
-					&& tmp->x[1] != tmp->x[3] && tmp->y[0] != tmp->y[2]
-					&& tmp->y[0] != tmp->y[3] && tmp->y[1] != tmp->y[2]
-					&& tmp->y[1] != tmp->y[3]) || (tmp->x[0] == tmp->x[2]
-					&& tmp->x[1] == tmp->x[3] && tmp->x[1] > tmp->x[0] + 1
-					&& tmp->x[3] > tmp->x[2] + 1))
-		{
-			free(coord);
-			free(tmp);
-			ft_exit();
-		}
-		tmp = tmp->next;
-		i++;
-	}
-	free(tmp);
-}
-
 int				main(int ac, char **av)
 {
 	t_coord	**coord;
 	t_varf	v;
 
-	(ac != 2) ? (ft_exit()) : (42);
+	(ac != 2) ? (ft_exit()) : (0);
 	v.tab = NULL;
 	v.file = ft_strnew(1);
-	v.fd = open(av[1], O_RDONLY);
-	(v.fd == -1) ? (ft_exit()) : ("yo");
-	v.y = 0;
-	ft_check_endl(v.fd);
-	(close(v.fd) == -1) ? (ft_exit()) : ("yo");
-	v.fd = open(av[1], O_RDONLY);
-	(v.fd == -1 || (v.error = ft_errors(v.fd, &v.file) == -1)
-			|| close(v.fd) == -1) ? (ft_exit()) : ("yo");
+	((v.fd = open(av[1], O_RDONLY)) == -1) ? (ft_exit()) : (0);
+	ft_check_tetri(v.fd);
+	(close(v.fd) == -1) ? (ft_exit()) : (0);
+	((v.fd = open(av[1], O_RDONLY)) == -1) ? (ft_exit()) : (0);
+	ft_errors(v.fd, &v.file);
+	(close(v.fd) == -1) ? (ft_exit()) : (0);
 	v.file = ft_letters(v.file);
 	coord = ft_store(v.file);
 	free(v.file);
-	ft_notetri(coord);
 	v.tab = ft_result(*coord, ft_nbr_blk(*coord));
 	free(coord);
 	ft_display(v.tab);
