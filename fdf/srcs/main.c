@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/31 17:49:10 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/02 12:37:57 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,83 @@ int		mouse_hook(int button, int x, int y)
 	return (0);
 }
 
-void	appel_yo(t_env e, int nblinesg, int nblinesd)
+void	linesd(t_env e, int nblinesd, int nblinesg)
 {
 	t_xy	c;
-	int		coeffx;
-	int		coeffy;
-	int		l;
-	int		h;
+	float	l;
+	float	h;
 	int		i;
-	(void)nblinesd;
+	int		j;
+	int		sxmin;
+	int		symin;
 
-	i = 1;
-	coeffx = 50;
-	coeffy = 25;
 	c.color = 16777215;
-	c.xmin = 700;
+	c.xmin = 1200;
 	l = 50;
 	c.ymin = 200;
-	h = 25;
-	while (i <= nblinesg)
+	h = l / 2;
+	j = 1;
+	sxmin = c.xmin;
+	symin = c.ymin;
+	while (j <= nblinesd - (nblinesd - nblinesg))
 	{
-		printf("i = %d\n", i);
-		c.xmax = c.xmin - l;
-		c.ymax = c.ymin + h;
-		yo(c, e.mlx, e.win);
-		c.xmin = c.xmax;
-		c.ymin = c.ymax;
-		i++;
+		i = 1;
+		while (i < nblinesd)
+		{
+			c.xmax = c.xmin - l;
+			c.ymax = c.ymin + h;
+			yo(c, e.mlx, e.win);
+			c.xmin = c.xmax;
+			c.ymin = c.ymax;
+			i++;
+		}
+		c.xmin = sxmin + l;
+		c.ymin = symin + h;
+		sxmin = c.xmin;
+		symin = c.ymin;
+		j++;
 	}
 }
+
+void	linesg(t_env e, int nblinesd, int nblinesg)
+{
+	t_xy	c;
+	float	l;
+	float	h;
+	int		i;
+	int		j;
+	int		sxmin;
+	int		symin;
+
+	c.color = 16777215;
+	c.xmin = 1200;
+	l = 50;
+	c.ymin = 200;
+	h = l / 2;
+	j = 1;
+	sxmin = c.xmin;
+	symin = c.ymin;
+	while (j <= nblinesg + (nblinesd - nblinesg))
+	{
+		i = 1;
+		while (i < nblinesg)
+		{
+			c.xmax = c.xmin + l;
+			c.ymax = c.ymin + h;
+			yo(c, e.mlx, e.win);
+			c.xmin = c.xmax;
+			c.ymin = c.ymax;
+			i++;
+		}
+		c.xmin = sxmin - l;
+		c.ymin = symin + h;
+		sxmin = c.xmin;
+		symin = c.ymin;
+		j++;
+	}
+}
+
+
 
 int		main(void)
 {
@@ -65,9 +113,11 @@ int		main(void)
 
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, 2000, 2000, "42");
-	nblinesd = 10;
-	nblinesg = 10;
-	appel_yo(e, nblinesg, nblinesd);
+	nblinesd = 19;
+	nblinesg = 11;
+	linesg(e, nblinesd, nblinesg);
+	linesd(e, nblinesd, nblinesg);
+	//appel_yo(e, nblinesg, nblinesd, sens);
 	// DEBUG
 	/*c.xmin = 500;
 	  c.xmax = 100;
