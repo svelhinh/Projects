@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 15:01:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/31 12:36:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/02 10:55:29 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ static int		ft_nblines(char *line, int fd, char ***file)
 	while (v.gnlret && !v.error)
 	{
 		if (!(v.gnlret = get_next_line(fd, &line)))
+		{
+			(v.nblines != 4) ? (ft_exit()) : (0);
 			return (0);
+		}
 		if (ft_strcmp(line, "\0") && ++v.nblines <= 4)
 		{
 			**file = ft_strjoin(**file, line);
