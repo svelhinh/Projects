@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/02 12:37:57 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/02 12:58:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,23 @@ int		key_hook(int keycode)
 
 int		mouse_hook(int button, int x, int y)
 {
-	(void)button;
-	printf("x = %d\ny = %d\n\n", x, y);
+	printf("x = %d\ny = %d\nbutton = %d\n\n", x, y, button);
 	return (0);
 }
 
-void	linesd(t_env e, int nblinesd, int nblinesg)
+void	linesd(t_env e, int nblinesd, int nblinesg, float zoom)
 {
 	t_xy	c;
 	float	l;
 	float	h;
 	int		i;
 	int		j;
-	int		sxmin;
-	int		symin;
+	float	sxmin;
+	float	symin;
 
 	c.color = 16777215;
-	c.xmin = 1200;
-	l = 50;
+	c.xmin = 1000;
+	l = 50 * zoom;
 	c.ymin = 200;
 	h = l / 2;
 	j = 1;
@@ -65,19 +64,19 @@ void	linesd(t_env e, int nblinesd, int nblinesg)
 	}
 }
 
-void	linesg(t_env e, int nblinesd, int nblinesg)
+void	linesg(t_env e, int nblinesd, int nblinesg, float zoom)
 {
 	t_xy	c;
 	float	l;
 	float	h;
 	int		i;
 	int		j;
-	int		sxmin;
-	int		symin;
+	float	sxmin;
+	float	symin;
 
 	c.color = 16777215;
-	c.xmin = 1200;
-	l = 50;
+	c.xmin = 1000;
+	l = 50 * zoom;
 	c.ymin = 200;
 	h = l / 2;
 	j = 1;
@@ -110,13 +109,15 @@ int		main(void)
 	t_env	e;
 	int nblinesg;
 	int nblinesd;
+	float zoom;
 
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, 2000, 2000, "42");
-	nblinesd = 19;
-	nblinesg = 11;
-	linesg(e, nblinesd, nblinesg);
-	linesd(e, nblinesd, nblinesg);
+	nblinesd = 11;
+	nblinesg = 19;
+	zoom = 1;
+	linesg(e, nblinesd, nblinesg, zoom);
+	linesd(e, nblinesd, nblinesg, zoom);
 	//appel_yo(e, nblinesg, nblinesd, sens);
 	// DEBUG
 	/*c.xmin = 500;
