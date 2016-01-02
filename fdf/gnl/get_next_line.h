@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/02 15:04:33 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/02 14:19:17 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/01/02 15:03:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include <mlx.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "../gnl/get_next_line.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 11000
+# include <unistd.h>
 # include "../libft/libft.h"
 
-typedef struct	s_env
+int					get_next_line(int const fd, char **line);
+typedef struct		s_varg
 {
-	void		*mlx;
-	void		*win;
-}				t_env;
-typedef struct	s_xy
-{
-	float		xmin;
-	float		ymin;
-	float		xmax;
-	float		ymax;
-	int			color;
-}				t_xy;
-void		yo(t_xy c, void *mlx, void *win);
-int			get_next_line(int fd, char **line);
+	char			*buf;
+	size_t			ret;
+	size_t			len;
+	size_t			start;
+	size_t			result;
+}					t_varg;
+
 #endif

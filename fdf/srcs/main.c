@@ -6,12 +6,11 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/02 12:58:31 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/02 16:40:13 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 int		key_hook(int keycode)
 {
@@ -26,7 +25,7 @@ int		mouse_hook(int button, int x, int y)
 	return (0);
 }
 
-void	linesd(t_env e, int nblinesd, int nblinesg, float zoom)
+/*void	linesg(t_env e, int nbl, int nbc, float zoom)
 {
 	t_xy	c;
 	float	l;
@@ -44,10 +43,10 @@ void	linesd(t_env e, int nblinesd, int nblinesg, float zoom)
 	j = 1;
 	sxmin = c.xmin;
 	symin = c.ymin;
-	while (j <= nblinesd - (nblinesd - nblinesg))
+	while (j <= nbl - (nbl - nbc))
 	{
 		i = 1;
-		while (i < nblinesd)
+		while (i < nbl)
 		{
 			c.xmax = c.xmin - l;
 			c.ymax = c.ymin + h;
@@ -64,7 +63,7 @@ void	linesd(t_env e, int nblinesd, int nblinesg, float zoom)
 	}
 }
 
-void	linesg(t_env e, int nblinesd, int nblinesg, float zoom)
+void	linesd(t_env e, int nbl, int nbc, float zoom)
 {
 	t_xy	c;
 	float	l;
@@ -82,10 +81,10 @@ void	linesg(t_env e, int nblinesd, int nblinesg, float zoom)
 	j = 1;
 	sxmin = c.xmin;
 	symin = c.ymin;
-	while (j <= nblinesg + (nblinesd - nblinesg))
+	while (j <= nbc + (nbl - nbc))
 	{
 		i = 1;
-		while (i < nblinesg)
+		while (i < nbc)
 		{
 			c.xmax = c.xmin + l;
 			c.ymax = c.ymin + h;
@@ -100,24 +99,65 @@ void	linesg(t_env e, int nblinesd, int nblinesg, float zoom)
 		symin = c.ymin;
 		j++;
 	}
+}*/
+
+char	**read_map(char *file, int *nbl)
+{
+	char	*line;
+	char	**map;
+	int		fd;
+
+	line = ft_strnew(BUFF_SIZE);
+	if ((fd = open(file, O_RDONLY)) == -1)
+	{
+		perror("L'ouverture du fichier a echoue");
+		exit(0);
+	}
+	while (get_next_line(fd, &line))
+		(*nbl)++;
+	if (close(fd) == -1)
+	{
+		perror("La fermeture du fichier a echoue");
+		exit(0);
+	}
+	fd = open(file, O_RDONLY);
+	if (!(map = (char **)malloc(sizeof(char *) * *nbl)))
+	{
+		perror("malloc failed");
+		exit(0);
+	}
+	*nbl = 0;
+	while (get_next_line(fd, &line))
+	{
+		map[*nbl] = ft_strdup(line);
+		printf("%s\n", map[*nbl]);
+		(*nbl)++;
+	}
+	if (close(fd) == -1)
+	{
+		perror("close failed\n");
+		exit(0);
+	}
+	return (map);
 }
 
-
-
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_env	e;
-	int nblinesg;
-	int nblinesd;
 	float zoom;
+	char **map;
+	int nbl;
+	int nbc;
+	(void)ac;
 
+	nbl = 0;
+	map = read_map(av[1], &nbl);
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, 2000, 2000, "42");
-	nblinesd = 11;
-	nblinesg = 19;
+	nbc = (ft_strlen(map[0]) + 1) / 2;
 	zoom = 1;
-	linesg(e, nblinesd, nblinesg, zoom);
-	linesd(e, nblinesd, nblinesg, zoom);
+	//linesd(e, nbl, nbc, zoom);
+	//linesg(e, nbl, nbc, zoom);
 	//appel_yo(e, nblinesg, nblinesd, sens);
 	// DEBUG
 	/*c.xmin = 500;
