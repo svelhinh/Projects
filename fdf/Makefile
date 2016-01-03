@@ -6,13 +6,14 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/02 15:07:06 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/03 11:00:44 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC = srcs/main.c srcs/line.c gnl/get_next_line.c
+SRC = srcs/main.c srcs/line.c gnl/get_next_line.c srcs/fonctions.c srcs/mlx.c \
+	  srcs/parser.c
 
 LIB = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 

@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fonctions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/03 11:27:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/21 11:47:29 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/01/03 10:48:31 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/01/03 10:51:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-int		main(int ac, char **av)
+void	ft_exit(char *s)
+{
+	perror(s);
+	exit(0);
+}
+
+int		tablen(char **s)
 {
 	int i;
 
 	i = 0;
-	if (ac > 1)
-	{
-		while (i < 1)
-		{
-			ft_putrainbow(av[1]);
-			//ft_putstr(av[2]);
-			i++;
-		}
-	}
-	return (0);
+	while (s[i])
+		i++;
+	return (i);
 }

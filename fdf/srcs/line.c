@@ -6,13 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/02 16:40:15 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/03 15:23:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_swap(float *a, float *b)
+static void	ft_swap(float *a, float *b)
 {
 	int c;
 
@@ -21,7 +21,7 @@ void	ft_swap(float *a, float *b)
 	*a = c;
 }
 
-void	line_horizon(t_xy c, void *mlx, void *win)
+static void	line_horizon(t_xy c, void *mlx, void *win)
 {
 	float x;
 
@@ -33,7 +33,7 @@ void	line_horizon(t_xy c, void *mlx, void *win)
 	}
 }
 
-void	line_verti(t_xy c, void *mlx, void *win)
+static void	line_verti(t_xy c, void *mlx, void *win)
 {
 	float y;
 
@@ -45,13 +45,13 @@ void	line_verti(t_xy c, void *mlx, void *win)
 	}
 }
 
-void	line_diago(t_xy c, void *mlx, void *win)
+static void	line_diago(t_xy c, void *mlx, void *win)
 {
-	int x;
-	float dx;
-	float dy;
-	float m;
-	float y;
+	int		x;
+	float	dx;
+	float	dy;
+	float	m;
+	float	y;
 
 	dx = c.xmax - c.xmin;
 	dy = c.ymax - c.ymin;
@@ -66,7 +66,7 @@ void	line_diago(t_xy c, void *mlx, void *win)
 	}
 }
 
-void	yo(t_xy c, void *mlx, void *win)
+void		put_line(t_xy c, void *mlx, void *win)
 {
 	if (c.xmin > c.xmax && c.ymin > c.ymax)
 	{
@@ -77,16 +77,12 @@ void	yo(t_xy c, void *mlx, void *win)
 	{
 		if (c.ymin > c.ymax)
 		{
-			if (c.xmin < c.xmax)
-				ft_swap(&c.xmin, &c.xmax);
-			else if (c.xmin > c.xmax)
-				ft_swap(&c.ymin, &c.ymax);
-			else
-				ft_swap(&c.ymin, &c.ymax);
+			(c.xmin < c.xmax) ? (ft_swap(&c.xmin, &c.xmax))
+				: (ft_swap(&c.ymin, &c.ymax));
 		}
 		if (c.xmin > c.xmax)
 		{
-			(c.ymin < c.ymax) ? ft_swap(&c.ymin, &c.ymax) : (NULL);
+			(c.ymin < c.ymax) ? ft_swap(&c.ymin, &c.ymax) : (0);
 			ft_swap(&c.xmin, &c.xmax);
 		}
 	}
