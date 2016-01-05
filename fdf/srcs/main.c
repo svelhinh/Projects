@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/04 17:48:35 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/05 19:00:45 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	put_lines1(t_env e, int **map, int nbl, int nbn, float zoom)
 	float	cy;
 	int		alti;
 	t_xy	c;
+	(void)map;
 
 	j = 0;
-	y = 700;
+	y = 750;
 	x = 900;
 	ys = y;
 	xs = x;
@@ -36,19 +37,12 @@ void	put_lines1(t_env e, int **map, int nbl, int nbn, float zoom)
 	while (j < nbl)
 	{
 		i = 0;
-		while (i < nbn)
+		while (i < nbn - 1)
 		{
-			y -= (map[j][i] * alti);
 			c.xmin = x;
 			c.xmax = x + cx;
-			if (map[j][i - 1] > map[j][i])
-				c.ymin = y - ((map[j][i - 1] - map[j][i]) * alti);
-			else
-				c.ymin = y;
-			if (map[j][i] < map[j][i + 1])
-				c.ymax = y + cy - ((map[j][i + 1] - map[j][i]) * alti);
-			else
-				c.ymax = y + cy;
+			c.ymin = y - (map[j][i] * alti);
+			c.ymax = y + cy - (map[j][i + 1] * alti);
 			c.color = 16777215;
 			put_line(c, e.mlx, e.win);
 			y = ys + (cy * i);
@@ -98,6 +92,7 @@ void	put_lines2(t_env e, int **map, int nbl, int nbn, float zoom)
 			c.ymax = y + cy;
 			c.color = 16777215;
 			put_line(c, e.mlx, e.win);
+			put_line(c, e.mlx, e.win);
 			y = ys + (cy * i);
 			y += cy;
 			x -= cx;
@@ -123,7 +118,7 @@ int		main(int ac, char **av)
 	nbn = 0;
 	map = read_map(av[1], &nbl, &nbn);
 	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, 2000, 1500, "42");
+	e.win = mlx_new_window(e.mlx, 2000, 1300, "42");
 	zoom = 1;
 	put_lines1(e, map, nbl, nbn, zoom);
 	//put_lines2(e, map, nbl, nbn, zoom);

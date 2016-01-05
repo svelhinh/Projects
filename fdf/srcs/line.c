@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/03 15:23:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/05 17:38:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,24 @@ static void	line_diago(t_xy c, void *mlx, void *win)
 	float	dy;
 	float	m;
 	float	y;
+	int		i;
+	int		preci;
 
 	dx = c.xmax - c.xmin;
 	dy = c.ymax - c.ymin;
 	m = dy / dx;
 	y = c.ymin;
 	x = c.xmin;
+	preci = 10;
 	while (x <= c.xmax)
 	{
-		mlx_pixel_put(mlx, win, x, y, c.color);
-		y += m;
+		i = 0;
+		while (i < preci)
+		{
+			mlx_pixel_put(mlx, win, x, y, c.color);
+			y += m / preci;
+			i++;
+		}
 		x++;
 	}
 }
