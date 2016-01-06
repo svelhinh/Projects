@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 15:06:31 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/05 20:31:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/06 11:05:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	s3[j] = '\0';
-	free((void *)s1);
 	return (s3);
 }
