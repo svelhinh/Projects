@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2015/12/05 09:28:07 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/06 17:43:50 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,25 +75,29 @@ SRC = \
 		ft_putcolor.c \
 		ft_islower.c \
 		ft_isupper.c \
-		ft_putnbrendl.c
+		ft_putnbrendl.c \
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-		ar rc $(NAME) $(OBJ)
-		ranlib $(NAME)
+		@echo "\033[93mCreation de la librairie"
+		@ar rcs $(NAME) $(OBJ)
+		@ranlib $(NAME)
+		@echo "\033[92mCreation de la librairie terminee\n"
 
 %.o: %.c
-		gcc -o $@ -c $< -Wall -Wextra -Werror
+		@gcc -o $@ -c $< -Wall -Wextra -Werror
 
-.PHONY: clean
 clean:
-		rm -f $(OBJ)
+		@rm -f $(OBJ)
+		@echo "\033[96mSuppression des objets terminee"
 
 fclean: clean
-		rm -f $(NAME)
+		@rm -f $(NAME)
+		@echo "\033[96mSuppression de l'executable terminee\n"
 
 re: fclean all
 
+.PHONY: clean fclean all re

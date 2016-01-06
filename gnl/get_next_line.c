@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:54:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/06 15:54:48 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:09:18 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,19 @@ char	*ft_read(char *swap, size_t fd)
 {
 	t_varg v;
 	size_t i;
+	char *tmp;
 
 	i = 0;
 	v.buf = ft_strnew(BUFF_SIZE);
 	while (!ft_strchr(swap, '\n') && (v.ret = read(fd, v.buf, BUFF_SIZE)))
 	{
 		v.buf[v.ret] = '\0';
-		swap = ft_strjoin(swap, v.buf);
+		tmp = ft_strdup(swap);
+		if (swap)
+			free(swap);
+		swap = ft_strjoin(tmp, v.buf);
+		if (tmp)
+			free(tmp);
 	}
 	(v.buf) ? (free(v.buf)) : (0);
 	return (swap);
@@ -41,8 +47,10 @@ int		get_next_line(int const fd, char **line)
 	t_varg			var;
 
 	var.len = 0;
+	var.buf = ft_strnew(0);
 	if (fd == -1 || read(fd, var.buf, 0) == -1 || !line)
 		return (-1);
+	(var.buf) ? (free(var.buf)) : (0);
 	(!swap) ? (swap = ft_strnew(BUFF_SIZE)) : (0);
 	swap = ft_read(swap, fd);
 	if (ft_strchr(swap, '\n'))
