@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/05 17:38:27 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/07 13:54:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	line_diago(t_xy c, void *mlx, void *win)
 	y = c.ymin;
 	x = c.xmin;
 	preci = 10;
-	while (x <= c.xmax)
+	while (x < c.xmax)
 	{
 		i = 0;
 		while (i < preci)
