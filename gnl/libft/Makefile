@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/06 17:43:50 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/08 16:48:02 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ $(NAME) : $(OBJ)
 		@echo "\033[92mCreation de la librairie terminee\n"
 
 %.o: %.c
-		@gcc -o $@ -c $< -Wall -Wextra -Werror
+		@gcc -o $@ -c $< -Wall -Wextra -Werror -I includes
 
 clean:
 		@rm -f $(OBJ)
