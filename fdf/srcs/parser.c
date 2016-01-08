@@ -6,32 +6,30 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 10:50:06 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/04 14:00:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/08 14:24:57 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		**store(char **tmp, int nbl, int **nbn)
+static float	**store(char **tmp, int nbl, int **nbn)
 {
 	t_fdf	v;
-	int		**map;
 
-	if (!(map = (int **)malloc(sizeof(int *) * (nbl + 1))))
+	if (!(v.map = (float **)malloc(sizeof(float *) * (nbl + 1))))
 		ft_exit("le malloc de map dans store() a echoue");
 	v.y = 0;
 	v.j = 0;
-	while (tmp[v.j])
+	while (tmp[v.j] && !(v.i = 0))
 	{
 		v.split = ft_strsplit(tmp[v.j], ' ');
 		**nbn = tablen(v.split);
 		v.x = 0;
-		v.i = 0;
-		if (!(map[v.y] = (int *)malloc(sizeof(int) * **nbn)))
+		if (!(v.map[v.y] = (float *)malloc(sizeof(float) * **nbn)))
 			ft_exit("le malloc de map[y] dans store() a echoue");
 		while (v.split[v.i])
 		{
-			map[v.y][v.x] = ft_atoi(v.split[v.i]);
+			v.map[v.y][v.x] = ft_atoi(v.split[v.i]);
 			//ft_putnbr(map[v.y][v.x]);
 			//ft_putchar(' ');
 			v.x++;
@@ -43,14 +41,13 @@ static int		**store(char **tmp, int nbl, int **nbn)
 		v.y++;
 		v.j++;
 	}
-	map[v.y] = NULL;
-	return (map);
+	v.map[v.y] = NULL;
+	return (v.map);
 }
 
-int				**read_map(char *file, int *nbl, int *nbn)
+float			**read_map(char *file, int *nbl, int *nbn)
 {
 	t_fdf	v;
-	int		**map;
 
 	v.line = ft_strnew(BUFF_SIZE);
 	*nbl = 0;
@@ -70,6 +67,6 @@ int				**read_map(char *file, int *nbl, int *nbn)
 	}
 	v.tmp[*nbl] = NULL;
 	(close(v.fd) == -1) ? (ft_exit("La fermeture 2 du fichier a echoue")) : (0);
-	map = store(v.tmp, *nbl, &nbn);
-	return (map);
+	v.map = store(v.tmp, *nbl, &nbn);
+	return (v.map);
 }

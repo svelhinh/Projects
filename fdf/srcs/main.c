@@ -6,13 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/07 16:11:31 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/08 16:20:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		alti_max(int **map, int nbl, int nbn)
+int		alti_max(float **map, int nbl, int nbn)
 {
 	int y;
 	int x;
@@ -34,117 +34,119 @@ int		alti_max(int **map, int nbl, int nbn)
 	return (max);
 }
 
-void	put_lines1(t_env e, int **map, int nbl, int nbn, float zoom)
+int		alti_min(float **map, int nbl, int nbn)
 {
-	int		i;
-	int		j;
-	int		max;
-	float	x;
-	float	y;
-	float	ys;
-	float	xs;
-	float	cx;
-	float	cy;
-	int		alti;
-	t_xy	c;
-	(void)map;
+	int y;
+	int x;
+	int min;
 
-	j = 0;
-	y = 200;
-	x = 900;
-	ys = y;
-	xs = x;
-	cx = 50 * zoom;
-	cy = 25 * zoom;
-	alti = 5;
-	max = alti_max(map, nbl, nbn);
-	while (j < nbl)
+	y = 0;
+	min = 2147483647;
+	while (y < nbl)
 	{
-		i = 0;
-		while (i < nbn - 1)
+		x = 0;
+		while (x < nbn)
 		{
-			c.xmin = x;
-			c.xmax = x + cx;
-			c.ymin = y - (map[j][i] * alti);
-			c.ymax = y + cy - (map[j][i + 1] * alti);
-			if (map[j][i] == 0)
+			if (map[y][x] < min)
+				min = map[y][x];
+			x++;
+		}
+		y++;
+	}
+	return (min);
+}
+
+void	put_lines1(t_env e, t_fdf v, float alti)
+{
+	t_xy	n;
+	t_xy	c;
+
+	n.j = 0;
+	n.y = 100;
+	n.x = 1100;
+	n.ys = n.y;
+	n.xs = n.x;
+	n.cx = 50 * v.zoom;
+	n.cy = 25 * v.zoom;
+	n.min = alti_min(v.map, v.nbl, v.nbn);
+	n.max = alti_max(v.map, v.nbl, v.nbn) - n.min;
+	while (n.j < v.nbl)
+	{
+		n.i = 0;
+		while (n.i < v.nbn - 1)
+		{
+			c.xmin = n.x;
+			c.xmax = n.x + n.cx;
+			c.ymin = n.y - (v.map[n.j][n.i] * alti);
+			c.ymax = n.y + n.cy - (v.map[n.j][n.i + 1] * alti);
+			if (v.map[n.j][n.i] == n.min)
 				c.color = 0x003366;
-			if ((map[j][i] > 0 && map[j][i] <= max / 4) || (map[j][i + 1] > 0 && map[j][i + 1] <= max / 4))
+			if ((v.map[n.j][n.i] > n.min && v.map[n.j][n.i] <= n.max / 4) || (v.map[n.j][n.i + 1] > n.min && v.map[n.j][n.i + 1] <= n.max / 4))
 				c.color = 0x336688;
-			if ((map[j][i] > max / 4 && map[j][i] <= max / 2) || (map[j][i + 1] > max / 4 && map[j][i + 1] <= max / 2))
+			if ((v.map[n.j][n.i] > n.max / 4 && v.map[n.j][n.i] <= n.max / 2) || (v.map[n.j][n.i + 1] > n.max / 4 && v.map[n.j][n.i + 1] <= n.max / 2))
 				c.color = 0x6688AA;
-			if ((map[j][i] > max / 2 && map[j][i] <= 3 * max / 4) || (map[j][i + 1] > max / 2 && map[j][i + 1] <= 3 * max / 4))
+			if ((v.map[n.j][n.i] > n.max / 2 && v.map[n.j][n.i] <= 3 * n.max / 4) || (v.map[n.j][n.i + 1] > n.max / 2 && v.map[n.j][n.i + 1] <= 3 * n.max / 4))
 				c.color = 0x88AACC;
-			if ((map[j][i] > 3 * max / 4 && map[j][i] <= max) || (map[j][i + 1] > 3 * max / 4 && map[j][i + 1] <= max))
+			if ((v.map[n.j][n.i] > 3 * n.max / 4 && v.map[n.j][n.i] <= n.max) || (v.map[n.j][n.i + 1] > 3 * n.max / 4 && v.map[n.j][n.i + 1] <= n.max))
 				c.color = 0xAACCEE;
 			put_line(c, e.mlx, e.win);
-			y = ys + (cy * i);
-			y += cy;
-			x += cx;
-			i++;
+			n.y = n.ys + (n.cy * n.i);
+			n.y += n.cy;
+			n.x += n.cx;
+			n.i++;
 		}
-		ys += cy;
-		xs -= cx;
-		y = ys;
-		x = xs;
-		j++;
+		n.ys += n.cy;
+		n.xs -= n.cx;
+		n.y = n.ys;
+		n.x = n.xs;
+		n.j++;
 	}
 }
 
-void	put_lines2(t_env e, int **map, int nbl, int nbn, float zoom)
+void	put_lines2(t_env e, t_fdf v, float alti)
 {
-	int		i;
-	int		j;
-	int		max;
-	float	x;
-	float	y;
-	float	ys;
-	float	xs;
-	float	cx;
-	float	cy;
-	int		alti;
+	t_xy	n;
 	t_xy	c;
-	(void)map;
 
-	i = 0;
-	y = 200;
-	x = 900;
-	ys = y;
-	xs = x;
-	cx = 50 * zoom;
-	cy = 25 * zoom;
-	alti = 5;
-	max = alti_max(map, nbl, nbn);
-	while (i < nbn)
+	n.i = 0;
+	n.y = 100;
+	n.x = 1100;
+	n.ys = n.y;
+	n.xs = n.x;
+	n.cx = 50 * v.zoom;
+	n.cy = 25 * v.zoom;
+	n.max = alti_max(v.map, v.nbl, v.nbn);
+	n.min = alti_min(v.map, v.nbl, v.nbn);
+	while (n.i < v.nbn)
 	{
-		j = 0;
-		while (j < nbl - 1)
+		n.j = 0;
+		while (n.j < v.nbl - 1)
 		{
-			c.xmin = x;
-			c.xmax = x - cx;
-			c.ymin = y - (map[j][i] * alti);
-			c.ymax = y + cy - (map[j + 1][i] * alti);
-			if (map[j][i] == 0)
+			c.xmin = n.x;
+			c.xmax = n.x - n.cx;
+			c.ymin = n.y - (v.map[n.j][n.i] * alti);
+			c.ymax = n.y + n.cy - (v.map[n.j + 1][n.i] * alti);
+			if (v.map[n.j][n.i] == n.min)
 				c.color = 0x003366;
-			if ((map[j][i] > 0 && map[j][i] <= max / 4) || (map[j + 1][i] > 0 && map[j + 1][i] <= max / 4))
+			if ((v.map[n.j][n.i] > n.min && v.map[n.j][n.i] <= n.max / 4) || (v.map[n.j + 1][n.i] > n.min && v.map[n.j + 1][n.i] <= n.max / 4))
 				c.color = 0x336688;
-			if ((map[j][i] > max / 4 && map[j][i] <= max / 2) || (map[j + 1][i] > max / 4 && map[j + 1][i] <= max / 2))
+			if ((v.map[n.j][n.i] > n.max / 4 && v.map[n.j][n.i] <= n.max / 2) || (v.map[n.j + 1][n.i] > n.max / 4 && v.map[n.j + 1][n.i] <= n.max / 2))
 				c.color = 0x6688AA;
-			if ((map[j][i] > max / 2 && map[j][i] <= 3 * max / 4) || (map[j + 1][i] > max / 2 && map[j + 1][i] <= 3 * max / 4))
+			if ((v.map[n.j][n.i] > n.max / 2 && v.map[n.j][n.i] <= 3 * n.max / 4) || (v.map[n.j + 1][n.i] > n.max / 2 && v.map[n.j + 1][n.i] <= 3 * n.max / 4))
 				c.color = 0x88AACC;
-			if ((map[j][i] > 3 * max / 4 && map[j][i] <= max) || (map[j + 1][i] > 3 * max / 4 && map[j + 1][i] <= max))
+			if ((v.map[n.j][n.i] > 3 * n.max / 4 && v.map[n.j][n.i] <= n.max) || (v.map[n.j + 1][n.i] > 3 * n.max / 4 && v.map[n.j + 1][n.i] <= n.max))
 				c.color = 0xAACCEE;
 			put_line(c, e.mlx, e.win);
-			y = ys + (cy * j);
-			y += cy;
-			x -= cx;
-			j++;
+			n.y = n.ys + (n.cy * n.j);
+			n.y += n.cy;
+			n.x -= n.cx;
+			n.j++;
 		}
-		ys += cy;
-		xs += cx;
-		y = ys;
-		x = xs;
-		i++;
+		n.ys += n.cy;
+		n.xs += n.cx;
+		n.y = n.ys;
+		n.x = n.xs;
+		n.i++;
 	}
 }
 
@@ -152,19 +154,18 @@ void	put_lines2(t_env e, int **map, int nbl, int nbn, float zoom)
 int		main(int ac, char **av)
 {
 	t_env	e;
-	float zoom;
-	int nbl;
-	int **map;
-	int nbn;
+	t_fdf	v;
+	float	alti;
 
 	(void)ac;
-	nbn = 1;
-	map = read_map(av[1], &nbl, &nbn);
+	v.nbn = 1;
+	v.map = read_map(av[1], &v.nbl, &v.nbn);
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, 2000, 1300, "42");
-	zoom = 0.3;
-	put_lines1(e, map, nbl, nbn, zoom);
-	put_lines2(e, map, nbl, nbn, zoom);
+	v.zoom = 0.2;
+	alti = 5 * v.zoom;
+	put_lines1(e, v, alti);
+	put_lines2(e, v, alti);
 	// DEBUG
 	/*c.xmin = 500;
 	c.xmax = 100;

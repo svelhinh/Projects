@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/04 16:09:48 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/08 16:20:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ typedef struct	s_xy
 	float		xmax;
 	float		ymax;
 	int			color;
+	float		x;
+	float		y;
+	float		dx;
+	float		dy;
+	float		m;
+	int			preci;
+	int			i;
+	int			j;
+	int			max;
+	int			min;
+	float		ys;
+	float		xs;
+	float		cx;
+	float		cy;
 }				t_xy;
 typedef struct	s_fdf
 {
@@ -45,12 +59,14 @@ typedef struct	s_fdf
 	int			fd;
 	char		**tmp;
 	int			nbl;
+	float		**map;
+	float		zoom;
 }				t_fdf;
 void			put_line(t_xy c, void *mlx, void *win);
 int				get_next_line(int fd, char **line);
 void			ft_exit(char *s);
 int				tablen(char **s);
-int				**read_map(char *file, int *nbl, int *nbn);
+float			**read_map(char *file, int *nbl, int *nbn);
 int				key_hook(int keycode);
 int				mouse_hook(int button, int x, int y);
 #endif

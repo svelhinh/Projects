@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 14:54:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/06 19:23:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/08 16:14:28 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int		ft_strend(char *str, int len)
 
 char	*ft_read(char *swap, size_t fd)
 {
-	t_varg v;
-	size_t i;
-	char *tmp;
+	t_varg	v;
+	size_t	i;
+	char	*tmp;
 
 	i = 0;
 	v.buf = ft_strnew(BUFF_SIZE);
@@ -62,8 +62,10 @@ int		get_next_line(int const fd, char **line)
 		swap = ft_strsub(swap, var.start + 1, ft_strend(swap, var.start));
 		return (1);
 	}
-	if (swap[0] != '\0' && (*line = ft_strdup(swap))
-			&& (swap = ft_strnew(0)))
+	if (swap[0] != '\0' && (*line = ft_strdup(swap)))
+	{
+		ft_bzero(swap, ft_strlen(swap));
 		return (1);
+	}
 	return (0);
 }

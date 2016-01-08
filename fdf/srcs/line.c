@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/07 13:54:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/08 11:20:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,24 @@ static void	line_verti(t_xy c, void *mlx, void *win)
 
 static void	line_diago(t_xy c, void *mlx, void *win)
 {
-	int		x;
-	float	dx;
-	float	dy;
-	float	m;
-	float	y;
-	int		i;
-	int		preci;
+	t_xy v;
 
-	dx = c.xmax - c.xmin;
-	dy = c.ymax - c.ymin;
-	m = dy / dx;
-	y = c.ymin;
-	x = c.xmin;
-	preci = 10;
-	while (x < c.xmax)
+	v.dx = c.xmax - c.xmin;
+	v.dy = c.ymax - c.ymin;
+	v.m = v.dy / v.dx;
+	v.y = c.ymin;
+	v.x = c.xmin;
+	v.preci = 10;
+	while (v.x < c.xmax)
 	{
-		i = 0;
-		while (i < preci)
+		v.i = 0;
+		while (v.i < v.preci)
 		{
-			mlx_pixel_put(mlx, win, x, y, c.color);
-			y += m / preci;
-			i++;
+			mlx_pixel_put(mlx, win, v.x, v.y, c.color);
+			v.y += v.m / v.preci;
+			v.i++;
 		}
-		x++;
+		v.x++;
 	}
 }
 
