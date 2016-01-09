@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:34:21 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/14 13:31:34 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/05 09:28:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,4 @@ void				ft_putcolor(char *color);
 int					ft_islower(int c);
 int					ft_isupper(int c);
 void				ft_putnbrendl(int nb);
-void				ft_puttab(char *s, int lines, int ch);
 #endif

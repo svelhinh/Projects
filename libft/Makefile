@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2015/12/28 17:27:39 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/08 16:48:02 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,12 +76,10 @@ SRC = \
 		ft_islower.c \
 		ft_isupper.c \
 		ft_putnbrendl.c \
-		ft_puttab.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
-		@echo "\033[91mIl n'y a plus rien a faire"
 
 $(NAME) : $(OBJ)
 		@echo "\033[93mCreation de la librairie"
@@ -90,7 +88,7 @@ $(NAME) : $(OBJ)
 		@echo "\033[92mCreation de la librairie terminee\n"
 
 %.o: %.c
-		@gcc -o $@ -c $< -Wall -Wextra -Werror
+		@gcc -o $@ -c $< -Wall -Wextra -Werror -I includes
 
 clean:
 		@rm -f $(OBJ)

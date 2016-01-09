@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 15:06:31 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/05 09:37:29 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/08 16:01:21 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
-	int		j;
-	char	*s3;
+	size_t		i;
+	size_t		j;
+	char		*s3;
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
+	if (!s1 || !s2 || (s3 = (char *)malloc(sizeof(char) * (ft_strlen(s1) +
+					ft_strlen(s2) + 1))) == NULL)
 		return (NULL);
-	if ((s3 = (char *)malloc(sizeof(char)
-					* (ft_strlen(s1) + ft_strlen(s2) + 1))) == NULL)
-		return (NULL);
-	while (s1[i] != '\0')
+	while (s1[i])
 		s3[j++] = s1[i++];
 	i = 0;
 	while (s2[i] != '\0')

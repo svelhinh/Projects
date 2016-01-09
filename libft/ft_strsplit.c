@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 09:50:44 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/05 09:36:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/05 13:11:34 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char		**ft_strsplit(char const *s, char c)
 		return (NULL);
 	str = (char*)s;
 	tab_ptr = (char **)malloc(sizeof(*tab_ptr) * (ft_nbword(s, c) + 1));
+	tab_ptr[ft_nbword(s, c)] = NULL;
 	while (str[i] != '\0' && tab_ptr)
 	{
 		start = ft_wordlen(s, c, &i);
@@ -67,6 +68,5 @@ char		**ft_strsplit(char const *s, char c)
 			tab_ptr[j] = ft_strsub(str, start, i - start);
 		j++;
 	}
-	tab_ptr[ft_nbword(s, c)] = NULL;
 	return (tab_ptr);
 }

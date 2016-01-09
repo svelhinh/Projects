@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 17:44:25 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/07 13:56:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2015/12/04 14:22:10 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,4 @@ void			ft_putrainbow(char *str)
 			color++;
 		i++;
 	}
-	ft_putcolor("white");
 }
