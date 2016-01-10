@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 10:50:06 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/08 14:24:57 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/10 11:43:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,10 @@ static float	**store(char **tmp, int nbl, int **nbn)
 		while (v.split[v.i])
 		{
 			v.map[v.y][v.x] = ft_atoi(v.split[v.i]);
-			//ft_putnbr(map[v.y][v.x]);
-			//ft_putchar(' ');
 			v.x++;
 			v.i++;
 		}
 		(v.split) ? (free(v.split)) : (ft_exit("Une variable a ete mal free"));
-		//ft_putchar('\n');
-		//printf("\n");
 		v.y++;
 		v.j++;
 	}
@@ -62,7 +58,6 @@ float			**read_map(char *file, int *nbl, int *nbn)
 	while (get_next_line(v.fd, &v.line))
 	{
 		v.tmp[*nbl] = ft_strdup(v.line);
-		//printf("%s\n", v.tmp[*nbl]);
 		(*nbl)++;
 	}
 	v.tmp[*nbl] = NULL;

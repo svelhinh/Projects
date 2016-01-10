@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 11:40:45 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/10 11:43:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,47 +31,6 @@ int		main(int ac, char **av)
 	alti = 0.7 * v.zoom;
 	put_lines1(e, v, alti);
 	put_lines2(e, v, alti);
-	// DEBUG
-	/*c.xmin = 500;
-	  c.xmax = 100;
-	  c.ymin = 500;
-	  c.ymax = 100;
-	  put_line(c, e.mlx, e.win);
-	  c.xmin = 500;
-	  c.xmax = 500;
-	  c.ymin = 500;
-	  c.ymax = 100;
-	  put_line(c, e.mlx, e.win);
-	  c.xmin = 500;
-	  c.xmax = 900;
-	  c.ymin = 500;
-	  c.ymax = 100;
-	  put_line(c, e.mlx, e.win);
-	  c.xmin = 500;
-	  c.xmax = 900;
-	  c.ymin = 500;
-	  c.ymax = 500;
-	  put_line(c, e.mlx, e.win);
-	  c.xmin = 500;
-	  c.xmax = 900;
-	  c.ymin = 500;
-	  c.ymax = 900;
-	  put_line(c, e.mlx, e.win);
-	  c.xmin = 500;
-	  c.xmax = 500;
-	  c.ymin = 500;
-	  c.ymax = 900;
-	  put_line(c, e.mlx, e.win);
-	  c.xmin = 500;
-	  c.xmax = 100;
-	  c.ymin = 500;
-	  c.ymax = 900;
-	  put_line(c, e.mlx, e.win);
-	  c.xmin = 500;
-	  c.xmax = 100;
-	  c.ymin = 500;
-	  c.ymax = 500;*/
-	// FIN DU DEBUG
 	mlx_key_hook(e.win, key_hook, &e);
 	mlx_mouse_hook(e.win, mouse_hook, &e);
 	mlx_loop(e.mlx);

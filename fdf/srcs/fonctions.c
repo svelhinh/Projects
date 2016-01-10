@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 10:48:31 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 11:35:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/10 11:44:19 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ t_xy	init_var(t_xy c, t_fdf v)
 	c.max = alti_max(v.map, v.nbl, v.nbn) - c.min;
 	return (c);
 }
-
