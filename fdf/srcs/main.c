@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 11:43:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/10 16:37:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,27 @@ int		main(int ac, char **av)
 {
 	t_env	e;
 	t_fdf	v;
-	float	alti;
-	int		width;
-	int		height;
 
-	(void)ac;
-	v.nbn = 1;
-	width = 2000;
-	height = 1300;
-	v.map = read_map(av[1], &v.nbl, &v.nbn);
-	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, width, height, "42");
-	v.zoom = 0.1;
-	alti = 0.7 * v.zoom;
-	put_lines1(e, v, alti);
-	put_lines2(e, v, alti);
-	mlx_key_hook(e.win, key_hook, &e);
-	mlx_mouse_hook(e.win, mouse_hook, &e);
-	mlx_loop(e.mlx);
+	if (ac == 6)
+	{
+		v.nbn = 1;
+		v.width = 2000;
+		v.height = 1300;
+		v.map = read_map(av[1], &v.nbl, &v.nbn);
+		e.mlx = mlx_init();
+		e.win = mlx_new_window(e.mlx, v.width, v.height, "42");
+		v.zoom = 0.3;
+		v.alti = 0.7 * v.zoom;
+		v.av = av;
+		put_lines1(e, v, v.alti);
+		put_lines2(e, v, v.alti);
+		mlx_key_hook(e.win, key_hook, &e);
+		mlx_mouse_hook(e.win, mouse_hook, &e);
+		mlx_loop(e.mlx);
+	}
+	else if (ac < 6)
+		ft_exit("Pas assez de parametres");
+	else
+		ft_exit("Trop de parametres");
 	return (0);
 }

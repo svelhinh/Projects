@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:36:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 11:43:01 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/10 14:01:49 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,6 @@ int		alti_min(float **map, int nbl, int nbn)
 		y++;
 	}
 	return (min);
-}
-
-int		color(int i2, int j2, t_xy c, t_fdf v)
-{
-	if (v.map[c.j][c.i] == c.min)
-		c.color = 0x003366;
-	if ((v.map[c.j][c.i] > c.min && v.map[c.j][c.i] <= c.max / 4)
-			|| (v.map[c.j + j2][c.i + i2] > c.min
-				&& v.map[c.j + j2][c.i + i2] <= c.max / 4))
-		c.color = 0x336688;
-	if ((v.map[c.j][c.i] > c.max / 4 && v.map[c.j][c.i] <= c.max / 2)
-			|| (v.map[c.j + j2][c.i + i2] > c.max / 4
-				&& v.map[c.j + j2][c.i + i2] <= c.max / 2))
-		c.color = 0x6688AA;
-	if ((v.map[c.j][c.i] > c.max / 2 && v.map[c.j][c.i] <= 3 * c.max / 4)
-			|| (v.map[c.j + j2][c.i + i2] > c.max / 2
-				&& v.map[c.j + j2][c.i + i2] <= 3 * c.max / 4))
-		c.color = 0x88AACC;
-	if ((v.map[c.j][c.i] > 3 * c.max / 4 && v.map[c.j][c.i] <= c.max)
-			|| (v.map[c.j + j2][c.i + i2] > 3 * c.max / 4
-				&& v.map[c.j + j2][c.i + i2] <= c.max))
-		c.color = 0xAACCEE;
-	return (c.color);
 }
 
 void	put_lines1(t_env e, t_fdf v, float alti)

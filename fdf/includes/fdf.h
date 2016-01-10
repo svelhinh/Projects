@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 11:41:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/10 15:57:28 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,41 @@
 # include <unistd.h>
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
+# define RED 0
+# define RED1 0x330000
+# define RED2 0x770000
+# define RED3 0xBB0000
+# define RED4 0xFF0000
+# define PINK 1
+# define PINK1 0x330033
+# define PINK2 0x770077
+# define PINK3 0xBB00BB
+# define PINK4 0xFF00FF
+# define BLUE 2
+# define BLUE1 0x000033
+# define BLUE2 0x000077
+# define BLUE3 0x0000BB
+# define BLUE4 0x0000FF
+# define CYAN 3
+# define CYAN1 0x003333
+# define CYAN2 0x007777
+# define CYAN3 0x00BBBB
+# define CYAN4 0x00FFFF
+# define GREEN 4
+# define GREEN1 0x003300
+# define GREEN2 0x007700
+# define GREEN3 0x00BB00
+# define GREEN4 0x00FF00
+# define YELLOW 5
+# define YELLOW1 0x333300
+# define YELLOW2 0x777700
+# define YELLOW3 0xBBBB00
+# define YELLOW4 0xFFFF00
+# define WHITE 6
+# define WHITE1 0x333333
+# define WHITE2 0x777777
+# define WHITE3 0xBBBBBB
+# define WHITE4 0xFFFFFF
 
 typedef struct	s_env
 {
@@ -61,6 +96,11 @@ typedef struct	s_fdf
 	int			nbl;
 	float		**map;
 	float		zoom;
+	char		*color;
+	char		**av;
+	float		alti;
+	int			height;
+	int			width;
 }				t_fdf;
 void			put_line(t_xy c, void *mlx, void *win);
 int				get_next_line(int fd, char **line);
@@ -74,4 +114,5 @@ int				alti_min(float **map, int nbl, int nbn);
 int				alti_max(float **map, int nbl, int nbn);
 void			put_lines1(t_env e, t_fdf v, float alti);
 void			put_lines2(t_env e, t_fdf v, float alti);
+int				color(int i2, int j2, t_xy c, t_fdf v);
 #endif
