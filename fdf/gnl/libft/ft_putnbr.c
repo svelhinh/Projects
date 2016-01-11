@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puttab.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/14 13:25:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/17 09:40:23 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/23 15:52:18 by svelhinh          #+#    #+#             */
+/*   Updated: 2015/12/04 10:21:03 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_puttab(char *s, int lines, int ch)
+void	ft_putnbr(int n)
 {
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-		if (i % lines == 0)
-			ft_putchar('\n');
-		if (i % ch == 0)
-			ft_putchar('\n');
-	}
+	ft_putnbr_fd(n, 1);
 }

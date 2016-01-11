@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:36:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/11 11:15:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/11 18:27:33 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void	put_lines1(t_env e, t_fdf v, float alti)
 			c.ymin = c.y - (v.map[c.j][c.i] * alti);
 			c.ymax = c.y + c.cy - (v.map[c.j][c.i + 1] * alti);
 			c.color = color(1, 0, c, v);
-			put_line(c, e.mlx, e.win);
+			c.colorv = mlx_get_color_value(e.mlx, c.color);
+			put_line(c, v);
 			c.y = c.ys + (c.cy * c.i);
 			c.y += c.cy;
 			c.x += c.cx;
@@ -100,7 +101,8 @@ void	put_lines2(t_env e, t_fdf v, float alti)
 			c.ymin = c.y - (v.map[c.j][c.i] * alti);
 			c.ymax = c.y + c.cy - (v.map[c.j + 1][c.i] * alti);
 			c.color = color(0, 1, c, v);
-			put_line(c, e.mlx, e.win);
+			c.colorv = mlx_get_color_value(e.mlx, c.color);
+			put_line(c, v);
 			c.y = c.ys + (c.cy * c.j);
 			c.y += c.cy;
 			c.x -= c.cx;

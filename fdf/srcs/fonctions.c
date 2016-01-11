@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 10:48:31 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 11:44:19 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/11 18:40:50 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ t_xy	init_var(t_xy c, t_fdf v)
 	c.j = 0;
 	c.i = 0;
 	c.y = 100;
-	c.x = 1100;
+	c.x = 1000;
 	c.ys = c.y;
 	c.xs = c.x;
 	c.cx = 50 * v.zoom;
 	c.cy = 25 * v.zoom;
 	c.min = alti_min(v.map, v.nbl, v.nbn);
-	c.max = alti_max(v.map, v.nbl, v.nbn) - c.min;
+	c.max = alti_max(v.map, v.nbl, v.nbn);
 	return (c);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/11 10:47:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/11 18:29:55 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "../gnl/get_next_line.h"
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 # define RED 0
 # define RED1 0x550000
 # define RED2 0x770000
@@ -69,64 +69,70 @@
 # define WHITE5 0xDDDDDD
 # define WHITE6 0xFFFFFF
 
-typedef struct	s_env
+typedef struct		s_env
 {
-	void		*mlx;
-	void		*win;
-}				t_env;
-typedef struct	s_xy
+	void			*mlx;
+	void			*win;
+	void			*img;
+}					t_env;
+typedef struct		s_xy
 {
-	float		xmin;
-	float		ymin;
-	float		xmax;
-	float		ymax;
-	int			color;
-	float		x;
-	float		y;
-	float		dx;
-	float		dy;
-	float		m;
-	int			preci;
-	int			i;
-	int			j;
-	int			max;
-	int			min;
-	float		ys;
-	float		xs;
-	float		cx;
-	float		cy;
-}				t_xy;
-typedef struct	s_fdf
+	float			xmin;
+	float			ymin;
+	float			xmax;
+	float			ymax;
+	int				color;
+	float			x;
+	float			y;
+	float			dx;
+	float			dy;
+	float			m;
+	int				preci;
+	int				i;
+	int				j;
+	int				max;
+	int				min;
+	float			ys;
+	float			xs;
+	float			cx;
+	float			cy;
+	unsigned int	colorv;
+}					t_xy;
+typedef struct		s_fdf
 {
-	char		**split;
-	int			j;
-	int			i;
-	int			x;
-	int			y;
-	int			nbn;
-	char		*line;
-	int			fd;
-	char		**tmp;
-	int			nbl;
-	float		**map;
-	float		zoom;
-	char		*color;
-	char		**av;
-	float		alti;
-	int			height;
-	int			width;
-}				t_fdf;
-void			put_line(t_xy c, void *mlx, void *win);
-int				get_next_line(int fd, char **line);
-void			ft_exit(char *s);
-int				tablen(char **s);
-float			**read_map(char *file, int *nbl, int *nbn);
-int				key_hook(int keycode);
-int				mouse_hook(int button, int x, int y);
-t_xy			init_var(t_xy c, t_fdf v);
-int				alti_min(float **map, int nbl, int nbn);
-int				alti_max(float **map, int nbl, int nbn);
-void			put_lines1(t_env e, t_fdf v, float alti);
-void			put_lines2(t_env e, t_fdf v, float alti);
-int				color(int i2, int j2, t_xy c, t_fdf v);
+	char			**split;
+	int				j;
+	int				i;
+	int				x;
+	int				y;
+	int				nbn;
+	char			*line;
+	int				fd;
+	char			**tmp;
+	int				nbl;
+	float			**map;
+	float			zoom;
+	char			*color;
+	char			**av;
+	float			alti;
+	int				height;
+	int				width;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	char			*data;
+}					t_fdf;
+void				put_line(t_xy c, t_fdf v);
+int					get_next_line(int fd, char **line);
+void				ft_exit(char *s);
+int					tablen(char **s);
+float				**read_map(char *file, int *nbl, int *nbn);
+int					key_hook(int keycode);
+int					mouse_hook(int button, int x, int y);
+t_xy				init_var(t_xy c, t_fdf v);
+int					alti_min(float **map, int nbl, int nbn);
+int					alti_max(float **map, int nbl, int nbn);
+void				put_lines1(t_env e, t_fdf v, float alti);
+void				put_lines2(t_env e, t_fdf v, float alti);
+int					color(int i2, int j2, t_xy c, t_fdf v);
 #endif
