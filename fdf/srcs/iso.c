@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:36:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 14:01:49 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/11 11:15:32 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		alti_max(float **map, int nbl, int nbn)
 {
-	int y;
-	int x;
-	int max;
+	int		y;
+	int		x;
+	float	max;
 
 	y = 0;
 	max = 0;
@@ -36,9 +36,9 @@ int		alti_max(float **map, int nbl, int nbn)
 
 int		alti_min(float **map, int nbl, int nbn)
 {
-	int y;
-	int x;
-	int min;
+	int		y;
+	int		x;
+	float	min;
 
 	y = 0;
 	min = 2147483647;

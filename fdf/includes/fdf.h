@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 15:57:28 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/11 10:47:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,40 +20,54 @@
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
 # define RED 0
-# define RED1 0x330000
+# define RED1 0x550000
 # define RED2 0x770000
-# define RED3 0xBB0000
-# define RED4 0xFF0000
+# define RED3 0x990000
+# define RED4 0xBB0000
+# define RED5 0xDD0000
+# define RED6 0xFF0000
 # define PINK 1
-# define PINK1 0x330033
+# define PINK1 0x550055
 # define PINK2 0x770077
-# define PINK3 0xBB00BB
-# define PINK4 0xFF00FF
+# define PINK3 0x990099
+# define PINK4 0xBB00BB
+# define PINK5 0xDD00DD
+# define PINK6 0xFF00FF
 # define BLUE 2
-# define BLUE1 0x000033
+# define BLUE1 0x000055
 # define BLUE2 0x000077
-# define BLUE3 0x0000BB
-# define BLUE4 0x0000FF
+# define BLUE3 0x000099
+# define BLUE4 0x0000BB
+# define BLUE5 0x0000DD
+# define BLUE6 0x0000FF
 # define CYAN 3
 # define CYAN1 0x003333
 # define CYAN2 0x007777
-# define CYAN3 0x00BBBB
-# define CYAN4 0x00FFFF
+# define CYAN3 0x009999
+# define CYAN4 0x00BBBB
+# define CYAN5 0x00DDDD
+# define CYAN6 0x00FFFF
 # define GREEN 4
 # define GREEN1 0x003300
 # define GREEN2 0x007700
-# define GREEN3 0x00BB00
-# define GREEN4 0x00FF00
+# define GREEN3 0x009900
+# define GREEN4 0x00BB00
+# define GREEN5 0x00DD00
+# define GREEN6 0x00FF00
 # define YELLOW 5
 # define YELLOW1 0x333300
 # define YELLOW2 0x777700
-# define YELLOW3 0xBBBB00
-# define YELLOW4 0xFFFF00
+# define YELLOW3 0x999900
+# define YELLOW4 0xBBBB00
+# define YELLOW5 0xDDDD00
+# define YELLOW6 0xFFFF00
 # define WHITE 6
 # define WHITE1 0x333333
 # define WHITE2 0x777777
-# define WHITE3 0xBBBBBB
-# define WHITE4 0xFFFFFF
+# define WHITE3 0x999999
+# define WHITE4 0xBBBBBB
+# define WHITE5 0xDDDDDD
+# define WHITE6 0xFFFFFF
 
 typedef struct	s_env
 {

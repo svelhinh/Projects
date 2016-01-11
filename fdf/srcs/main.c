@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 16:37:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/11 11:14:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(int ac, char **av)
 	t_env	e;
 	t_fdf	v;
 
-	if (ac == 6)
+	if (ac == 7)
 	{
 		v.nbn = 1;
 		v.width = 2000;
@@ -34,7 +34,7 @@ int		main(int ac, char **av)
 		mlx_mouse_hook(e.win, mouse_hook, &e);
 		mlx_loop(e.mlx);
 	}
-	else if (ac < 6)
+	else if (ac < 7)
 		ft_exit("Pas assez de parametres");
 	else
 		ft_exit("Trop de parametres");
