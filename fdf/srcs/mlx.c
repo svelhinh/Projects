@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 10:51:41 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/12 17:33:13 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:35:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int		key_hook(int keycode, t_fdf *v)
 	}
 	if (keycode == 32)
 	{
-		v->alti += 0.2;
+		v->alti += (0.2 * v->zoom);
 		expose_hook(v);
 	}
 	if (keycode == 38)
 	{
-		v->alti -= 0.2;
+		v->alti -= (0.2 * v->zoom);
 		expose_hook(v);
 	}
 	return (0);
