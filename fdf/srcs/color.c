@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:49:48 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/11 18:27:18 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/12 15:51:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,16 @@ int		colorcmp(char *color)
 int		*define_color(char *color, int m)
 {
 	static int	**tab;
-	int	t;
-	int	j;
-	int	*line;
+	t_fdf		v;
 
-	t = 0;
+	v.t = 0;
 	if (!tab)
 	{
 		if (!(tab = (int **)malloc(sizeof(int *) * 7)))
 			ft_exit("Le malloc de tab dans define_color() a echoue");
-		while (t < 7)
-		{
-			if (!(tab[t] = (int *)malloc(sizeof(int) * 5)))
+		while (++v.t < 7)
+			if (!(tab[++v.t] = (int *)malloc(sizeof(int) * 5)))
 				ft_exit("Le malloc de tab[t] dans define_color() a echoue");
-			t++;
-		}
 		tab[0] = (int[5]){RED1, RED2, RED3, RED4, RED5};
 		tab[1] = (int[5]){PINK1, PINK2, PINK3, PINK4, PINK5};
 		tab[2] = (int[5]){BLUE1, BLUE2, BLUE3, BLUE4, BLUE5};
@@ -69,11 +64,11 @@ int		*define_color(char *color, int m)
 		tab[5] = (int[5]){YELLOW1, YELLOW2, YELLOW3, YELLOW4, YELLOW5};
 		tab[6] = (int[5]){WHITE1, WHITE2, WHITE3, WHITE4, WHITE5};
 	}
-	j = colorcmp(color);
-	line = cpy_line(tab[j]);
+	v.j2 = colorcmp(color);
+	v.line2 = cpy_line(tab[v.j2]);
 	if (m == 1)
 		free(tab);
-	return (line);
+	return (v.line2);
 }
 
 int		**define_tab(t_fdf v)

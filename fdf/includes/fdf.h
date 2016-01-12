@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/11 18:29:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/12 16:40:23 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,6 @@
 # define WHITE5 0xDDDDDD
 # define WHITE6 0xFFFFFF
 
-typedef struct		s_env
-{
-	void			*mlx;
-	void			*win;
-	void			*img;
-}					t_env;
 typedef struct		s_xy
 {
 	float			xmin;
@@ -102,9 +96,14 @@ typedef struct		s_fdf
 {
 	char			**split;
 	int				j;
+	int				t;
 	int				i;
+	int				j2;
+	int				*line2;
 	int				x;
 	int				y;
+	float			x2;
+	float			y2;
 	int				nbn;
 	char			*line;
 	int				fd;
@@ -115,24 +114,31 @@ typedef struct		s_fdf
 	char			*color;
 	char			**av;
 	float			alti;
+	float			altib;
 	int				height;
 	int				width;
 	int				bpp;
 	int				size_line;
 	int				endian;
+	void			*mlx;
+	void			*win;
+	void			*img;
 	char			*data;
+	int				z;
 }					t_fdf;
 void				put_line(t_xy c, t_fdf v);
 int					get_next_line(int fd, char **line);
 void				ft_exit(char *s);
 int					tablen(char **s);
 float				**read_map(char *file, int *nbl, int *nbn);
-int					key_hook(int keycode);
-int					mouse_hook(int button, int x, int y);
+int					key_hook(int keycode, t_fdf *v);
+int					mouse_hook(int button, int x, int y, t_fdf *v);
 t_xy				init_var(t_xy c, t_fdf v);
 int					alti_min(float **map, int nbl, int nbn);
 int					alti_max(float **map, int nbl, int nbn);
-void				put_lines1(t_env e, t_fdf v, float alti);
-void				put_lines2(t_env e, t_fdf v, float alti);
+void				put_lines1(t_fdf v);
+void				put_lines2(t_fdf v);
 int					color(int i2, int j2, t_xy c, t_fdf v);
+int					expose_hook(t_fdf *v);
+void				ft_swap(float *a, float *b);
 #endif

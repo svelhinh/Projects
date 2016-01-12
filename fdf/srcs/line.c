@@ -6,34 +6,27 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/11 18:28:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:22:33 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    mlx_pixel_put_to_img(t_xy c, t_fdf v, int x, int y)
+void		mlx_pixel_put_to_img(t_xy c, t_fdf *v, int x, int y)
 {
-	unsigned char b;
-	unsigned char g;
-	unsigned char r;
+	unsigned char	b;
+	unsigned char	g;
+	unsigned char	r;
 
 	b = (c.colorv & 0xFF0000) >> 16;
 	g = (c.colorv & 0xFF00) >> 8;
 	r = (c.colorv & 0xFF);
-	v.data[y * v.size_line + x * v.bpp / 8 ] = r;
-	v.data[y * v.size_line + x * v.bpp / 8 + 1] = g;
-	v.data[y * v.size_line + x * v.bpp / 8 + 2] = b;
-
-}
-
-static void	ft_swap(float *a, float *b)
-{
-	float c;
-
-	c = *a;
-	*a = *b;
-	*b = c;
+	if (y > 0 && x > 0 && x < v->width && y < v->height)
+	{
+		v->data[y * v->size_line + x * v->bpp / 8] = r;
+		v->data[y * v->size_line + x * v->bpp / 8 + 1] = g;
+		v->data[y * v->size_line + x * v->bpp / 8 + 2] = b;
+	}
 }
 
 static void	line_horizon(t_xy c, t_fdf v)
@@ -43,7 +36,7 @@ static void	line_horizon(t_xy c, t_fdf v)
 	x = c.xmin;
 	while (x <= c.xmax)
 	{
-		mlx_pixel_put_to_img(c, v, x, c.ymin);
+		mlx_pixel_put_to_img(c, &v, x, c.ymin);
 		x++;
 	}
 }
@@ -55,7 +48,7 @@ static void	line_verti(t_xy c, t_fdf v)
 	y = c.ymin;
 	while (y <= c.ymax)
 	{
-		mlx_pixel_put_to_img(c, v, c.xmin, y);
+		mlx_pixel_put_to_img(c, &v, c.xmin, y);
 		y++;
 	}
 }
@@ -75,7 +68,7 @@ static void	line_diago(t_xy c, t_fdf v2)
 		v.i = 0;
 		while (v.i < v.preci)
 		{
-			mlx_pixel_put_to_img(c, v2, v.x, v.y);
+			mlx_pixel_put_to_img(c, &v2, v.x, v.y);
 			v.y += v.m / v.preci;
 			v.i++;
 		}

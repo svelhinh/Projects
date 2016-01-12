@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:36:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/11 18:27:33 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:33:50 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,21 @@ int		alti_min(float **map, int nbl, int nbn)
 	return (min);
 }
 
-void	put_lines1(t_env e, t_fdf v, float alti)
+void	put_lines1(t_fdf v)
 {
 	t_xy	c;
 
 	c = init_var(c, v);
-	while (c.j < v.nbl)
+	while (c.j < v.nbl && !(c.i = 0))
 	{
-		c.i = 0;
 		while (c.i < v.nbn - 1)
 		{
 			c.xmin = c.x;
 			c.xmax = c.x + c.cx;
-			c.ymin = c.y - (v.map[c.j][c.i] * alti);
-			c.ymax = c.y + c.cy - (v.map[c.j][c.i + 1] * alti);
+			c.ymin = c.y - (v.map[c.j][c.i] * v.alti);
+			c.ymax = c.y + c.cy - (v.map[c.j][c.i + 1] * v.alti);
 			c.color = color(1, 0, c, v);
-			c.colorv = mlx_get_color_value(e.mlx, c.color);
+			c.colorv = mlx_get_color_value(v.mlx, c.color);
 			put_line(c, v);
 			c.y = c.ys + (c.cy * c.i);
 			c.y += c.cy;
@@ -86,22 +85,21 @@ void	put_lines1(t_env e, t_fdf v, float alti)
 	}
 }
 
-void	put_lines2(t_env e, t_fdf v, float alti)
+void	put_lines2(t_fdf v)
 {
 	t_xy	c;
 
 	c = init_var(c, v);
-	while (c.i < v.nbn)
+	while (c.i < v.nbn && !(c.j = 0))
 	{
-		c.j = 0;
 		while (c.j < v.nbl - 1)
 		{
 			c.xmin = c.x;
 			c.xmax = c.x - c.cx;
-			c.ymin = c.y - (v.map[c.j][c.i] * alti);
-			c.ymax = c.y + c.cy - (v.map[c.j + 1][c.i] * alti);
+			c.ymin = c.y - (v.map[c.j][c.i] * v.alti);
+			c.ymax = c.y + c.cy - (v.map[c.j + 1][c.i] * v.alti);
 			c.color = color(0, 1, c, v);
-			c.colorv = mlx_get_color_value(e.mlx, c.color);
+			c.colorv = mlx_get_color_value(v.mlx, c.color);
 			put_line(c, v);
 			c.y = c.ys + (c.cy * c.j);
 			c.y += c.cy;
