@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/11 16:31:44 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/13 10:47:59 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ LIBFT = libft/libft.a
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
+	@echo "\033[91mIl n'y a plus rien a faire"
 
 $(NAME):
 		@make re -C libft

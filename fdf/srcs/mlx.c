@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 10:51:41 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/12 17:35:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:18:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,46 @@ void	deplacement(int keycode, t_fdf *v)
 	}
 }
 
+void	alti(int keycode, t_fdf *v)
+{
+	if (keycode == 32)
+	{
+		v->alti += 0.2;
+		expose_hook(v);
+	}
+	if (keycode == 38)
+	{
+		v->alti -= 0.2;
+		expose_hook(v);
+	}
+	if (keycode == 257)
+	{
+		v->alti *= 2;
+		expose_hook(v);
+	}
+	if (keycode == 256)
+	{
+		v->alti /= 2;
+		expose_hook(v);
+	}
+}
+
 int		key_hook(int keycode, t_fdf *v)
 {
 	if (keycode == 53)
 		exit(0);
 	deplacement(keycode, v);
-	if (keycode == 36)
+	alti(keycode, v);
+	if (keycode == 269)
 	{
 		v->zoom /= 2;
+		v->alti /= 2;
 		expose_hook(v);
 	}
-	if (keycode == 32)
+	if (keycode == 258)
 	{
-		v->alti += (0.2 * v->zoom);
-		expose_hook(v);
-	}
-	if (keycode == 38)
-	{
-		v->alti -= (0.2 * v->zoom);
+		v->zoom *= 2;
+		v->alti *= 2;
 		expose_hook(v);
 	}
 	return (0);
@@ -80,12 +102,14 @@ int		mouse_hook(int button, int x, int y, t_fdf *v)
 	}
 	if (button == 4)
 	{
-		v->zoom += 0.01;
+		v->zoom /= 0.5;
+		v->alti /= 0.5;
 		expose_hook(v);
 	}
-	if (button == 5 && v->zoom > 0.01)
+	if (button == 5)
 	{
-		v->zoom -= 0.01;
+		v->zoom *= 0.5;
+		v->alti *= 0.5;
 		expose_hook(v);
 	}
 	return (0);

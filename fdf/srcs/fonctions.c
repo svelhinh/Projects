@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 10:48:31 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/12 16:00:38 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:45:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,27 @@ void	ft_swap(float *a, float *b)
 	c = *a;
 	*a = *b;
 	*b = c;
+}
+
+void	commands(void)
+{
+	char *line;
+
+	ft_putcolor("cyan");
+	ft_putstr("Press the directionnal keys to move the map\nMove the mouse ");
+	ft_putstr("wheel to zoom in or zoom out\nPress right Shift or right Ctrl ");
+	ft_putstr("to zoom in or zoom out twice\nPress U or J to increase or ");
+	ft_putstr("decrease the altitude\nPress left Shift or left Ctrl to ");
+	ft_putstr("increase or decrease twice the altitude\nClick with the mouse ");
+	ft_putstr("to move the map to the location of the cursor\n");
+	ft_putstr("Press Enter to continue...\n");
+	get_next_line(0, &line);
+	ft_putchar('\n');
+	while (line[0] != '\0')
+	{
+		ft_putstr("Press Enter to continue...\n");
+		get_next_line(0, &line);
+		ft_putchar('\n');
+	}
+	ft_putcolor("white");
 }

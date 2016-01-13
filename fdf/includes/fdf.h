@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/12 16:40:23 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:23:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,5 @@ void				put_lines2(t_fdf v);
 int					color(int i2, int j2, t_xy c, t_fdf v);
 int					expose_hook(t_fdf *v);
 void				ft_swap(float *a, float *b);
+void				commands(void);
 #endif

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/12 17:34:01 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:24:54 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		main(int ac, char **av)
 		v.alti = v.zoom;
 		v.y2 = 100;
 		v.x2 = 1000;
+		commands();
 		v.map = read_map(av[1], &v.nbl, &v.nbn);
 		v.mlx = mlx_init();
 		v.win = mlx_new_window(v.mlx, v.width, v.height, av[1]);
@@ -35,9 +36,7 @@ int		main(int ac, char **av)
 		mlx_mouse_hook(v.win, mouse_hook, &v);
 		mlx_loop(v.mlx);
 	}
-	else if (ac < 7)
-		ft_exit("Pas assez de parametres\n");
-	else
-		ft_exit("Trop de parametres\n");
+	(ac < 7) ? (ft_exit("Pas assez de parametres\n"))
+		: (ft_exit("Trop de parametres\n"));
 	return (0);
 }

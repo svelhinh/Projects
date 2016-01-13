@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/08 16:48:02 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/13 10:48:34 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRC = \
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
+	@echo "\033[91mIl n'y a plus rien a faire\n"
 
 $(NAME) : $(OBJ)
 		@echo "\033[93mCreation de la librairie"
