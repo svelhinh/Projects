@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 14:05:10 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/14 12:40:31 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/14 17:33:33 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int		main(void)
 	void			*win;
 
 	// On definit la zone que l'on dessine. Ici, la fractale entiere
-	float			x1 = -2.2;//-2.1;
-	float			x2 = 0.8;//0.6;
-	float			y1 = -1.2;//-1.2;
-	float			y2 = 1.2;//1.2;
+	float			x1 = /*-2.2;*/-2.1;
+	float			x2 = /*0.8;*/0.6;
+	float			y1 = /*-1.2;*/-1.2;
+	float			y2 = /*1.2;*/1.2;
 	float			img_x = 2000;
 	float			img_y = 1300;
 
@@ -36,8 +36,8 @@ int		main(void)
 	int				x;
 	float complex	c;
 	float complex	z;
-	int				i;
-	int				i_max = 50;
+	//int				i;
+	//int				i_max = 50;
 	int				color;
 
 	mlx = mlx_init();
@@ -49,16 +49,16 @@ int		main(void)
 		while (x < img_x)
 		{
 			z = (x / zoom_x + x1) + (y / zoom_y + y1) * _Complex_I;
-			c = z;//-0.772691322542185 + 0.124281466072787 * _Complex_I;
+			c = /*z;*/0.32 + 0.043 * _Complex_I;
 			color = 0x000000;
-			i = 0;
-			while (creal(z) * creal(z) + cimag(z) * cimag(z) < 4 && i < i_max)
+			//i = 0;
+			while (creal(z) * creal(z) + cimag(z) * cimag(z) < 4/* && i < i_max*/)
 			{
 				z = cpow(z, 2) + c;
-				color += 0x404040;
-				i++;
+				color += 0x040404;
+			//	i++;
 			}
-			if (i == i_max)
+			//if (i == i_max)
 				mlx_pixel_put(mlx, win, x, y, color);
 			x++;
 		}

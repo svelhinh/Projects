@@ -6,14 +6,13 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/13 14:21:50 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/14 17:30:11 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME = fractol
 
-SRC = srcs/main.c srcs/line.c gnl/get_next_line.c srcs/fonctions.c srcs/mlx.c \
-	  srcs/parser.c srcs/iso.c srcs/color.c
+SRC = srcs/main.c
 
 LIB = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 
