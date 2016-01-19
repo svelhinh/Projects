@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:40:08 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/19 12:44:49 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/19 18:16:38 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,37 +75,37 @@ int			mouse(int x, int y, t_fract *e)
 }
 
 /*
-** x1 -> limite gauche de l'image
-** x2 -> limite droite de l'image
-** y1 -> limite haute de l'image
-** y2 -> limite basse de l'image
-** --------------------------------
-** Si on diminue x1 l'image sera plus petite vers la droite. En augmentant x2,
-** l'image sera plus petite vers la gauche. Si on diminue y1 l'image sera plus
-** petite vers le bas. En augmentant y2, l'image sera plus petite vers le haut.
-*/
+ ** x1 -> limite gauche de l'image
+ ** x2 -> limite droite de l'image
+ ** y1 -> limite haute de l'image
+ ** y2 -> limite basse de l'image
+ ** --------------------------------
+ ** Si on diminue x1 l'image bouge vers la droite. Si on diminue y1 l'image bouge
+ ** vers le bas.
+ */
 
 int		zoom(int button, int x, int y, t_fract *e)
 {
-	(void)x;
-	(void)y;
+	float x_reel;
+	float y_reel;
+
+	x_reel = x / e->zoom + e->x1;
+	y_reel = y / e->zoom + e->y1;
+	printf("x = %d\ny = %d\n\n", x, y);
 	if (button == 4)
 	{
-		e->x1 += 0.2;
-		e->x2 -= 0.5;
-		e->y1 += 0.2;
-		e->y2 -= 0.5;
-		//printf("x1 = %f\nx2 = %f\ny1 = %f\ny2 = %f\n\n", e->x1, e->x2, e->y1, e->y2);
 		e->zoom *= 1.2;
+		e->x1 = x_reel - WIDTH / e->zoom / 2;
+		e->y1 = y_reel - HEIGHT / e->zoom / 2;
+		printf("x1 = %f\ny2 = %f\n\n", e->x1, e->y1);
 		draw(e);
 	}
 	if (button == 5)
 	{
-		e->x1 -= 0.2;
-		e->x2 += 0.5;
-		e->y1 -= 0.2;
-		e->y2 += 0.5;
 		e->zoom /= 1.2;
+		e->x1 = x_reel - WIDTH / e->zoom / 2;
+		e->y1 = y_reel - HEIGHT / e->zoom / 2;
+		printf("x1 = %f\ny2 = %f\n\n", e->x1, e->y1);
 		draw(e);
 	}
 	return (0);
