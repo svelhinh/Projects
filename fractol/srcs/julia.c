@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:42:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/18 18:05:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/19 12:37:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void		julia_init(t_fract *e)
 {
 	e->c = e->coeffx + e->coeffy * _Complex_I;
-	e->zoomx = e->fractx / (e->x2 - e->x1);
-	e->zoomy = e->fracty / (e->y2 - e->y1);
+	e->fractx = (e->x2 - e->x1) * e->zoom;
+	e->fracty = (e->y2 - e->y1) * e->zoom;
 }
 
 void		julia(t_fract e)
 {
 	julia_init(&e);
-	while (e.y < e.fracty)
+	while (e.y < /*e.fracty*/HEIGHT)
 	{
 		e.x = 0;
-		while (e.x < e.fractx)
+		while (e.x < /*e.fractx*/WIDTH)
 		{
-			e.z = (e.x / e.zoomx + e.x1) + (e.y / e.zoomy + e.y1) * _Complex_I;
+			e.z = (e.x / e.zoom + e.x1) + (e.y / e.zoom + e.y1) * _Complex_I;
 			e.color = 0x000000;
 			e.i = 0;
 			while (creal(e.z) * creal(e.z) + cimag(e.z) * cimag(e.z) < 4

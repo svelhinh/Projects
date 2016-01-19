@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:40:08 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/18 18:11:52 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/19 12:44:49 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,38 @@ int			mouse(int x, int y, t_fract *e)
 	return (0);
 }
 
+/*
+** x1 -> limite gauche de l'image
+** x2 -> limite droite de l'image
+** y1 -> limite haute de l'image
+** y2 -> limite basse de l'image
+** --------------------------------
+** Si on diminue x1 l'image sera plus petite vers la droite. En augmentant x2,
+** l'image sera plus petite vers la gauche. Si on diminue y1 l'image sera plus
+** petite vers le bas. En augmentant y2, l'image sera plus petite vers le haut.
+*/
+
 int		zoom(int button, int x, int y, t_fract *e)
 {
 	(void)x;
 	(void)y;
 	if (button == 4)
 	{
-		e->x1 += 1;
-		e->y2 -= 1;
+		e->x1 += 0.2;
+		e->x2 -= 0.5;
+		e->y1 += 0.2;
+		e->y2 -= 0.5;
 		//printf("x1 = %f\nx2 = %f\ny1 = %f\ny2 = %f\n\n", e->x1, e->x2, e->y1, e->y2);
-		e->fractx *= 1.2;
-		e->fracty *= 1.2;
+		e->zoom *= 1.2;
 		draw(e);
 	}
 	if (button == 5)
 	{
-		e->x1 -= 1;
-		e->y2 += 1;
-		e->fractx /= 1.2;
-		e->fracty /= 1.2;
+		e->x1 -= 0.2;
+		e->x2 += 0.5;
+		e->y1 -= 0.2;
+		e->y2 += 0.5;
+		e->zoom /= 1.2;
 		draw(e);
 	}
 	return (0);

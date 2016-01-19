@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:53:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/18 18:05:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/19 12:37:29 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void		var_init(t_fract *e)
 	}
 	e->coeffx = 0;
 	e->coeffy = 0;
-	e->fractx = WIDTH - 100 / (2000 / WIDTH);
-	e->fracty = HEIGHT - 100 / (1500 / HEIGHT);
+	e->zoom = 150;
 	e->y = 0;
 	e->i_max = 50;
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:41:07 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/18 18:04:12 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/19 12:35:20 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	mandelbrot_init(t_fract *e)
 {
-	e->zoomx = e->fractx / (e->x2 - e->x1);
-	e->zoomy = e->fracty / (e->y2 - e->y1);
+	e->fractx = (e->x2 - e->x1) * e->zoom;
+	e->fracty = (e->y2 - e->y1) * e->zoom;
 }
 
 void		mandelbrot(t_fract e)
@@ -26,7 +26,7 @@ void		mandelbrot(t_fract e)
 		e.x = 0;
 		while (e.x < /*e.fractx*/WIDTH)
 		{
-			e.z = (e.x / e.zoomx + e.x1) + (e.y / e.zoomy + e.y1) * _Complex_I;
+			e.z = (e.x / e.zoom + e.x1) + (e.y / e.zoom + e.y1) * _Complex_I;
 			e.c = e.z;
 			e.color = 0x000000;
 			e.i = 0;

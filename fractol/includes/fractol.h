@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 17:16:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/18 18:11:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/19 12:34:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ typedef struct			s_fract
 	float				coeffy;
 	float				fractx;
 	float				fracty;
-	float				zoomx;
-	float				zoomy;
+	float				zoom;
 	int					color;
 	int					i;
 	int					i_max;
