@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 17:16:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/20 17:40:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:50:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct			s_fract
 	float				x_reel;
 	float				y_reel;
 	float				factor;
+	int					next_img;
 }						t_fract;
 int						draw(t_fract *e);
 void					mandelbrot(t_fract e);

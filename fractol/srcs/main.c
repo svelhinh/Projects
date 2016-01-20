@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 17:15:05 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/20 17:25:43 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 18:06:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int			main(int ac, char **av)
 		e.mlx = mlx_init();
 		e.win = mlx_new_window(e.mlx, WIDTH, HEIGHT, "fractol");
 		mlx_expose_hook(e.win, draw, &e);
-		mlx_key_hook(e.win, key, &e);
 		mlx_mouse_hook(e.win, zoom, &e);
+		mlx_key_hook(e.win, key, &e);
 		mlx_hook(e.win, 6, (1L << 6), mouse, &e);
 		mlx_loop(e.mlx);
 	}

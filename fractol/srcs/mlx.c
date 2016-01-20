@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:40:08 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/20 17:44:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 18:05:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,8 @@ int			mouse(int x, int y, t_fract *e)
 int			zoom(int button, int x, int y, t_fract *e)
 {
 	t_fract		n;
-	static int	precision;
 
-	if (precision % 2 == 0 && (button == 4 || button == 5))
+	if (button == 4 || button == 5)
 	{
 		n.factor = 1.2;
 		n.x_reel = x / e->zoom + e->x1;
@@ -127,6 +126,5 @@ int			zoom(int button, int x, int y, t_fract *e)
 		e->y1 = n.y_reel - HEIGHT / e->zoom / 2;
 		draw(e);
 	}
-	precision++;
 	return (0);
 }
