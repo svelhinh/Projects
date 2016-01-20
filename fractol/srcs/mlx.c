@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:40:08 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/20 17:23:08 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:44:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,22 @@ int			draw(t_fract *e)
 	return (0);
 }
 
-int			key(int keycode)
+int			key(int keycode, t_fract *e)
 {
 	if (keycode == 53)
 		exit(0);
+	if (keycode == 126 || keycode == 125 || keycode == 123 || keycode == 124)
+	{
+		if (keycode == 126)
+			e->y1 += 0.1;
+		if (keycode == 125)
+			e->y1 -= 0.1;
+		if (keycode == 123)
+			e->x1 += 0.1;
+		if (keycode == 124)
+			e->x1 -= 0.1;
+		draw(e);
+	}
 	return (0);
 }
 

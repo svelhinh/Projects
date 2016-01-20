@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 17:16:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/20 17:23:07 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:40:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void					salad(t_fract e);
 void					star(t_fract e);
 void					julia(t_fract e);
 void					mlx_pixel_put_to_image(t_fract *e);
-int						key(int keycode);
+int						key(int keycode, t_fract *e);
 int						mouse(int x, int y, t_fract *e);
 int						zoom(int button, int x, int y, t_fract *e);
 void					var_init(t_fract *e);
