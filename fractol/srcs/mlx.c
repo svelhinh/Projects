@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:40:08 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/19 18:16:38 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:23:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,16 @@ int			draw(t_fract *e)
 		mandelbrot(*e);
 	else if (!ft_strcmp(e->fract, "julia"))
 		julia(*e);
-	/*else
-	  other();*/
+	else if (!ft_strcmp(e->fract, "illuminati"))
+		illuminati(*e);
+	else if (!ft_strcmp(e->fract, "water drop"))
+		waterdrop(*e);
+	else if (!ft_strcmp(e->fract, "salad"))
+		salad(*e);
+	else if (!ft_strcmp(e->fract, "eye"))
+		eye(*e);
+	else if (!ft_strcmp(e->fract, "star"))
+		star(*e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	mlx_destroy_image(e->mlx, e->img);
 	return (0);
@@ -53,7 +61,6 @@ int			mouse(int x, int y, t_fract *e)
 	static int sx = WIDTH / 2;
 	static int sy = HEIGHT / 2;
 
-	//printf("x = %d\nsx = %d\n\n", x, sx);
 	if ((x != sx || y != sy) && x > 0 && y > 0 && x < WIDTH && y < HEIGHT &&
 			!ft_strcmp(e->fract, "julia"))
 	{
@@ -75,38 +82,39 @@ int			mouse(int x, int y, t_fract *e)
 }
 
 /*
- ** x1 -> limite gauche de l'image
- ** x2 -> limite droite de l'image
- ** y1 -> limite haute de l'image
- ** y2 -> limite basse de l'image
- ** --------------------------------
- ** Si on diminue x1 l'image bouge vers la droite. Si on diminue y1 l'image bouge
- ** vers le bas.
- */
+** x1 -> limite gauche de l'image
+** x2 -> limite droite de l'image
+** y1 -> limite haute de l'image
+** y2 -> limite basse de l'image
+** --------------------------------
+** Si on diminue x1 l'image bouge vers la droite. Si on diminue y1 l'image bouge
+** vers le bas.
+*/
 
-int		zoom(int button, int x, int y, t_fract *e)
+int			zoom(int button, int x, int y, t_fract *e)
 {
-	float x_reel;
-	float y_reel;
+	t_fract		n;
+	static int	precision;
 
-	x_reel = x / e->zoom + e->x1;
-	y_reel = y / e->zoom + e->y1;
-	printf("x = %d\ny = %d\n\n", x, y);
-	if (button == 4)
+	if (precision % 2 == 0 && (button == 4 || button == 5))
 	{
-		e->zoom *= 1.2;
-		e->x1 = x_reel - WIDTH / e->zoom / 2;
-		e->y1 = y_reel - HEIGHT / e->zoom / 2;
-		printf("x1 = %f\ny2 = %f\n\n", e->x1, e->y1);
+		n.factor = 1.2;
+		n.x_reel = x / e->zoom + e->x1;
+		n.y_reel = y / e->zoom + e->y1;
+		if (button == 4)
+		{
+			e->zoom *= n.factor;
+			e->i_max *= n.factor;
+		}
+		else
+		{
+			e->zoom /= n.factor;
+			(e->i_max > 50) ? (e->i_max /= n.factor) : (e->i_max = 50);
+		}
+		e->x1 = n.x_reel - WIDTH / e->zoom / 2;
+		e->y1 = n.y_reel - HEIGHT / e->zoom / 2;
 		draw(e);
 	}
-	if (button == 5)
-	{
-		e->zoom /= 1.2;
-		e->x1 = x_reel - WIDTH / e->zoom / 2;
-		e->y1 = y_reel - HEIGHT / e->zoom / 2;
-		printf("x1 = %f\ny2 = %f\n\n", e->x1, e->y1);
-		draw(e);
-	}
+	precision++;
 	return (0);
 }

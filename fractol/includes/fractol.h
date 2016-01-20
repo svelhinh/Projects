@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 17:16:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/19 17:46:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:23:07 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <mlx.h>
 # include <stdio.h>
 # include "../libft/includes/libft.h"
-# define WIDTH 500
-# define HEIGHT 350
+# define WIDTH 1000
+# define HEIGHT 700
 
 typedef struct			s_fract
 {
@@ -44,11 +44,20 @@ typedef struct			s_fract
 	int					color;
 	int					i;
 	int					i_max;
+	int					i_max_base;
 	_Complex float		z;
 	_Complex float		c;
+	float				x_reel;
+	float				y_reel;
+	float				factor;
 }						t_fract;
 int						draw(t_fract *e);
 void					mandelbrot(t_fract e);
+void					illuminati(t_fract e);
+void					waterdrop(t_fract e);
+void					eye(t_fract e);
+void					salad(t_fract e);
+void					star(t_fract e);
 void					julia(t_fract e);
 void					mlx_pixel_put_to_image(t_fract *e);
 int						key(int keycode);

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 17:15:05 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/19 17:04:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:25:43 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ static void	display_params(void)
 {
 	ft_putstr("mandelbrot\n");
 	ft_putstr("julia\n");
-	ft_putstr("other\n");
+	ft_putstr("illuminati\n");
+	ft_putstr("water drop\n");
+	ft_putstr("salad\n");
+	ft_putstr("eye\n");
+	ft_putstr("star\n");
 }
 
 static char	*check_fract(char *s)
@@ -25,8 +29,16 @@ static char	*check_fract(char *s)
 		return ("mandelbrot");
 	if (!ft_strcmp(s, "julia"))
 		return ("julia");
-	if (!ft_strcmp(s, "other"))
-		return ("other");
+	if (!ft_strcmp(s, "illuminati"))
+		return ("illuminati");
+	if (!ft_strcmp(s, "water drop"))
+		return ("water drop");
+	if (!ft_strcmp(s, "salad"))
+		return ("salad");
+	if (!ft_strcmp(s, "eye"))
+		return ("eye");
+	if (!ft_strcmp(s, "star"))
+		return ("star");
 	return (NULL);
 }
 

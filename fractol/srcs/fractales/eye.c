@@ -6,21 +6,21 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:41:07 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/19 17:49:29 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:22:01 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	mandelbrot_init(t_fract *e)
+static void	eye_init(t_fract *e)
 {
 	e->fractx = (e->x2 - e->x1) * e->zoom;
 	e->fracty = (e->y2 - e->y1) * e->zoom;
 }
 
-void		mandelbrot(t_fract e)
+void		eye(t_fract e)
 {
-	mandelbrot_init(&e);
+	eye_init(&e);
 	while (e.y < HEIGHT)
 	{
 		e.x = 0;
@@ -28,17 +28,18 @@ void		mandelbrot(t_fract e)
 		{
 			e.z = 0;
 			e.c = (e.x / e.zoom + e.x1) + (e.y / e.zoom + e.y1) * _Complex_I;
-			e.color = 0x000000;
 			e.i = 0;
 			while (creal(e.z) * creal(e.z) + cimag(e.z) * cimag(e.z) < 4
 					&& e.i < e.i_max)
 			{
-				e.z = cpow(e.z, 2) + e.c;
+				e.z = cpow(e.z, 3) + 1 / e.c;
 				e.i++;
-				e.color += 0x000500;
 			}
 			if (e.i == e.i_max)
-				mlx_pixel_put_to_image(&e);
+				e.color = 0x0;
+			else
+				e.color = 0x111111 / (e.i * 255 / e.i_max_base);
+			mlx_pixel_put_to_image(&e);
 			e.x++;
 		}
 		e.y++;

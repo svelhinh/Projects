@@ -6,13 +6,16 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/18 11:00:55 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/20 17:32:10 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC = srcs/main.c srcs/mandelbrot.c srcs/mlx.c srcs/julia.c srcs/fonctions.c
+SRC = srcs/main.c srcs/fractales/mandelbrot.c srcs/mlx.c \
+	  srcs/fractales/julia.c srcs/fonctions.c srcs/fractales/illuminati.c \
+	  srcs/fractales/water_drop.c srcs/fractales/salad.c srcs/fractales/eye.c \
+	  srcs/fractales/star.c
 
 INCLUDES = includes
 
