@@ -6,13 +6,14 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/23 12:39:04 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/23 13:03:02 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = wolf3d
 
-SRC = srcs/main.c srcs/mlx.c srcs/line.c srcs/functions.c srcs/parser.c
+SRC = srcs/main.c srcs/mlx.c srcs/line.c srcs/functions.c srcs/parser.c \
+	  gnl/get_next_line.c
 
 LIB = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 

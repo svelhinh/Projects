@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 14:29:57 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/02 14:19:17 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/01/23 13:03:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 2048
+# include <unistd.h>
+# include "../libft/includes/libft.h"
 
-int		expose(t_env *e)
-{
-	t_coords c;
-
-	e->img = mlx_new_image(e->mlx, SWIDTH, SHEIGHT);
-	c.data = mlx_get_data_addr(e->img, &c.bpp, &c.size_line, &c.endian);
-	parser(e->lvl);
-	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
-	mlx_destroy_image(e->mlx, e->img);
-	return (0);
-}
-
-int		exit_window(int keycode)
-{
-	if (keycode == 53)
-		exit(0);
-	return (0);
-}
+int					get_next_line(int const fd, char **line);
+#endif

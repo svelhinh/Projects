@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 12:48:52 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/23 14:49:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <time.h>
 # include <fcntl.h>
 # include "../libft/includes/libft.h"
+# include "../gnl/get_next_line.h"
 # define SWIDTH 1000
 # define SHEIGHT 1000
 
@@ -48,5 +49,5 @@ int				expose(t_env *e);
 void			put_line(t_coords c);
 void			ft_swap(float *a, float *b);
 void			ft_exit(char *s);
-void			parser(char *lvl);
+char			**parser(char *lvl);
 #endif
