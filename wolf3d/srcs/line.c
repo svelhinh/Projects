@@ -6,75 +6,77 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/22 13:53:29 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/23 11:31:45 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void		mlx_pixel_put_to_img(t_xy c, t_fdf *v, int x, int y)
+#include "wolf3d.h"
+
+void		mlx_pixel_put_to_img(t_coords *c, int x, int y)
 {
 	unsigned char	b;
 	unsigned char	g;
 	unsigned char	r;
 
-	b = (c.colorv & 0xFF0000) >> 16;
-	g = (c.colorv & 0xFF00) >> 8;
-	r = (c.colorv & 0xFF);
-	if (y > 0 && x > 0 && x < v->width && y < v->height)
-	{
-		v->data[y * v->size_line + x * v->bpp / 8] = r;
-		v->data[y * v->size_line + x * v->bpp / 8 + 1] = g;
-		v->data[y * v->size_line + x * v->bpp / 8 + 2] = b;
-	}
+	b = (c->color & 0xFF0000) >> 16;
+	g = (c->color & 0xFF00) >> 8;
+	r = (c->color & 0xFF);
+	c->data[y * c->size_line + x * c->bpp / 8] = r;
+	c->data[y * c->size_line + x * c->bpp / 8 + 1] = g;
+	c->data[y * c->size_line + x * c->bpp / 8 + 2] = b;
 }
 
-static void	line_horizon(t_xy c, t_fdf v)
+static void	line_horizon(t_coords c)
 {
 	float x;
 
 	x = c.xmin;
 	while (x <= c.xmax)
 	{
-		mlx_pixel_put_to_img(c, &v, x, c.ymin);
+		mlx_pixel_put_to_img(&c, x, c.ymin);
 		x++;
 	}
 }
 
-static void	line_verti(t_xy c, t_fdf v)
+static void	line_verti(t_coords c)
 {
 	float y;
 
 	y = c.ymin;
 	while (y <= c.ymax)
 	{
-		mlx_pixel_put_to_img(c, &v, c.xmin, y);
+		mlx_pixel_put_to_img(&c, c.xmin, y);
 		y++;
 	}
 }
 
-static void	line_diago(t_xy c, t_fdf v2)
+static void	line_diago(t_coords c)
 {
-	t_xy v;
+	float	y;
+	float	x;
+	float	preci;
+	int		i;
 
-	v.dx = c.xmax - c.xmin;
-	v.dy = c.ymax - c.ymin;
-	v.m = v.dy / v.dx;
-	v.y = c.ymin;
-	v.x = c.xmin;
-	v.preci = 10;
-	while (v.x < c.xmax)
+	c.dx = c.xmax - c.xmin;
+	c.dy = c.ymax - c.ymin;
+	c.m = c.dy / c.dx;
+	y = c.ymin;
+	x = c.xmin;
+	preci = 10;
+	while (x < c.xmax)
 	{
-		v.i = 0;
-		while (v.i < v.preci)
+		i = 0;
+		while (i < preci)
 		{
-			mlx_pixel_put_to_img(c, &v2, v.x, v.y);
-			v.y += v.m / v.preci;
-			v.i++;
+			mlx_pixel_put_to_img(&c, x, y);
+			y += c.m / preci;
+			i++;
 		}
-		v.x++;
+		x++;
 	}
 }
 
-void		put_line(t_xy c, t_fdf v)
+void		put_line(t_coords c)
 {
 	if (c.xmin > c.xmax && c.ymin > c.ymax)
 	{
@@ -95,9 +97,9 @@ void		put_line(t_xy c, t_fdf v)
 		}
 	}
 	if (c.xmax == c.xmin)
-		line_verti(c, v);
+		line_verti(c);
 	else if (c.ymax == c.ymin)
-		line_horizon(c, v);
+		line_horizon(c);
 	else
-		line_diago(c, v);
+		line_diago(c);
 }

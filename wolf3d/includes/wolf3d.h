@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/22 17:24:13 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/23 12:48:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,37 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <time.h>
+# include <fcntl.h>
 # include "../libft/includes/libft.h"
-# define SWIDTH 500
-# define SHEIGHT 500
+# define SWIDTH 1000
+# define SHEIGHT 1000
 
-typedef struct	s_
+typedef struct	s_env
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*lvl;
+}				t_env;
+typedef struct	s_coords
+{
+	float		xmin;
+	float		ymin;
+	float		xmax;
+	float		ymax;
+	float		dx;
+	float		dy;
+	float		m;
+	char		*data;
+	int			color;
+	int			size_line;
+	int			bpp;
+	int			endian;
+}				t_coords;
+int				exit_window(int keycode);
+int				expose(t_env *e);
+void			put_line(t_coords c);
+void			ft_swap(float *a, float *b);
+void			ft_exit(char *s);
+void			parser(char *lvl);
 #endif

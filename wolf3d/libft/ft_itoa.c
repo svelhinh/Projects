@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 10:00:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/04 10:05:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/23 11:25:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char			*ft_itoa(int n)
 
 	i = ft_nbrlen(n);
 	isave = i;
-	if ((str = (char *)malloc(sizeof(char) * (i + 1))) == NULL)
+	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	nsave = n;
 	(n < 0) ? (str[0] = ft_negative(&n, str[0])) : (i--);
@@ -57,6 +57,6 @@ char			*ft_itoa(int n)
 		str[isave + 1] = '\0';
 	else
 		str[isave] = '\0';
-	(nsave == -2147483648) ? (str[isave] += 1) : (str[0] = str[0]);
+	(nsave == -2147483648) ? (str[isave] += 1) : (0);
 	return (str);
 }

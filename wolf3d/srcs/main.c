@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/22 17:40:12 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/23 12:48:25 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,40 @@ char	*check_param(int ac, char **av)
 {
 	char	*lvl;
 	char	*tmp;
+	char	*tmp2;
 	int		nb_alea;
 
 	if (ac == 1)
 	{
 		srand(time(NULL));
 		nb_alea = rand() % 4;
-		tmp = ft_strdup("lvl");
-		lvl = ft_strjoin(tmp, ft_itoa(nb_alea));
-		free(tmp);
+		tmp = ft_strdup("levels/lvl");
+		tmp2 = ft_itoa(nb_alea);
+		lvl = ft_strjoin(tmp, tmp2);
+		ft_strdel(&tmp);
+		ft_strdel(&tmp2);
 		return (lvl);
 	}
 	else if (ac == 2)
-		return (av[1]);
+		return (ft_strjoin("levels/", av[1]));
 	else
 	{
 		ft_putcolor("light red");
-		ft_exit("Trop de parametres");
+		ft_exit("Too many parameters");
 	}
 	return (NULL);
 }
 
 int		main(int ac, char **av)
 {
-	char *lvl;
+	t_env	e;
 
-	lvl = check_param(ac, av);
-	ft_putendl(lvl);
-	return 0;
+	e.lvl = check_param(ac, av);
+	(!(e.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
+	if (!(e.win = mlx_new_window(e.mlx, SWIDTH, SHEIGHT, e.lvl)))
+		ft_exit("mlx_new_window failed in main()");
+	mlx_expose_hook(e.win, expose, &e);
+	mlx_key_hook(e.win, exit_window, &e);
+	mlx_loop(e.mlx);
+	return (0);
 }
