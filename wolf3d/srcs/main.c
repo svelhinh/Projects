@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/24 11:37:35 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/24 17:25:01 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*check_param(int ac, char **av)
 	if (ac == 1)
 	{
 		srand(time(NULL));
-		nb_alea = rand() % 4;
+		nb_alea = rand() % 1;
 		tmp = ft_strdup("levels/lvl");
 		tmp2 = ft_itoa(nb_alea);
 		lvl = ft_strjoin(tmp, tmp2);
