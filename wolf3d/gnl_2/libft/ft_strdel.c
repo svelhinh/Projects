@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/26 18:49:17 by vtata             #+#    #+#             */
+/*   Updated: 2015/12/01 20:56:18 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <stdlib.h>
 
-void		ft_swap(float *a, float *b)
+void	ft_strdel(char **as)
 {
-	float c;
-
-	c = *a;
-	*a = *b;
-	*b = c;
+	if (!(as == NULL))
+	{
+		free(*as);
+		*as = NULL;
+	}
 }

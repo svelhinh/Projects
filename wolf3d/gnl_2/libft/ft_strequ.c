@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/27 08:49:42 by vtata             #+#    #+#             */
+/*   Updated: 2015/12/01 21:48:17 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
-
-void		ft_swap(float *a, float *b)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	float c;
+	int	i;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	i = 0;
+	if (s1 && s2)
+	{
+		while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+			i++;
+		if (s1[i] == '\0' && s2[i] == '\0')
+			return (1);
+		else
+			return (0);
+	}
+	return (0);
 }

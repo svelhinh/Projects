@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/23 13:28:01 by vtata             #+#    #+#             */
+/*   Updated: 2015/11/30 19:35:06 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
-
-void		ft_swap(float *a, float *b)
+unsigned long		ft_strlen(const char *str)
 {
-	float c;
+	unsigned long	i;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

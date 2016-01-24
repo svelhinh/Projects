@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/24 12:47:47 by vtata             #+#    #+#             */
+/*   Updated: 2015/12/07 13:54:07 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <string.h>
 
-void		ft_swap(float *a, float *b)
+char	*ft_strncat(char *dst, const char *src, size_t n)
 {
-	float c;
+	size_t i;
+	size_t j;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	i = 0;
+	j = 0;
+	while (dst[i] != '\0')
+		i++;
+	while (src[j] != '\0' && j < n)
+	{
+		dst[i] = src[j];
+		i++;
+		j++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

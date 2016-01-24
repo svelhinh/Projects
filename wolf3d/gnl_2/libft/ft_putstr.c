@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/23 17:01:38 by vtata             #+#    #+#             */
+/*   Updated: 2015/12/07 13:37:03 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <unistd.h>
 
-void		ft_swap(float *a, float *b)
+void		ft_putstr(char const *s)
 {
-	float c;
+	int	i;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
 }

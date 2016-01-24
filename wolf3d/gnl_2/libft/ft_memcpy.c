@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/25 21:30:49 by vtata             #+#    #+#             */
+/*   Updated: 2015/11/30 19:12:58 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <string.h>
 
-void		ft_swap(float *a, float *b)
+void		*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	float c;
+	size_t	i;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	i = 0;
+	while (i < n)
+	{
+		*((char*)dst + i) = *((char*)src + i);
+		i++;
+	}
+	return (dst);
 }

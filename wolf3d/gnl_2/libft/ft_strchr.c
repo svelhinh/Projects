@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/24 13:55:04 by vtata             #+#    #+#             */
+/*   Updated: 2015/11/30 19:38:25 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <string.h>
 
-void		ft_swap(float *a, float *b)
+char	*ft_strchr(const char *s, int c)
 {
-	float c;
+	int		i;
+	char	*str;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	i = 0;
+	while (s[i] != c && s[i] != '\0')
+		i++;
+	if (s[i] == '\0' && c != '\0')
+		return (NULL);
+	str = (char*)&s[i];
+	return (str);
 }

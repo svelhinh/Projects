@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/25 10:10:47 by vtata             #+#    #+#             */
+/*   Updated: 2015/11/30 19:17:33 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
-
-void		ft_swap(float *a, float *b)
+int		ft_toupper(int c)
 {
-	float c;
-
-	c = *a;
-	*a = *b;
-	*b = c;
+	if (c >= 'a' && c <= 'z')
+		return (c - ('a' - 'A'));
+	else
+		return (c);
 }

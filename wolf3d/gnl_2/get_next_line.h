@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/29 15:14:45 by vtata             #+#    #+#             */
+/*   Updated: 2016/01/24 11:26:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void		ft_swap(float *a, float *b)
-{
-	float c;
+# define BUFF_SIZE 32
 
-	c = *a;
-	*a = *b;
-	*b = c;
-}
+# include "libft/includes/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
+
+int			get_next_line(int const fd, char **line);
+
+#endif

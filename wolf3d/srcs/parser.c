@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 12:31:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 14:49:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/24 11:35:55 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,42 @@ static	int number_lines(char *lvl)
 	return (nblines);
 }
 
-char		**parser(char *lvl)
+static int	*split(char *s)
+{
+	int		*tab;
+	char	**tmp;
+	int		i;
+
+	i = 0;
+	if (!(tab = (int *)malloc(sizeof(int) * (ft_strlen(s) + 1))))
+		ft_exit("malloc() tab in split() failed");
+	tmp = ft_strsplit(s, ' ');
+	while (tmp[i])
+	{
+		tab[i] = ft_atoi(tmp[i]);
+		ft_strdel(&tmp[i]);
+		i++;
+	}
+	return (tab);
+}
+
+int			**parser(char *lvl)
 {
 	int		fd;
 	char	*line;
-	char	**tab_lvl;
+	int		**tab_lvl;
 	int		i;
 	int		nblines;
 
 	i = 0;
 	nblines = number_lines(lvl);
-	if (!(tab_lvl = (char **)malloc(sizeof(char *) * nblines + 1)))
+	if (!(tab_lvl = (int **)malloc(sizeof(int *) * nblines)))
 		ft_exit("malloc() tab in number_lines() failed");
 	if ((fd = open(lvl, O_RDONLY)) == -1)
 		ft_exit("open() failed in parser()");
 	while (get_next_line(fd, &line) > 0)
 	{
-		tab_lvl[i] = ft_strdup(line);
+		tab_lvl[i] = split(line);
 		ft_strdel(&line);
 		i++;
 	}
@@ -55,5 +74,18 @@ char		**parser(char *lvl)
 	tab_lvl[i] = NULL;
 	if (close(fd) == -1)
 		ft_exit("close() failed in parser()");
+	/*int j;
+	i = 0;
+	while (i < nblines)
+	{
+		j = 0;
+		while (j < 5)
+		{
+			ft_putnbr(tab_lvl[i][j]);
+			j++;
+		}
+		ft_putstr("\n");
+		i++;
+	}*/
 	return (tab_lvl);
 }

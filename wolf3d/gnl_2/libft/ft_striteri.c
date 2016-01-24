@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/26 22:10:13 by vtata             #+#    #+#             */
+/*   Updated: 2015/12/01 21:15:21 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
-
-void		ft_swap(float *a, float *b)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	float c;
+	unsigned int i;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	if (s && f)
+	{
+		i = 0;
+		while (s[i] != '\0')
+		{
+			f(i, (s + i));
+			i++;
+		}
+	}
 }

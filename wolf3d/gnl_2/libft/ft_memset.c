@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/25 15:29:25 by vtata             #+#    #+#             */
+/*   Updated: 2015/11/30 19:14:03 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <string.h>
 
-void		ft_swap(float *a, float *b)
+void		*ft_memset(void *s, int c, size_t len)
 {
-	float c;
+	size_t	i;
+	char	*str;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	i = 0;
+	str = (char*)s;
+	while (i < len)
+	{
+		str[i] = c;
+		i++;
+	}
+	return (s);
 }

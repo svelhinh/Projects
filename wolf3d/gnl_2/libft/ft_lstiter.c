@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/12/01 17:38:25 by vtata             #+#    #+#             */
+/*   Updated: 2015/12/07 12:14:55 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "libft.h"
 
-void		ft_swap(float *a, float *b)
+void		ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	float c;
+	t_list *tmp;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	tmp = lst;
+	while (tmp)
+	{
+		f(tmp);
+		tmp = tmp->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 14:29:57 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/24 10:27:01 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int		expose(t_env *e)
 
 int		exit_window(int keycode)
 {
-	if (keycode == 53)
+	if (keycode == 53)		//	Mac OS
+	//if (keycode == 65307)	//	Linux
 		exit(0);
 	return (0);
 }

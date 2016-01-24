@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtata <vtata@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 16:07:42 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/10 10:55:13 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/26 11:43:19 by vtata             #+#    #+#             */
+/*   Updated: 2015/11/30 19:13:33 by vtata            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
-char	*ft_strnew(size_t size)
+void		*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*str;
+	size_t	i;
+	char	*d;
+	char	*s;
+	char	*tmp;
 
-	str = (char *)malloc(sizeof(char) * size + 1);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size + 1);
-	return (str);
+	i = 0;
+	s = (char*)src;
+	d = (char*)dst;
+	tmp = ft_strdup(s);
+	while (i < len)
+	{
+		d[i] = tmp[i];
+		i++;
+	}
+	return (dst);
 }

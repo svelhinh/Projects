@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:30:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/01/24 11:38:00 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/01/24 11:58:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include "gnl/get_next_line.h"
+#include "libft/includes/libft.h"
 
-void		ft_swap(float *a, float *b)
+int		main(int ac, char **av)
 {
-	float c;
+	int fd = open(av[1], O_RDONLY);
+	char *line;
+	(void)ac;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	get_next_line(fd, &line);
+	//ft_putstr(line);
+	//ft_putchar('\n');
+	//sleep(15);
+	return (0);
 }

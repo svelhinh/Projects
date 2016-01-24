@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 14:49:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/24 10:41:38 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ int				expose(t_env *e);
 void			put_line(t_coords c);
 void			ft_swap(float *a, float *b);
 void			ft_exit(char *s);
-char			**parser(char *lvl);
+int				**parser(char *lvl);
 #endif
