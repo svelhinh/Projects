@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/24 17:25:01 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/25 11:39:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		main(int ac, char **av)
 
 	e.lvl = check_param(ac, av);
 	(!(e.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
+	e.map = parser(e.lvl);
 	if (!(e.win = mlx_new_window(e.mlx, SWIDTH, SHEIGHT, e.lvl)))
 		ft_exit("mlx_new_window failed in main()");
 	mlx_expose_hook(e.win, expose, &e);

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/23 11:31:45 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/25 12:15:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,80 +26,14 @@ void		mlx_pixel_put_to_img(t_coords *c, int x, int y)
 	c->data[y * c->size_line + x * c->bpp / 8 + 2] = b;
 }
 
-static void	line_horizon(t_coords c)
-{
-	float x;
-
-	x = c.xmin;
-	while (x <= c.xmax)
-	{
-		mlx_pixel_put_to_img(&c, x, c.ymin);
-		x++;
-	}
-}
-
-static void	line_verti(t_coords c)
+void	line_verti(t_coords c, t_env e)
 {
 	float y;
 
 	y = c.ymin;
 	while (y <= c.ymax)
 	{
-		mlx_pixel_put_to_img(&c, c.xmin, y);
+		mlx_pixel_put(e.mlx, e.win, c.x, y, c.color);
 		y++;
 	}
-}
-
-static void	line_diago(t_coords c)
-{
-	float	y;
-	float	x;
-	float	preci;
-	int		i;
-
-	c.dx = c.xmax - c.xmin;
-	c.dy = c.ymax - c.ymin;
-	c.m = c.dy / c.dx;
-	y = c.ymin;
-	x = c.xmin;
-	preci = 10;
-	while (x < c.xmax)
-	{
-		i = 0;
-		while (i < preci)
-		{
-			mlx_pixel_put_to_img(&c, x, y);
-			y += c.m / preci;
-			i++;
-		}
-		x++;
-	}
-}
-
-void		put_line(t_coords c)
-{
-	if (c.xmin > c.xmax && c.ymin > c.ymax)
-	{
-		ft_swap(&c.ymin, &c.ymax);
-		ft_swap(&c.xmin, &c.xmax);
-	}
-	else
-	{
-		if (c.ymin > c.ymax)
-		{
-			(c.xmin < c.xmax) ? (ft_swap(&c.xmin, &c.xmax))
-				: (ft_swap(&c.ymin, &c.ymax));
-		}
-		if (c.xmin > c.xmax)
-		{
-			(c.ymin < c.ymax) ? ft_swap(&c.ymin, &c.ymax) : (0);
-			ft_swap(&c.xmin, &c.xmax);
-		}
-	}
-	if (c.xmax == c.xmin)
-		line_verti(c);
-	else if (c.ymax == c.ymin)
-		line_horizon(c);
-	else
-		line_diago(c);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 12:31:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/24 11:35:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/25 11:06:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,24 @@ int			**parser(char *lvl)
 {
 	int		fd;
 	char	*line;
-	int		**tab_lvl;
+	int		**map;
 	int		i;
 	int		nblines;
 
 	i = 0;
 	nblines = number_lines(lvl);
-	if (!(tab_lvl = (int **)malloc(sizeof(int *) * nblines)))
+	if (!(map = (int **)malloc(sizeof(int *) * nblines)))
 		ft_exit("malloc() tab in number_lines() failed");
 	if ((fd = open(lvl, O_RDONLY)) == -1)
 		ft_exit("open() failed in parser()");
 	while (get_next_line(fd, &line) > 0)
 	{
-		tab_lvl[i] = split(line);
+		map[i] = split(line);
 		ft_strdel(&line);
 		i++;
 	}
 	ft_strdel(&line);
-	tab_lvl[i] = NULL;
+	map[i] = NULL;
 	if (close(fd) == -1)
 		ft_exit("close() failed in parser()");
 	/*int j;
@@ -87,5 +87,5 @@ int			**parser(char *lvl)
 		ft_putstr("\n");
 		i++;
 	}*/
-	return (tab_lvl);
+	return (map);
 }
