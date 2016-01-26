@@ -6,13 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/25 12:15:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/26 17:50:43 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		mlx_pixel_put_to_img(t_coords *c, int x, int y)
+void			mlx_pixel_put_to_img(t_coords *c, t_ray *v, int x, int y)
 {
 	unsigned char	b;
 	unsigned char	g;
@@ -21,19 +21,53 @@ void		mlx_pixel_put_to_img(t_coords *c, int x, int y)
 	b = (c->color & 0xFF0000) >> 16;
 	g = (c->color & 0xFF00) >> 8;
 	r = (c->color & 0xFF);
-	c->data[y * c->size_line + x * c->bpp / 8] = r;
-	c->data[y * c->size_line + x * c->bpp / 8 + 1] = g;
-	c->data[y * c->size_line + x * c->bpp / 8 + 2] = b;
+	v->data[y * v->size_line + x * v->bpp / 8] = r;
+	v->data[y * v->size_line + x * v->bpp / 8 + 1] = g;
+	v->data[y * v->size_line + x * v->bpp / 8 + 2] = b;
 }
 
-void	line_verti(t_coords c, t_env e)
+static void		display(t_coords c, t_ray r)
 {
-	float y;
+	int y;
 
 	y = c.ymin;
-	while (y <= c.ymax)
+	while (y < c.ymax)
 	{
-		mlx_pixel_put(e.mlx, e.win, c.x, y, c.color);
+		mlx_pixel_put_to_img(&c, &r, c.x, y);
+		y++;
+	}
+}
+
+void			put_line(t_ray r)
+{
+	t_coords c;
+
+	if (r.map[r.mapx][r.mapy] == 1)
+		c.color = 0x1D3CD7;
+	if (r.map[r.mapx][r.mapy] == 2)
+		c.color = 0xC41313;
+	if (r.map[r.mapx][r.mapy] == 3)
+		c.color = 0xC47D13;
+	if (r.map[r.mapx][r.mapy] == 4)
+		c.color = 0xC413BE;
+	c.x = r.x;
+	c.ymin = r.drawstart;
+	c.ymax = r.drawend;
+	display(c, r);
+}
+
+void			put_floor_sky(t_ray r)
+{
+	t_coords	c;
+	int			y;
+
+	y = r.drawend;
+	while (y < SHEIGHT)
+	{
+		c.color = FLOORCOLOR;
+		mlx_pixel_put_to_img(&c, &r, c.x, y);
+		c.color = SKYCOLOR;
+		mlx_pixel_put_to_img(&c, &r, c.x, SHEIGHT - y - 1);
 		y++;
 	}
 }

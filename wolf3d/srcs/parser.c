@@ -6,13 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 12:31:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/25 11:06:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/26 16:09:01 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static	int number_lines(char *lvl)
+static	int	number_lines(char *lvl)
 {
 	int		fd;
 	int		nblines;
@@ -74,18 +74,5 @@ int			**parser(char *lvl)
 	map[i] = NULL;
 	if (close(fd) == -1)
 		ft_exit("close() failed in parser()");
-	/*int j;
-	i = 0;
-	while (i < nblines)
-	{
-		j = 0;
-		while (j < 5)
-		{
-			ft_putnbr(tab_lvl[i][j]);
-			j++;
-		}
-		ft_putstr("\n");
-		i++;
-	}*/
 	return (map);
 }

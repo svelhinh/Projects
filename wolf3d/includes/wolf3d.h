@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/26 14:26:54 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/26 17:50:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,13 @@
 # include <fcntl.h>
 # include "../libft/includes/libft.h"
 # include "../gnl/get_next_line.h"
-# define SWIDTH 1000
-# define SHEIGHT 1000
+# define SWIDTH 2500
+# define SHEIGHT 1300
+# define SKYCOLOR 0xa0a0
+# define FLOORCOLOR 0xaaaaaa
+# define ROT 0.3
+# define MOVE 1
 
-typedef struct	s_env
-{
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*lvl;
-	int			**map;
-}				t_env;
 typedef struct	s_coords
 {
 	double		x;
@@ -39,49 +35,54 @@ typedef struct	s_coords
 	double		dx;
 	double		dy;
 	double		m;
-	char		*data;
 	int			color;
-	int			size_line;
-	int			bpp;
-	int			endian;
 }				t_coords;
 typedef struct	s_ray
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	double	cameraX;
-	double	rayPosX;
-	double	rayPosY;
-	double	rayDirX;
-	double	rayDirY;
-	double	distMurX;
-	double	distMurY;
-	double	dist2MurX;
-	double	dist2MurY;
-	double	longueurMur;
-	int		mapX;
-	int		mapY;
-	int		x;
-	int		etapeX;
-	int		etapeY;
-	int		touche;
-	int		murVertiOuHori;
-	int		hauteurMur;
-	int		drawStart;
-	int		drawEnd;
-	int		color;
-	int		y;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
+	double		camerax;
+	double		rayposx;
+	double		rayposy;
+	double		raydirx;
+	double		raydiry;
+	double		distmurx;
+	double		distmury;
+	double		dist2murx;
+	double		dist2mury;
+	double		longueurmur;
+	int			mapx;
+	int			mapy;
+	int			x;
+	int			etapex;
+	int			etapey;
+	int			touche;
+	int			mur;
+	int			hauteurmur;
+	int			drawstart;
+	int			drawend;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*lvl;
+	int			**map;
+	int			i;
+	char		*data;
+	int			size_line;
+	int			bpp;
+	int			endian;
 }				t_ray;
-int				exit_window(int keycode);
-int				expose(t_env *e);
-void			line_verti(t_coords c, t_env e);
+int				exit_window(int keycode, t_ray *r);
+int				expose(t_ray *r);
 void			ft_swap(float *a, float *b);
 void			ft_exit(char *s);
 int				**parser(char *lvl);
-void			raycasting(t_env e);
-int				move(int keycode, t_ray *r);
+void			raycasting(t_ray *r);
+void			init_var(t_ray *r);
+void			put_line(t_ray r);
+void			put_floor_sky(t_ray r);
 #endif

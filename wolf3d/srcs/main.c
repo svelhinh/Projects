@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/25 14:02:54 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/26 16:09:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,17 @@ char	*check_param(int ac, char **av)
 
 int		main(int ac, char **av)
 {
-	t_env	e;
+	t_ray	r;
 
-	e.lvl = check_param(ac, av);
-	(!(e.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
-	e.map = parser(e.lvl);
-	if (!(e.win = mlx_new_window(e.mlx, SWIDTH, SHEIGHT, e.lvl)))
+	r.i = 0;
+	r.lvl = check_param(ac, av);
+	(!(r.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
+	r.map = parser(r.lvl);
+	if (!(r.win = mlx_new_window(r.mlx, SWIDTH, SHEIGHT, r.lvl)))
 		ft_exit("mlx_new_window failed in main()");
-	mlx_expose_hook(e.win, expose, &e);
-	mlx_key_hook(e.win, exit_window, &e);
-	mlx_loop(e.mlx);
+	init_var(&r);
+	mlx_expose_hook(r.win, expose, &r);
+	mlx_key_hook(r.win, exit_window, &r);
+	mlx_loop(r.mlx);
 	return (0);
 }
