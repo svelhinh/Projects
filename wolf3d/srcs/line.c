@@ -42,14 +42,14 @@ void			put_line(t_ray r)
 {
 	t_coords c;
 
-	if (r.map[r.mapx][r.mapy] == 1)
-		c.color = 0x1D3CD7;
-	if (r.map[r.mapx][r.mapy] == 2)
-		c.color = 0xC41313;
-	if (r.map[r.mapx][r.mapy] == 3)
-		c.color = 0xC47D13;
-	if (r.map[r.mapx][r.mapy] == 4)
-		c.color = 0xC413BE;
+	if (r.mur == 0 && r.raydirx > 0)
+		c.color = 0x051884;
+	if (r.mur == 0 && r.raydirx < 0)
+		c.color = 0xff;
+	if (r.mur == 1 && r.raydiry > 0)
+		c.color = 0xff0000;
+	if (r.mur == 1 && r.raydiry < 0)
+		c.color = 0xff00;
 	c.x = r.x;
 	c.ymin = r.drawstart;
 	c.ymax = r.drawend;

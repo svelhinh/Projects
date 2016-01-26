@@ -32,7 +32,7 @@ static void	rotate(int keycode, t_ray *r)
 	double olddirx;
 	double oldplanex;
 
-	if (keycode == 123)
+	if (keycode == 123/*65361*/)
 	{
 		olddirx = r->dirx;
 		r->dirx = r->dirx * cos(ROT) - r->diry * sin(ROT);
@@ -41,7 +41,7 @@ static void	rotate(int keycode, t_ray *r)
 		r->planex = r->planex * cos(ROT) - r->planey * sin(ROT);
 		r->planey = oldplanex * sin(ROT) + r->planey * cos(ROT);
 	}
-	if (keycode == 124)
+	if (keycode == 124/*65363*/)
 	{
 		olddirx = r->dirx;
 		r->dirx = r->dirx * cos(-ROT) - r->diry * sin(-ROT);
@@ -50,13 +50,13 @@ static void	rotate(int keycode, t_ray *r)
 		r->planex = r->planex * cos(-ROT) - r->planey * sin(-ROT);
 		r->planey = oldplanex * sin(-ROT) + r->planey * cos(-ROT);
 	}
-	if (keycode == 123 || keycode == 124)
+	if (keycode == 123/*65361*/ || keycode == 124/*65363*/)
 		expose(r);
 }
 
 static void	move(int keycode, t_ray *r)
 {
-	if (keycode == 125)
+	if (keycode == 125/*65364*/)
 	{
 		if (!r->map[(int)(r->posx - r->dirx * MOVE)][(int)r->posy])
 			r->posx -= r->dirx * MOVE;
@@ -66,18 +66,15 @@ static void	move(int keycode, t_ray *r)
 				|| !r->map[(int)r->posx][(int)(r->posy - r->diry * MOVE)])
 			expose(r);
 	}
-	if (keycode == 126)
+	if (keycode == 126/*65362*/)
 	{
 		if (!r->map[(int)(r->posx + r->dirx * MOVE)][(int)r->posy])
-		{
 			r->posx += r->dirx * MOVE;
-			expose(r);
-		}
 		if (!r->map[(int)r->posx][(int)(r->posy + r->diry * MOVE)])
-		{
 			r->posy += r->diry * MOVE;
+		if (!r->map[(int)(r->posx + r->dirx * MOVE)][(int)r->posy]
+				|| !r->map[(int)r->posx][(int)(r->posy + r->diry * MOVE)])
 			expose(r);
-		}
 	}
 }
 
@@ -85,7 +82,7 @@ int			exit_window(int keycode, t_ray *r)
 {
 	rotate(keycode, r);
 	move(keycode, r);
-	if (keycode == 53)
+	if (keycode == 53/*65307*/)
 		exit(0);
 	return (0);
 }

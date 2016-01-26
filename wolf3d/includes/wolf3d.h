@@ -20,12 +20,12 @@
 # include <fcntl.h>
 # include "../libft/includes/libft.h"
 # include "../gnl/get_next_line.h"
-# define SWIDTH 2500
-# define SHEIGHT 1300
+# define SWIDTH 2500//1180
+# define SHEIGHT 1300//924
 # define SKYCOLOR 0xa0a0
 # define FLOORCOLOR 0xaaaaaa
 # define ROT 0.3
-# define MOVE 1
+# define MOVE 0.3
 
 typedef struct	s_coords
 {
