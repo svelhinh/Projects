@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/25 15:49:57 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/26 12:26:43 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ typedef struct	s_env
 }				t_env;
 typedef struct	s_coords
 {
-	float		x;
-	float		ymin;
-	float		ymax;
-	float		dx;
-	float		dy;
-	float		m;
+	double		x;
+	double		ymin;
+	double		ymax;
+	double		dx;
+	double		dy;
+	double		m;
 	char		*data;
 	int			color;
 	int			size_line;
@@ -54,8 +54,8 @@ typedef struct	s_ray
 	double	planeX;
 	double	planeY;
 	int		x;
-	int		y;
-	int		color;
+	//int		y;
+	//int		color;
 	double	cameraX;
 	double	rayPosX;
 	double	rayPosY;
@@ -63,18 +63,18 @@ typedef struct	s_ray
 	double	rayDirY;
 	int		mapX;
 	int		mapY;
-	double	deltaDistX;
-	double	deltaDistY;
-	int		hit;
-	int		stepX;
-	int		stepY;
-	double	sideDistX;
-	double	sideDistY;
-	int		side;
-	double	perpWallDist;
-	double	lineHeight;
-	double	drawStart;
-	double	drawEnd;
+	//double	deltaDistX;
+	//double	deltaDistY;
+	//int		hit;
+	//int		stepX;
+	//int		stepY;
+	//double	sideDistX;
+	//double	sideDistY;
+	//int		side;
+	//double	perpWallDist;
+	//double	lineHeight;
+	//double	drawStart;
+	//double	drawEnd;
 }				t_ray;
 int				exit_window(int keycode);
 int				expose(t_env *e);
