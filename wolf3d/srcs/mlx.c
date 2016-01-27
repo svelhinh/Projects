@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/26 17:09:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 11:08:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ static void	move(int keycode, t_ray *r)
 	}
 }
 
-int			exit_window(int keycode, t_ray *r)
+int			key(int keycode, t_ray *r)
 {
-	rotate(keycode, r);
 	move(keycode, r);
+	rotate(keycode, r);
 	if (keycode == 53/*65307*/)
 		exit(0);
 	return (0);

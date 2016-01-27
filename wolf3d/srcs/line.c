@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/26 17:50:43 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 11:45:05 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ void			put_line(t_ray r)
 	t_coords c;
 
 	if (r.mur == 0 && r.raydirx > 0)
-		c.color = 0x051884;
+		c.color = 0x253C95;
 	if (r.mur == 0 && r.raydirx < 0)
-		c.color = 0xff;
+		c.color = 0x31A73;
 	if (r.mur == 1 && r.raydiry > 0)
-		c.color = 0xff0000;
+		c.color = 0x10851;
 	if (r.mur == 1 && r.raydiry < 0)
-		c.color = 0xff00;
+		c.color = 0x630;
+	if (r.touche == 2)
+		c.color = 0x1DD029;
 	c.x = r.x;
 	c.ymin = r.drawstart;
 	c.ymax = r.drawend;

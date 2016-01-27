@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 12:10:37 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/26 17:38:18 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 11:43:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ static void	dda(t_ray *r)
 			r->mapy += r->etapey;
 			r->mur = 1;
 		}
-		if (r->map[r->mapx][r->mapy] > 0)
+		if (r->map[r->mapx][r->mapy] == 1)
 			r->touche = 1;
+		else if (r->map[r->mapx][r->mapy] == 2)
+			r->touche = 2;
 	}
 }
 

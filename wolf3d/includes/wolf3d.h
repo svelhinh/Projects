@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/26 17:50:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 12:18:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include "../gnl/get_next_line.h"
 # define SWIDTH 2500//1180
 # define SHEIGHT 1300//924
-# define SKYCOLOR 0xa0a0
+# define SKYCOLOR 0x7FD1EF
 # define FLOORCOLOR 0xaaaaaa
-# define ROT 0.3
+# define ROT 0.1
 # define MOVE 0.3
 
 typedef struct	s_coords
@@ -76,7 +76,8 @@ typedef struct	s_ray
 	int			bpp;
 	int			endian;
 }				t_ray;
-int				exit_window(int keycode, t_ray *r);
+//int				exit_window(int keycode, t_ray *r);
+int				key(int keycode, t_ray *r);
 int				expose(t_ray *r);
 void			ft_swap(float *a, float *b);
 void			ft_exit(char *s);

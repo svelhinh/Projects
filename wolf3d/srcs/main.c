@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/26 16:09:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 12:34:34 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*check_param(int ac, char **av)
 	if (ac == 1)
 	{
 		srand(time(NULL));
-		nb_alea = rand() % 1;
+		nb_alea = rand() % 2;
 		tmp = ft_strdup("levels/lvl");
 		tmp2 = ft_itoa(nb_alea);
 		lvl = ft_strjoin(tmp, tmp2);
@@ -58,7 +58,7 @@ int		main(int ac, char **av)
 		ft_exit("mlx_new_window failed in main()");
 	init_var(&r);
 	mlx_expose_hook(r.win, expose, &r);
-	mlx_key_hook(r.win, exit_window, &r);
+	mlx_hook(r.win, 2, 64, key, &r);
 	mlx_loop(r.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/26 17:21:22 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 12:45:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void		ft_swap(float *a, float *b)
 
 void		init_var(t_ray *r)
 {
-	r->posx = 10;
-	r->posy = 10;
+	r->posx = 18.5;//8.2;
+	r->posy = 8.5;//1.5;
 	r->dirx = -1;
 	r->diry = 0;
 	r->planex = 0;
