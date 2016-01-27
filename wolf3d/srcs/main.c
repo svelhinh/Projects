@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/27 12:34:34 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 17:47:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*check_param(int ac, char **av)
 	if (ac == 1)
 	{
 		srand(time(NULL));
-		nb_alea = rand() % 2;
+		nb_alea = rand() % 3;
 		tmp = ft_strdup("levels/lvl");
 		tmp2 = ft_itoa(nb_alea);
 		lvl = ft_strjoin(tmp, tmp2);
@@ -52,6 +52,8 @@ int		main(int ac, char **av)
 
 	r.i = 0;
 	r.lvl = check_param(ac, av);
+	if (ft_strcmp(av[1], "lvl0") && ft_strcmp(av[1], "lvl1"))
+		ft_exit("Bad file name");
 	(!(r.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
 	r.map = parser(r.lvl);
 	if (!(r.win = mlx_new_window(r.mlx, SWIDTH, SHEIGHT, r.lvl)))

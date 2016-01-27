@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/27 12:18:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 18:14:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@
 # include "../gnl/get_next_line.h"
 # define SWIDTH 2500//1180
 # define SHEIGHT 1300//924
-# define SKYCOLOR 0x7FD1EF
-# define FLOORCOLOR 0xaaaaaa
 # define ROT 0.1
 # define MOVE 0.3
+# define SKY 0x7FD1EF
+# define FLOOR 0xaaaaaa
+# define FRONT 0x000051
+# define BACK 0x000073
+# define RIGHT 0x001095
+# define LEFT 0x023097
 
 typedef struct	s_coords
 {

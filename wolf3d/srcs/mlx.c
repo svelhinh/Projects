@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/27 11:08:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/27 17:47:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ static void	rotate(int keycode, t_ray *r)
 
 static void	move(int keycode, t_ray *r)
 {
+	if (r->map[(int)(r->posx + r->dirx * MOVE)][(int)r->posy] == 2
+			|| r->map[(int)r->posx][(int)(r->posy + r->diry * MOVE)] == 2)
+		ft_exit("win");
 	if (keycode == 125/*65364*/)
 	{
 		if (!r->map[(int)(r->posx - r->dirx * MOVE)][(int)r->posy])
