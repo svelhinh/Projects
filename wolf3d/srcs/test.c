@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   functions.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/28 12:01:43 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/01/28 13:01:23 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/01/28 15:06:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include <mlx.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
 
-void		ft_swap(float *a, float *b)
+int		main(void)
 {
-	float c;
+	void *win;
+	void *mlx;
+	void *img;
+	int w;
+	int h;
 
-	c = *a;
-	*a = *b;
-	*b = c;
-}
-
-void		init_var(t_ray *r)
-{
-	if (ft_strstr(r->lvl, "lvl0"))
-	{
-		r->posx = 30.5;
-		r->posy = 5;
-	}
-	r->dirx = -1;
-	r->diry = 0;
-	r->planex = 0;
-	r->planey = 0.66;
+	w = 255;
+	h = 255;
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 1000, 1000, "test");
+	img = mlx_xpm_file_to_image(mlx, "../textures/mur.xpm", &w, &h);
+	mlx_put_image_to_window(mlx, win, img, 0, 0);
+	mlx_loop(mlx);
+	return (0);
 }

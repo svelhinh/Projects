@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 12:31:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/27 16:07:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/28 12:17:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static	int	number_lines(char *lvl)
 
 	nblines = 0;
 	if ((fd = open(lvl, O_RDONLY)) == -1)
-		ft_exit("open() failed in parser()");
+		ft_exit("open() failed in number_lines()");
 	while (get_next_line(fd, &line) > 0)
 	{
 		ft_strdel(&line);
 		nblines++;
 	}
 	ft_strdel(&line);
-	(close(fd) == -1) ? (ft_exit("close() failed in parser()")) : (0);
+	(close(fd) == -1) ? (ft_exit("close() failed in number_lines()")) : (0);
 	return (nblines);
 }
 
@@ -72,7 +72,6 @@ int			**parser(char *lvl)
 	}
 	ft_strdel(&line);
 	map[i] = NULL;
-	if (close(fd) == -1)
-		ft_exit("close() failed in parser()");
+	(close(fd) == -1) ? (ft_exit("close() failed in parser()")) : (0);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/27 18:14:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/28 13:01:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ typedef struct	s_ray
 	double		rayposy;
 	double		raydirx;
 	double		raydiry;
-	double		distmurx;
-	double		distmury;
-	double		dist2murx;
-	double		dist2mury;
-	double		longueurmur;
+	double		walldistx;
+	double		walldisty;
+	double		walldistx2;
+	double		walldisty2;
+	double		wall_length;
 	int			mapx;
 	int			mapy;
 	int			x;
-	int			etapex;
-	int			etapey;
-	int			touche;
-	int			mur;
-	int			hauteurmur;
-	int			drawstart;
-	int			drawend;
+	int			stepx;
+	int			stepy;
+	int			hit;
+	int			wall;
+	int			wall_height;
+	int			ymin;
+	int			ymax;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -80,7 +80,6 @@ typedef struct	s_ray
 	int			bpp;
 	int			endian;
 }				t_ray;
-//int				exit_window(int keycode, t_ray *r);
 int				key(int keycode, t_ray *r);
 int				expose(t_ray *r);
 void			ft_swap(float *a, float *b);

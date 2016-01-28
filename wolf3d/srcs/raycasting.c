@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 12:10:37 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/27 11:43:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/28 12:21:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,55 +21,55 @@ static void	calculs(t_ray *r)
 	r->raydiry = r->diry + r->planey * r->camerax;
 	r->mapx = (int)r->rayposx;
 	r->mapy = (int)r->rayposy;
-	r->dist2murx = sqrt(1 + pow(r->raydiry, 2) / pow(r->raydirx, 2));
-	r->dist2mury = sqrt(1 + pow(r->raydirx, 2) / pow(r->raydiry, 2));
+	r->walldistx2 = sqrt(1 + pow(r->raydiry, 2) / pow(r->raydirx, 2));
+	r->walldisty2 = sqrt(1 + pow(r->raydirx, 2) / pow(r->raydiry, 2));
 }
 
 static void	collisions(t_ray *r)
 {
-	r->touche = 0;
+	r->hit = 0;
 	if (r->raydirx < 0)
 	{
-		r->etapex = -1;
-		r->distmurx = (r->rayposx - r->mapx) * r->dist2murx;
+		r->stepx = -1;
+		r->walldistx = (r->rayposx - r->mapx) * r->walldistx2;
 	}
 	else
 	{
-		r->etapex = 1;
-		r->distmurx = (r->mapx + 1.0 - r->rayposx) * r->dist2murx;
+		r->stepx = 1;
+		r->walldistx = (r->mapx + 1.0 - r->rayposx) * r->walldistx2;
 	}
 	if (r->raydiry < 0)
 	{
-		r->etapey = -1;
-		r->distmury = (r->rayposy - r->mapy) * r->dist2mury;
+		r->stepy = -1;
+		r->walldisty = (r->rayposy - r->mapy) * r->walldisty2;
 	}
 	else
 	{
-		r->etapey = 1;
-		r->distmury = (r->mapy + 1.0 - r->rayposy) * r->dist2mury;
+		r->stepy = 1;
+		r->walldisty = (r->mapy + 1.0 - r->rayposy) * r->walldisty2;
 	}
 }
 
 static void	dda(t_ray *r)
 {
-	while (r->touche == 0)
+	while (r->hit == 0)
 	{
-		if (r->distmurx < r->distmury)
+		if (r->walldistx < r->walldisty)
 		{
-			r->distmurx += r->dist2murx;
-			r->mapx += r->etapex;
-			r->mur = 0;
+			r->walldistx += r->walldistx2;
+			r->mapx += r->stepx;
+			r->wall = 0;
 		}
 		else
 		{
-			r->distmury += r->dist2mury;
-			r->mapy += r->etapey;
-			r->mur = 1;
+			r->walldisty += r->walldisty2;
+			r->mapy += r->stepy;
+			r->wall = 1;
 		}
 		if (r->map[r->mapx][r->mapy] == 1)
-			r->touche = 1;
+			r->hit = 1;
 		else if (r->map[r->mapx][r->mapy] == 2)
-			r->touche = 2;
+			r->hit = 2;
 	}
 }
 
@@ -78,19 +78,18 @@ static void	calcul_lines(t_ray *r)
 	double calcul;
 	double calcul2;
 
-	calcul = (1 - r->etapex) / 2;
-	calcul2 = (1 - r->etapey) / 2;
-	if (r->mur == 0)
-		r->longueurmur = fabs((r->mapx - r->rayposx + calcul) / r->raydirx);
+	calcul = (1 - r->stepx) / 2;
+	calcul2 = (1 - r->stepy) / 2;
+	if (r->wall == 0)
+		r->wall_length = fabs((r->mapx - r->rayposx + calcul) / r->raydirx);
 	else
-		r->longueurmur = fabs((r->mapy - r->rayposy + calcul2) / r->raydiry);
-	r->hauteurmur = abs((int)(SHEIGHT / r->longueurmur));
-	r->drawstart = -r->hauteurmur / 2 + SHEIGHT / 2;
-	if (r->drawstart < 0)
-		r->drawstart = 0;
-	r->drawend = r->hauteurmur / 2 + SHEIGHT / 2;
-	if (r->drawend >= SHEIGHT)
-		r->drawend = SHEIGHT - 1;
+		r->wall_length = fabs((r->mapy - r->rayposy + calcul2) / r->raydiry);
+	r->wall_height = abs((int)(SHEIGHT / r->wall_length));
+	r->ymin = -r->wall_height / 2 + SHEIGHT / 2;
+	if (r->ymin < 0)
+		r->ymin = 0;
+	r->ymax = r->wall_height / 2 + SHEIGHT / 2;
+	(r->ymax >= SHEIGHT) ? (r->ymax = SHEIGHT - 1) : (0);
 }
 
 void		raycasting(t_ray *r)
@@ -103,8 +102,6 @@ void		raycasting(t_ray *r)
 		dda(r);
 		calcul_lines(r);
 		put_line(*r);
-		if (r->drawend < 0)
-			r->drawend = SHEIGHT;
 		put_floor_sky(*r);
 		r->x++;
 	}
