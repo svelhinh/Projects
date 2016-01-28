@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/28 13:01:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/28 18:36:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define BACK 0x000073
 # define RIGHT 0x001095
 # define LEFT 0x023097
+# define THEIGHT 256
+# define TWIDTH 256
 
 typedef struct	s_coords
 {
@@ -59,6 +61,8 @@ typedef struct	s_ray
 	double		walldistx2;
 	double		walldisty2;
 	double		wall_length;
+	double		oldtime;
+	double		time;
 	int			mapx;
 	int			mapy;
 	int			x;
@@ -79,6 +83,10 @@ typedef struct	s_ray
 	int			size_line;
 	int			bpp;
 	int			endian;
+	char		**tex;
+	double		wallx;
+	int			texx;
+	int			texy;
 }				t_ray;
 int				key(int keycode, t_ray *r);
 int				expose(t_ray *r);
