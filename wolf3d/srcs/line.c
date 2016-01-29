@@ -6,13 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/28 18:36:31 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/29 18:46:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-/*static void		mlx_pixel_put_to_img(t_coords *c, t_ray *v, int x, int y)
+static void		mlx_pixel_put_to_img(t_coords *c, t_ray *v, int x, int y)
 {
 	unsigned char	b;
 	unsigned char	g;
@@ -24,22 +24,22 @@
 	v->data[y * v->size_line + x * v->bpp / 8] = r;
 	v->data[y * v->size_line + x * v->bpp / 8 + 1] = g;
 	v->data[y * v->size_line + x * v->bpp / 8 + 2] = b;
-}*/
+}
 
-/*static void		display(t_coords c, t_ray r)
-{
+/*  static void		display(t_coords c, t_ray r)
+	{
 	int y;
 
 	y = c.ymin;
 	while (y < c.ymax)
 	{
-		mlx_pixel_put_to_img(&c, &r, c.x, y);
-		y++;
+	mlx_pixel_put_to_img(&c, &r, c.x, y);
+	y++;
 	}
-}
+	}
 
-void			put_line(t_ray r)
-{
+	void			put_line(t_ray r)
+	{
 	t_coords c;
 
 	(r.wall == 0 && r.raydirx > 0) ? (c.color = BACK) : (0);
@@ -51,7 +51,7 @@ void			put_line(t_ray r)
 	c.ymin = r.ymin;
 	c.ymax = r.ymax;
 	display(c, r);
-}
+	}*/
 
 void			put_floor_sky(t_ray r)
 {
@@ -68,31 +68,41 @@ void			put_floor_sky(t_ray r)
 		mlx_pixel_put_to_img(&c, &r, c.x, SHEIGHT - y - 1);
 		y++;
 	}
-}*/
+}
+
+static void		display(t_coords c, t_ray r)
+{
+	int y;
+	int d;
+
+	y = c.ymin;
+	while (y < c.ymax)
+	{
+		d = y * 256 - SHEIGHT * 128 + r.wall_height * 128;
+		r.texy = ((d * THEIGHT) / r.wall_height) / 256;
+		c.color = r.texture[THEIGHT * r.texy + r.texx];
+		(r.wall == 1) ? (c.color = (c.color >> 1) & 8355711) : (0);
+		mlx_pixel_put_to_img(&c, &r, c.x, y);
+		y++;
+	}
+}
 
 void			put_line(t_ray r)
 {
-	int y;
-	int color;
+	t_coords c;
 
 	if (r.wall == 1)
 		r.wallx = r.rayposx + ((r.mapy - r.rayposy + (1 - r.stepy) / 2) / r.raydiry) * r.raydirx;
 	else
 		r.wallx = r.rayposy + ((r.mapx - r.rayposx + (1 - r.stepx) / 2) / r.raydirx) * r.raydiry;
 	r.wallx -= floor(r.wallx);
-	r.texx = (int)(r.wallx * TWIDTH);
-	if (r.wall == 0 && r.raydirx > 0)
+	r.texx = (int)(r.wallx * (double)TWIDTH);
+	if(r.wall == 0 && r.raydirx > 0)
 		r.texx = TWIDTH - r.texx - 1;
-	if (r.wall == 1 && r.raydiry < 0)
+	if(r.wall == 1 && r.raydiry < 0)
 		r.texx = TWIDTH - r.texx - 1;
-	y = r.ymin;
-	while (y < r.ymax)
-	{
-		r.texy = (y * 2 - SHEIGHT + r.wall_height) * (THEIGHT / 2) / r.wall_height;
-		color = r.tex[r.texx][r.texy];
-		if (r.wall == 1)
-			color = (color >> 1) & 8355711;
-		mlx_pixel_put(r.mlx, r.win, r.x, y, color);
-		y++;
-	}
+	c.ymin = r.ymin;
+	c.ymax = r.ymax;
+	c.x = r.x;
+	display(c, r);
 }

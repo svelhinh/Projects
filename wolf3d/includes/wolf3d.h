@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/28 18:36:35 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/29 18:53:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct	s_ray
 	int			ymax;
 	void		*mlx;
 	void		*win;
-	void		*img;
+	char		*img;
 	char		*lvl;
 	int			**map;
 	int			i;
@@ -83,10 +83,10 @@ typedef struct	s_ray
 	int			size_line;
 	int			bpp;
 	int			endian;
-	char		**tex;
 	double		wallx;
 	int			texx;
 	int			texy;
+	int			*texture;
 }				t_ray;
 int				key(int keycode, t_ray *r);
 int				expose(t_ray *r);

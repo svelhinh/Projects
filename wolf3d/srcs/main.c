@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/28 18:37:42 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/29 18:52:12 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,29 @@ char	*check_param(int ac, char **av)
 
 void	load_tex(t_ray *r)
 {
+	//int w;
+	//int h;
+	int x;
 	int y;
-	int w;
-	int h;
-	int start;
+	int xycolor;
 
-	if (!(r->tex = (char **)malloc(sizeof(char *) * THEIGHT)))
-		ft_exit("malloc in load_tex failed");
-	start = 0;
-	w = TWIDTH;
-	h = THEIGHT;
-	r->img = mlx_xpm_file_to_image(r->mlx, "textures/mur.xpm", &w, &h);
-	y = 0;
-	while (y < THEIGHT)
+	//w = TWIDTH;
+	//h = THEIGHT;
+	//r->img = mlx_xpm_file_to_image(r->mlx, "textures/mur.xpm", &w, &h);
+	//r->data = mlx_get_data_addr(r->img, &r->bpp, &r->size_line, &r->endian);
+	if (!(r->texture = (int *)malloc(sizeof(int) * THEIGHT * TWIDTH)))
+		ft_exit("malloc() texture in load_tex() failed");
+	x = 0;
+	while (x < TWIDTH)
 	{
-		r->tex[y] = ft_strnew(TWIDTH);
-		r->tex[y] = ft_strsub(r->img, start, 255);
-		start += 256;
-		y++;
+		y = 0;
+		while (y < THEIGHT)
+		{
+			xycolor = y * 128 / THEIGHT + x * 128 / TWIDTH;
+			r->texture[TWIDTH * y + x] = /*xycolor + 256 * xycolor + 65536 * xycolor;*/65536 * 154 * (x != y && x != TWIDTH - y) /*65536 * 192 * (x % 16 && y % 16)*/;
+			y++;
+		}
+		x++;
 	}
 }
 

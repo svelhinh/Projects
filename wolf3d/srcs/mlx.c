@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/28 18:36:42 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/29 18:35:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int			expose(t_ray *r)
 {
-	//r->img = mlx_new_image(r->mlx, SWIDTH, SHEIGHT);
-	//r->data = mlx_get_data_addr(r->img, &r->bpp, &r->size_line, &r->endian);
+	r->img = mlx_new_image(r->mlx, SWIDTH, SHEIGHT);
+	r->data = mlx_get_data_addr(r->img, &r->bpp, &r->size_line, &r->endian);
 	if (r->i == 0)
 	{
 		init_var(r);
 		r->i = 1;
 	}
 	raycasting(r);
-	//mlx_put_image_to_window(r->mlx, r->win, r->img, 0, 0);
-	//mlx_destroy_image(r->mlx, r->img);
+	mlx_put_image_to_window(r->mlx, r->win, r->img, 0, 0);
+	mlx_destroy_image(r->mlx, r->img);
 	return (0);
 }
 
