@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/25 11:56:02 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/20 17:32:45 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,16 @@ NAME = wolf3d
 SRC = srcs/main.c srcs/mlx.c srcs/line.c srcs/functions.c srcs/parser.c \
 	  gnl/get_next_line.c srcs/raycasting.c
 
-LIB = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
-
 INCLUDES = includes
+
+LIB = -L/usr/include/../lib -I/usr/include -lmlx -lXext -lX11 -lm
 
 LIBFT = libft/libft.a
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
-	@echo "\033[91mIl n'y a plus rien a faire"
+		@echo "\033[91mIl n'y a plus rien a faire"
 
 $(NAME):
 		@make re -C libft
@@ -33,7 +33,7 @@ $(NAME):
 		@make fclean -C libft
 
 clean:
-		@echo "\033[96mSuppression des objets"
+		@echo "\033[96mSuppression des objets en cours"
 		@rm -f $(OBJ)
 
 fclean: clean

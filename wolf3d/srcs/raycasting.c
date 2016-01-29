@@ -66,10 +66,10 @@ static void	dda(t_ray *r)
 			r->mapy += r->stepy;
 			r->wall = 1;
 		}
-		if (r->map[r->mapx][r->mapy] == 1)
+		if (r->map[r->mapx][r->mapy] != 0)
 			r->hit = 1;
-		else if (r->map[r->mapx][r->mapy] == 2)
-			r->hit = 2;
+		if (r->map[r->mapx][r->mapy] == -1)
+			r->hit = -1;
 	}
 }
 

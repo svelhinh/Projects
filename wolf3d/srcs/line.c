@@ -74,14 +74,17 @@ static void		display(t_coords c, t_ray r)
 {
 	int y;
 	int d;
+	//int texnum;
 
+	//texnum = r.map[r.mapx][r.mapy] - 1;
 	y = c.ymin;
 	while (y < c.ymax)
 	{
 		d = y * 256 - SHEIGHT * 128 + r.wall_height * 128;
 		r.texy = ((d * THEIGHT) / r.wall_height) / 256;
-		c.color = r.texture[THEIGHT * r.texy + r.texx];
+		c.color = r.texture[0][THEIGHT * r.texy + r.texx];
 		(r.wall == 1) ? (c.color = (c.color >> 1) & 8355711) : (0);
+		(r.hit == -1) ? (c.color = 0x00) : (0);
 		mlx_pixel_put_to_img(&c, &r, c.x, y);
 		y++;
 	}
@@ -97,10 +100,8 @@ void			put_line(t_ray r)
 		r.wallx = r.rayposy + ((r.mapx - r.rayposx + (1 - r.stepx) / 2) / r.raydirx) * r.raydiry;
 	r.wallx -= floor(r.wallx);
 	r.texx = (int)(r.wallx * (double)TWIDTH);
-	if(r.wall == 0 && r.raydirx > 0)
-		r.texx = TWIDTH - r.texx - 1;
-	if(r.wall == 1 && r.raydiry < 0)
-		r.texx = TWIDTH - r.texx - 1;
+	(r.wall == 0 && r.raydirx > 0) ? (r.texx = TWIDTH - r.texx - 1) : (0);
+	(r.wall == 1 && r.raydiry < 0) ? (r.texx = TWIDTH - r.texx - 1) : (0);
 	c.ymin = r.ymin;
 	c.ymax = r.ymax;
 	c.x = r.x;

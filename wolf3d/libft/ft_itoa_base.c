@@ -57,12 +57,10 @@ void	reverse_str(char *str)
 
 char	*ft_itoa_base(int value, int base)
 {
-	int 	result;
 	int		i;
 	char	*str;
 	char	tab[] = "0123456789ABCDEF";
 
-	result = 0;
 	i = 0;
 	if (!(str = (char*)malloc(sizeof(*str) * (count_c(value, base) + 1))))
 		return (NULL);

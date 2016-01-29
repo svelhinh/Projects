@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/29 18:53:42 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/29 18:54:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <fcntl.h>
 # include "../libft/includes/libft.h"
 # include "../gnl/get_next_line.h"
-# define SWIDTH 2500//1180
-# define SHEIGHT 1300//924
+# define SWIDTH /*2500*/1180
+# define SHEIGHT /*1300*/924
 # define ROT 0.1
 # define MOVE 0.3
 # define SKY 0x7FD1EF
@@ -32,6 +32,7 @@
 # define LEFT 0x023097
 # define THEIGHT 256
 # define TWIDTH 256
+# define NTEX 3
 
 typedef struct	s_coords
 {
@@ -86,7 +87,7 @@ typedef struct	s_ray
 	double		wallx;
 	int			texx;
 	int			texy;
-	int			*texture;
+	char		**texture;
 }				t_ray;
 int				key(int keycode, t_ray *r);
 int				expose(t_ray *r);

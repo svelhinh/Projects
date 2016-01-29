@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/29 18:52:12 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/29 18:54:54 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,42 @@ char	*check_param(int ac, char **av)
 
 void	load_tex(t_ray *r)
 {
-	//int w;
-	//int h;
-	int x;
-	int y;
-	int xycolor;
+	int w;
+	int h;
+	void *img;
+	//char *data;
+	/*int x;
+	int y;*/
+	/*int xycolor;*/
 
-	//w = TWIDTH;
-	//h = THEIGHT;
-	//r->img = mlx_xpm_file_to_image(r->mlx, "textures/mur.xpm", &w, &h);
-	//r->data = mlx_get_data_addr(r->img, &r->bpp, &r->size_line, &r->endian);
-	if (!(r->texture = (int *)malloc(sizeof(int) * THEIGHT * TWIDTH)))
-		ft_exit("malloc() texture in load_tex() failed");
-	x = 0;
-	while (x < TWIDTH)
-	{
-		y = 0;
-		while (y < THEIGHT)
-		{
-			xycolor = y * 128 / THEIGHT + x * 128 / TWIDTH;
-			r->texture[TWIDTH * y + x] = /*xycolor + 256 * xycolor + 65536 * xycolor;*/65536 * 154 * (x != y && x != TWIDTH - y) /*65536 * 192 * (x % 16 && y % 16)*/;
-			y++;
-		}
-		x++;
-	}
+	if (!(r->texture = (char **)malloc(sizeof(char *) * NTEX)))
+		ft_exit("malloc() texture in load_texd_tex() failed");
+	if (!(r->texture[0] = (char *)malloc(sizeof(char) * THEIGHT * TWIDTH)))
+		ft_exit("malloc() texture[y] in load_tex() failed");
+	img = mlx_xpm_file_to_image(r->mlx, "textures/mur2.xpm", &w, &h);
+	r->texture[0] = mlx_get_data_addr(img, &r->bpp, &r->size_line, &r->endian);
+	/*y = 0;
+	  while (y < NTEX)
+	  {
+	  if (!(r->texture[y] = (char *)malloc(sizeof(char) * THEIGHT * TWIDTH)))
+	  ft_exit("malloc() texture[y] in load_tex() failed");
+	  y++;
+	  }*/
+	/*x = 0;
+	  while (x < TWIDTH)
+	  {
+	  y = 0;
+	  while (y < THEIGHT)
+	  {
+	  xycolor = y * 128 / THEIGHT + x * 128 / TWIDTH;
+	  r->texture[0][TWIDTH * y + x] = mlx_xpm_file_to_image(r->mlx, "textures/mur.xpm", &w, &h);\
+	  65536 * 154 * (x != y && x != TWIDTH - y)*/;
+	/*r->texture[1][TWIDTH * y + x] = xycolor + 256 * xycolor + 65536 * xycolor;
+	  r->texture[2][TWIDTH * y + x] = 256 * xycolor + 65536 * xycolor;
+	  y++;
+	  }
+	  x++;
+	  }*/
 }
 
 int		main(int ac, char **av)
@@ -88,7 +100,8 @@ int		main(int ac, char **av)
 	r.map = parser(r.lvl);
 	load_tex(&r);
 	mlx_expose_hook(r.win, expose, &r);
-	mlx_hook(r.win, 2, 64, key, &r);
+	//mlx_hook(r.win, 2, 64, key, &r);
+	mlx_key_hook(r.win, key, &r);
 	mlx_loop(r.mlx);
 	return (0);
 }
