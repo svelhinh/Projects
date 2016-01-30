@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 16:47:27 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/30 19:10:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/30 19:47:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,28 +76,57 @@ static int	**key_right(int **tab, int x, int y)
 	return (tab);
 }
 
+/*static int	**check_keys2(int **tab, int key)
+{
+	int x;
+	int y;
+
+	y = (key == KEY_DOWN) ? (2) : (3);
+	while (y > 0)
+	{
+		x = (key == KEY_RIGHT) ? (2) : (3);
+		//x = 3;
+		while (x > 0)
+		{
+			if (tab[y][x])
+			{
+				(key == KEY_DOWN) ? (tab = key_down(tab, x, y)) : (0);
+				(key == KEY_RIGHT) ? (tab = key_right(tab, x, y)) : (0);
+			}
+			x--;
+		}
+		y--;
+	}
+	return (tab);
+}*/
+
 int			**check_keys(int **tab, int key)
 {
 	int x;
 	int y;
 
-	y = (key == KEY_UP) ? (1) : (0);
-	while (y < ((key == KEY_DOWN) ? (3) : (4)))
-	{
-		x = (key == KEY_LEFT) ? (1) : (0);
-		while (x < ((key == KEY_RIGHT) ? (3) : (4)))
+	//if (key == KEY_UP || key == KEY_LEFT)
+	//{
+		y = (key == KEY_UP) ? (1) : (0);
+		while (y < ((key == KEY_DOWN) ? (3) : (4)))
 		{
-			if (tab[y][x])
+			x = (key == KEY_LEFT) ? (1) : (0);
+			while (x < ((key == KEY_RIGHT) ? (3) : (4)))
 			{
-				(key == KEY_UP) ? (tab = key_up(tab, x, y)) : (0);
-				//(key == KEY_DOWN) ? (tab = key_down(tab, x, y)) : (0);
-				(key == KEY_LEFT) ? (tab = key_left(tab, x, y)) : (0);
-				//(key == KEY_RIGHT) ? (tab = key_right(tab, x, y)) : (0);
+				if (tab[y][x])
+				{
+					(key == KEY_UP) ? (tab = key_up(tab, x, y)) : (0);
+					(key == KEY_DOWN) ? (tab = key_down(tab, x, y)) : (0);
+					(key == KEY_LEFT) ? (tab = key_left(tab, x, y)) : (0);
+					(key == KEY_RIGHT) ? (tab = key_right(tab, x, y)) : (0);
+				}
+				x++;
 			}
-			x++;
+			y++;
 		}
-		y++;
-	}
+	//}
+	/*else
+		tab = check_keys2(tab, key);*/
 	tab = ft_move(tab, key);
 	(check_rand(tab)) ? (tab = ft_rand(tab)) : (0);
 	return (tab);
