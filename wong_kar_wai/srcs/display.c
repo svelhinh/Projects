@@ -6,13 +6,13 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 14:54:01 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/31 19:21:38 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 20:09:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wong_kar_wai.h"
 
-int			ft_colors(int **tab, int y, int x)
+static int			ft_colors(int **tab, int y, int x)
 {
 	if (tab[y][x] == 0)
 		return (1);
@@ -27,7 +27,7 @@ int			ft_colors(int **tab, int y, int x)
 	return (9);
 }
 
-void		background(t_win *box, int **tab)
+static void			background(t_win *box, int **tab)
 {
 	wbkgd(box->a, COLOR_PAIR(ft_colors(tab, 0, 0)));
 	wbkgd(box->b, COLOR_PAIR(ft_colors(tab, 0, 1)));
@@ -47,7 +47,7 @@ void		background(t_win *box, int **tab)
 	wbkgd(box->p, COLOR_PAIR(ft_colors(tab, 3, 3)));
 }
 
-void		display(t_win *box, int **tab)
+void				display(t_win *box, int **tab)
 {
 	background(box, tab);
 	mvwprintw(box->a, X / 2, Y / 2, (tab[0][0]) ? (ft_itoa(tab[0][0])) : (""));
