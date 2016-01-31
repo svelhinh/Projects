@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 15:46:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/31 16:13:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 19:22:19 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int		check_wl(int **tab)
 {
 	int key;
 
+	key = 0;
 	if (check_win(tab, 0))
 	{
 		clear();
@@ -110,9 +111,9 @@ int		check_wl(int **tab)
 		attron(COLOR_PAIR(2));
 		mvprintw(LINES / 2 + 3, COLS / 2 - 10, "PRESS ESC TO GO BACK TO MENU");
 		attroff(COLOR_PAIR(2));
-		while ((key = getch()) != 27)
-			if (key == 27)
-				break ;
+		while (key != 27)
+			key = getch();
+		(key == 27) ? (main2(key, tab)) : (0);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 15:04:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/31 17:23:15 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 19:22:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 static void	colors(void)
 {
-
 	start_color();
-	init_color(COLOR_RED, 700, 0, 0);
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 	init_pair(2, COLOR_CYAN, COLOR_BLACK);
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);
@@ -71,10 +69,11 @@ int			**game(int **tab, t_win *box, int i)
 				break ;
 		}
 	}
+	(key == 27) ? (main2(key, tab)) : (0);
 	return (tab);
 }
 
-int			continue_play(void)
+int			continue_play(int **tab)
 {
 	int key;
 
@@ -87,5 +86,7 @@ int			continue_play(void)
 		key = getch();
 	if (key == 10)
 		return (1);
+	else if (key == 27)
+		main2(key, tab);
 	return (0);
 }
