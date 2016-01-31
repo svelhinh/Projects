@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 11:27:39 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/30 18:55:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 13:15:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,28 +68,36 @@ int			main(void)
 	t_win	box;
 	int		key;
 
-	tab = init_tab();
-	initscr();
-	raw();
-	keypad(stdscr, TRUE);
-	key = 0;
-	while (key != 27)
+	if (check_value(WIN_VALUE))
 	{
-		clear();
-		colors();
-		display_boxes(&box);
-		display(&box, tab);
-		refresh();
-		key = getch();
-		if (key == KEY_DOWN || key == KEY_UP || key == KEY_LEFT || key == KEY_RIGHT)
+		tab = init_tab(1);
+		initscr();
+		raw();
+		keypad(stdscr, TRUE);
+		key = 0;
+		while (key != 27)
 		{
-			if (!check_tab(tab))
-				tab = check_keys(tab, key);
-			else
-				break ;
+			clear();
+			colors();
+			display_boxes(&box);
+			display(&box, tab);
+			refresh();
+			key = getch();
+			if (key == KEY_DOWN || key == KEY_UP || key == KEY_LEFT
+					|| key == KEY_RIGHT)
+			{
+				if (!check_tab(tab))
+				{
+					tab = check_keys(tab, key);
+					if (check_win(tab))
+						break ;
+				}
+				else
+					break ;
+			}
 		}
+		clear();
+		endwin();
 	}
-	clear();
-	endwin();
 	return (0);
 }

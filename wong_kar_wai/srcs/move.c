@@ -6,13 +6,13 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 17:05:41 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/30 19:26:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 12:58:13 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wong_kar_wai.h"
 
-static int	**key_up(int **tab, int x, int y)
+static int	**key_up(int **tab, int x, int y, int *ret)
 {
 	int y2;
 
@@ -23,11 +23,12 @@ static int	**key_up(int **tab, int x, int y)
 	{
 		tab[y][x] = tab[y2][x];
 		tab[y2][x] = 0;
+		*ret = 1;
 	}
 	return (tab);
 }
 
-static int	**key_down(int **tab, int x, int y)
+static int	**key_down(int **tab, int x, int y, int *ret)
 {
 	int y2;
 
@@ -38,11 +39,12 @@ static int	**key_down(int **tab, int x, int y)
 	{
 		tab[y][x] = tab[y2][x];
 		tab[y2][x] = 0;
+		*ret = 1;
 	}
 	return (tab);
 }
 
-static int	**key_left(int **tab, int x, int y)
+static int	**key_left(int **tab, int x, int y, int *ret)
 {
 	int x2;
 
@@ -53,11 +55,12 @@ static int	**key_left(int **tab, int x, int y)
 	{
 		tab[y][x] = tab[y][x2];
 		tab[y][x2] = 0;
+		*ret = 1;
 	}
 	return (tab);
 }
 
-static int	**key_right(int **tab, int x, int y)
+static int	**key_right(int **tab, int x, int y, int *ret)
 {
 	int x2;
 
@@ -68,31 +71,58 @@ static int	**key_right(int **tab, int x, int y)
 	{
 		tab[y][x] = tab[y][x2];
 		tab[y][x2] = 0;
+		*ret = 1;
 	}
 	return (tab);
 }
 
-int			**ft_move(int **tab, int key)
+static int	**ft_move2(int **tab, int key, int *ret)
 {
 	int x;
 	int y;
 
-	y = (key == KEY_UP) ? (1) : (0);
-	while (y < ((key == KEY_DOWN) ? (3) : (4)))
+	y = (key == KEY_DOWN) ? (2) : (3);
+	while (y >= 0)
 	{
-		x = (key == KEY_LEFT) ? (1) : (0);
-		while (x < ((key == KEY_RIGHT) ? (3) : (4)))
+		x = (key == KEY_RIGHT) ? (2) : (3);
+		while (x >= 0)
 		{
 			if (tab[y][x])
 			{
-				(key == KEY_UP) ? (tab = key_up(tab, x, y)) : (0);
-				(key == KEY_DOWN) ? (tab = key_down(tab, x, y)) : (0);
-				(key == KEY_LEFT) ? (tab = key_left(tab, x, y)) : (0);
-				(key == KEY_RIGHT) ? (tab = key_right(tab, x, y)) : (0);
+				(key == KEY_DOWN) ? (tab = key_down(tab, x, y, ret)) : (0);
+				(key == KEY_RIGHT) ? (tab = key_right(tab, x, y, ret)) : (0);
 			}
-			x++;
+			x--;
 		}
-		y++;
+		y--;
 	}
+	return (tab);
+}
+
+int			**ft_move(int **tab, int key, int *ret)
+{
+	int x;
+	int y;
+
+	if (key == KEY_UP || key == KEY_LEFT)
+	{
+		y = (key == KEY_UP) ? (1) : (0);
+		while (y < 4)
+		{
+			x = (key == KEY_LEFT) ? (1) : (0);
+			while (x < 4)
+			{
+				if (tab[y][x])
+				{
+					(key == KEY_UP) ? (tab = key_up(tab, x, y, ret)) : (0);
+					(key == KEY_LEFT) ? (tab = key_left(tab, x, y, ret)) : (0);
+				}
+				x++;
+			}
+			y++;
+		}
+	}
+	else
+		tab = ft_move2(tab, key, ret);
 	return (tab);
 }

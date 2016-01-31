@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 17:26:31 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/30 18:49:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 13:29:00 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_random(int *x, int *y, int *nb)
 	*nb = rand() % 5;
 	*x = rand() % 4;
 	*y = rand() % 4;
-	(*nb >= 0 && *nb <= 3) ? (*nb = 2) : (*nb = 4);
+	*nb = (*nb >= 0 && *nb <= 3) ? (2) : (4);
 }
 
 int		**ft_rand(int **tab)

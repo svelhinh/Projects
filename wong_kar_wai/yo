@@ -1,14 +1,11 @@
-copie :
-
-0 2 0 0
-0 4 0 0
-0 0 0 0
-0 4 4 8
+message de victoire ou de defaite
+laisser le joueur continuer apres victoire
 
 
-vrai :
+bonus :
 
-0 2 0 0
-0 0 0 0
-0 0 0 0
-0 4 4 8
+couleurs
+taille grille
+menu
+ascii art (peut etre)
+scores

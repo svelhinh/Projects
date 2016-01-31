@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 18:48:04 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/30 19:03:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 13:16:51 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,31 @@ int		check_tab(int **tab)
 		return (1);
 	}
 	return (0);
+}
+
+int		check_win(int **tab)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (y < 4)
+	{
+		x = 0;
+		while (x < 4)
+		{
+			if (tab[y][x] == WIN_VALUE)
+				return (1);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+int		check_value(int value)
+{
+	while (((value % 2) == 0) && value > 1)
+		value /= 2;
+	return (value == 1);
 }

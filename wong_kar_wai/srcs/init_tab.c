@@ -6,13 +6,13 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 14:13:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/30 18:43:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 10:20:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wong_kar_wai.h"
 
-int			**init_tab(void)
+int			**init_tab(int j)
 {
 	int x;
 	int y;
@@ -28,30 +28,22 @@ int			**init_tab(void)
 		return (0);
 	while (i < 4)
 		tab[i++] = ft_tabnew(4);
-	srand(time(NULL));
-	ft_random(&x, &y, &nb);
-	tab[y][x] = nb;
-	tab = ft_rand(tab);
-	/*i = 0;
-	while (i == 0)
+	if (j)
 	{
+		srand(time(NULL));
 		ft_random(&x, &y, &nb);
-		if (!tab[y][x])
-		{
-			tab[y][x] = nb;
-			i = 1;
-		}
-	}*/
-	//printf("x = %d\ny = %d\nnb = %d\n\n", x, y, nb);
+		tab[y][x] = nb;
+		tab = ft_rand(tab);
+	}
 	/*i = 0;
-	int j = 0;
+	int w = 0;
 	while (i < 4)
 	{
-		j = 0;
-		while (j < 4)
+		w = 0;
+		while (w < 4)
 		{
-			printf("%d ", tab[i][j]);
-			j++;
+			printf("%d ", tab[i][w]);
+			w++;
 		}
 		printf("\n");
 		i++;
