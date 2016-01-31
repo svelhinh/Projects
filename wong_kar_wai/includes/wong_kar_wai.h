@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 11:33:21 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/31 13:27:22 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 17:24:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_win
 }				t_win;
 enum			e_const
 {
-	WIN_VALUE = 2048
+	WIN_VALUE = 16
 };
 int				**init_tab(int j);
 void			display(t_win *box, int **tab);
@@ -50,6 +50,11 @@ int				**ft_rand(int **tab);
 void			ft_random(int *x, int *y, int *nb);
 int				check_rand(int **tab);
 int				check_tab(int **tab);
-int				check_win(int **tab);
+int				check_win(int **tab, int i);
 int				check_value(int value);
+int				**check_keys2(int **tab, int key);
+int				**ft_move2(int **tab, int key, int *ret);
+int				check_wl(int **tab);
+int				**game(int **tab, t_win *box, int i);
+int				continue_play(void);
 #endif

@@ -6,14 +6,14 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/30 18:50:52 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/01/31 15:07:47 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = game_2048
 
 SRC = srcs/main.c srcs/init_tab.c srcs/display.c srcs/keys.c srcs/move.c \
-	  srcs/random.c srcs/check.c
+	  srcs/random.c srcs/check.c srcs/keys2.c srcs/move2.c srcs/game.c
 
 INCLUDES = includes
 

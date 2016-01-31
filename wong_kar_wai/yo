@@ -1,11 +1,29 @@
-message de victoire ou de defaite
-laisser le joueur continuer apres victoire
-
-
 bonus :
 
-couleurs
-taille grille
 menu
+taille grille
 ascii art (peut etre)
 scores
+limiter redimensionnement de la fenetre
+
+
+	/*i = 0;
+	int w = 0;
+	while (i < 4)
+	{
+		w = 0;
+		while (w < 4)
+		{
+			printf("%d ", tab[i][w]);
+			w++;
+		}
+		printf("\n");
+		i++;
+	}*/
+
+
+white 2 > 4
+cyan 8
+magenta = orange plus fonce 16 > 32
+yellow = jaune fonce 128 > 2048
+red = rouge > 2048 & 64

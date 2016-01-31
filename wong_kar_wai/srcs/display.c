@@ -6,14 +6,45 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 14:54:01 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/30 16:48:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 17:19:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wong_kar_wai.h"
 
+int			ft_colors(int **tab, int y, int x)
+{
+	if (tab[y][x] == 0)
+		return (1);
+	if (tab[y][x] >= 2 && tab[y][x] <= 4)
+		return (5);
+	if (tab[y][x] == 8)
+		return (6);
+	if (tab[y][x] == 16 || tab[y][x] == 32)
+		return (7);
+	if (tab[y][x] >= 128 && tab[y][x] <= 2048)
+		return (8);
+	return (9);
+}
+
 void		display(t_win *box, int **tab)
 {
+	wbkgd(box->a, COLOR_PAIR(ft_colors(tab, 0, 0)));
+	wbkgd(box->b, COLOR_PAIR(ft_colors(tab, 0, 1)));
+	wbkgd(box->c, COLOR_PAIR(ft_colors(tab, 0, 2)));
+	wbkgd(box->d, COLOR_PAIR(ft_colors(tab, 0, 3)));
+	wbkgd(box->e, COLOR_PAIR(ft_colors(tab, 1, 0)));
+	wbkgd(box->f, COLOR_PAIR(ft_colors(tab, 1, 1)));
+	wbkgd(box->g, COLOR_PAIR(ft_colors(tab, 1, 2)));
+	wbkgd(box->h, COLOR_PAIR(ft_colors(tab, 1, 3)));
+	wbkgd(box->i, COLOR_PAIR(ft_colors(tab, 2, 0)));
+	wbkgd(box->j, COLOR_PAIR(ft_colors(tab, 2, 1)));
+	wbkgd(box->k, COLOR_PAIR(ft_colors(tab, 2, 2)));
+	wbkgd(box->l, COLOR_PAIR(ft_colors(tab, 2, 3)));
+	wbkgd(box->m, COLOR_PAIR(ft_colors(tab, 3, 0)));
+	wbkgd(box->n, COLOR_PAIR(ft_colors(tab, 3, 1)));
+	wbkgd(box->o, COLOR_PAIR(ft_colors(tab, 3, 2)));
+	wbkgd(box->p, COLOR_PAIR(ft_colors(tab, 3, 3)));
 	mvwprintw(box->a, X / 2, Y / 2, (tab[0][0]) ? (ft_itoa(tab[0][0])) : (""));
 	mvwprintw(box->b, X / 2, Y / 2, (tab[0][1]) ? (ft_itoa(tab[0][1])) : (""));
 	mvwprintw(box->c, X / 2, Y / 2, (tab[0][2]) ? (ft_itoa(tab[0][2])) : (""));
