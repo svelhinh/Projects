@@ -1,5 +1,5 @@
 /* XPM */
-static char *Free_Converter_com_mur_2314856[] = {
+static char *mur[] = {
 /* columns rows colors chars-per-pixel */
 "256 256 200 2 ",
 "   c #0F0502",

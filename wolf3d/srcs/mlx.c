@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/29 18:35:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/01 10:09:32 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	rotate(int keycode, t_ray *r)
 	double olddirx;
 	double oldplanex;
 
-	if (keycode == /*123*/65361)
+	if (keycode == 123/*65361*/)
 	{
 		olddirx = r->dirx;
 		r->dirx = r->dirx * cos(ROT) - r->diry * sin(ROT);
@@ -41,7 +41,7 @@ static void	rotate(int keycode, t_ray *r)
 		r->planex = r->planex * cos(ROT) - r->planey * sin(ROT);
 		r->planey = oldplanex * sin(ROT) + r->planey * cos(ROT);
 	}
-	if (keycode == /*124*/65363)
+	if (keycode == 124/*65363*/)
 	{
 		olddirx = r->dirx;
 		r->dirx = r->dirx * cos(-ROT) - r->diry * sin(-ROT);
@@ -50,7 +50,7 @@ static void	rotate(int keycode, t_ray *r)
 		r->planex = r->planex * cos(-ROT) - r->planey * sin(-ROT);
 		r->planey = oldplanex * sin(-ROT) + r->planey * cos(-ROT);
 	}
-	if (keycode ==/* 123*/65361 || keycode == /*124*/65363)
+	if (keycode == 123/*65361*/ || keycode == 124/*65363*/)
 		expose(r);
 }
 
@@ -59,7 +59,7 @@ static void	move(int keycode, t_ray *r)
 	if (r->map[(int)(r->posx + r->dirx * MOVE)][(int)r->posy] == -1
 			|| r->map[(int)r->posx][(int)(r->posy + r->diry * MOVE)] == -1)
 		ft_exit("win");
-	if (keycode == /*125*/65364)
+	if (keycode == 125/*65364*/)
 	{
 		if (!r->map[(int)(r->posx - r->dirx * MOVE)][(int)r->posy])
 			r->posx -= r->dirx * MOVE;
@@ -69,7 +69,7 @@ static void	move(int keycode, t_ray *r)
 				|| !r->map[(int)r->posx][(int)(r->posy - r->diry * MOVE)])
 			expose(r);
 	}
-	if (keycode == /*126*/65362)
+	if (keycode == 126/*65362*/)
 	{
 		if (!r->map[(int)(r->posx + r->dirx * MOVE)][(int)r->posy])
 			r->posx += r->dirx * MOVE;
@@ -85,6 +85,6 @@ int			key(int keycode, t_ray *r)
 {
 	move(keycode, r);
 	rotate(keycode, r);
-	(keycode == /*53*/65307) ? (exit(0)) : (0);
+	(keycode == 53/*65307*/) ? (exit(0)) : (0);
 	return (0);
 }
