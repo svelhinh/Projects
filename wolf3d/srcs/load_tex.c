@@ -24,15 +24,40 @@ static int	parsing_data(int r, int g, int b, int endian)
 	r2 = ft_itoa_base(r, 16);
 	g2 = ft_itoa_base(g, 16);
 	b2 = ft_itoa_base(b, 16);
-	(r < 16) ? (r2 = ft_strjoin("0", r2)) : (0);
-	(g < 16) ? (g2 = ft_strjoin("0", g2)) : (0);
-	(b < 16) ? (b2 = ft_strjoin("0", b2)) : (0);
+	if (r < 16)
+	{
+
+		tmp = ft_strdup(r2);
+		ft_strdel(&r2);
+		r2 = ft_strjoin("0", tmp);
+		ft_strdel(&tmp);
+	}
+	if (g < 16)
+	{
+
+		tmp = ft_strdup(g2);
+		ft_strdel(&g2);
+		g2 = ft_strjoin("0", tmp);
+		ft_strdel(&tmp);
+	}
+	if (b < 16)
+	{
+
+		tmp = ft_strdup(b2);
+		ft_strdel(&b2);
+		b2 = ft_strjoin("0", tmp);
+		ft_strdel(&tmp);
+	}
 	rgb2 = ft_strjoin((endian) ? (r2) : (b2), g2);
+	ft_strdel((endian) ? (&r2) : (&b2));
+	ft_strdel(&g2);
 	tmp = ft_strdup(rgb2);
 	ft_strdel(&rgb2);
 	rgb2 = ft_strjoin(tmp, (endian) ? (b2) : (r2));
+	ft_strdel((endian) ? (&b2) : (&r2));
 	ft_strdel(&tmp);
 	rgb = ft_atoi_base(rgb2, 16);
+	ft_strdel(&rgb2);
 	return (rgb);
 }
 

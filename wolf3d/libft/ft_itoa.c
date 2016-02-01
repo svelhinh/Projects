@@ -41,12 +41,11 @@ char			*ft_itoa(int n)
 
 	i = ft_nbrlen(n);
 	isave = i;
-	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
+	if (!(str = (char *)malloc(sizeof(char) * i)))
 		return (NULL);
 	nsave = n;
+	(n == 0) ? (str[0] = '0') : (0);
 	(n < 0) ? (str[0] = ft_negative(&n, str[0])) : (i--);
-	if (n == 0)
-		str[0] = '0';
 	while (n != 0)
 	{
 		str[i] = '0' + n % 10;

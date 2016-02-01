@@ -29,7 +29,7 @@ $(NAME):
 		@sh sos
 		@make re -C libft
 		@echo "\033[96mCompilation"
-		@gcc -lncurses -o $(NAME) -Wall -Wextra -Werror $(SRC) $(LIB) $(LIBFT) -I $(INCLUDES)
+		@gcc -o $(NAME) -Wall -Wextra -Werror $(SRC) $(LIB) $(LIBFT) -I $(INCLUDES) -lncurses
 		@make fclean -C libft
 
 clean:
