@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/01 13:01:25 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/01 18:06:24 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,40 @@ char	*check_param(int ac, char **av)
 	return (NULL);
 }
 
-int		parsing_data(char r, char g, char b)
+int		parsing_data(int r, int g, int b, int endian)
 {
-	int rgb;
+	unsigned int rgb;
 	char *rgb2;
 	char *r2;
 	char *g2;
 	char *b2;
 
-	r2 = ft_itoa_base(b, 16);
+	/*if (r < 0)
+		r = r * -1;
+	if (g < 0)
+		g = g * -1;
+	if (b < 0)
+		b = b * -1;*/
+	//printf("%d\n", endian);
+	//printf("r = %d\ng = %d\nb = %d\n\n", r, g, b);
+	r2 = ft_itoa_base(r, 16);
 	g2 = ft_itoa_base(g, 16);
-	b2 = ft_itoa_base(r, 16);
-	(r < 16) ? (b2 = ft_strjoin("0", b2)) : (0);
+	b2 = ft_itoa_base(b, 16);
+	(r < 16) ? (r2 = ft_strjoin("0", r2)) : (0);
 	(g < 16) ? (g2 = ft_strjoin("0", g2)) : (0);
-	(b < 16) ? (r2 = ft_strjoin("0", r2)) : (0);
-	rgb2 = ft_strjoin(r2, g2);
-	rgb2 = ft_strjoin(rgb2, b2);
+	(b < 16) ? (b2 = ft_strjoin("0", b2)) : (0);
+	if (endian)
+	{
+		rgb2 = ft_strjoin(r2, g2);
+		rgb2 = ft_strjoin(rgb2, b2);
+	}
+	else
+	{
+		rgb2 = ft_strjoin(b2, g2);
+		rgb2 = ft_strjoin(rgb2, r2);
+	}
 	rgb = ft_atoi_base(rgb2, 16);
+	//printf("#%s\n", rgb2);
 	return (rgb);
 }
 
@@ -71,22 +88,24 @@ void	load_tex(t_ray *r)
 	int x;
 	int x2;
 	void *img;
-	char *data;
-	int bpp;
+	unsigned char *data;
 	int endian;
+	int bpp;
 	int size_line;
 
-	img = mlx_xpm_file_to_image(r->mlx, "textures/plafond.xpm", &r->w, &r->h);
-	data = mlx_get_data_addr(img, &bpp, &size_line, &endian);
-	if (!(r->texture = (int *)malloc(sizeof(int) * r->w * r->h)))
+	img = mlx_xpm_file_to_image(r->mlx, "textures/bricks2.xpm", &r->w, &r->h);
+	data = (unsigned char *)mlx_get_data_addr(img, &bpp, &size_line, &endian);
+	if (!(r->texture = (int **)malloc(sizeof(int *) * 1)))
 		ft_exit("malloc() texture[y] in load_tex() failed");
 	x = 0;
 	x2 = 0;
+	if (!(r->texture[0] = (int *)malloc(sizeof(int) * r->w * r->h)))
+		ft_exit("malloc() texture[y] in load_tex() failed");
 	while (x2 < r->w * r->h)
 	{
-		r->texture[x2] = parsing_data(data[x], data[x + 1], data[x + 2]);
+		r->texture[0][x2] = parsing_data(data[x], data[x + 1], data[x + 2], endian);
 		x2++;
-		x += 4;
+		x += (bpp / 8);
 	}
 }
 

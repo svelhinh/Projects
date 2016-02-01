@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/01 12:59:28 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/01 17:44:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,16 @@ static void		display(t_coords c, t_ray r)
 {
 	int y;
 	int d;
+	int tex;
 
+	tex = r.map[r.mapx][r.mapy] - 1;
 	y = c.ymin;
 	while (y < c.ymax)
 	{
 		d = y * 256 - SHEIGHT * 128 + r.wall_height * 128;
 		r.texy = ((d * r.h) / r.wall_height) / 256;
-		c.color = r.texture[r.h * r.texy + r.texx];
+		if (r.hit >= 0)
+			c.color = r.texture[0][r.h * r.texy + r.texx];
 		(r.wall == 1) ? (c.color = (c.color >> 1) & 8355711) : (0);
 		(r.hit == -1) ? (c.color = 0x00) : (0);
 		mlx_pixel_put_to_img(&c, &r, c.x, y);

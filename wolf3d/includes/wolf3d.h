@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/01 12:59:21 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/01 17:44:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct	s_ray
 	double		wallx;
 	int			texx;
 	int			texy;
-	int			*texture;
+	int			**texture;
 	int			w;
 	int			h;
 }				t_ray;
