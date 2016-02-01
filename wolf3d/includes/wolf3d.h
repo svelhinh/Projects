@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/01 17:44:31 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/01 18:41:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,5 @@ void			raycasting(t_ray *r);
 void			init_var(t_ray *r);
 void			put_line(t_ray r);
 void			put_floor_sky(t_ray r);
+void			load_tex(t_ray *r);
 #endif

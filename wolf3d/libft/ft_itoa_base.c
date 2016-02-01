@@ -6,7 +6,7 @@
 /*   By: vtata <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 21:47:57 by vtata             #+#    #+#             */
-/*   Updated: 2016/02/01 16:39:51 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/01 18:47:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ char	*ft_itoa_base(int value, int base)
 {
 	int		i;
 	char	*str;
-	char	tab[] = "0123456789ABCDEF";
+	char	*tab;
 
+	tab = "0123456789ABCDEF";
 	i = 0;
-	//if (value < 0)
-	//	value = -value;
 	if (!(str = (char*)malloc(sizeof(*str) * (count_c(value, base) + 1))))
 		return (NULL);
 	str[count_c(value, base)] = '\0';

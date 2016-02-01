@@ -6,7 +6,7 @@
 /*   By: vtata <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 22:18:07 by vtata             #+#    #+#             */
-/*   Updated: 2016/02/01 16:39:59 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/01 18:46:55 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		ft_atoi_base(const char *str, int str_base)
 
 	result = 0;
 	i = 0;
-	//(str[0] == '-') ? (i++) : (0);
 	while (str[i] != '\0')
 	{
 		if (str[i] >= 'a' && str[i] <= 'f')
