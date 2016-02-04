@@ -6,13 +6,13 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/20 17:32:45 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/02/02 17:25:48 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = wolf3d
 
-SRC = srcs/main.c srcs/mlx.c srcs/line.c srcs/functions.c srcs/parser.c \
+SRC = srcs/main.c srcs/mlx.c srcs/draw.c srcs/functions.c srcs/parser.c \
 	  gnl/get_next_line.c srcs/raycasting.c srcs/load_tex.c
 
 INCLUDES = includes

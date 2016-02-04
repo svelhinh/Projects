@@ -6,48 +6,27 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/01 19:04:19 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 12:25:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static int	parsing_data(int r, int g, int b, int endian)
+static void	load_sprite(t_ray *r)
 {
-	unsigned int	rgb;
-	char			*tmp;
+	if (!(r->sprite = (t_sprite *)malloc(sizeof(t_sprite))))
+		ft_exit("malloc r->sprite in load_sprite() failed");
+	r->sprite[0].x = 14;
+	r->sprite[0].y = 14;
+	r->sprite[0].texture = 4;
+}
+
+static int	parsing_hexa(char *r2, char *g2, char *b2, int endian)
+{
 	char			*rgb2;
-	char			*r2;
-	char			*g2;
-	char			*b2;
+	char			*tmp;
+	unsigned int	rgb;
 
-	r2 = ft_itoa_base(r, 16);
-	g2 = ft_itoa_base(g, 16);
-	b2 = ft_itoa_base(b, 16);
-	if (r < 16)
-	{
-
-		tmp = ft_strdup(r2);
-		ft_strdel(&r2);
-		r2 = ft_strjoin("0", tmp);
-		ft_strdel(&tmp);
-	}
-	if (g < 16)
-	{
-
-		tmp = ft_strdup(g2);
-		ft_strdel(&g2);
-		g2 = ft_strjoin("0", tmp);
-		ft_strdel(&tmp);
-	}
-	if (b < 16)
-	{
-
-		tmp = ft_strdup(b2);
-		ft_strdel(&b2);
-		b2 = ft_strjoin("0", tmp);
-		ft_strdel(&tmp);
-	}
 	rgb2 = ft_strjoin((endian) ? (r2) : (b2), g2);
 	ft_strdel((endian) ? (&r2) : (&b2));
 	ft_strdel(&g2);
@@ -58,6 +37,33 @@ static int	parsing_data(int r, int g, int b, int endian)
 	ft_strdel(&tmp);
 	rgb = ft_atoi_base(rgb2, 16);
 	ft_strdel(&rgb2);
+	return (rgb);
+}
+
+static int	parsing_data(int r, int g, int b, int endian)
+{
+	unsigned int	rgb;
+	char			*tmp;
+	char			*r2;
+	char			*g2;
+	char			*b2;
+
+	r2 = ft_itoa_base(r, 16);
+	g2 = ft_itoa_base(g, 16);
+	b2 = ft_itoa_base(b, 16);
+	(r < 16) ? (tmp = ft_strdup(r2)) : (0);
+	(r < 16) ? (ft_strdel(&r2)) : (0);
+	(r < 16) ? (r2 = ft_strjoin("0", tmp)) : (0);
+	(r < 16) ? (ft_strdel(&tmp)) : (0);
+	(g < 16) ? (tmp = ft_strdup(g2)) : (0);
+	(g < 16) ? (ft_strdel(&g2)) : (0);
+	(g < 16) ? (g2 = ft_strjoin("0", tmp)) : (0);
+	(g < 16) ? (ft_strdel(&tmp)) : (0);
+	(b < 16) ? (tmp = ft_strdup(b2)) : (0);
+	(b < 16) ? (ft_strdel(&b2)) : (0);
+	(b < 16) ? (b2 = ft_strjoin("0", tmp)) : (0);
+	(b < 16) ? (ft_strdel(&tmp)) : (0);
+	rgb = parsing_hexa(r2, g2, b2, endian);
 	return (rgb);
 }
 
@@ -88,10 +94,13 @@ void		load_tex(t_ray *r)
 {
 	int tex;
 
-	tex = 3;
+	tex = 5;
 	if (!(r->texture = (int **)malloc(sizeof(int *) * tex)))
 		ft_exit("malloc() texture[y] in load_tex() failed");
 	load_tex2(r, 0, "textures/stone.xpm");
-	load_tex2(r, 1, "textures/steel.xpm");
+	load_tex2(r, 1, "textures/grass.xpm");
 	load_tex2(r, 2, "textures/hitler.xpm");
+	load_tex2(r, 3, "textures/win.xpm");
+	load_tex2(r, 4, "textures/barrel.xpm");
+	load_sprite(r);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/01 18:41:26 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 12:44:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,25 @@
 # include <fcntl.h>
 # include "../libft/includes/libft.h"
 # include "../gnl/get_next_line.h"
-# define SWIDTH 2500/*1180*/
-# define SHEIGHT 1300/*924*/
+# define SWIDTH 1250/*1180*/
+# define SHEIGHT 1000/*924*/
 # define ROT 0.1
 # define MOVE 0.3
-# define SKY 0x7FD1EF
-# define FLOOR 0xaaaaaa
-# define FRONT 0x000051
-# define BACK 0x000073
-# define RIGHT 0x001095
-# define LEFT 0x023097
+# define CSKY 0x7FD1EF
+# define CFLOOR 0xaaaaaa
+# define CFRONT 0x000051
+# define CBACK 0x000073
+# define CRIGHT 0x001095
+# define CLEFT 0x023097
+# define ESC 53
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define DOWN 125
+# define UP 126
+# define RIGHT 124
+# define LEFT 123
 
 typedef struct	s_coords
 {
@@ -41,8 +50,48 @@ typedef struct	s_coords
 	double		m;
 	int			color;
 }				t_coords;
+typedef struct	s_sprite
+{
+  double		x;
+  double		y;
+  int			texture;
+}				t_sprite;
 typedef struct	s_ray
 {
+	int			mapx;
+	int			mapy;
+	int			x;
+	int			stepx;
+	int			stepy;
+	int			hit;
+	int			wall;
+	int			wall_height;
+	int			ymin;
+	int			ymax;
+	int			**map;
+	int			i;
+	int			size_line;
+	int			bpp;
+	int			endian;
+	int			texx;
+	int			texy;
+	int			**texture;
+	int			w;
+	int			h;
+	int			r;
+	int			g;
+	int			b;
+	int			ftexx;
+	int			ftexy;
+	int			forward;
+	int			back;
+	int			leftrot;
+	int			rightrot;
+	char		*img;
+	char		*lvl;
+	char		*data;
+	void		*mlx;
+	void		*win;
 	double		posx;
 	double		posy;
 	double		dirx;
@@ -59,36 +108,20 @@ typedef struct	s_ray
 	double		walldistx2;
 	double		walldisty2;
 	double		wall_length;
-	double		oldtime;
-	double		time;
-	int			mapx;
-	int			mapy;
-	int			x;
-	int			stepx;
-	int			stepy;
-	int			hit;
-	int			wall;
-	int			wall_height;
-	int			ymin;
-	int			ymax;
-	void		*mlx;
-	void		*win;
-	char		*img;
-	char		*lvl;
-	int			**map;
-	int			i;
-	char		*data;
-	int			size_line;
-	int			bpp;
-	int			endian;
 	double		wallx;
-	int			texx;
-	int			texy;
-	int			**texture;
-	int			w;
-	int			h;
+	double		fwallx;
+	double		fwally;
+	double		distwall;
+	double		distplayer;
+	double		cdist;
+	double		weight;
+	double		cfloorx;
+	double		cfloory;
+	double		zbuffer[SWIDTH];
+	t_sprite	*sprite;
 }				t_ray;
-int				key(int keycode, t_ray *r);
+int				key_press(int keycode, t_ray *r);
+int				key_release(int keycode, t_ray *r);
 int				expose(t_ray *r);
 void			ft_swap(float *a, float *b);
 void			ft_exit(char *s);
@@ -96,6 +129,9 @@ int				**parser(char *lvl);
 void			raycasting(t_ray *r);
 void			init_var(t_ray *r);
 void			put_line(t_ray r);
-void			put_floor_sky(t_ray r);
 void			load_tex(t_ray *r);
+void			move_forward(t_ray *r);
+void			move_back(t_ray *r);
+void			rotate_left(t_ray *r);
+void			rotate_right(t_ray *r);
 #endif
