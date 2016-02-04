@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 12:44:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 15:45:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ typedef struct	s_coords
 	double		m;
 	int			color;
 }				t_coords;
-typedef struct	s_sprite
-{
-  double		x;
-  double		y;
-  int			texture;
-}				t_sprite;
 typedef struct	s_ray
 {
 	int			mapx;
@@ -117,13 +111,11 @@ typedef struct	s_ray
 	double		weight;
 	double		cfloorx;
 	double		cfloory;
-	double		zbuffer[SWIDTH];
-	t_sprite	*sprite;
 }				t_ray;
 int				key_press(int keycode, t_ray *r);
 int				key_release(int keycode, t_ray *r);
 int				expose(t_ray *r);
-void			ft_swap(float *a, float *b);
+void			ft_swap(double *a, double *b);
 void			ft_exit(char *s);
 int				**parser(char *lvl);
 void			raycasting(t_ray *r);

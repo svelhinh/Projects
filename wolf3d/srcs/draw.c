@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 12:44:01 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 15:24:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ static void		draw_floor_sky(t_ray r)
 	}
 }
 
-static void		put_floor_sky(t_ray r, double *zbuffer)
+static void		put_floor_sky(t_ray r)
 {
-	zbuffer[r.x] = r.wall_length;
 	r.distwall = r.wall_length;
 	r.distplayer = 0;
 	r.cdist = 0;
@@ -129,5 +128,5 @@ void			put_line(t_ray r)
 	c.ymax = r.ymax;
 	c.x = r.x;
 	draw(c, r);
-	put_floor_sky(r, r.zbuffer);
+	put_floor_sky(r);
 }

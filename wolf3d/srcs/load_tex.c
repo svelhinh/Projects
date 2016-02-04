@@ -6,20 +6,11 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 12:25:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 15:45:45 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-static void	load_sprite(t_ray *r)
-{
-	if (!(r->sprite = (t_sprite *)malloc(sizeof(t_sprite))))
-		ft_exit("malloc r->sprite in load_sprite() failed");
-	r->sprite[0].x = 14;
-	r->sprite[0].y = 14;
-	r->sprite[0].texture = 4;
-}
 
 static int	parsing_hexa(char *r2, char *g2, char *b2, int endian)
 {
@@ -94,13 +85,11 @@ void		load_tex(t_ray *r)
 {
 	int tex;
 
-	tex = 5;
+	tex = 4;
 	if (!(r->texture = (int **)malloc(sizeof(int *) * tex)))
 		ft_exit("malloc() texture[y] in load_tex() failed");
 	load_tex2(r, 0, "textures/stone.xpm");
 	load_tex2(r, 1, "textures/grass.xpm");
 	load_tex2(r, 2, "textures/hitler.xpm");
 	load_tex2(r, 3, "textures/win.xpm");
-	load_tex2(r, 4, "textures/barrel.xpm");
-	load_sprite(r);
 }

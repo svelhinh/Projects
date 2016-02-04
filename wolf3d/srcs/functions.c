@@ -6,15 +6,15 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/02 17:58:58 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 13:47:50 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		ft_swap(float *a, float *b)
+void		ft_swap(double *a, double *b)
 {
-	float c;
+	double c;
 
 	c = *a;
 	*a = *b;
