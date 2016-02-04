@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 12:10:37 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 12:29:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 17:17:13 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	calculs(t_ray *r)
 	r->rayposy = r->posy;
 	r->raydirx = r->dirx + r->planex * r->camerax;
 	r->raydiry = r->diry + r->planey * r->camerax;
-	r->mapx = (int)r->rayposx;
-	r->mapy = (int)r->rayposy;
+	r->mapx = (int)(r->rayposx);
+	r->mapy = (int)(r->rayposy);
 	r->walldistx2 = sqrt(1 + pow(r->raydiry, 2) / pow(r->raydirx, 2));
 	r->walldisty2 = sqrt(1 + pow(r->raydirx, 2) / pow(r->raydiry, 2));
 }
@@ -66,7 +66,7 @@ static void	dda(t_ray *r)
 			r->mapy += r->stepy;
 			r->wall = 1;
 		}
-		if (r->map[r->mapx][r->mapy] != 0)
+		if (r->map[r->mapx][r->mapy] > 0)
 			r->hit = 1;
 		if (r->map[r->mapx][r->mapy] == -1)
 			r->hit = -1;

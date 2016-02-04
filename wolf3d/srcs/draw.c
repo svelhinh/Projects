@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 15:24:31 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 18:28:58 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void		draw_floor_sky(t_ray r)
 {
 	int			y;
 	int			check_board;
-	int			floortex;
 	t_coords	c;
 
 	y = r.ymax;
@@ -51,11 +50,10 @@ static void		draw_floor_sky(t_ray r)
 		r.ftexx = (int)(r.cfloorx * r.w) % r.w;
 		r.ftexy = (int)(r.cfloory * r.h) % r.h;
 		check_board = ((int)r.cfloorx * (int)r.cfloory) % 5;
-		floortex = (check_board == 0) ? (0) : (1);
-		c.color = (r.texture[floortex][r.w * r.ftexy + r.ftexx] >> 1) & 8355711;
+		c.color = (r.texture[0][r.w * r.ftexy + r.ftexx] >> 1) & 8355711;
 		mlx_pixel_put_to_img(&c, &r, r.x, y);
-		//c.color = r.texture[0][r.w * r.ftexy + r.ftexx];
-		c.color = CSKY;
+		c.color = r.texture[0][r.w * r.ftexy + r.ftexx];
+		//c.color = CSKY;
 		mlx_pixel_put_to_img(&c, &r, r.x, SHEIGHT - y - 1);
 		y++;
 	}
@@ -104,7 +102,7 @@ static void		draw(t_coords c, t_ray r)
 		if (r.hit >= 0)
 			c.color = r.texture[tex][r.h * r.texy + r.texx];
 		(r.wall == 1) ? (c.color = (c.color >> 1) & 8355711) : (0);
-		(r.hit == -1) ? (c.color = r.texture[3][r.h * r.texy + r.texx]) : (0);
+		(r.hit == -1) ? (c.color = r.texture[4][r.h * r.texy + r.texx]) : (0);
 		mlx_pixel_put_to_img(&c, &r, c.x, y);
 		y++;
 	}

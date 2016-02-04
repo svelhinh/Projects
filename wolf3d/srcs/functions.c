@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 13:47:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 17:19:03 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void		init_var(t_ray *r)
 {
 	if (ft_strstr(r->lvl, "lvl0"))
 	{
-		r->posx = 30.5;
-		r->posy = 5;
+		r->posx = 19;
+		r->posy = 11;
 	}
 	if (ft_strstr(r->lvl, "lvl1"))
 	{
-		r->posx = 28.5;
-		r->posy = 10;
+		r->posx = 31;
+		r->posy = 28;
 	}
 	r->dirx = -1;
 	r->diry = 0;

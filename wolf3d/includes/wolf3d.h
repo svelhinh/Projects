@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 15:45:48 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/04 16:23:32 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../gnl/get_next_line.h"
 # define SWIDTH 1250/*1180*/
 # define SHEIGHT 1000/*924*/
-# define ROT 0.1
+# define ROT 0.09
 # define MOVE 0.3
 # define CSKY 0x7FD1EF
 # define CFLOOR 0xaaaaaa
