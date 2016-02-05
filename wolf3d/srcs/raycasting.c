@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 12:10:37 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 17:17:13 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 11:51:13 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,14 @@ static void	calcul_lines(t_ray *r)
 		r->wall_length = fabs((r->mapx - r->rayposx + calcul) / r->raydirx);
 	else
 		r->wall_length = fabs((r->mapy - r->rayposy + calcul2) / r->raydiry);
+	if (r->wall_length <= 0)
+		r->wall_length = 0.000001;
 	r->wall_height = abs((int)(SHEIGHT / r->wall_length));
 	r->ymin = -r->wall_height / 2 + SHEIGHT / 2;
 	if (r->ymin < 0)
 		r->ymin = 0;
 	r->ymax = r->wall_height / 2 + SHEIGHT / 2;
-	(r->ymax >= SHEIGHT) ? (r->ymax = SHEIGHT - 1) : (0);
+	r->ymax = (r->ymax >= SHEIGHT) ? (SHEIGHT - 1) : (r->ymax);
 }
 
 void		raycasting(t_ray *r)

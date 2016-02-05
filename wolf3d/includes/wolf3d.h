@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 16:23:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 11:56:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct	s_ray
 	int			back;
 	int			leftrot;
 	int			rightrot;
+	int			nb_lvl;
 	char		*img;
 	char		*lvl;
 	char		*data;

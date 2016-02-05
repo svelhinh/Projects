@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 17:20:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 13:01:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_exit(char *s)
 	exit(0);
 }
 
-char	*check_param(int ac, char **av)
+static char	*check_param(int ac, char **av)
 {
 	char	*lvl;
 	char	*tmp;
@@ -28,7 +28,7 @@ char	*check_param(int ac, char **av)
 	if (ac == 1)
 	{
 		srand(time(NULL));
-		nb_alea = rand() % 1;
+		nb_alea = rand() % 3;
 		tmp = ft_strdup("levels/lvl");
 		tmp2 = ft_itoa(nb_alea);
 		lvl = ft_strjoin(tmp, tmp2);
@@ -46,13 +46,29 @@ char	*check_param(int ac, char **av)
 	return (NULL);
 }
 
-int		main(int ac, char **av)
+static int	check_lvl(char *lvl)
+{
+	int nb;
+
+	if (!ft_strcmp(lvl, "levels/lvl0"))
+		nb = 0;
+	else if (!ft_strcmp(lvl, "levels/lvl1"))
+		nb = 1;
+	else if (!ft_strcmp(lvl, "levels/lvl2"))
+		nb = 2;
+	else
+		nb = -1;
+	return (nb);
+}
+
+int			main(int ac, char **av)
 {
 	t_ray	r;
 
 	r.i = 0;
 	r.lvl = check_param(ac, av);
-	if (ft_strcmp(r.lvl, "levels/lvl0") && ft_strcmp(r.lvl, "levels/lvl1"))
+	r.nb_lvl = check_lvl(r.lvl);
+	if (r.nb_lvl == -1)
 		ft_exit("Bad file name, please name your files lvl[number] ");
 	(!(r.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
 	if (!(r.win = mlx_new_window(r.mlx, SWIDTH, SHEIGHT, r.lvl)))

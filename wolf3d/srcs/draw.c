@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 18:28:58 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 13:03:25 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void		mlx_pixel_put_to_img(t_coords *c, t_ray *v, int x, int y)
 		b = (c->color & 0xFF);
 	}
 	g = (c->color & 0xFF00) >> 8;
+//	printf("%d\n", y * v->size_line + x * v->bpp / 8);
 	v->data[y * v->size_line + x * v->bpp / 8] = r;
 	v->data[y * v->size_line + x * v->bpp / 8 + 1] = g;
 	v->data[y * v->size_line + x * v->bpp / 8 + 2] = b;
@@ -50,10 +51,13 @@ static void		draw_floor_sky(t_ray r)
 		r.ftexx = (int)(r.cfloorx * r.w) % r.w;
 		r.ftexy = (int)(r.cfloory * r.h) % r.h;
 		check_board = ((int)r.cfloorx * (int)r.cfloory) % 5;
-		c.color = (r.texture[0][r.w * r.ftexy + r.ftexx] >> 1) & 8355711;
+		c.color = (r.nb_lvl == 2) ? (r.texture[4][r.w * r.ftexy + r.ftexx]) :
+			((r.texture[0][r.w * r.ftexy + r.ftexx] >> 1) & 8355711);
+		//c.color = CFLOOR;
 		mlx_pixel_put_to_img(&c, &r, r.x, y);
-		c.color = r.texture[0][r.w * r.ftexy + r.ftexx];
-		//c.color = CSKY;
+		c.color = (r.nb_lvl == 2) ? (CSKY) :
+			(r.texture[0][r.w * r.ftexy + r.ftexx]);
+		//printf("x : %d - y : %d\n", r.x, SHEIGHT - y - 1);
 		mlx_pixel_put_to_img(&c, &r, r.x, SHEIGHT - y - 1);
 		y++;
 	}
@@ -102,7 +106,7 @@ static void		draw(t_coords c, t_ray r)
 		if (r.hit >= 0)
 			c.color = r.texture[tex][r.h * r.texy + r.texx];
 		(r.wall == 1) ? (c.color = (c.color >> 1) & 8355711) : (0);
-		(r.hit == -1) ? (c.color = r.texture[4][r.h * r.texy + r.texx]) : (0);
+		(r.hit == -1) ? (c.color = r.texture[5][r.h * r.texy + r.texx]) : (0);
 		mlx_pixel_put_to_img(&c, &r, c.x, y);
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/04 17:17:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 12:57:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,13 @@ void		load_tex(t_ray *r)
 {
 	int tex;
 
-	tex = 5;
+	tex = 6;
 	if (!(r->texture = (int **)malloc(sizeof(int *) * tex)))
 		ft_exit("malloc() texture[y] in load_tex() failed");
 	load_tex2(r, 0, "textures/stone.xpm");
 	load_tex2(r, 1, "textures/steel.xpm");
 	load_tex2(r, 2, "textures/cardboard.xpm");
 	load_tex2(r, 3, "textures/wood.xpm");
-	load_tex2(r, 4, "textures/win.xpm");
+	load_tex2(r, 4, "textures/grass.xpm");
+	load_tex2(r, 5, "textures/win.xpm");
 }
