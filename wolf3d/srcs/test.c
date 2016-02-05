@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:01:23 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/01 16:37:13 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 14:22:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
+#define SWIDTH 1250
+#define SHEIGHT 1000
+#define MWIDTH SWIDTH / 4
+#define MHEIGHT SHEIGHT / 4
 
 int		main(void)
 {
 	void *win;
 	void *mlx;
-	void *img;
-	int bpp;
-	int sizeline;
-	int endian;
-	char *data;
-	int w;
-	int h;
+	int x;
+	int y;
+	int map[5][5] = {{1, 1, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 0, 1}, {1, 1, 1, 1, 1}};
 
-	w = 64;
-	h = 64;
+	y = 0;
 	mlx = mlx_init();
-	win = mlx_new_window(mlx, 1000, 1000, "test");
-	img = mlx_xpm_file_to_image(mlx, "../textures/bricks.xpm", &w, &h);
-	data = mlx_get_data_addr(img, &bpp, &sizeline, &endian);
-
-	int x = 0;
-	while (x < 64 * 64)
+	win = mlx_new_window(mlx, SWIDTH, SHEIGHT, "test");
+	while (y < 10)
 	{
-		printf("%d\n", data[x]);
-		x++;
+		x = 0;
+		while (x < 10)
+		{
+			if (map[y][x] != 0)
+				mlx_pixel_put(mlx, win, x, y, 0xffffff);
+			x += 2;
+		}
+		y += 2;
 	}
-	mlx_put_image_to_window(mlx, win, img, 0, 0);
 	mlx_loop(mlx);
 	return (0);
 }

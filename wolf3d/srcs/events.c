@@ -6,13 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/05 10:43:44 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 13:44:29 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		move(t_ray *r)
+static void	move(t_ray *r)
 {
 	if (r->forward == 1)
 		move_forward(r);

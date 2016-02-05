@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/05 11:56:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 14:07:38 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct	s_ray
 	char		*data;
 	void		*mlx;
 	void		*win;
+	void		*mini_map;
 	double		posx;
 	double		posy;
 	double		dirx;
@@ -127,4 +128,6 @@ void			move_forward(t_ray *r);
 void			move_back(t_ray *r);
 void			rotate_left(t_ray *r);
 void			rotate_right(t_ray *r);
+int				check_lvl(char *lvl);
+char			*check_param(int ac, char **av);
 #endif

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/05 12:31:49 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/05 13:40:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ void		ft_swap(double *a, double *b)
 
 void		init_var(t_ray *r)
 {
-	if (ft_strstr(r->lvl, "lvl0"))
+	if (r->nb_lvl == 0)
 	{
 		r->posx = 19;
 		r->posy = 11;
 	}
-	if (ft_strstr(r->lvl, "lvl1"))
+	if (r->nb_lvl == 1)
 	{
 		r->posx = 31;
 		r->posy = 28;
 	}
-	if (ft_strstr(r->lvl, "lvl2"))
+	if (r->nb_lvl == 2)
 	{
 		r->posx = 38;
 		r->posy = 11;
