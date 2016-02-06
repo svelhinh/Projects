@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/05 13:40:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 12:33:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,20 @@ void		init_var(t_ray *r)
 	r->diry = 0;
 	r->planex = 0;
 	r->planey = 0.66;
+}
+
+static int	win(int keycode)
+{
+	if (keycode == ENTER)
+		exit(0);
+	return (0);
+}
+
+void		ft_win(t_ray *r)
+{
+	mlx_string_put(r->mlx, r->win, SWIDTH / 2, SHEIGHT / 2, 0xff00, "YOU WIN");
+	mlx_string_put(r->mlx, r->win, SWIDTH / 2 - 120, SHEIGHT / 2 + 20, 0xf0f000,
+			"PRESS ENTER TO GO BACK TO MENU");
+	mlx_key_hook(r->win, win, 0);
+	mlx_loop(r->mlx);
 }

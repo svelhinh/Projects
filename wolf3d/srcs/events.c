@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/05 13:44:29 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 12:20:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ int			expose(t_ray *r)
 	mlx_put_image_to_window(r->mlx, r->win, r->img, 0, 0);
 	mlx_destroy_image(r->mlx, r->img);
 	move(r);
+	if (r->map[(int)(r->posx + r->dirx * MOVE)][(int)r->posy] == -1
+			|| r->map[(int)r->posx][(int)(r->posy + r->diry * MOVE)] == -1
+			|| r->map[(int)(r->posx - r->dirx * MOVE)][(int)r->posy] == -1
+			|| r->map[(int)r->posx][(int)(r->posy - r->diry * MOVE)] == -1)
+		ft_win(r);
 	return (0);
 }
 
 int			key_press(int keycode, t_ray *r)
 {
-	if (r->map[(int)(r->posx + r->dirx * MOVE)][(int)r->posy] == -1
-			|| r->map[(int)r->posx][(int)(r->posy + r->diry * MOVE)] == -1
-			|| r->map[(int)(r->posx - r->dirx * MOVE)][(int)r->posy] == -1
-			|| r->map[(int)r->posx][(int)(r->posy - r->diry * MOVE)] == -1)
-		ft_exit("win");
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(r->mlx, r->win);

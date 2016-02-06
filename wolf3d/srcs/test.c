@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:01:23 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/05 14:22:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 12:11:51 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,29 @@ int		main(void)
 {
 	void *win;
 	void *mlx;
-	int x;
-	int y;
-	int map[5][5] = {{1, 1, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 0, 1}, {1, 1, 1, 1, 1}};
 
-	y = 0;
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, SWIDTH, SHEIGHT, "test");
-	while (y < 10)
+	int y = 450;
+	int x;
+	while (y < 550)
 	{
-		x = 0;
-		while (x < 10)
+		x = 500;
+		while (x < 507)
 		{
-			if (map[y][x] != 0)
-				mlx_pixel_put(mlx, win, x, y, 0xffffff);
-			x += 2;
+			mlx_pixel_put(mlx, win, x, y, 0x550000);
+			x++;
 		}
-		y += 2;
+		y++;
 	}
+	mlx_string_put(mlx, win, 500, 500, 0xAA00, "YOU WIN");
+	/*mlx_string_put(mlx, win, 500, 500, 0xffffff, ":::       :::    :::::::::    :::        :::::::::  ::::::    :::::::::");
+	mlx_string_put(mlx, win, 490, 520, 0xffffff, ":+:       :+:   :+:     :+:   :+:        :+:             :+:  :+:     :+:");
+	mlx_string_put(mlx, win, 480, 540, 0xffffff, "+:+  +:+  +:+  +:+       +:+  +:+        +:+             +:+  +:+      +:+");
+	mlx_string_put(mlx, win, 470, 560, 0xffffff, "+#+  +:+  +#+  +:+       +#+  +:+        +#+:+#     +:+#+:    +#+      +:+");
+	mlx_string_put(mlx, win, 460, 580, 0xffffff, "+#+  +#+  +#+  +#+       +#+  +#+        +#+             +#+  +#+      +#+");
+	mlx_string_put(mlx, win, 450, 600, 0xffffff, "#+#  #+#  #+#   #+#     #+#   #+#        #+#             #+#  #+#     #+#");
+	mlx_string_put(mlx, win, 440, 620, 0xffffff, " ##### #####     #########    #########  ###        ######    #########");*/
 	mlx_loop(mlx);
 	return (0);
 }
