@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 12:21:33 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 17:20:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 # define RIGHT 124
 # define LEFT 123
 # define ENTER 36
+# define ONE 18
+# define TWO 19
+# define THREE 20
+# define ONE2 83
+# define TWO2 84
+# define THREE2 85
 
 typedef struct	s_coords
 {
@@ -132,4 +138,6 @@ void			rotate_right(t_ray *r);
 int				check_lvl(char *lvl);
 char			*check_param(int ac, char **av);
 void			ft_win(t_ray *r);
+void			menu(t_ray *m);
+void			main2(t_ray r);
 #endif

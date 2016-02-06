@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/05 13:35:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 17:17:03 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void		mlx_pixel_put_to_img(t_coords *c, t_ray *v, int x, int y)
 		b = (c->color & 0xFF);
 	}
 	g = (c->color & 0xFF00) >> 8;
-//	printf("%d\n", y * v->size_line + x * v->bpp / 8);
 	v->data[y * v->size_line + x * v->bpp / 8] = r;
 	v->data[y * v->size_line + x * v->bpp / 8 + 1] = g;
 	v->data[y * v->size_line + x * v->bpp / 8 + 2] = b;

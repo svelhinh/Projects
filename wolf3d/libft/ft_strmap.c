@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:21:21 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/04 17:05:18 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 14:13:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 			str[i] = (*f)(s[i]);
 			i++;
 		}
+		str[i] = '\0';
 		return (str);
 	}
 	else

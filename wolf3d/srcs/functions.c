@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 12:33:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 15:27:04 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,17 @@ void		init_var(t_ray *r)
 	r->planey = 0.66;
 }
 
-static int	win(int keycode)
+static int	win(int keycode, t_ray *m)
 {
 	if (keycode == ENTER)
-		exit(0);
+	{
+		mlx_destroy_window(m->mlx, m->win);
+		m->forward = 0;
+		m->back = 0;
+		m->leftrot = 0;
+		m->rightrot = 0;
+		menu(m);
+	}
 	return (0);
 }
 
@@ -56,6 +63,6 @@ void		ft_win(t_ray *r)
 	mlx_string_put(r->mlx, r->win, SWIDTH / 2, SHEIGHT / 2, 0xff00, "YOU WIN");
 	mlx_string_put(r->mlx, r->win, SWIDTH / 2 - 120, SHEIGHT / 2 + 20, 0xf0f000,
 			"PRESS ENTER TO GO BACK TO MENU");
-	mlx_key_hook(r->win, win, 0);
+	mlx_key_hook(r->win, win, r);
 	mlx_loop(r->mlx);
 }

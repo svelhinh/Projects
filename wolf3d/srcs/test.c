@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:01:23 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 12:11:51 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 13:20:19 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int		main(void)
 		}
 		y++;
 	}
-	mlx_string_put(mlx, win, 500, 500, 0xAA00, "YOU WIN");
 	/*mlx_string_put(mlx, win, 500, 500, 0xffffff, ":::       :::    :::::::::    :::        :::::::::  ::::::    :::::::::");
 	mlx_string_put(mlx, win, 490, 520, 0xffffff, ":+:       :+:   :+:     :+:   :+:        :+:             :+:  :+:     :+:");
 	mlx_string_put(mlx, win, 480, 540, 0xffffff, "+:+  +:+  +:+  +:+       +:+  +:+        +:+             +:+  +:+      +:+");

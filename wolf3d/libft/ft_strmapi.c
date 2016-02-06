@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:38:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/04 17:07:53 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/06 14:15:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 			str[i] = (*f)(i, s[i]);
 			i++;
 		}
+		str[i] = '\0';
 		return (str);
 	}
 	else
