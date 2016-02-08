@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   pause.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/05 13:35:51 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 18:59:43 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/02/08 17:46:23 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/02/08 18:54:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		check_lvl(char *lvl)
+void		ft_pause(t_ray *p)
 {
-	int nb;
-
-	if (!ft_strcmp(lvl, "levels/lvl1"))
-		nb = 0;
-	else if (!ft_strcmp(lvl, "levels/lvl2"))
-		nb = 1;
-	else if (!ft_strcmp(lvl, "levels/lvl3"))
-		nb = 2;
-	else
-		nb = -1;
-	return (nb);
+	mlx_string_put(p->mlx, p->win, p->sw / 2, p->sh / 2, 0xffff, "PAUSE");
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 14:49:18 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 18:58:57 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void		main2(t_ray r)
 	ft_empty(&r, 2);
 	r.i = 0;
 	r.nb_lvl = check_lvl(r.lvl);
-	if (r.nb_lvl == -1)
-		ft_exit("Bad file name, please name your files lvl[number] ");
 	r.map = parser(r.lvl);
 	load_tex(&r);
 	mlx_hook(r.win, 2, (1L << 0), key_press, &r);

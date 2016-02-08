@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 13:59:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 19:06:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 static void	move(t_ray *r)
 {
-	if (r->forward == 1)
-		move_forward(r);
-	if (r->back == 1)
-		move_back(r);
-	if (r->leftrot == 1)
-		rotate_left(r);
-	if (r->rightrot == 1)
-		rotate_right(r);
+	if (r->p)
+		ft_pause(r);
+	else
+	{
+		if (r->forward == 1)
+			move_forward(r);
+		if (r->back == 1)
+			move_back(r);
+		if (r->leftrot == 1)
+			rotate_left(r);
+		if (r->rightrot == 1)
+			rotate_right(r);
+	}
 }
 
 int			expose(t_ray *r)
@@ -47,12 +52,16 @@ int			expose(t_ray *r)
 
 int			key_press(int keycode, t_ray *r)
 {
-	if (keycode == ESC)
+	if (keycode == P)
+		r->p ^= 1;
+	else if (keycode == ESC)
 	{
 		mlx_destroy_window(r->mlx, r->win);
 		exit(0);
 	}
-	else if (keycode == W || keycode == UP)
+	if (r->p)
+		return (0);
+	if (keycode == W || keycode == UP)
 		r->forward = 1;
 	else if (keycode == S || keycode == DOWN)
 		r->back = 1;
