@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 12:37:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 14:31:45 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <fcntl.h>
 # include "../libft/includes/libft.h"
 # include "../gnl/get_next_line.h"
-# define SWIDTH 1250/*1180*/
-# define SHEIGHT 1000/*924*/
 # define ROT 0.09
 # define MOVE 0.3
 # define CSKY 0x7FD1EF
@@ -62,6 +60,8 @@ typedef struct	s_coords
 }				t_coords;
 typedef struct	s_ray
 {
+	int			sw;
+	int			sh;
 	int			mapx;
 	int			mapy;
 	int			x;
@@ -140,7 +140,11 @@ void			rotate_left(t_ray *r);
 void			rotate_right(t_ray *r);
 int				check_lvl(char *lvl);
 void			ft_win(t_ray *r);
-void			menu(t_ray *m);
+void			principal_menu(t_ray *m, int i);
 void			main2(t_ray r);
 void			play(t_ray *m);
+void			options(t_ray *m);
+void			commands(t_ray *m);
+void			resolution(t_ray *m);
+void			ft_empty(t_ray *m, int i);
 #endif

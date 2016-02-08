@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 12:10:37 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/05 11:51:13 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 14:03:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	calculs(t_ray *r)
 {
-	r->camerax = 2 * r->x / (double)SWIDTH - 1;
+	r->camerax = 2 * r->x / (double)r->sw - 1;
 	r->rayposx = r->posx;
 	r->rayposy = r->posy;
 	r->raydirx = r->dirx + r->planex * r->camerax;
@@ -86,18 +86,18 @@ static void	calcul_lines(t_ray *r)
 		r->wall_length = fabs((r->mapy - r->rayposy + calcul2) / r->raydiry);
 	if (r->wall_length <= 0)
 		r->wall_length = 0.000001;
-	r->wall_height = abs((int)(SHEIGHT / r->wall_length));
-	r->ymin = -r->wall_height / 2 + SHEIGHT / 2;
+	r->wall_height = abs((int)(r->sh / r->wall_length));
+	r->ymin = -r->wall_height / 2 + r->sh / 2;
 	if (r->ymin < 0)
 		r->ymin = 0;
-	r->ymax = r->wall_height / 2 + SHEIGHT / 2;
-	r->ymax = (r->ymax >= SHEIGHT) ? (SHEIGHT - 1) : (r->ymax);
+	r->ymax = r->wall_height / 2 + r->sh / 2;
+	r->ymax = (r->ymax >= r->sh) ? (r->sh - 1) : (r->ymax);
 }
 
 void		raycasting(t_ray *r)
 {
 	r->x = 0;
-	while (r->x < SWIDTH)
+	while (r->x < r->sw)
 	{
 		calculs(r);
 		collisions(r);

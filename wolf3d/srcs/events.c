@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 14:54:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 13:59:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	move(t_ray *r)
 
 int			expose(t_ray *r)
 {
-	r->img = mlx_new_image(r->mlx, SWIDTH, SHEIGHT);
+	r->img = mlx_new_image(r->mlx, r->sw, r->sh);
 	r->data = mlx_get_data_addr(r->img, &r->bpp, &r->size_line, &r->endian);
 	if (r->i == 0)
 	{

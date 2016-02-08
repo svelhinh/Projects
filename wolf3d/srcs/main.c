@@ -6,23 +6,22 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 11:43:26 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 14:49:18 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	ft_exit(char *s)
+void		ft_exit(char *s)
 {
 	perror(s);
 	exit(0);
 }
 
-void	main2(t_ray r)
+void		main2(t_ray r)
 {
+	ft_empty(&r, 2);
 	r.i = 0;
-	if (!(r.win = mlx_new_window(r.mlx, SWIDTH, SHEIGHT, r.lvl)))
-		ft_exit("mlx_new_window failed in main()");
 	r.nb_lvl = check_lvl(r.lvl);
 	if (r.nb_lvl == -1)
 		ft_exit("Bad file name, please name your files lvl[number] ");
@@ -34,7 +33,7 @@ void	main2(t_ray r)
 	mlx_loop(r.mlx);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_ray m;
 
@@ -45,6 +44,8 @@ int		main(int ac, char **av)
 		ft_exit("Too many parameters");
 	}
 	(!(m.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
-	menu(&m);
+	m.sw = 1024;
+	m.sh = 768;
+	principal_menu(&m, 0);
 	return (0);
 }

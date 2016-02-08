@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 15:27:04 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 16:34:38 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,47 @@ static int	win(int keycode, t_ray *m)
 {
 	if (keycode == ENTER)
 	{
-		mlx_destroy_window(m->mlx, m->win);
 		m->forward = 0;
 		m->back = 0;
 		m->leftrot = 0;
 		m->rightrot = 0;
-		menu(m);
+		principal_menu(m, 2);
 	}
 	return (0);
 }
 
 void		ft_win(t_ray *r)
 {
-	mlx_string_put(r->mlx, r->win, SWIDTH / 2, SHEIGHT / 2, 0xff00, "YOU WIN");
-	mlx_string_put(r->mlx, r->win, SWIDTH / 2 - 120, SHEIGHT / 2 + 20, 0xf0f000,
+	mlx_string_put(r->mlx, r->win, r->sw / 2, r->sh / 2, 0xff00, "YOU WIN");
+	mlx_string_put(r->mlx, r->win, r->sw / 2 - 120, r->sh / 2 + 20, 0xf0f000,
 			"PRESS ENTER TO GO BACK TO MENU");
 	mlx_key_hook(r->win, win, r);
 	mlx_loop(r->mlx);
+}
+
+void		ft_empty(t_ray *m, int i)
+{
+	int x;
+	int y;
+
+	if (i == 1)
+	{
+		y = m->sh / 2 - 100;
+		while (++y < m->sh / 2 + 200)
+		{
+			x = m->sw / 2 - 100;
+			while (++x < m->sw / 2 + 100)
+				mlx_pixel_put(m->mlx, m->win, x, y, 0);
+		}
+	}
+	else
+	{
+		y = -1;
+		while (++y < m->sh)
+		{
+			x = -1;
+			while (++x < m->sw)
+				mlx_pixel_put(m->mlx, m->win, x, y, 0);
+		}
+	}
 }

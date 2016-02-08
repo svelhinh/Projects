@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 17:17:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 14:02:34 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void		draw_floor_sky(t_ray r)
 	t_coords	c;
 
 	y = r.ymax;
-	while (y < SHEIGHT)
+	while (y < r.sh)
 	{
-		r.cdist = SHEIGHT / (2.0 * y - SHEIGHT);
+		r.cdist = r.sh / (2.0 * y - r.sh);
 		r.weight = (r.cdist - r.distplayer) / (r.distwall - r.distplayer);
 		r.cfloorx = r.weight * r.fwallx + (1.0 - r.weight) * r.posx;
 		r.cfloory = r.weight * r.fwally + (1.0 - r.weight) * r.posy;
@@ -56,8 +56,8 @@ static void		draw_floor_sky(t_ray r)
 		mlx_pixel_put_to_img(&c, &r, r.x, y);
 		c.color = (r.nb_lvl == 2) ? (CSKY) :
 			(r.texture[0][r.w * r.ftexy + r.ftexx]);
-		//printf("x : %d - y : %d\n", r.x, SHEIGHT - y - 1);
-		mlx_pixel_put_to_img(&c, &r, r.x, SHEIGHT - y - 1);
+		//printf("x : %d - y : %d\n", r.x, r.sh - y - 1);
+		mlx_pixel_put_to_img(&c, &r, r.x, r.sh - y - 1);
 		y++;
 	}
 }
@@ -100,7 +100,7 @@ static void		draw(t_coords c, t_ray r)
 	y = c.ymin;
 	while (y < c.ymax)
 	{
-		d = y * 256 - SHEIGHT * 128 + r.wall_height * 128;
+		d = y * 256 - r.sh * 128 + r.wall_height * 128;
 		r.texy = ((d * r.h) / r.wall_height) / 256;
 		if (r.hit >= 0)
 			c.color = r.texture[tex][r.h * r.texy + r.texx];
