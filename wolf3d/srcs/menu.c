@@ -6,19 +6,16 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 13:18:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 17:54:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 11:40:49 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static int	play(int keycode, t_ray *m)
+static int	events(int keycode, t_ray *m)
 {
 	if (keycode == ONE || keycode == ONE2)
-	{
-		mlx_destroy_window(m->mlx, m->win);
-		main2(*m);
-	}
+		play(m);
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(m->mlx, m->win);
@@ -76,6 +73,6 @@ void		menu(t_ray *m)
 	mlx_string_put(m->mlx, m->win, SWIDTH / 4 - 48, 170, 0xffff,
 	" ##### #####     #########    #########  ###        ######    #########");
 	options(m);
-	mlx_key_hook(m->win, play, m);
+	mlx_key_hook(m->win, events, m);
 	mlx_loop(m->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/05 13:35:51 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 14:28:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 11:38:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int		check_lvl(char *lvl)
 {
 	int nb;
 
-	if (!ft_strcmp(lvl, "levels/lvl0"))
+	if (!ft_strcmp(lvl, "levels/lvl1"))
 		nb = 0;
-	else if (!ft_strcmp(lvl, "levels/lvl1"))
-		nb = 1;
 	else if (!ft_strcmp(lvl, "levels/lvl2"))
+		nb = 1;
+	else if (!ft_strcmp(lvl, "levels/lvl3"))
 		nb = 2;
 	else
 		nb = -1;

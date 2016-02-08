@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/02/06 13:25:58 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/02/08 11:05:16 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = wolf3d
 
 SRC = srcs/main.c srcs/events.c srcs/draw.c srcs/functions.c srcs/parser.c \
 	  gnl/get_next_line.c srcs/raycasting.c srcs/load_tex.c srcs/movement.c \
-	  srcs/check.c srcs/menu.c
+	  srcs/check.c srcs/menu.c srcs/play.c
 
 LIB = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 

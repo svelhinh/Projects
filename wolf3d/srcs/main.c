@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 17:10:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 11:41:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,14 @@ int		main(int ac, char **av)
 {
 	t_ray m;
 
+	(void)av;
 	(!(m.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
-	m.lvl = check_param(ac, av);
+	if (ac != 1)
+	{
+		ft_putcolor("light red");
+		ft_exit("Too many parameters");
+	}
+	//m.lvl = check_param(ac, av);
 	menu(&m);
 	return (0);
 }
