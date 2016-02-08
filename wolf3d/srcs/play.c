@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:59:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 11:40:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 12:29:23 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static char	*ft_random(void)
 
 	srand(time(NULL));
 	nb_alea = rand() % 3;
+	nb_alea++;
 	tmp = ft_strdup("levels/lvl");
 	tmp2 = ft_itoa(nb_alea);
 	lvl = ft_strjoin(tmp, tmp2);
@@ -70,7 +71,7 @@ void		play(t_ray *m)
 	int y;
 
 	y = SHEIGHT / 3;
-	while (++y < SHEIGHT / 3 + 50)
+	while (++y < SHEIGHT / 3 + 100)
 	{
 		x = SWIDTH / 3 + 30;
 		while (++x < SWIDTH / 3 + 400)

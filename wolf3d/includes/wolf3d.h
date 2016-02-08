@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 11:21:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 12:37:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,6 @@ void			move_back(t_ray *r);
 void			rotate_left(t_ray *r);
 void			rotate_right(t_ray *r);
 int				check_lvl(char *lvl);
-char			*check_param(int ac, char **av);
 void			ft_win(t_ray *r);
 void			menu(t_ray *m);
 void			main2(t_ray r);
