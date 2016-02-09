@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 12:52:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:21:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ static void	victory(int keycode, t_ray *r)
 {
 	if (keycode == R)
 	{
+		r->forward = 0;
+		r->back = 0;
+		r->leftrot = 0;
+		r->rightrot = 0;
 		r->v = 0;
 		main2(*r);
 	}
-	/*else if (keycode == ENTER)
-		principal_menu(r, 2);*/
 	else if (keycode == ESC)
 	{
 		mlx_destroy_window(r->mlx, r->win);
