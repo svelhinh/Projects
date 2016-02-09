@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 14:04:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 15:23:05 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	move(t_ray *r)
 		ft_pause(r);
 	if (r->v)
 		ft_win(r);
-	else
+	else if (!r->p)
 	{
 		if (r->forward == 1)
 			move_forward(r);
@@ -54,44 +54,11 @@ int			expose(t_ray *r)
 			|| r->map[(int)r->posx][(int)(r->posy + r->diry * MOVE)] == -1
 			|| r->map[(int)(r->posx - r->dirx * MOVE)][(int)r->posy] == -1
 			|| r->map[(int)r->posx][(int)(r->posy - r->diry * MOVE)] == -1)
+	{
+		r->time = clock() - r->time;
 		r->v = 1;
+	}
 	return (0);
-}
-
-static void	victory(int keycode, t_ray *r)
-{
-	if (keycode == R)
-	{
-		r->forward = 0;
-		r->back = 0;
-		r->leftrot = 0;
-		r->rightrot = 0;
-		r->v = 0;
-		r->m = 0;
-		main2(*r);
-	}
-	else if (keycode == ESC)
-	{
-		mlx_destroy_window(r->mlx, r->win);
-		exit(0);
-	}
-}
-
-static void	event_pause(int keycode, t_ray *r)
-{
-	if (keycode == R)
-	{
-		r->p = 0;
-		main2(*r);
-	}
-	if (keycode == M)
-	{
-		r->v = 1;
-		r->forward = 0;
-		r->back = 0;
-		r->leftrot = 0;
-		r->rightrot = 0;
-	}
 }
 
 int			key_press(int keycode, t_ray *r)

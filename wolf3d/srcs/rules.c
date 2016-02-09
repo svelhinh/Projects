@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 13:33:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 12:05:43 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:12:07 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	rules(t_ray *m)
 			"R : RETURN");
 }
 
-void		commands(t_ray *m)
+static void	empty_options(t_ray *m)
 {
 	int x;
 	int y;
@@ -44,6 +44,11 @@ void		commands(t_ray *m)
 		while (++x < m->sw / 2 + 200)
 			mlx_pixel_put(m->mlx, m->win, x, y, 0);
 	}
+}
+
+void		commands(t_ray *m)
+{
+	empty_options(m);
 	mlx_string_put(m->mlx, m->win, m->sw / 2 - 115, m->sh / 2 - 90, 0xffff00,
 			"UP or W -> MOVE FORWARD");
 	mlx_string_put(m->mlx, m->win, m->sw / 2 - 110, m->sh / 2 - 60, 0xffff00,

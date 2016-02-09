@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 18:59:53 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:14:28 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@ static void		draw_floor_sky(t_ray r)
 		check_board = ((int)r.cfloorx * (int)r.cfloory) % 5;
 		c.color = (r.nb_lvl == 2) ? (r.texture[4][r.w * r.ftexy + r.ftexx]) :
 			((r.texture[0][r.w * r.ftexy + r.ftexx] >> 1) & 8355711);
-		//c.color = CFLOOR;
 		mlx_pixel_put_to_img(&c, &r, r.x, y);
 		c.color = (r.nb_lvl == 2) ? (CSKY) :
 			(r.texture[0][r.w * r.ftexy + r.ftexx]);
-		//printf("x : %d - y : %d\n", r.x, r.sh - y - 1);
 		mlx_pixel_put_to_img(&c, &r, r.x, r.sh - y - 1);
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:34:21 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 17:34:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:04:29 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,5 @@ int					ft_isupper(int c);
 void				ft_putnbrendl(int nb);
 char				*ft_itoa_base(int nb, int base);
 int					ft_atoi_base(char *s, int base);
+char				*ft_ftoa(double nb, int preci);
 #endif

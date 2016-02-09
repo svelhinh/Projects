@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 13:19:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 13:42:15 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 15:19:15 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		ft_exit(char *s)
 
 void		main2(t_ray r)
 {
+	r.time = clock();
 	ft_empty(&r, 2);
 	r.i = 0;
 	r.nb_lvl = check_lvl(r.lvl);

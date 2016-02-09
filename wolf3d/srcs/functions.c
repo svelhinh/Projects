@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 14:01:01 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 15:43:54 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		init_var(t_ray *r)
 	r->planey = 0.66;
 }
 
-static int	victory(int keycode, t_ray *v)
+static int	ft_victory(int keycode, t_ray *v)
 {
 	if (keycode == ENTER)
 	{
@@ -61,12 +61,19 @@ static int	victory(int keycode, t_ray *v)
 void		ft_win(t_ray *r)
 {
 	r->m = 1;
-	mlx_string_put(r->mlx, r->win, r->sw / 2 - 35, r->sh / 2, 0xff00, "YOU WIN");
-	mlx_string_put(r->mlx, r->win, r->sw / 2 - 155, r->sh / 2 + 30, 0xf0f000,
+	mlx_string_put(r->mlx, r->win, r->sw / 2 - 50, r->sh / 2 - 150, 0xffffff,
+			"TIME : ");
+	mlx_string_put(r->mlx, r->win, r->sw / 2 + 25, r->sh / 2 - 150, 0xffffff,
+			ft_itoa(r->time / CLOCKS_PER_SEC));
+	mlx_string_put(r->mlx, r->win, r->sw / 2 + 40, r->sh / 2 - 150, 0xffffff,
+			"s");
+	mlx_string_put(r->mlx, r->win, r->sw / 2 - 35, r->sh / 2 - 90, 0xff00,
+			"YOU WIN");
+	mlx_string_put(r->mlx, r->win, r->sw / 2 - 155, r->sh / 2 - 30, 0xf0f000,
 			"PRESS ENTER TO GO BACK TO MENU");
-	mlx_string_put(r->mlx, r->win, r->sw / 2 - 140, r->sh / 2 + 50, 0xf0f000,
+	mlx_string_put(r->mlx, r->win, r->sw / 2 - 140, r->sh / 2, 0xf0f000,
 			"PRESS R TO RETRY THIS LEVEL");
-	mlx_key_hook(r->win, victory, r);
+	mlx_key_hook(r->win, ft_victory, r);
 	mlx_loop(r->mlx);
 }
 

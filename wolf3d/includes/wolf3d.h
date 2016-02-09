@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 13:43:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 15:19:12 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct	s_ray
 	double		weight;
 	double		cfloorx;
 	double		cfloory;
+	double		time;
 }				t_ray;
 int				key_press(int keycode, t_ray *r);
 int				key_release(int keycode, t_ray *r);
@@ -153,4 +154,6 @@ void			commands(t_ray *m);
 void			resolution(t_ray *m);
 void			ft_empty(t_ray *m, int i);
 void			ft_pause(t_ray *p);
+void			victory(int keycode, t_ray *r);
+void			event_pause(int keycode, t_ray *r);
 #endif

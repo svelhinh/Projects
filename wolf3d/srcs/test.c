@@ -6,45 +6,34 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 13:01:23 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/06 13:20:19 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:26:49 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <fcntl.h>
 #include <stdio.h>
-#include <unistd.h>
-#define SWIDTH 1250
-#define SHEIGHT 1000
-#define MWIDTH SWIDTH / 4
-#define MHEIGHT SHEIGHT / 4
+#include <time.h>
+#include "../libft/includes/libft.h"
 
 int		main(void)
 {
-	void *win;
-	void *mlx;
+	/*float yo = 0.000976 * 10;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, SWIDTH, SHEIGHT, "test");
-	int y = 450;
-	int x;
-	while (y < 550)
+	printf("%f\n", yo);*/
+	ft_putendl(ft_ftoa(67.009761, 6));
+	/*double	cnt;
+	double	temps;
+	clock_t	end;
+
+	cnt = 0;
+	temps = 0.0001;
+	while (cnt < 3)
 	{
-		x = 500;
-		while (x < 507)
-		{
-			mlx_pixel_put(mlx, win, x, y, 0x550000);
-			x++;
-		}
-		y++;
-	}
-	/*mlx_string_put(mlx, win, 500, 500, 0xffffff, ":::       :::    :::::::::    :::        :::::::::  ::::::    :::::::::");
-	mlx_string_put(mlx, win, 490, 520, 0xffffff, ":+:       :+:   :+:     :+:   :+:        :+:             :+:  :+:     :+:");
-	mlx_string_put(mlx, win, 480, 540, 0xffffff, "+:+  +:+  +:+  +:+       +:+  +:+        +:+             +:+  +:+      +:+");
-	mlx_string_put(mlx, win, 470, 560, 0xffffff, "+#+  +:+  +#+  +:+       +#+  +:+        +#+:+#     +:+#+:    +#+      +:+");
-	mlx_string_put(mlx, win, 460, 580, 0xffffff, "+#+  +#+  +#+  +#+       +#+  +#+        +#+             +#+  +#+      +#+");
-	mlx_string_put(mlx, win, 450, 600, 0xffffff, "#+#  #+#  #+#   #+#     #+#   #+#        #+#             #+#  #+#     #+#");
-	mlx_string_put(mlx, win, 440, 620, 0xffffff, " ##### #####     #########    #########  ###        ######    #########");*/
-	mlx_loop(mlx);
+		ft_putendl(ft_ftoa(cnt, 4));
+		//printf("%f\n", cnt);
+		end = clock() + (temps * CLOCKS_PER_SEC);
+		while (clock() < end)
+			;
+		cnt += 0.0001;
+	}*/
 	return (0);
 }

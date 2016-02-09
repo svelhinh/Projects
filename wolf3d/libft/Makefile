@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2016/01/29 15:53:56 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/02/09 17:30:14 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC = \
 		ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 		ft_tolower.c ft_toupper.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
 		ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_putrainbow.c ft_putcolor.c \
-		ft_islower.c ft_isupper.c ft_putnbrendl.c ft_itoa_base.c ft_atoi_base.c
+		ft_islower.c ft_isupper.c ft_putnbrendl.c ft_itoa_base.c ft_atoi_base.c \
+		ft_ftoa.c
 
 OBJ = $(SRC:.c=.o)
 

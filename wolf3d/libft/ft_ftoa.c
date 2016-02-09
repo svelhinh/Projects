@@ -6,11 +6,13 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 10:00:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 17:16:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 19:26:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <math.h>
 
 static int		ft_nbrlen(int n)
 {
@@ -25,37 +27,56 @@ static int		ft_nbrlen(int n)
 	return (i);
 }
 
-static char		ft_negative(int *n, char c)
-{
-	c = '-';
-	(*n == -2147483648) ? (*n = 2147483647) : (*n *= -1);
-	return (c);
-}
-
-char			*ft_itoa(int n)
+static char		*ft_itoa_d(int n)
 {
 	char	*str;
 	int		i;
 	int		isave;
-	int		nsave;
 
 	i = ft_nbrlen(n);
 	isave = i;
-	if (!(str = (char *)malloc(sizeof(char) * i)))
+	if (!(str = (char *)malloc(sizeof(char) * i + 1)))
 		return (NULL);
-	nsave = n;
-	(n == 0) ? (str[0] = '0') : (0);
-	(n < 0) ? (str[0] = ft_negative(&n, str[0])) : (i--);
-	while (n != 0)
+	if (n == 0)
+	{
+		str = ft_strdup("0");
+		return (str);
+	}
+	while (n > 0)
 	{
 		str[i] = '0' + n % 10;
+		ft_putendl(str);
 		n /= 10;
 		i--;
 	}
-	if (nsave <= 0)
-		str[isave + 1] = '\0';
-	else
-		str[isave] = '\0';
-	(nsave == -2147483648) ? (str[isave] += 1) : (0);
+	str[isave + 1] = '\0';
+	return (str);
+}
+
+char			*ft_ftoa(double n, int preci)
+{
+	char	*str;
+	int		i;
+	int		ipart;
+	double	fpart;
+
+	i = 0;
+	ipart = (int)n;
+	fpart = n - (double)ipart;
+	str = ft_strdup(ft_itoa(ipart));
+	str = ft_strjoin(str, ".");
+	while (i < preci)
+	{
+		fpart = fpart * 10;
+		i++;
+	}
+	i = 0;
+	while (i < preci - ft_nbrlen(fpart))
+	{
+		str = ft_strjoin(str, "0");
+		i++;
+	}
+	fpart++;
+	str = ft_strjoin(str, ft_itoa_d(fpart));
 	return (str);
 }
