@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 13:18:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 12:40:26 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:58:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	menus(t_ray *m)
 
 void		principal_menu(t_ray *m, int i)
 {
+	m->m = 1;
 	(i == 0) ? (m->win = mlx_new_window(m->mlx, m->sw, m->sh,
 				"Menu Principal")) : (ft_empty(m, i));
 	mlx_string_put(m->mlx, m->win, m->sw / 2 - 350, 50, 0xffff,

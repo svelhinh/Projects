@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 13:20:12 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:01:01 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int	victory(int keycode, t_ray *v)
 
 void		ft_win(t_ray *r)
 {
+	r->m = 1;
 	mlx_string_put(r->mlx, r->win, r->sw / 2 - 35, r->sh / 2, 0xff00, "YOU WIN");
 	mlx_string_put(r->mlx, r->win, r->sw / 2 - 155, r->sh / 2 + 30, 0xf0f000,
 			"PRESS ENTER TO GO BACK TO MENU");

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 12:26:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:43:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define THREE2 85
 # define R 15
 # define P 35
+# define M 46
 
 typedef struct	s_coords
 {
@@ -95,6 +96,7 @@ typedef struct	s_ray
 	int			nb_lvl;
 	int			p;
 	int			v;
+	int			m;
 	char		*img;
 	char		*lvl;
 	char		*data;

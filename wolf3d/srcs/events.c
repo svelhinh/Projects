@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 13:21:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 14:04:32 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 static void	move(t_ray *r)
 {
+	if (r->p && r->v)
+	{
+		r->v = 0;
+		r->p = 0;
+		principal_menu(r, 2);
+	}
 	if (r->p)
 		ft_pause(r);
-	else if (r->v)
+	if (r->v)
 		ft_win(r);
 	else
 	{
@@ -61,6 +67,7 @@ static void	victory(int keycode, t_ray *r)
 		r->leftrot = 0;
 		r->rightrot = 0;
 		r->v = 0;
+		r->m = 0;
 		main2(*r);
 	}
 	else if (keycode == ESC)
@@ -77,12 +84,22 @@ static void	event_pause(int keycode, t_ray *r)
 		r->p = 0;
 		main2(*r);
 	}
+	if (keycode == M)
+	{
+		r->v = 1;
+		r->forward = 0;
+		r->back = 0;
+		r->leftrot = 0;
+		r->rightrot = 0;
+	}
 }
 
 int			key_press(int keycode, t_ray *r)
 {
 	if (r->v)
 		victory(keycode, r);
+	if (r->m)
+		return (0);
 	if (keycode == P)
 		r->p ^= 1;
 	else if (keycode == ESC)

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 10:59:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 18:55:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 13:58:45 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ static void	levels(int keycode, t_ray *m)
 	if (keycode == ZERO || keycode == ZERO2 || keycode == ONE
 			|| keycode == ONE2 || keycode == TWO || keycode == TWO2
 			|| keycode == THREE || keycode == THREE2)
+	{
+		m->m = 0;
 		main2(*m);
+	}
 }
 
 static int	events(int keycode, t_ray *m)
