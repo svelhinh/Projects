@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/08 19:06:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/09 12:52:16 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	move(t_ray *r)
 {
 	if (r->p)
 		ft_pause(r);
+	else if (r->v)
+		ft_win(r);
 	else
 	{
 		if (r->forward == 1)
@@ -46,12 +48,39 @@ int			expose(t_ray *r)
 			|| r->map[(int)r->posx][(int)(r->posy + r->diry * MOVE)] == -1
 			|| r->map[(int)(r->posx - r->dirx * MOVE)][(int)r->posy] == -1
 			|| r->map[(int)r->posx][(int)(r->posy - r->diry * MOVE)] == -1)
-		ft_win(r);
+		r->v = 1;
 	return (0);
+}
+
+static void	victory(int keycode, t_ray *r)
+{
+	if (keycode == R)
+	{
+		r->v = 0;
+		main2(*r);
+	}
+	/*else if (keycode == ENTER)
+		principal_menu(r, 2);*/
+	else if (keycode == ESC)
+	{
+		mlx_destroy_window(r->mlx, r->win);
+		exit(0);
+	}
+}
+
+static void	event_pause(int keycode, t_ray *r)
+{
+	if (keycode == R)
+	{
+		r->p = 0;
+		main2(*r);
+	}
 }
 
 int			key_press(int keycode, t_ray *r)
 {
+	if (r->v)
+		victory(keycode, r);
 	if (keycode == P)
 		r->p ^= 1;
 	else if (keycode == ESC)
@@ -59,8 +88,8 @@ int			key_press(int keycode, t_ray *r)
 		mlx_destroy_window(r->mlx, r->win);
 		exit(0);
 	}
-	if (r->p)
-		return (0);
+	(r->p) ? (event_pause(keycode, r)) : (0);
+	(keycode == R) ? (main2(*r)) : (0);
 	if (keycode == W || keycode == UP)
 		r->forward = 1;
 	else if (keycode == S || keycode == DOWN)
