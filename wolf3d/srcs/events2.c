@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 14:13:22 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/10 13:50:00 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,16 @@ void	event_pause(int keycode, t_ray *r)
 		r->back = 0;
 		r->leftrot = 0;
 		r->rightrot = 0;
+	}
+}
+
+void	event_pause2(t_ray *r)
+{
+	if (r->p)
+		r->time_d = clock();
+	else
+	{
+		r->time_d = clock() - r->time_d;
+		r->time_s += r->time_d;
 	}
 }
