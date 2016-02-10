@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 11:29:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 15:43:54 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/10 11:56:05 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void		init_var(t_ray *r)
 	}
 	if (r->nb_lvl == 2)
 	{
-		r->posx = 38;
-		r->posy = 11;
+		r->posx = 39;
+		r->posy = 18;
 	}
 	r->dirx = -1;
 	r->diry = 0;
@@ -60,12 +60,13 @@ static int	ft_victory(int keycode, t_ray *v)
 
 void		ft_win(t_ray *r)
 {
+	ft_empty(r, 2);
 	r->m = 1;
-	mlx_string_put(r->mlx, r->win, r->sw / 2 - 50, r->sh / 2 - 150, 0xffffff,
+	mlx_string_put(r->mlx, r->win, r->sw / 2 - 60, r->sh / 2 - 150, 0xffffff,
 			"TIME : ");
 	mlx_string_put(r->mlx, r->win, r->sw / 2 + 25, r->sh / 2 - 150, 0xffffff,
-			ft_itoa(r->time / CLOCKS_PER_SEC));
-	mlx_string_put(r->mlx, r->win, r->sw / 2 + 40, r->sh / 2 - 150, 0xffffff,
+			ft_ftoa(r->time / CLOCKS_PER_SEC, 3));
+	mlx_string_put(r->mlx, r->win, r->sw / 2 + 100, r->sh / 2 - 150, 0xffffff,
 			"s");
 	mlx_string_put(r->mlx, r->win, r->sw / 2 - 35, r->sh / 2 - 90, 0xff00,
 			"YOU WIN");

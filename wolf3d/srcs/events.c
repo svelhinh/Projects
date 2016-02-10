@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/09 15:23:05 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/10 12:23:59 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int			key_press(int keycode, t_ray *r)
 		mlx_destroy_window(r->mlx, r->win);
 		exit(0);
 	}
+	//(r->p == 1) ? (r->time_s = r->time) : (r->time = r->time_s);
 	(r->p) ? (event_pause(keycode, r)) : (0);
 	(keycode == R) ? (main2(*r)) : (0);
 	if (keycode == W || keycode == UP)
