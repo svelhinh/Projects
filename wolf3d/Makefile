@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/02/10 12:01:17 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/02/17 19:24:47 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,13 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 	@echo "\033[91mIl n'y a plus rien a faire"
 
-$(NAME):
-		@make re -C libft
+$(NAME): $(OBJ)
 		@echo "\033[96mCompilation"
-		@gcc -o $(NAME) -Wall -Wextra -Werror $(SRC) $(LIB) $(LIBFT) -I $(INCLUDES)
-		@make fclean -C libft
+		@gcc -c $(SRC) -Wall -Wextra -Werror -I $(INCLUDES)
+
+%.o: %.c
+	@make -C libft
+	@gcc -o $(NAME) -Wall -Wextra -Werror $(OBJ) $(LIB) $(LIBFT)
 
 clean:
 		@echo "\033[96mSuppression des objets"
