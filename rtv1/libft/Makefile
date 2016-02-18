@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2016/02/18 14:40:07 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/02/18 14:42:09 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,13 @@ SRC = \
 		ft_tolower.c ft_toupper.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
 		ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_putrainbow.c ft_putcolor.c \
 		ft_islower.c ft_isupper.c ft_putnbrendl.c ft_itoa_base.c ft_atoi_base.c \
-		ft_ftoa.c
+		ft_ftoa.c get_next_line.c
 
 OBJ = $(SRC:.c=.o)
 
 SHELL = ZSH
+
+INCLUDES = includes
 
 all: $(NAME)
 		@echo "\033[91mCompilation de la libft terminee"
@@ -42,7 +44,7 @@ $(NAME) : $(OBJ)
 
 %.o: %.c
 		@echo -n "\033[92m."
-		@gcc -o $@ -c $< -Wall -Wextra -Werror -I includes
+		@gcc -o $@ -c $< -Wall -Wextra -Werror -I $(INCLUDES)
 
 clean:
 		@echo "\033[96mSuppression des objets de la libft"

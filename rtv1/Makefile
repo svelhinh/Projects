@@ -6,16 +6,13 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/02/18 14:39:20 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/02/18 14:54:36 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = wolf3d
+NAME = rtv1
 
-SRC = srcs/main.c srcs/events.c srcs/draw.c srcs/functions.c srcs/parser.c \
-	  gnl/get_next_line.c srcs/raycasting.c srcs/load_tex.c srcs/movement.c \
-	  srcs/check.c srcs/menu.c srcs/play.c srcs/options.c srcs/rules.c \
-	  srcs/resolution.c srcs/pause.c srcs/events2.c srcs/colors.c
+SRC = srcs/main.c
 
 LIB = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 
@@ -31,7 +28,7 @@ all: $(NAME)
 	@echo "\033[91mFin"
 
 $(NAME): $(OBJ)
-		@echo "\n\033[91mFin de la compilation du wolf3d\n\033[92mCompilation de la libft"
+		@echo "\n\033[91mFin de la compilation du rtv1\n\033[92mCompilation de la libft"
 		@make -C libft
 		@gcc -o $(NAME) $(OBJ) $(LIB) $(LIBFT) -Wall -Wextra -Werror
 
@@ -40,15 +37,25 @@ $(NAME): $(OBJ)
 		@gcc -o $@ -c $< -Wall -Wextra -Werror -I $(INCLUDES)
 
 clean:
-		@make clean -C libft
-		@echo "\033[96mSuppression des objets du wolf3d"
+		@echo "\033[96mSuppression des objets du rtv1"
 		@rm -f $(OBJ)
 
 fclean: clean
+		@echo "\033[96mSuppression de l'executable rtv1"
+		@rm -f $(NAME)
+
+clean_ft:
+		@make clean -C libft
+		@echo "\033[96mSuppression des objets du rtv1"
+		@rm -f $(OBJ)
+
+fclean_ft: clean_ft
 		@make fclean -C libft
-		@echo "\033[96mSuppression de l'executable wolf3d"
+		@echo "\033[96mSuppression de l'executable rtv1"
 		@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+re_ft: fclean_ft all
+
+.PHONY: all clean fclean re clean_ft fclean_ft re_ft
