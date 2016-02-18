@@ -1,0 +1,4 @@
+object : sphere
+x_center : 512
+y_center : 384
+rayon : 300

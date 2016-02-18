@@ -6,13 +6,15 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/02/18 14:54:36 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/02/18 18:14:43 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rtv1
 
-SRC = srcs/main.c
+SRC2 = main.c events.c geometry.c parser.c
+
+SRC = $(addprefix srcs/, $(SRC2))
 
 LIB = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 
