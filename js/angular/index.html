@@ -1,0 +1,58 @@
+<!-- *********************************************************************** -->
+<!--                                                                         -->
+<!--                                                      :::      ::::::::  -->
+<!-- index.html                                         :+:      :+:    :+:  -->
+<!--                                                  +:+ +:+         +:+    -->
+<!-- By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+       -->
+<!--                                              +#+#+#+#+#+   +#+          -->
+<!-- Created: 2016/02/25 12:05:16 by svelhinh          #+#    #+#            -->
+<!-- Updated: 2016/02/25 18:53:39 by svelhinh         ###   ########.fr      -->
+<!--                                                                         -->
+<!-- *********************************************************************** -->
+
+<!doctype html>
+<html>
+
+	<head>
+
+		<title>angular</title>
+		<meta charset = "utf-8" />
+		<link rel="stylesheet" href="test.css" />
+		<link rel="stylesheet" href="partie2.css" />
+		<script src="angular.js"></script>
+
+	</head>
+
+	<body ng-app="app">
+
+		<div ng-controller="controller">
+
+			<h1>{{ title }}</h1>
+
+
+		<div class="main" ng-repeat = "product in products">
+			<img ng-src = "{{product.cover}}">
+			<p>{{ product.name }}</p>
+			<p>{{ product.price | currency: "€" }}</p>
+			<p>{{ product.date | date: "d MMMM yyyy" }}</p>
+			<p class = "likes" ng-click="plusOne($index)">+ {{ product.likes }}</p>
+			<p class = "dislikes" ng-click="minusOne($index)">- {{ product.dislikes }}</p>
+			<br />
+			<br />
+		</div>
+
+		<div class="container">
+			<div class="card">
+				<app-info info="sergio"></app-info>
+				<app-info info="samuel"></app-info>
+				<app-info info="vetea"></app-info>
+			</div>
+		</div>
+
+		<script src="app.js"></script>
+		<script src="controller.js"></script>
+		<script src="appInfo.js"></script>
+
+	</body>
+
+</html>
