@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 15:30:23 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/18 16:57:23 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/02 18:36:54 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int		expose(t_rt *rt)
 		ft_exit("mlx_new_image() in expose() failed");
 	rt->data = mlx_get_data_addr(rt->img, &rt->bpp, &rt->size_line,
 			&rt->endian);
-	sphere(rt);
-	mlx_put_image_to_window(rt->mlx, rt->win, rt->img, 0, 0);
+	render(rt);
 	mlx_destroy_image(rt->mlx, rt->img);
 	return (0);
 }

@@ -1,4 +1,8 @@
-app.controller('controller', ['$scope', function($scope) { 
+app.controller('controller', ['$scope', 'forecast', function($scope, forecast) {
+	forecast.success(function(data)
+	{
+		$scope.fiveDay = data;
+	});
 	$scope.title = 'Yo YO yo';
 	$scope.products = [
 	{
@@ -51,4 +55,20 @@ app.controller('controller', ['$scope', function($scope) {
     title: 'Vetea',
     price: 1.99
   };
+  $scope.apps = [
+	{
+		icon: $scope.products[0].cover,
+		title: 'Sergio',
+		price: 0.99
+	},
+	{
+		icon: $scope.products[1].cover,
+		title: 'Samuel',
+		price: 2.99
+	},
+	{
+		icon: $scope.products[2].cover,
+		title: 'Vetea',
+		price: 1.99
+	}];
 }]);

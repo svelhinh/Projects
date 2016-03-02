@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:45:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/18 18:14:24 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/02 18:53:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		main(int ac, char **av)
 	parsing_file(av[1], &rt);
 	mlx_hook(rt.win, 2, (1L << 0), key_press, &rt);
 	mlx_hook(rt.win, 3, (1L << 1), key_release, &rt);
-	mlx_loop_hook(rt.mlx, expose, &rt);
+	expose(&rt);
 	mlx_loop(rt.mlx);
 	return (0);
 }
