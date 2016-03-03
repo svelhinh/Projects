@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/03 19:03:10 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/03 17:12:50 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,44 +50,21 @@ int		sphere(t_rt *rt)
 		return (1);
 }
 
-int		plane(t_rt *rt, float *t, t_vector3d plane)
+/*int		plane(t_rt *rt)
 {
-	float	x;
-	float	y;
-	float	z;
-	float	a;
-	float	b;
-	float	c;
-	float	d;
 
-	x = rt->campos.x - plane.x;
-	y = rt->campos.y - plane.y;
-	z = rt->campos.z - plane.z;
-	a = plane.x;
-	b = plane.y;
-	c = plane.z;
-	d = -10;
-	*t = -((a * x + b * y + c * z + d) / (a * rt->vdir.x + b * rt->vdir.y + c * rt->vdir.z));
-	*t /= 100;
-	//printf("t = %f\n", *t);
-	return (1);
-}
+}*/
 
 void	render(t_rt *rt)
 {
 	int x;
 	int y;
 	int hit;
-	int hit2;
-	int hit3;
-	float	t;
+	//int hit2;
 
-	rt->plane.x = 1;
-	rt->plane.y = 1;
+	rt->plane.x = SW / 2;
+	rt->plane.y = 0;
 	rt->plane.z = 0;
-	rt->plane2.x = 1;
-	rt->plane2.y = 0;
-	rt->plane2.z = 1;
 	rt->sphere.x = SW / 2;
 	rt->sphere.y = SH / 2;
 	rt->sphere.z = 20;
@@ -105,14 +82,11 @@ void	render(t_rt *rt)
 		{
 			rt->campos.x = x;
 			hit = sphere(rt);
-			hit2 = plane(rt, &t, rt->plane);
-			hit3 = plane(rt, &t, rt->plane2);
+			//hit2 = plane(rt);
 			if (hit)
-				mlx_pixel_put_to_image(0xff, rt, x, y);
-			else if (hit2)
-				mlx_pixel_put_to_image(0xffff + t, rt, x, y);
-			else if (hit3)
-				mlx_pixel_put_to_image(0xff0000 + t, rt, x, y);
+				mlx_pixel_put_to_image(0xffffff, rt, x, y);
+			/*else if (hit2)
+				mlx_pixel_put_to_image(0xffffff, rt, x, y);*/
 			else
 				mlx_pixel_put_to_image(0, rt, x, y);
 			x++;

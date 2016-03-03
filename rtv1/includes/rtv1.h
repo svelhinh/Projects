@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/03 15:31:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/03 18:49:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "../libft/includes/get_next_line.h"
 # include <mlx.h>
 # include <fcntl.h>
+# include <stdio.h>
 # include <math.h>
 # define SW 1280
 # define SH 720
@@ -44,6 +45,8 @@ typedef struct	s_rt
 	t_vector3d	vdir;
 	t_vector3d	campos;
 	t_vector3d	sphere;
+	t_vector3d	plane;
+	t_vector3d	plane2;
 	float		sphereradius;
 }				t_rt;
 void			ft_exit(char *s);
