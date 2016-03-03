@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/02 19:49:25 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/03 15:31:16 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
-# define SW 320
-# define SH 200
+# define SW 1280
+# define SH 720
 # define ESC /*65307*/53
 
 typedef struct	s_vector3d
@@ -47,7 +47,7 @@ typedef struct	s_rt
 	float		sphereradius;
 }				t_rt;
 void			ft_exit(char *s);
-void			mlx_pixel_put_to_image(t_coords *c, t_rt *v, int x, int y);
+void			mlx_pixel_put_to_image(int color, t_rt *v, int x, int y);
 int				expose(t_rt *rt);
 int				key_press(int keycode, t_rt *rt);
 int				key_release(int keycode, t_rt *rt);

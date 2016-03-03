@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:45:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/02 18:53:56 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/03 15:29:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_exit(char *s)
 	exit(0);
 }
 
-void	mlx_pixel_put_to_image(t_coords *c, t_rt *v, int x, int y)
+void	mlx_pixel_put_to_image(int color, t_rt *v, int x, int y)
 {
 	unsigned char	b;
 	unsigned char	g;
@@ -28,15 +28,15 @@ void	mlx_pixel_put_to_image(t_coords *c, t_rt *v, int x, int y)
 	{
 		if (!v->endian)
 		{
-			b = (c->color & 0xFF0000) >> 16;
-			r = (c->color & 0xFF);
+			b = (color & 0xFF0000) >> 16;
+			r = (color & 0xFF);
 		}
 		else
 		{
-			r = (c->color & 0xFF0000) >> 16;
-			b = (c->color & 0xFF);
+			r = (color & 0xFF0000) >> 16;
+			b = (color & 0xFF);
 		}
-		g = (c->color & 0xFF00) >> 8;
+		g = (color & 0xFF00) >> 8;
 		v->data[y * v->size_line + x * v->bpp / 8] = r;
 		v->data[y * v->size_line + x * v->bpp / 8 + 1] = g;
 		v->data[y * v->size_line + x * v->bpp / 8 + 2] = b;
