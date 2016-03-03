@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/03 19:03:10 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/03 19:05:04 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		plane(t_rt *rt, float *t, t_vector3d plane)
 	c = plane.z;
 	d = -10;
 	*t = -((a * x + b * y + c * z + d) / (a * rt->vdir.x + b * rt->vdir.y + c * rt->vdir.z));
-	*t /= 100;
+	*t /= 10;
 	//printf("t = %f\n", *t);
 	return (1);
 }
@@ -108,7 +108,7 @@ void	render(t_rt *rt)
 			hit2 = plane(rt, &t, rt->plane);
 			hit3 = plane(rt, &t, rt->plane2);
 			if (hit)
-				mlx_pixel_put_to_image(0xff, rt, x, y);
+				mlx_pixel_put_to_image(0xff + t * 3, rt, x, y);
 			else if (hit2)
 				mlx_pixel_put_to_image(0xffff + t, rt, x, y);
 			else if (hit3)
