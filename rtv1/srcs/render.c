@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/03 19:05:04 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:49:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,90 +31,88 @@ float	vectordot(t_vector3d *v1, t_vector3d *v2)
 	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
 }
 
-int		sphere(t_rt *rt)
+int		sphere(t_ray *r, t_sphere *s, float *t)
 {
 	float		a;
 	float		b;
 	float		c;
 	float		discr;
+	float		t0;
+	float		t1;
+	int			retval;
 	t_vector3d	dist;
 
-	a = vectordot(&rt->vdir, &rt->vdir);
-	dist = vectorsub(&rt->campos, &rt->sphere);
-	b = 2 * vectordot(&rt->vdir, &dist);
-	c = vectordot(&dist, &dist) - pow(rt->sphereradius, 2);
+	retval = 0;
+	a = vectordot(&r->dir, &r->dir);
+	dist = vectorsub(&r->start, &s->pos);
+	b = 2 * vectordot(&r->dir, &dist);
+	c = vectordot(&dist, &dist) - pow(s->radius, 2);
 	discr = pow(b, 2) - 4 * a * c;
-	if (discr < 0)
-		return (0);
-	else
-		return (1);
-}
-
-int		plane(t_rt *rt, float *t, t_vector3d plane)
-{
-	float	x;
-	float	y;
-	float	z;
-	float	a;
-	float	b;
-	float	c;
-	float	d;
-
-	x = rt->campos.x - plane.x;
-	y = rt->campos.y - plane.y;
-	z = rt->campos.z - plane.z;
-	a = plane.x;
-	b = plane.y;
-	c = plane.z;
-	d = -10;
-	*t = -((a * x + b * y + c * z + d) / (a * rt->vdir.x + b * rt->vdir.y + c * rt->vdir.z));
-	*t /= 10;
-	//printf("t = %f\n", *t);
-	return (1);
+	if (discr != 0)
+	{
+		t0 = (-b + sqrt(discr)) / 2;
+		t1 = (-b - sqrt(discr)) / 2;
+		if (t0 > t1)
+			t0 = t1;
+		if ((t0 > 0.001) && (t0 < *t))
+		{
+			*t = t0;
+			retval = 1;
+		}
+	}
+	return (retval);
 }
 
 void	render(t_rt *rt)
 {
-	int x;
-	int y;
-	int hit;
-	int hit2;
-	int hit3;
-	float	t;
+	t_sphere	s[3];
+	t_ray		r;
+	float		t;
+	int			i;
+	int			currentsphere;
+	int			x;
+	int			y;
 
-	rt->plane.x = 1;
-	rt->plane.y = 1;
-	rt->plane.z = 0;
-	rt->plane2.x = 1;
-	rt->plane2.y = 0;
-	rt->plane2.z = 1;
-	rt->sphere.x = SW / 2;
-	rt->sphere.y = SH / 2;
-	rt->sphere.z = 20;
-	rt->sphereradius = 200;
-	rt->vdir.x = 0;
-	rt->vdir.y = 0;
-	rt->vdir.z = 1;
-	rt->campos.z = 0;
+	s[0].pos.x = 2 * SW / 3 + 50;
+	s[0].pos.y = SH / 3 - 75;
+	s[0].pos.z = 0;
+	s[0].radius = 140;
+	s[0].color = 0x0;
+	s[1].pos.x = SW / 3 - 50;
+	s[1].pos.y = SH / 3 - 75;
+	s[1].pos.z = 0;
+	s[1].radius = 140;
+	s[1].color = 0x0;
+	s[2].pos.x = SW / 2;
+	s[2].pos.y = SH / 2;
+	s[2].pos.z = 10;
+	s[2].radius = 200;
+	s[2].color = 0xEDE1C4;
 	y = 0;
 	while (y < SH)
 	{
-		rt->campos.y = y;
 		x = 0;
 		while (x < SW)
 		{
-			rt->campos.x = x;
-			hit = sphere(rt);
-			hit2 = plane(rt, &t, rt->plane);
-			hit3 = plane(rt, &t, rt->plane2);
-			if (hit)
-				mlx_pixel_put_to_image(0xff + t * 3, rt, x, y);
-			else if (hit2)
-				mlx_pixel_put_to_image(0xffff + t, rt, x, y);
-			else if (hit3)
-				mlx_pixel_put_to_image(0xff0000 + t, rt, x, y);
+			r.start.x = x;
+			r.start.y = y;
+			r.start.z = -2000;
+			r.dir.x = 0;
+			r.dir.y = 0;
+			r.dir.z = 1;
+			t = 20000;
+			currentsphere = -1;
+			i = 0;
+			while (i < 3)
+			{
+				if (sphere(&r, &s[i], &t))
+					currentsphere = i;
+				i++;
+			}
+			if (currentsphere != -1)
+				mlx_pixel_put_to_image(s[currentsphere].color, rt, x, y);
 			else
-				mlx_pixel_put_to_image(0, rt, x, y);
+				mlx_pixel_put_to_image(0xffffff, rt, x, y);
 			x++;
 		}
 		y++;

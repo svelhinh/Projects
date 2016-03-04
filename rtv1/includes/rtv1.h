@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/03 18:49:27 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/04 16:00:49 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,17 @@ typedef struct	s_vector3d
 	float		y;
 	float		z;
 }				t_vector3d;
-typedef struct	s_coords
+typedef struct	s_sphere
 {
-	int			x;
-	int			y;
+	t_vector3d	pos;
+	float		radius;
 	int			color;
-}				t_coords;
+}				t_sphere;
+typedef struct	s_ray
+{
+	t_vector3d	start;
+	t_vector3d	dir;
+}				t_ray;
 typedef struct	s_rt
 {
 	void		*mlx;
@@ -42,12 +47,6 @@ typedef struct	s_rt
 	int			endian;
 	int			bpp;
 	int			size_line;
-	t_vector3d	vdir;
-	t_vector3d	campos;
-	t_vector3d	sphere;
-	t_vector3d	plane;
-	t_vector3d	plane2;
-	float		sphereradius;
 }				t_rt;
 void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_rt *v, int x, int y);
