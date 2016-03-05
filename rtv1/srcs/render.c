@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/05 17:05:14 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/05 18:33:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int			plane(t_ray *r, t_plane *p, float *t)
 
 void		render(t_rt *rt)
 {
-	t_sphere	s[3];
+	t_sphere	s[8];
 	t_plane		p[1];
 	t_ray		r;
 	char		*object;
@@ -79,24 +79,49 @@ void		render(t_rt *rt)
 	int			y;
 
 	s[0].pos.x = 500;
-	s[0].pos.y = 500;
+	s[0].pos.y = 100;
 	s[0].pos.z = 0;
-	s[0].radius = 200;
-	s[0].color = 0x987b12;
-	s[1].pos.x = 900;
-	s[1].pos.y = 400;
+	s[0].radius = 30;
+	s[0].color = 0xECBD00;
+	s[1].pos.x = 450;
+	s[1].pos.y = 125;
 	s[1].pos.z = 0;
-	s[1].radius = 100;
-	s[1].color = 0x762803;
-	s[2].pos.x = 300;
-	s[2].pos.y = 410;
+	s[1].radius = 5;
+	s[1].color = 0x5D5A55;
+	s[2].pos.x = 550;
+	s[2].pos.y = 150;
 	s[2].pos.z = 0;
-	s[2].radius = 50;
-	s[2].color = 0x98;
+	s[2].radius = 10;
+	s[2].color = 0xD89140;
+	s[3].pos.x = 750;
+	s[3].pos.y = 175;
+	s[3].pos.z = 0;
+	s[3].radius = 15;
+	s[3].color = 0x418BED;
+	s[4].pos.x = 850;
+	s[4].pos.y = 200;
+	s[4].pos.z = 0;
+	s[4].radius = 10;
+	s[4].color = 0xE95959;
+	s[5].pos.x = 200;
+	s[5].pos.y = 250;
+	s[5].pos.z = 0;
+	s[5].radius = 175;
+	s[5].color = 0xE66832;
+	s[6].pos.x = 700;
+	s[6].pos.y = 500;
+	s[6].pos.z = 0;
+	s[6].radius = 250;
+	s[6].color = 0xD5C07B;
+	s[7].pos.x = 725;
+	s[7].pos.y = 175;
+	s[7].pos.z = 0;
+	s[7].radius = 3;
+	s[7].color = 0x65635C;
 	p[0].pos.x = 100;
-	p[0].pos.y = 600;
+	p[0].pos.y = 650;
 	p[0].pos.z = 3;
-	p[0].color = 0x5555;
+	p[0].color = 0x757063;
 	y = 0;
 	while (y < SH)
 	{
@@ -113,9 +138,9 @@ void		render(t_rt *rt)
 			currentobject = -1;
 			i = 0;
 			object = NULL;
-			while (i < 3)
+			while (i < 8)
 			{
-				if (sphere(&r, &s[i], &t) && i < 3)
+				if (sphere(&r, &s[i], &t) && i < 8)
 				{
 					currentobject = i;
 					if (!ft_strstr(object, "sphere"))
