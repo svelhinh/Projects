@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   vectors.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/05 11:35:43 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/03/05 11:10:35 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/03/05 11:12:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	parsing_file(char *file, t_rt *rt)
+t_vector3d	vectorsub(t_vector3d *v1, t_vector3d *v2)
 {
-	int fd;
+	t_vector3d result;
 
-	(void)rt;
-	if ((fd = open(file, O_RDONLY) == -1))
-		ft_exit("This scene doesn't exist");
+	result.x = v1->x - v2->x;
+	result.y = v1->y - v2->y;
+	result.z = v1->z - v2->z;
+	return (result);
+}
+
+float		vectordot(t_vector3d *v1, t_vector3d *v2)
+{
+	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
 }

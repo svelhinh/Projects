@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/05 16:52:05 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/05 10:51:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct	s_sphere
 typedef struct	s_plane
 {
 	t_vector3d	pos;
-	float		dist;
 	int			color;
 }				t_plane;
 typedef struct	s_ray
@@ -53,8 +52,6 @@ typedef struct	s_rt
 	int			endian;
 	int			bpp;
 	int			size_line;
-	t_sphere	*s;
-	t_plane		*p;
 }				t_rt;
 void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_rt *v, int x, int y);
@@ -63,6 +60,4 @@ int				key_press(int keycode, t_rt *rt);
 int				key_release(int keycode, t_rt *rt);
 void			parsing_file(char *file, t_rt *rt);
 void			render(t_rt *rt);
-t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2);
-float			vectordot(t_vector3d *v1, t_vector3d *v2);
 #endif
