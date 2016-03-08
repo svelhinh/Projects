@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/08 16:46:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/08 18:27:01 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct	s_rt
 	int			endian;
 	int			bpp;
 	int			size_line;
+	int			default_color;
 	t_sphere	*s;
 	t_plane		*p;
 }				t_rt;
