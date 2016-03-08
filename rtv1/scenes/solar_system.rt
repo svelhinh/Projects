@@ -1,0 +1,40 @@
+object : camera
+x_center : 0
+y_center : 0
+z_center : -2000
+x_dir : 0
+y_dir : 0
+z_dir : 1
+
+object : sphere
+x_center : 903
+y_center : 165
+z_center : 0
+radius : 140
+color : 0x987b12
+
+object : sphere
+x_center : 376
+y_center : 165
+z_center : 0
+radius : 140
+color : 0x762803
+
+object : sphere
+x_center : 640
+y_center : 360
+z_center : 10
+radius : 200
+color : 0x98
+
+object : plane
+x_center : 0
+y_center : 0
+z_center : 200
+color : 0x98
+
+object : plane
+x_center : 10
+y_center : 300
+z_center : 100
+color : 0x5555
