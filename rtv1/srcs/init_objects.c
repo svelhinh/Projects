@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.c                                          :+:      :+:    :+:   */
+/*   init_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/05 11:10:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/09 14:26:14 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/03/09 14:21:12 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_vector3d	vectorsub(t_vector3d *v1, t_vector3d *v2)
+void	camera_init(int fd, t_rt *rt)
 {
-	t_vector3d result;
+	(void)fd;
+	(void)rt;
+	/*char *line;
+	char **line2;
 
-	result.x = v1->x - v2->x;
-	result.y = v1->y - v2->y;
-	result.z = v1->z - v2->z;
-	return (result);
+	while (get_next_line(fd, &line))
+	{
+		line2 = ft_strsplit(line, ' ');
+		if (ft_strstr(line2[0], "x_pos"))
+			rt->campos.x = 0;
+		ft_strdel(&line);
+	}*/
 }
 
-float		vectordot(t_vector3d *v1, t_vector3d *v2)
+void	sphere_init(int fd, t_rt *rt)
 {
-	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
+	(void)fd;
+	(void)rt;
+}
+
+void	plane_init(int fd, t_rt *rt)
+{
+	(void)fd;
+	(void)rt;
 }

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.c                                          :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/05 11:10:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/09 14:26:14 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/03/09 14:33:09 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/03/09 14:35:21 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "includes/libft.h"
+#include <stdio.h>
 
-t_vector3d	vectorsub(t_vector3d *v1, t_vector3d *v2)
+int		main(int ac, char **av)
 {
-	t_vector3d result;
+	(void)ac;
 
-	result.x = v1->x - v2->x;
-	result.y = v1->y - v2->y;
-	result.z = v1->z - v2->z;
-	return (result);
-}
-
-float		vectordot(t_vector3d *v1, t_vector3d *v2)
-{
-	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
+	printf("nb = %f\n", ft_atof(av[1]));
+	return (0);
 }

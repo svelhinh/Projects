@@ -1,55 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/26 10:00:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/09 14:15:17 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/03/09 14:13:24 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/03/09 14:54:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 #include <stdio.h>
-#include <math.h>
 
-static int		ft_nbrlen(int n)
+static double	cnt_nb(char *s)
 {
-	int i;
+	double	nb;
+	int		nb2;
+	int		i;
 
 	i = 0;
-	while (n != 0)
+	nb2 = ft_atoi(s);
+	nb = nb2;
+	while (s[i])
 	{
-		n /= 10;
+		nb /= 10;
 		i++;
 	}
-	return (i);
+	return (nb);
 }
 
-char			*ft_ftoa(double n, int preci)
+double			ft_atof(char *s)
 {
-	char	*str;
+	double	nb;
 	int		i;
-	int		ipart;
-	double	fpart;
+	char	*it;
+	int		dot;
 
 	i = 0;
-	ipart = (int)n;
-	fpart = n - (double)ipart;
-	str = ft_strdup(ft_itoa(ipart));
-	str = ft_strjoin(str, ".");
-	while (i < preci)
+	while (s[i] != '.' && s[i])
 	{
-		fpart = fpart * 10;
+		if (!ft_isdigit(s[i]))
+			return (0);
 		i++;
 	}
-	i = 0;
-	while (i < preci - ft_nbrlen(fpart))
+	it = ft_strsub(s, 0, i);
+	nb = ft_atoi(it);
+	dot = i;
+	i++;
+	while (s[i] && s[i])
 	{
-		str = ft_strjoin(str, "0");
+		if (!ft_isdigit(s[i]))
+			return (0);
 		i++;
 	}
-	str = ft_strjoin(str, ft_itoa(fpart));
-	return (str);
+	it = ft_strsub(s, dot + 1, i);
+	nb += cnt_nb(it);
+	return (nb);
 }

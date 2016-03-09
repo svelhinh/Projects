@@ -6,13 +6,13 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/09 11:51:19 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/09 14:26:10 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int			sphere(t_ray *r, t_sphere *s, float *t)
+static int		sphere(t_ray *r, t_sphere *s, float *t)
 {
 	t_vector3d	dist;
 	float		b;
@@ -42,7 +42,7 @@ int			sphere(t_ray *r, t_sphere *s, float *t)
 	return (retval);
 }
 
-int			plane(t_ray *r, t_plane *p, float *t)
+static int		plane(t_ray *r, t_plane *p, float *t)
 {
 	float	x;
 	float	y;

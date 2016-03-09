@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/08 18:27:01 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/09 14:26:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct	s_rt
 	int			default_color;
 	t_sphere	*s;
 	t_plane		*p;
+	t_ray		r;
+	t_vector3d	campos;
 }				t_rt;
 void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_rt *v, int x, int y);
@@ -66,4 +68,7 @@ void			parsing_file(char *file, t_rt *rt);
 void			render(t_rt *rt);
 t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2);
 float			vectordot(t_vector3d *v1, t_vector3d *v2);
+void			plane_init(int fd, t_rt *rt);
+void			sphere_init(int fd, t_rt *rt);
+void			camera_init(int fd, t_rt *rt);
 #endif
