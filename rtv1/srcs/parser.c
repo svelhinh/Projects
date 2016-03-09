@@ -6,22 +6,27 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/08 18:26:57 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/09 12:04:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	default_color(char *color, t_rt *rt)
+static void	default_color(char *color, t_rt *rt)
 {
 	int color2;
+	int i;
 
+	i = 0;
+	while (color[++i])
+		if ((!ft_isdigit(color[i]) && (color[i] < 'a' || color[i] > 'f')
+				&& (color[i] < 'A' || color[i] > 'F')) || ft_strlen(color) > 6)
+			ft_exit("\033[31mBad format for default_color\n");
 	color2 = ft_atoi_base(color, 16);
-	ft_putnbrendl(color2);
-	rt->default_color = 0;
+	rt->default_color = color2;
 }
 
-void	parsing_file(char *file, t_rt *rt)
+void		parsing_file(char *file, t_rt *rt)
 {
 	int		fd;
 	char	*line;

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/05 18:33:46 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/09 11:51:19 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void		render(t_rt *rt)
 					mlx_pixel_put_to_image(p[currentobject].color, rt, x, y);
 			}
 			else
-				mlx_pixel_put_to_image(0x0, rt, x, y);
+				mlx_pixel_put_to_image(rt->default_color, rt, x, y);
 			x++;
 		}
 		y++;
