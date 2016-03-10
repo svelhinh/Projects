@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:54:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/10 11:37:15 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/10 16:21:24 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static void	init_sphere_tab(char *file, t_rt *rt)
 {
 	int		fd;
 	char	*line;
+	int		i;
 
 	rt->nbs = 0;
+	i = 0;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line))
@@ -27,6 +29,43 @@ static void	init_sphere_tab(char *file, t_rt *rt)
 	}
 	if (!(rt->s = (t_sphere *)malloc(sizeof(t_sphere) * rt->nbs)))
 		ft_exit("malloc of rt->s failed in init_sphere_tab");
+	while (i < rt->nbs)
+	{
+		rt->s[i].pos.x = 0;
+		rt->s[i].pos.y = 0;
+		rt->s[i].pos.z = 0;
+		rt->s[i].radius = 0;
+		rt->s[i].color = 0;
+		i++;
+	}
+	close(fd);
+}
+
+static void	init_plane_tab(char *file, t_rt *rt)
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	rt->nbp = 0;
+	i = 0;
+	if ((fd = open(file, O_RDONLY)) == -1)
+		ft_exit("\033[31mThis scene doesn't exist\n");
+	while (get_next_line(fd, &line))
+	{
+		rt->nbp += (ft_strstr(line, "object : plane")) ? (1) : (0);
+		ft_strdel(&line);
+	}
+	if (!(rt->p = (t_plane *)malloc(sizeof(t_plane) * rt->nbp)))
+		ft_exit("malloc of rt->p failed in init_plane_tab");
+	while (i < rt->nbp)
+	{
+		rt->p[i].pos.x = 0;
+		rt->p[i].pos.y = 0;
+		rt->p[i].pos.z = 0;
+		rt->p[i].color = 0;
+		i++;
+	}
 	close(fd);
 }
 
@@ -40,4 +79,5 @@ void		init_all(char *file, t_rt *rt)
 	rt->r.dir.y = 0;
 	rt->r.dir.z = 0;
 	init_sphere_tab(file, rt);
+	init_plane_tab(file, rt);
 }

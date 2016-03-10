@@ -8,22 +8,78 @@ r_dir_x : 0
 r_dir_y : 0
 r_dir_z : 1
 
-object : sphere
-x_pos : 300
-y_pos : 100
-z_pos : 0
-radius : 100
-color : ECBD00
-
-object : sphere
-x_pos : 600
-y_pos : 300
-z_pos : 0
-radius : 100
-color : ECBD00
-
 object : plane
 x_pos : 100
 y_pos : 650
 z_pos : 3
 color : 757063
+
+object : sphere
+x_pos : 100
+y_pos : 100
+z_pos : 0
+radius : 10
+color : EC1D00
+
+object : sphere
+x_pos : 100
+y_pos : 200
+z_pos : 0
+radius : 20
+color : ECBD90
+
+object : sphere
+x_pos : 100
+y_pos : 300
+z_pos : 0
+radius : 30
+color : 1CBD00
+
+object : sphere
+x_pos : 100
+y_pos : 400
+z_pos : 0
+radius : 40
+color : FC1100
+
+object : sphere
+x_pos : 100
+y_pos : 500
+z_pos : 0
+radius : 50
+color : 9cadf
+
+object : sphere
+x_pos : 100
+y_pos : 600
+z_pos : 0
+radius : 60
+color : c96d
+
+object : sphere
+x_pos : 500
+y_pos : 100
+z_pos : 0
+radius : 70
+color : 12b679
+
+object : sphere
+x_pos : 500
+y_pos : 175
+z_pos : -25
+radius : 80
+color : 6d71cb
+
+object : sphere
+x_pos : 500
+y_pos : 215
+z_pos : -25
+radius : 90
+color : c5c71
+
+object : sphere
+x_pos : 500
+y_pos : 300
+z_pos : 0
+radius : 100
+color : 17c5c
