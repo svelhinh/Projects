@@ -14,6 +14,12 @@ y_pos : 650
 z_pos : 3
 color : 757063
 
+object : plane
+x_pos : -100
+y_pos : 450
+z_pos : 3
+color : b5d84a
+
 object : sphere
 x_pos : 100
 y_pos : 100
