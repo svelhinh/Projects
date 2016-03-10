@@ -12,7 +12,7 @@
 
 NAME = rtv1
 
-SRC2 = main.c events.c parser.c init.c
+SRC2 = main.c events.c parser.c render.c vectors.c init_objects.c
 
 SRC = $(addprefix srcs/, $(SRC2))
 

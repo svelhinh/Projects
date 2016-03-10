@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 14:13:24 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/09 15:34:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/10 10:31:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ static double	cnt_nb(char *s)
 	return (nb);
 }
 
+static int		check_dot(char *s, int i)
+{
+	i++;
+	while (s[i] != '.' && s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (0);
+		i++;
+	}
+	return (i);
+}
+
 double			ft_atof(char *s)
 {
 	double	nb;
@@ -38,16 +50,12 @@ double			ft_atof(char *s)
 	int		dot;
 
 	i = 0;
-	while (s[i] != '.' && s[i])
-	{
-		if (!ft_isdigit(s[i]) && s[i] != '-')
-			return (0);
-		i++;
-	}
+	if (!ft_isdigit(s[i]) && s[i] != '-')
+		return (0);
+	i = check_dot(s, i);
 	if (!s[i])
 		return (ft_atoi(s));
-	it = ft_strsub(s, 0, i);
-	ft_putendl(it);
+	it = (s[0] == '-') ? (ft_strsub(s, 1, i)) : (ft_strsub(s, 0, i));
 	nb = ft_atoi(it);
 	dot = i;
 	i++;
@@ -59,5 +67,6 @@ double			ft_atof(char *s)
 	}
 	it = ft_strsub(s, dot + 1, i);
 	nb += cnt_nb(it);
+	nb = (s[0] == '-') ? (-nb) : (nb);
 	return (nb);
 }

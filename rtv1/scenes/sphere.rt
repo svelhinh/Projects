@@ -3,16 +3,23 @@ default_color : 0
 object : camera
 x_pos : 0
 y_pos : 0
-z_pos : -10000
+z_pos : 0
 r_dir_x : 0
 r_dir_y : 0
 r_dir_z : 1
 
 object : sphere
-x_pos : 500
+x_pos : 300
 y_pos : 100
 z_pos : 0
-radius : 30
+radius : 100
+color : ECBD00
+
+object : sphere
+x_pos : 600
+y_pos : 300
+z_pos : 0
+radius : 100
 color : ECBD00
 
 object : plane

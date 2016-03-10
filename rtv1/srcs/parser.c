@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/09 14:19:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/10 10:59:07 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		parsing_file(char *file, t_rt *rt)
 	char	*line;
 	char	**line2;
 
+	init_all(file, rt);
 	if ((fd = open(file, O_RDONLY)) == -1)
 		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line) > 0)

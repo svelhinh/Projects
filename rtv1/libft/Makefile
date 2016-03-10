@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2016/03/09 14:36:14 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/03/02 10:32:14 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ SRC = \
 
 OBJ = $(SRC:.c=.o)
 
-SHELL = ZSH
-
 INCLUDES = includes
+
+SHELL = ZSH
 
 all: $(NAME)
 		@echo -n "\033[0m"

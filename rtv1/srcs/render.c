@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/09 14:26:10 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/10 11:28:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,8 @@ static int		plane(t_ray *r, t_plane *p, float *t)
 
 void		render(t_rt *rt)
 {
-	t_sphere	s[8];
+	//t_sphere	s[8];
 	t_plane		p[1];
-	t_ray		r;
 	char		*object;
 	float		t;
 	int			i;
@@ -78,7 +77,7 @@ void		render(t_rt *rt)
 	int			x;
 	int			y;
 
-	s[0].pos.x = 500;
+	/*s[0].pos.x = 500;
 	s[0].pos.y = 100;
 	s[0].pos.z = 0;
 	s[0].radius = 30;
@@ -117,7 +116,7 @@ void		render(t_rt *rt)
 	s[7].pos.y = 175;
 	s[7].pos.z = 0;
 	s[7].radius = 3;
-	s[7].color = 0x65635C;
+	s[7].color = 0x65635C;*/
 	p[0].pos.x = 100;
 	p[0].pos.y = 650;
 	p[0].pos.z = 3;
@@ -128,25 +127,22 @@ void		render(t_rt *rt)
 		x = 0;
 		while (x < SW)
 		{
-			r.start.x = (float)x;
-			r.start.y = (float)y;
-			r.start.z = -10000;
-			r.dir.x = 0;
-			r.dir.y = 0;
-			r.dir.z = 1;
+			rt->r.start.x = (float)x + rt->campos.x;
+			rt->r.start.y = (float)y + rt->campos.y;
+			rt->r.start.z = -10000 + rt->campos.z;
 			t = 20000;
 			currentobject = -1;
 			i = 0;
 			object = NULL;
-			while (i < 8)
+			while (i < rt->nbs)			// Ne pas oublier de trouver le i max
 			{
-				if (sphere(&r, &s[i], &t) && i < 8)
+				if (sphere(&rt->r, &rt->s[i], &t) && i < rt->nbs)
 				{
 					currentobject = i;
 					if (!ft_strstr(object, "sphere"))
 						object = ft_strdup("sphere");
 				}
-				if (plane(&r, &p[i], &t) && i < 1)
+				if (plane(&rt->r, &p[i], &t) && i < 1)
 				{
 					currentobject = i;
 					if (!ft_strstr(object, "plane"))
@@ -157,7 +153,7 @@ void		render(t_rt *rt)
 			if (currentobject != -1)
 			{
 				if (ft_strstr("sphere", object))
-					mlx_pixel_put_to_image(s[currentobject].color, rt, x, y);
+					mlx_pixel_put_to_image(rt->s[currentobject].color, rt, x, y);
 				else if (ft_strstr("plane", object))
 					mlx_pixel_put_to_image(p[currentobject].color, rt, x, y);
 			}
