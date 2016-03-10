@@ -1,40 +1,71 @@
+default_color : 0
+
 object : camera
-x_center : 0
-y_center : 0
-z_center : -2000
-x_dir : 0
-y_dir : 0
-z_dir : 1
+x_pos : 0
+y_pos : 0
+z_pos : 0
+r_dir_x : 0
+r_dir_y : 0
+r_dir_z : 1
 
 object : sphere
-x_center : 903
-y_center : 165
-z_center : 0
-radius : 140
-color : 0x987b12
+x_pos : 500
+y_pos : 100
+z_pos : 0
+radius : 30
+color : ecbd00
 
 object : sphere
-x_center : 376
-y_center : 165
-z_center : 0
-radius : 140
-color : 0x762803
+x_pos : 450
+y_pos : 125
+z_pos : 0
+radius : 5
+color : 5d5a55
 
 object : sphere
-x_center : 640
-y_center : 360
-z_center : 10
-radius : 200
-color : 0x98
+x_pos : 550
+y_pos : 150
+z_pos : 0
+radius : 10
+color : d89140
+
+object : sphere
+x_pos : 750
+y_pos : 175
+z_pos : 0
+radius : 15
+color : 418bed
+
+object : sphere
+x_pos : 850
+y_pos : 200
+z_pos : 0
+radius : 10
+color : e95959
+
+object : sphere
+x_pos : 200
+y_pos : 250
+z_pos : 0
+radius : 175
+color : e66832
+
+object : sphere
+x_pos : 700
+y_pos : 500
+z_pos : 0
+radius : 250
+color : d5c07b
+
+object : sphere
+x_pos : 725
+y_pos : 175
+z_pos : 0
+radius : 3
+color : 65635c
 
 object : plane
-x_center : 0
-y_center : 0
-z_center : 200
-color : 0x98
-
-object : plane
-x_center : 10
-y_center : 300
-z_center : 100
-color : 0x5555
+x_pos : 0
+y_pos : 0
+z_pos : 200
+color : 98
