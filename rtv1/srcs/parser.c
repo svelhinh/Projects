@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/10 15:26:01 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/10 17:20:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		parsing_file(char *file, t_rt *rt)
 	{
 		if (line[0])
 		{
-			line2 = ft_strsplit(line, ' ');						// Ne pas oublier de free line2
+			line2 = ft_strsplit(line, ' ');		// Ne pas oublier de free line2
 			if (ft_strstr(line2[0], "default_color"))
 				default_color(line2[2], rt);
 			else if (ft_strstr(line2[0], "object"))

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/10 16:06:29 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/10 17:21:06 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	camera_init(int fd, t_rt *rt)
 	while (get_next_line(fd, &line))
 	{
 		if (line[0] == '\0')
-			break;
+			break ;
 		line2 = ft_strsplit(line, ' ');
 		if (ft_strstr(line2[0], "x_pos"))
 			rt->campos.x = ft_atof(line2[2]);
@@ -47,7 +47,7 @@ void	sphere_init(int fd, t_rt *rt)
 	while (get_next_line(fd, &line))
 	{
 		if (line[0] == '\0')
-			break;
+			break ;
 		line2 = ft_strsplit(line, ' ');
 		if (ft_strstr(line2[0], "x_pos"))
 			rt->s[i].pos.x = ft_atof(line2[2]);
@@ -60,7 +60,6 @@ void	sphere_init(int fd, t_rt *rt)
 		else if (ft_strstr(line2[0], "color"))
 			rt->s[i].color = ft_atoi_base(line2[2], 16);
 	}
-	//printf("pos.x = %f\npos.y = %f\npos.z = %f\nradius = %f\ncolor = %d\n\n", rt->s[i].pos.x, rt->s[i].pos.y, rt->s[i].pos.z, rt->s[i].radius, rt->s[i].color);
 	i++;
 }
 
@@ -73,7 +72,7 @@ void	plane_init(int fd, t_rt *rt)
 	while (get_next_line(fd, &line))
 	{
 		if (line[0] == '\0')
-			break;
+			break ;
 		line2 = ft_strsplit(line, ' ');
 		if (ft_strstr(line2[0], "x_pos"))
 			rt->p[i].pos.x = ft_atof(line2[2]);
@@ -84,6 +83,5 @@ void	plane_init(int fd, t_rt *rt)
 		else if (ft_strstr(line2[0], "color"))
 			rt->p[i].color = ft_atoi_base(line2[2], 16);
 	}
-	//printf("pos.x = %f\npos.y = %f\npos.z = %f\ncolor = %d\n\n", rt->p[i].pos.x, rt->p[i].pos.y, rt->p[i].pos.z, rt->p[i].color);
 	i++;
 }

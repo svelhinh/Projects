@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/10 17:41:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/10 17:17:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static int		plane(t_ray *r, t_plane *p, float *t)
 
 void		render(t_rt *rt)
 {
+	/*t_sphere	s[7];
+	t_plane		p[1];*/
 	char		*object;
 	float		t;
 	int			i;
@@ -75,7 +77,47 @@ void		render(t_rt *rt)
 	int			x;
 	int			y;
 
+	/*s[0].pos.x = 100;
+	s[0].pos.y = 100;
+	s[0].pos.z = 0;
+	s[0].radius = 10;
+	s[0].color = 0xec1d00;
+	s[6].pos.x = 225;
+	s[6].pos.y = 100;
+	s[6].pos.z = 0;
+	s[6].radius = 20;
+	s[6].color = 0x5D5A55;
+	s[2].pos.x = 100;
+	s[2].pos.y = 300;
+	s[2].pos.z = 0;
+	s[2].radius = 30;
+	s[2].color = 0xD89140;
+	s[3].pos.x = 100;
+	s[3].pos.y = 400;
+	s[3].pos.z = 0;
+	s[3].radius = 40;
+	s[3].color = 0x418BED;
+	s[4].pos.x = 100;
+	s[4].pos.y = 500;
+	s[4].pos.z = 0;
+	s[4].radius = 50;
+	s[4].color = 0xE95959;
+	s[5].pos.x = 100;
+	s[5].pos.y = 400;
+	s[5].pos.z = 0;
+	s[5].radius = 60;
+	s[5].color = 0xE66832;
+	s[1].pos.x = 425;
+	s[1].pos.y = 100;
+	s[1].pos.z = 0;
+	s[1].radius = 70;
+	s[1].color = 0xD5C07B;
+	p[0].pos.x = 100;
+	p[0].pos.y = 650;
+	p[0].pos.z = 3;
+	p[0].color = 0x757063;*/
 	y = 0;
+	//printf("nbs = %d\npos.x = %f\npos.y = %f\npos.z = %f\nradius = %f\ncolor = %d\n\n", rt->nbs, rt->s[6].pos.x, rt->s[6].pos.y, rt->s[6].pos.z, rt->s[6].radius, rt->s[6].color);
 	while (y < SH)
 	{
 		x = 0;
