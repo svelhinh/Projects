@@ -8,6 +8,20 @@ r_dir_x : 0
 r_dir_y : 0
 r_dir_z : 1
 
+object : cylinder
+x_pos : 650
+y_pos : 0
+z_pos : 0
+radius : 100
+color : df8800
+
+object : cylinder
+x_pos : 0
+y_pos : 250
+z_pos : 0
+radius : 50
+color : f040
+
 object : plane
 x_pos : 100
 y_pos : 650

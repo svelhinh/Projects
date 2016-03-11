@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 12:05:01 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:57:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void		draw(t_rt *rt, char *object, int x, int y)
 			mlx_pixel_put_to_image(rt->s[rt->currentobj].color, rt, x, y);
 		else if (ft_strstr("plane", object))
 			mlx_pixel_put_to_image(rt->p[rt->currentobj].color, rt, x, y);
+		else if (ft_strstr("cylinder", object))
+			mlx_pixel_put_to_image(rt->c[rt->currentobj].color, rt, x, y);
 	}
 	else
 		mlx_pixel_put_to_image(rt->default_color, rt, x, y);

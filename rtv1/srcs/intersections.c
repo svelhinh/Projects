@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 11:41:24 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:56:50 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ static char	*intersect_plane(char *object)
 	return (object);
 }
 
+static char	*intersect_cylinder(char *object)
+{
+	if (!ft_strstr(object, "cylinder"))
+	{
+		(object) ? (ft_strdel(&object)) : (0);
+		object = ft_strdup("cylinder");
+	}
+	return (object);
+}
+
 char		*intersect(t_rt *rt, int *currentobj, char *object)
 {
 	int		i;
@@ -42,6 +52,7 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	t = 20000;
 	*currentobj = -1;
 	imax = (rt->nbp > rt->nbs) ? (rt->nbp) : (rt->nbs);
+	imax = (rt->nbc > imax) ? (rt->nbc) : (imax);
 	while (i < imax)
 	{
 		if (i < rt->nbs && sphere(&rt->r, &rt->s[i], &t))
@@ -53,6 +64,11 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 		{
 			*currentobj = i;
 			object = intersect_plane(object);
+		}
+		if (i < rt->nbc && cylinder(&rt->r, &rt->c[i], &t))
+		{
+			*currentobj = i;
+			object = intersect_cylinder(object);
 		}
 		i++;
 	}

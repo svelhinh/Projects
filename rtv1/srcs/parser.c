@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 12:58:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:55:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	objects(char *object, t_rt *rt, int fd)
 		sphere_init(fd, rt);
 	else if (ft_strstr(object, "plane"))
 		plane_init(fd, rt);
+	else if (ft_strstr(object, "cylinder"))
+		cylinder_init(fd, rt);
 	else
 		ft_exit("\033[31mThis object doesn't exit\n");
 }
@@ -66,4 +68,6 @@ void		parsing_file(char *file, t_rt *rt)
 		}
 		ft_strdel(&line);
 	}
+	if (close(fd) == -1)
+		ft_exit("\033[31mThis scene failed to close");
 }

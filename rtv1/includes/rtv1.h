@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 12:04:08 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/11 16:55:23 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct	s_plane
 	t_vector3d	pos;
 	int			color;
 }				t_plane;
+typedef struct	s_cylinder
+{
+	t_vector3d	pos;
+	float		height;
+	float		radius;
+	int			color;
+}				t_cylinder;
 typedef struct	s_ray
 {
 	t_vector3d	start;
@@ -55,9 +62,11 @@ typedef struct	s_rt
 	int			default_color;
 	int			nbs;
 	int			nbp;
+	int			nbc;
 	int			currentobj;
 	t_sphere	*s;
 	t_plane		*p;
+	t_cylinder	*c;
 	t_ray		r;
 	t_vector3d	campos;
 }				t_rt;
@@ -68,14 +77,16 @@ int				key_press(int keycode, t_rt *rt);
 int				key_release(int keycode, t_rt *rt);
 void			parsing_file(char *file, t_rt *rt);
 void			render(t_rt *rt);
-t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2);
-float			vectordot(t_vector3d *v1, t_vector3d *v2);
+t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2, int i);
+float			vectordot(t_vector3d *v1, t_vector3d *v2, int i);
 void			plane_init(int fd, t_rt *rt);
 void			sphere_init(int fd, t_rt *rt);
 void			camera_init(int fd, t_rt *rt);
+void			cylinder_init(int fd, t_rt *rt);
 void			init_all(char *file, t_rt *rt);
 int				sphere(t_ray *r, t_sphere *s, float *t);
 int				plane(t_ray *r, t_plane *p, float *t);
 char			*intersect(t_rt *rt, int *currentobj, char *object);
 void			line2_free(char **line2);
+int				cylinder(t_ray *r, t_cylinder *c, float *t);
 #endif

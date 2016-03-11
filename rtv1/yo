@@ -1,787 +1,790 @@
-Process:         rtv1 [84754]
+Process:         rtv1 [19214]
 Path:            /nfs/2015/s/svelhinh/Desktop/42/annee1/github/github_moi/rtv1/./rtv1
-Load Address:    0x103517000
+Load Address:    0x10e963000
 Identifier:      rtv1
 Version:         ???
 Code Type:       X86-64
-Parent Process:  zsh [59608]
+Parent Process:  zsh [18071]
 
-Date/Time:       2016-03-11 12:20:22.782 +0100
-Launch Time:     2016-03-11 12:20:11.125 +0100
+Date/Time:       2016-03-11 14:27:45.116 +0100
+Launch Time:     2016-03-11 14:27:32.788 +0100
 OS Version:      Mac OS X 10.11.3 (15D21)
 Report Version:  7
 Analysis Tool:   /usr/bin/leaks
 ----
 
 leaks Report Version:  2.0
-Process 84754: 16572 nodes malloced for 11987 KB
-Process 84754: 467 leaks for 8048 total leaked bytes.
-Leak: 0x7fd290c0d5c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Process 19214: 14799 nodes malloced for 11851 KB
+Process 19214: 468 leaks for 8064 total leaked bytes.
+Leak: 0x7feb11c000d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
 "
-Leak: 0x7fd290c12e50  size=32  zone: DefaultMallocZone_0x10353c000  length: 18  "default_color : 0
+Leak: 0x7feb11c001b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "y_pos : 0
 "
-Leak: 0x7fd290c12e70  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "y_pos : 0
+Leak: 0x7feb11c004f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 757063
 "
-Leak: 0x7fd290c12e80  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11c005b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 650
 "
-Leak: 0x7fd290c12e90  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : camera
+Leak: 0x7feb11c00610  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
 "
-Leak: 0x7fd290c12eb0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "x_pos : 0
+Leak: 0x7feb11c02340  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_y : 0
 "
-Leak: 0x7fd290d00010  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "z_pos : -25
+Leak: 0x7feb11c02510  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290d00020  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 90
+Leak: 0x7feb11c02a60  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290d00040  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11c02fd0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_x : 0
 "
-Leak: 0x7fd290d00050  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11c03060  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290d00060  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "radius : 100
+Leak: 0x7feb11c035b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
 "
-Leak: 0x7fd290d00070  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11c03b30  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290d00090  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 300
+Leak: 0x7feb11c03fd0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290d000b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
+Leak: 0x7feb11c08d20  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_z : 1
 "
-Leak: 0x7fd290d000c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
+Leak: 0x7feb11c0cc20  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "x_pos : 0
 "
-Leak: 0x7fd290d000d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 14  "color : 17c5c
+Leak: 0x7feb11c11f40  size=32  zone: DefaultMallocZone_0x10e988000  length: 18  "default_color : 0
 "
-Leak: 0x7fd290e00010  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
+Leak: 0x7feb11c11f60  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : camera
 "
-Leak: 0x7fd290e00020  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11c11f80  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "x_pos : -100
 "
-Leak: 0x7fd290e00250  size=32  zone: DefaultMallocZone_0x10353c000  length: 18  "default_color : 0
+Leak: 0x7feb11c11f90  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 450
 "
-Leak: 0x7fd290e00270  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "x_pos : -100
+Leak: 0x7feb11c12170  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
 "
-Leak: 0x7fd290e00280  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00290  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e002a0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : camera
+Leak: 0x7feb11c12180  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : b5d84a
 "
-Leak: 0x7fd290e002c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e002d0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11c12190  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e002f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "camera"
-Leak: 0x7fd290e00300  size=16  zone: DefaultMallocZone_0x10353c000
-	0x69640000 0x207a5f72 0x0031203a 0x00000000 	..dir_z : 1.....
-Leak: 0x7fd290e00310  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "y_pos : 0
+Leak: 0x7feb11c121a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
 "
-Leak: 0x7fd290e00320  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "x_pos : 0
+Leak: 0x7feb11c121b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290e00330  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11c121c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 450
 "
-Leak: 0x7fd290e00340  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00350  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e00360  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_x : 0
+Leak: 0x7feb11c121d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
 "
-Leak: 0x7fd290e00370  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00380  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e00390  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_y : 0
+Leak: 0x7feb11c121e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : d56f02
 "
-Leak: 0x7fd290e003a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e003b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e003c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_z : 1
+Leak: 0x7feb11c121f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e003d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e003e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e003f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11c12200  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 10
 "
-Leak: 0x7fd290e00400  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00410  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e00420  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
+Leak: 0x7feb11c12210  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : EC1D00
 "
-Leak: 0x7fd290e00430  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00440  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "1"
-Leak: 0x7fd290e00450  size=16  zone: DefaultMallocZone_0x10353c000  length: 5  "plane"
-Leak: 0x7fd290e00460  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11c12220  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c12240  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 100
+"
+Leak: 0x7feb11c12250  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11c12260  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11c12270  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12280  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11c12290  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 20
+"
+Leak: 0x7feb11c122a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c122c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 200
+"
+Leak: 0x7feb11c122d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11c122e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : ECBD90
+"
+Leak: 0x7feb11c122f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12300  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11c12310  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 30
+"
+Leak: 0x7feb11c12320  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c12340  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 300
+"
+Leak: 0x7feb11c12350  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11c12360  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 1CBD00
+"
+Leak: 0x7feb11c12370  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12380  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11c12390  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 40
+"
+Leak: 0x7feb11c123a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c123c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 400
+"
+Leak: 0x7feb11c123d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11c123e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : FC1100
+"
+Leak: 0x7feb11c123f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12400  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11c12410  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 50
+"
+Leak: 0x7feb11c12420  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c12440  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 500
+"
+Leak: 0x7feb11c12450  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11c12460  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : 9cadf
+"
+Leak: 0x7feb11c12470  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12480  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11c12490  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 60
+"
+Leak: 0x7feb11c124a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c124c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 600
+"
+Leak: 0x7feb11c124d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11c124e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "color : c96d
+"
+Leak: 0x7feb11c124f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12500  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11c12510  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 70
+"
+Leak: 0x7feb11c12520  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c12540  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 100
+"
+Leak: 0x7feb11c12550  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
+"
+Leak: 0x7feb11c12560  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 12b679
+"
+Leak: 0x7feb11c12570  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12580  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "z_pos : -25
+"
+Leak: 0x7feb11c12590  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 80
+"
+Leak: 0x7feb11c125a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c125c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 175
+"
+Leak: 0x7feb11c125d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
+"
+Leak: 0x7feb11c125e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 6d71cb
+"
+Leak: 0x7feb11c125f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12600  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "z_pos : -25
+"
+Leak: 0x7feb11c12610  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 90
+"
+Leak: 0x7feb11c12620  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c12640  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 215
+"
+Leak: 0x7feb11c12650  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
+"
+Leak: 0x7feb11c12660  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : c5c71
+"
+Leak: 0x7feb11c12670  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11c12680  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11c12690  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "radius : 100
+"
+Leak: 0x7feb11c126a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11c126c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 300
+"
+Leak: 0x7feb11c126d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
+"
+Leak: 0x7feb11c126e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : 17c5c
+"
+Leak: 0x7feb11d00740  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
+"
+Leak: 0x7feb11d00750  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 757063
+"
+Leak: 0x7feb11d00760  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d00770  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
+"
+Leak: 0x7feb11d00780  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "x_pos : -100
+"
+Leak: 0x7feb11d00790  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 450
+"
+Leak: 0x7feb11d007a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
+"
+Leak: 0x7feb11d007b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : b5d84a
+"
+Leak: 0x7feb11d007c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d007d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
+"
+Leak: 0x7feb11d007e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11d007f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 450
+"
+Leak: 0x7feb11d00800  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
+"
+Leak: 0x7feb11d00810  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : d56f02
+"
+Leak: 0x7feb11d00820  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d00830  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 10
+"
+Leak: 0x7feb11d00840  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : EC1D00
+"
+Leak: 0x7feb11d00850  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d00870  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 100
+"
+Leak: 0x7feb11d00880  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11d00890  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d01320  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "x_pos : 0
+"
+Leak: 0x7feb11d01330  size=32  zone: DefaultMallocZone_0x10e988000  length: 18  "default_color : 0
+"
+Leak: 0x7feb11d01350  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01360  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "y_pos : 0
+"
+Leak: 0x7feb11d01370  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : camera
+"
+Leak: 0x7feb11d01390  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d013a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_x : 0
+"
+Leak: 0x7feb11d013b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_y : 0
+"
+Leak: 0x7feb11d013c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_z : 1
+"
+Leak: 0x7feb11d013d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d013e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
+"
+Leak: 0x7feb11d013f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11d01400  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 650
+"
+Leak: 0x7feb11d01470  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01480  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d01490  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 20
+"
+Leak: 0x7feb11d014a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d014c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 200
+"
+Leak: 0x7feb11d014d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11d014e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : ECBD90
+"
+Leak: 0x7feb11d014f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01500  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d01510  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 30
+"
+Leak: 0x7feb11d01520  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d01540  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 300
+"
+Leak: 0x7feb11d01550  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11d01560  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 1CBD00
+"
+Leak: 0x7feb11d01570  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01580  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d01590  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 40
+"
+Leak: 0x7feb11d015a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d015c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 400
+"
+Leak: 0x7feb11d015d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11d015e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : FC1100
+"
+Leak: 0x7feb11d015f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01600  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d01610  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 50
+"
+Leak: 0x7feb11d01620  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d01640  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 500
+"
+Leak: 0x7feb11d01650  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11d01660  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : 9cadf
+"
+Leak: 0x7feb11d01670  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01680  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d01690  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 60
+"
+Leak: 0x7feb11d016a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d016c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 600
+"
+Leak: 0x7feb11d016d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11d016e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "color : c96d
+"
+Leak: 0x7feb11d016f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01700  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d01710  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 70
+"
+Leak: 0x7feb11d01720  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d01740  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 100
+"
+Leak: 0x7feb11d01750  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
+"
+Leak: 0x7feb11d01760  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 12b679
+"
+Leak: 0x7feb11d01770  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01780  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "z_pos : -25
+"
+Leak: 0x7feb11d01790  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 80
+"
+Leak: 0x7feb11d017a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d017c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 175
+"
+Leak: 0x7feb11d017d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
+"
+Leak: 0x7feb11d017e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 6d71cb
+"
+Leak: 0x7feb11d017f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01800  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "z_pos : -25
+"
+Leak: 0x7feb11d01810  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 90
+"
+Leak: 0x7feb11d01820  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d01840  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 215
+"
+Leak: 0x7feb11d01850  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
+"
+Leak: 0x7feb11d01860  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : c5c71
+"
+Leak: 0x7feb11d01870  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11d01880  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11d01890  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "radius : 100
+"
+Leak: 0x7feb11d018a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11d018c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 300
+"
+Leak: 0x7feb11d018d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
+"
+Leak: 0x7feb11d018e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : 17c5c
+"
+Leak: 0x7feb11e00070  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : camera
+"
+Leak: 0x7feb11e00090  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
+"
+Leak: 0x7feb11e000b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00110  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "camera"
+Leak: 0x7feb11e00120  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11e00130  size=32  zone: DefaultMallocZone_0x10e988000  length: 18  "default_color : 0
+"
+Leak: 0x7feb11e00150  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e001b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
+"
+Leak: 0x7feb11e001c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e001d0  size=16  zone: DefaultMallocZone_0x10e988000
+	0x69640000 0x207a5f72 0x0031203a 0x70000000 	..dir_z : 1....p
+Leak: 0x7feb11e001e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "y_pos : 0
+"
+Leak: 0x7feb11e001f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "x_pos : 0
+"
+Leak: 0x7feb11e00200  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
+"
+Leak: 0x7feb11e00210  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00220  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00230  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_x : 0
+"
+Leak: 0x7feb11e00410  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00420  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00430  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_y : 0
+"
+Leak: 0x7feb11e00440  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00450  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00460  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "r_dir_z : 1
+"
+Leak: 0x7feb11e00470  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00480  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00490  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
+"
+Leak: 0x7feb11e004a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e004b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e004c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
+"
+Leak: 0x7feb11e004d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e004e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "1"
+Leak: 0x7feb11e004f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 5  "plane"
+Leak: 0x7feb11e00500  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x30373537 0x00003336 	..lor : 757063..
-Leak: 0x7fd290e00470  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 650
+Leak: 0x7feb11e00510  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 650
 "
-Leak: 0x7fd290e00480  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
+Leak: 0x7feb11e00520  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
 "
-Leak: 0x7fd290e00490  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
+Leak: 0x7feb11e00530  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "x_pos : -100
 "
-Leak: 0x7fd290e004a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e004b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e004c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e004d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 757063
+Leak: 0x7feb11e00540  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00550  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00560  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e00570  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 757063
 "
-Leak: 0x7fd290e004e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e004f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "650"
-Leak: 0x7fd290e00500  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e00580  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00590  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "650"
+Leak: 0x7feb11e005a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e00510  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00520  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "3"
-Leak: 0x7fd290e00530  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
+Leak: 0x7feb11e005b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e005c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "3"
+Leak: 0x7feb11e005d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
 "
-Leak: 0x7fd290e00540  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00550  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "757063"
-Leak: 0x7fd290e00560  size=16  zone: DefaultMallocZone_0x10353c000  length: 5  "plane"
-Leak: 0x7fd290e00570  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e005e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e005f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "757063"
+Leak: 0x7feb11e00600  size=16  zone: DefaultMallocZone_0x10e988000  length: 5  "plane"
+Leak: 0x7feb11e00610  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x38643562 0x00006134 	..lor : b5d84a..
-Leak: 0x7fd290e00580  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 450
+Leak: 0x7feb11e00620  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 450
 "
-Leak: 0x7fd290e00590  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
+Leak: 0x7feb11e00630  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
 "
-Leak: 0x7fd290e005b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e005c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e005d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 4  "-100"
-Leak: 0x7fd290e005e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : b5d84a
+Leak: 0x7feb11e00640  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290e005f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00600  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "450"
-Leak: 0x7fd290e00610  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e00650  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00660  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00670  size=16  zone: DefaultMallocZone_0x10e988000  length: 4  "-100"
+Leak: 0x7feb11e00680  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : b5d84a
 "
-Leak: 0x7fd290e00620  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00630  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "3"
-Leak: 0x7fd290e00640  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
+Leak: 0x7feb11e00690  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e006a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "450"
+Leak: 0x7feb11e006b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e00650  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00660  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "b5d84a"
-Leak: 0x7fd290e00670  size=16  zone: DefaultMallocZone_0x10353c000  length: 5  "plane"
-Leak: 0x7fd290e00680  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e006c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e006d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "3"
+Leak: 0x7feb11e006e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "object : plane
+"
+Leak: 0x7feb11e006f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00700  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "b5d84a"
+Leak: 0x7feb11e00710  size=16  zone: DefaultMallocZone_0x10e988000  length: 5  "plane"
+Leak: 0x7feb11e00720  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x66363564 0x00003230 	..lor : d56f02..
-Leak: 0x7fd290e00690  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 450
+Leak: 0x7feb11e00730  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 450
 "
-Leak: 0x7fd290e006a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
+Leak: 0x7feb11e00740  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 3
 "
-Leak: 0x7fd290e006d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e006e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e006f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : d56f02
+Leak: 0x7feb11e00770  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00780  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e00790  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : d56f02
 "
-Leak: 0x7fd290e00700  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00710  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "450"
-Leak: 0x7fd290e00720  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e007a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e007b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "450"
+Leak: 0x7feb11e007c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e00730  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00740  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "3"
-Leak: 0x7fd290e00750  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00760  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00770  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "d56f02"
-Leak: 0x7fd290e00780  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e007d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e007e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "3"
+Leak: 0x7feb11e00800  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00810  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "d56f02"
+Leak: 0x7feb11e00820  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e007a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e007b0  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e00840  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e00850  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x44314345 0x00003030 	..lor : EC1D00..
-Leak: 0x7fd290e007c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 100
+Leak: 0x7feb11e00860  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 100
 "
-Leak: 0x7fd290e007d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
+Leak: 0x7feb11e00870  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290e007e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11e00880  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290e007f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00800  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e00810  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 10
+Leak: 0x7feb11e00890  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e008a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e008b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 10
 "
-Leak: 0x7fd290e00820  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00830  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e00840  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : EC1D00
+Leak: 0x7feb11e008c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e008d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e008e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : EC1D00
 "
-Leak: 0x7fd290e00850  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00860  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e00870  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e008f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00900  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00910  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e00880  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00890  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "10"
-Leak: 0x7fd290e008a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e008b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e008c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "EC1D00"
-Leak: 0x7fd290e008d0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e00920  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00930  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "10"
+Leak: 0x7feb11e00940  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00950  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00960  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "EC1D00"
+Leak: 0x7feb11e00970  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e008f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e00900  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e00990  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e009a0  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x44424345 0x00003039 	..lor : ECBD90..
-Leak: 0x7fd290e00910  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 200
+Leak: 0x7feb11e009b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 200
 "
-Leak: 0x7fd290e00920  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
+Leak: 0x7feb11e009c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290e00930  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11e009d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290e00940  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00950  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e00960  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 20
+Leak: 0x7feb11e009e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e009f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e00a00  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 20
 "
-Leak: 0x7fd290e00970  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00980  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "200"
-Leak: 0x7fd290e00990  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : ECBD90
+Leak: 0x7feb11e00a10  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00a20  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "200"
+Leak: 0x7feb11e00a30  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : ECBD90
 "
-Leak: 0x7fd290e009a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e009b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e009c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e00a40  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00a50  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00a60  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e009d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e009e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "20"
-Leak: 0x7fd290e009f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00a00  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00a10  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "ECBD90"
-Leak: 0x7fd290e00a20  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e00a70  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00a80  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "20"
+Leak: 0x7feb11e00a90  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00aa0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00ab0  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "ECBD90"
+Leak: 0x7feb11e00ac0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e00a40  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e00a50  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e00ae0  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e00af0  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x44424331 0x00003030 	..lor : 1CBD00..
-Leak: 0x7fd290e00a60  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 300
+Leak: 0x7feb11e00b00  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 300
 "
-Leak: 0x7fd290e00a70  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
+Leak: 0x7feb11e00b10  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290e00a80  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11e00b20  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290e00a90  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00aa0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e00ab0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 30
+Leak: 0x7feb11e00b30  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00b40  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e00b50  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 30
 "
-Leak: 0x7fd290e00ac0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00ad0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "300"
-Leak: 0x7fd290e00ae0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 1CBD00
+Leak: 0x7feb11e00b60  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00b70  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "300"
+Leak: 0x7feb11e00b80  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 1CBD00
 "
-Leak: 0x7fd290e00af0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00b00  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e00b10  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e00b90  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00ba0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00bb0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e00b20  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00b30  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "30"
-Leak: 0x7fd290e00b40  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00b50  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00b60  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "1CBD00"
-Leak: 0x7fd290e00b70  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e00bc0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00bd0  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "30"
+Leak: 0x7feb11e00be0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00bf0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00c00  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "1CBD00"
+Leak: 0x7feb11e00c10  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e00b90  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e00ba0  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e00c30  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e00c40  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x31314346 0x00003030 	..lor : FC1100..
-Leak: 0x7fd290e00bb0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 400
+Leak: 0x7feb11e00c50  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 400
 "
-Leak: 0x7fd290e00bc0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
+Leak: 0x7feb11e00c60  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290e00bd0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11e00c70  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290e00be0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00bf0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e00c00  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 40
+Leak: 0x7feb11e00c80  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00c90  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e00ca0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 40
 "
-Leak: 0x7fd290e00c10  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00c20  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "400"
-Leak: 0x7fd290e00c30  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : FC1100
+Leak: 0x7feb11e00cb0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00cc0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "400"
+Leak: 0x7feb11e00cd0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : FC1100
 "
-Leak: 0x7fd290e00c40  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00c50  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e00c60  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e00ce0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00cf0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00d00  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e00c70  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00c80  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "40"
-Leak: 0x7fd290e00c90  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00ca0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00cb0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "FC1100"
-Leak: 0x7fd290e00cc0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e00d10  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00d20  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "40"
+Leak: 0x7feb11e00d30  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00d40  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00d50  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "FC1100"
+Leak: 0x7feb11e00d60  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e00ce0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e00cf0  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e00d80  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e00d90  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x64616339 0x00000066 	..lor : 9cadf...
-Leak: 0x7fd290e00d00  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 500
+Leak: 0x7feb11e00da0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 500
 "
-Leak: 0x7fd290e00d10  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
+Leak: 0x7feb11e00db0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290e00d20  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11e00dc0  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290e00d30  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00d40  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e00d50  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 50
+Leak: 0x7feb11e00dd0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00de0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e00df0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 50
 "
-Leak: 0x7fd290e00d60  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00d70  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "500"
-Leak: 0x7fd290e00d80  size=16  zone: DefaultMallocZone_0x10353c000  length: 14  "color : 9cadf
+Leak: 0x7feb11e00e00  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00e10  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "500"
+Leak: 0x7feb11e00e20  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : 9cadf
 "
-Leak: 0x7fd290e00d90  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00da0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e00db0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e00e30  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00e40  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00e50  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e00dc0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00dd0  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "50"
-Leak: 0x7fd290e00de0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00df0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00e00  size=16  zone: DefaultMallocZone_0x10353c000  length: 5  "9cadf"
-Leak: 0x7fd290e00e10  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e00e60  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00e70  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "50"
+Leak: 0x7feb11e00e80  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00e90  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00ea0  size=16  zone: DefaultMallocZone_0x10e988000  length: 5  "9cadf"
+Leak: 0x7feb11e00eb0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e00e30  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e00e40  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e00ed0  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e00ee0  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x64363963 0x00000000 	..lor : c96d....
-Leak: 0x7fd290e00e50  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 600
+Leak: 0x7feb11e00ef0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 600
 "
-Leak: 0x7fd290e00e60  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
+Leak: 0x7feb11e00f00  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 100
 "
-Leak: 0x7fd290e00e70  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11e00f10  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290e00e80  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00e90  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e00ea0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 60
+Leak: 0x7feb11e00f20  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00f30  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e00f40  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 60
 "
-Leak: 0x7fd290e00eb0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00ec0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "600"
-Leak: 0x7fd290e00ed0  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "color : c96d
+Leak: 0x7feb11e00f50  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00f60  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "600"
+Leak: 0x7feb11e00f70  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "color : c96d
 "
-Leak: 0x7fd290e00ee0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00ef0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e00f00  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e00f80  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00f90  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e00fa0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e00f10  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00f20  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "60"
-Leak: 0x7fd290e00f30  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00f40  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00f50  size=16  zone: DefaultMallocZone_0x10353c000  length: 4  "c96d"
-Leak: 0x7fd290e00f60  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e00fb0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00fc0  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "60"
+Leak: 0x7feb11e00fd0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00fe0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e00ff0  size=16  zone: DefaultMallocZone_0x10e988000  length: 4  "c96d"
+Leak: 0x7feb11e01000  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e00f80  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e00f90  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e01020  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e01030  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x36623231 0x00003937 	..lor : 12b679..
-Leak: 0x7fd290e00fa0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 100
+Leak: 0x7feb11e01040  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 100
 "
-Leak: 0x7fd290e00fb0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
+Leak: 0x7feb11e01050  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
 "
-Leak: 0x7fd290e00fc0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11e01060  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290e00fd0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e00fe0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "500"
-Leak: 0x7fd290e00ff0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 70
+Leak: 0x7feb11e01070  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01080  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "500"
+Leak: 0x7feb11e01090  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 70
 "
-Leak: 0x7fd290e01000  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01010  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e01020  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 12b679
+Leak: 0x7feb11e010a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e010b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e010c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 12b679
 "
-Leak: 0x7fd290e01030  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01040  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e01050  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e010d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e010e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e010f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e01060  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01070  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "70"
-Leak: 0x7fd290e01080  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01090  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e010a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "12b679"
-Leak: 0x7fd290e010b0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e01100  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01110  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "70"
+Leak: 0x7feb11e01120  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01130  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01140  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "12b679"
+Leak: 0x7feb11e01150  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e010d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e010e0  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e01170  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e01180  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x31376436 0x00006263 	..lor : 6d71cb..
-Leak: 0x7fd290e010f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 175
+Leak: 0x7feb11e01190  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 175
 "
-Leak: 0x7fd290e01100  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
+Leak: 0x7feb11e011a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
 "
-Leak: 0x7fd290e01110  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "z_pos : -25
+Leak: 0x7feb11e011b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "z_pos : -25
 "
-Leak: 0x7fd290e01120  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01130  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "500"
-Leak: 0x7fd290e01140  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 80
+Leak: 0x7feb11e011c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e011d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "500"
+Leak: 0x7feb11e011e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 80
 "
-Leak: 0x7fd290e01150  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01160  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "175"
-Leak: 0x7fd290e01170  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 6d71cb
+Leak: 0x7feb11e011f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01200  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "175"
+Leak: 0x7feb11e01210  size=16  zone: DefaultMallocZone_0x10e988000  length: 15  "color : 6d71cb
 "
-Leak: 0x7fd290e01180  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01190  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "-25"
-Leak: 0x7fd290e011a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e01220  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01230  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "-25"
+Leak: 0x7feb11e01240  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e011b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e011c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "80"
-Leak: 0x7fd290e011d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e011e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e011f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "6d71cb"
-Leak: 0x7fd290e01200  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
+Leak: 0x7feb11e01250  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01260  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "80"
+Leak: 0x7feb11e01270  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01280  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01290  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "6d71cb"
+Leak: 0x7feb11e012a0  size=32  zone: DefaultMallocZone_0x10e988000  length: 16  "object : sphere
 "
-Leak: 0x7fd290e01220  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e01230  size=16  zone: DefaultMallocZone_0x10353c000
+Leak: 0x7feb11e012c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e012d0  size=16  zone: DefaultMallocZone_0x10e988000
 	0x6f6c0000 0x203a2072 0x37633563 0x00000031 	..lor : c5c71...
-Leak: 0x7fd290e01240  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 215
+Leak: 0x7feb11e012e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 215
 "
-Leak: 0x7fd290e01250  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
+Leak: 0x7feb11e012f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
 "
-Leak: 0x7fd290e01260  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "z_pos : -25
+Leak: 0x7feb11e01300  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "z_pos : -25
 "
-Leak: 0x7fd290e01270  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01280  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "500"
-Leak: 0x7fd290e01290  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 90
+Leak: 0x7feb11e01310  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01320  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "500"
+Leak: 0x7feb11e01330  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "radius : 90
 "
-Leak: 0x7fd290e012a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e012b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "215"
-Leak: 0x7fd290e012c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 14  "color : c5c71
+Leak: 0x7feb11e01340  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01350  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "215"
+Leak: 0x7feb11e01360  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : c5c71
 "
-Leak: 0x7fd290e012d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e012e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "-25"
-Leak: 0x7fd290e012f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
+Leak: 0x7feb11e01370  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01380  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "-25"
+Leak: 0x7feb11e01390  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "
 "
-Leak: 0x7fd290e01300  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01310  size=16  zone: DefaultMallocZone_0x10353c000  length: 2  "90"
-Leak: 0x7fd290e01320  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01330  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01340  size=16  zone: DefaultMallocZone_0x10353c000  length: 5  "c5c71"
-Leak: 0x7fd290e01370  size=16  zone: DefaultMallocZone_0x10353c000  length: 6  "sphere"
-Leak: 0x7fd290e01390  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 300
+Leak: 0x7feb11e013a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e013b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 2  "90"
+Leak: 0x7feb11e013c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e013d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e013e0  size=16  zone: DefaultMallocZone_0x10e988000  length: 5  "c5c71"
+Leak: 0x7feb11e01410  size=16  zone: DefaultMallocZone_0x10e988000  length: 6  "sphere"
+Leak: 0x7feb11e01430  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "y_pos : 300
 "
-Leak: 0x7fd290e013a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
+Leak: 0x7feb11e01440  size=16  zone: DefaultMallocZone_0x10e988000  length: 12  "x_pos : 500
 "
-Leak: 0x7fd290e013b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
+Leak: 0x7feb11e01450  size=16  zone: DefaultMallocZone_0x10e988000  length: 10  "z_pos : 0
 "
-Leak: 0x7fd290e013c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e013d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "500"
-Leak: 0x7fd290e013e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "radius : 100
+Leak: 0x7feb11e01460  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01470  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "500"
+Leak: 0x7feb11e01480  size=16  zone: DefaultMallocZone_0x10e988000  length: 13  "radius : 100
 "
-Leak: 0x7fd290e013f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01400  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "300"
-Leak: 0x7fd290e01410  size=16  zone: DefaultMallocZone_0x10353c000  length: 14  "color : 17c5c
+Leak: 0x7feb11e01490  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e014a0  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "300"
+Leak: 0x7feb11e014b0  size=16  zone: DefaultMallocZone_0x10e988000  length: 14  "color : 17c5c
 "
-Leak: 0x7fd290e01420  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01430  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "0"
-Leak: 0x7fd290e01450  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01460  size=16  zone: DefaultMallocZone_0x10353c000  length: 3  "100"
-Leak: 0x7fd290e01480  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  ":"
-Leak: 0x7fd290e01490  size=16  zone: DefaultMallocZone_0x10353c000  length: 5  "17c5c"
-Leak: 0x7fd290f000b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_x : 0
-"
-Leak: 0x7fd290f00270  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_y : 0
-"
-Leak: 0x7fd290f007b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_z : 1
-"
-Leak: 0x7fd290f007c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f007d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
-"
-Leak: 0x7fd290f007e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f007f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 650
-"
-Leak: 0x7fd290f00800  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
-"
-Leak: 0x7fd290f00810  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 757063
-"
-Leak: 0x7fd290f00820  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00830  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
-"
-Leak: 0x7fd290f00840  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "x_pos : -100
-"
-Leak: 0x7fd290f00850  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 450
-"
-Leak: 0x7fd290f00860  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
-"
-Leak: 0x7fd290f00870  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : b5d84a
-"
-Leak: 0x7fd290f00880  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00890  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
-"
-Leak: 0x7fd290f008a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f00910  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 450
-"
-Leak: 0x7fd290f00920  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
-"
-Leak: 0x7fd290f00930  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : d56f02
-"
-Leak: 0x7fd290f00940  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00950  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f00960  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 10
-"
-Leak: 0x7fd290f00970  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00990  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 100
-"
-Leak: 0x7fd290f009a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f009b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : EC1D00
-"
-Leak: 0x7fd290f009c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f009d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f009e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 20
-"
-Leak: 0x7fd290f009f0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00a10  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 200
-"
-Leak: 0x7fd290f00a20  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f00a30  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : ECBD90
-"
-Leak: 0x7fd290f00a40  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00a50  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f00a60  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 30
-"
-Leak: 0x7fd290f00a70  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00a90  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 300
-"
-Leak: 0x7fd290f00aa0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f00ab0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 1CBD00
-"
-Leak: 0x7fd290f00ac0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00ad0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f00ae0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 40
-"
-Leak: 0x7fd290f00af0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00b10  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 400
-"
-Leak: 0x7fd290f00b20  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f00b30  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : FC1100
-"
-Leak: 0x7fd290f00b40  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00b50  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f00b60  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 50
-"
-Leak: 0x7fd290f00b70  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00b90  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 500
-"
-Leak: 0x7fd290f00ba0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f00bb0  size=16  zone: DefaultMallocZone_0x10353c000  length: 14  "color : 9cadf
-"
-Leak: 0x7fd290f00bc0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00bd0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f00be0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 60
-"
-Leak: 0x7fd290f00bf0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00c10  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 600
-"
-Leak: 0x7fd290f00c20  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f00c30  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "color : c96d
-"
-Leak: 0x7fd290f00c40  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00c50  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f00c60  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 70
-"
-Leak: 0x7fd290f00c70  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00c90  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 100
-"
-Leak: 0x7fd290f00ca0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
-"
-Leak: 0x7fd290f00cb0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 12b679
-"
-Leak: 0x7fd290f00cc0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00cd0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "z_pos : -25
-"
-Leak: 0x7fd290f00ce0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 80
-"
-Leak: 0x7fd290f00cf0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00d10  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 175
-"
-Leak: 0x7fd290f00d20  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
-"
-Leak: 0x7fd290f00d30  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 6d71cb
-"
-Leak: 0x7fd290f00d40  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00d50  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "z_pos : -25
-"
-Leak: 0x7fd290f00d60  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 90
-"
-Leak: 0x7fd290f00d70  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00d90  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 215
-"
-Leak: 0x7fd290f00da0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
-"
-Leak: 0x7fd290f00db0  size=16  zone: DefaultMallocZone_0x10353c000  length: 14  "color : c5c71
-"
-Leak: 0x7fd290f00dc0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00dd0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f00de0  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "radius : 100
-"
-Leak: 0x7fd290f00df0  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f00e10  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 300
-"
-Leak: 0x7fd290f00e20  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
-"
-Leak: 0x7fd290f00e30  size=16  zone: DefaultMallocZone_0x10353c000  length: 14  "color : 17c5c
-"
-Leak: 0x7fd290f00e40  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00f20  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "x_pos : 0
-"
-Leak: 0x7fd290f00f30  size=32  zone: DefaultMallocZone_0x10353c000  length: 18  "default_color : 0
-"
-Leak: 0x7fd290f00f50  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "y_pos : 0
-"
-Leak: 0x7fd290f00f60  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : camera
-"
-Leak: 0x7fd290f00f80  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f00f90  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_x : 0
-"
-Leak: 0x7fd290f00fa0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_y : 0
-"
-Leak: 0x7fd290f00fb0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "r_dir_z : 1
-"
-Leak: 0x7fd290f00fc0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f00fd0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
-"
-Leak: 0x7fd290f00fe0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f00ff0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 650
-"
-Leak: 0x7fd290f01000  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
-"
-Leak: 0x7fd290f01010  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 757063
-"
-Leak: 0x7fd290f01020  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f01030  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
-"
-Leak: 0x7fd290f01040  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "x_pos : -100
-"
-Leak: 0x7fd290f01050  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 450
-"
-Leak: 0x7fd290f01060  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
-"
-Leak: 0x7fd290f01070  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : b5d84a
-"
-Leak: 0x7fd290f01080  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f01090  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "object : plane
-"
-Leak: 0x7fd290f010a0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f010b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 450
-"
-Leak: 0x7fd290f010c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 3
-"
-Leak: 0x7fd290f010d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : d56f02
-"
-Leak: 0x7fd290f010e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f010f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f01100  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 10
-"
-Leak: 0x7fd290f01110  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f01130  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 100
-"
-Leak: 0x7fd290f01140  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f01150  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : EC1D00
-"
-Leak: 0x7fd290f01160  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f01170  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f01180  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 20
-"
-Leak: 0x7fd290f01190  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f011b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 200
-"
-Leak: 0x7fd290f011c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f011d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : ECBD90
-"
-Leak: 0x7fd290f011e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f011f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f01200  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 30
-"
-Leak: 0x7fd290f01210  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f01230  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 300
-"
-Leak: 0x7fd290f01240  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f01250  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 1CBD00
-"
-Leak: 0x7fd290f01260  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f01270  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f01280  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 40
-"
-Leak: 0x7fd290f01290  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f012b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 400
-"
-Leak: 0x7fd290f012c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f012d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : FC1100
-"
-Leak: 0x7fd290f012e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f012f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f01300  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 50
-"
-Leak: 0x7fd290f01310  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f01330  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 500
-"
-Leak: 0x7fd290f01340  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f01350  size=16  zone: DefaultMallocZone_0x10353c000  length: 14  "color : 9cadf
-"
-Leak: 0x7fd290f01360  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f01370  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f01380  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 60
-"
-Leak: 0x7fd290f01390  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f013b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 600
-"
-Leak: 0x7fd290f013c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 100
-"
-Leak: 0x7fd290f013d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 13  "color : c96d
-"
-Leak: 0x7fd290f013e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f013f0  size=16  zone: DefaultMallocZone_0x10353c000  length: 10  "z_pos : 0
-"
-Leak: 0x7fd290f01400  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 70
-"
-Leak: 0x7fd290f01410  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f01430  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 100
-"
-Leak: 0x7fd290f01440  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
-"
-Leak: 0x7fd290f01450  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 12b679
-"
-Leak: 0x7fd290f01460  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f01470  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "z_pos : -25
-"
-Leak: 0x7fd290f01480  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "radius : 80
-"
-Leak: 0x7fd290f01490  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
-Leak: 0x7fd290f014b0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "y_pos : 175
-"
-Leak: 0x7fd290f014c0  size=16  zone: DefaultMallocZone_0x10353c000  length: 12  "x_pos : 500
-"
-Leak: 0x7fd290f014d0  size=16  zone: DefaultMallocZone_0x10353c000  length: 15  "color : 6d71cb
-"
-Leak: 0x7fd290f014e0  size=16  zone: DefaultMallocZone_0x10353c000  length: 1  "
-"
-Leak: 0x7fd290f01510  size=32  zone: DefaultMallocZone_0x10353c000  length: 16  "object : sphere
-"
+Leak: 0x7feb11e014c0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e014d0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  "0"
+Leak: 0x7feb11e014f0  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01500  size=16  zone: DefaultMallocZone_0x10e988000  length: 3  "100"
+Leak: 0x7feb11e01520  size=16  zone: DefaultMallocZone_0x10e988000  length: 1  ":"
+Leak: 0x7feb11e01530  size=16  zone: DefaultMallocZone_0x10e988000  length: 5  "17c5c"
