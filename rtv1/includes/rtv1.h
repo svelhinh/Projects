@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/10 15:38:12 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:04:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_rt
 	int			default_color;
 	int			nbs;
 	int			nbp;
+	int			currentobj;
 	t_sphere	*s;
 	t_plane		*p;
 	t_ray		r;
@@ -73,4 +74,8 @@ void			plane_init(int fd, t_rt *rt);
 void			sphere_init(int fd, t_rt *rt);
 void			camera_init(int fd, t_rt *rt);
 void			init_all(char *file, t_rt *rt);
+int				sphere(t_ray *r, t_sphere *s, float *t);
+int				plane(t_ray *r, t_plane *p, float *t);
+char			*intersect(t_rt *rt, int *currentobj, char *object);
+void			line2_free(char **line2);
 #endif

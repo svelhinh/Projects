@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/10 17:20:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:58:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	default_color(char *color, t_rt *rt)
 		i++;
 	}
 	color2 = ft_atoi_base(color, 16);
+	ft_strdel(&color);
 	rt->default_color = color2;
 }
 
@@ -56,11 +57,12 @@ void		parsing_file(char *file, t_rt *rt)
 	{
 		if (line[0])
 		{
-			line2 = ft_strsplit(line, ' ');		// Ne pas oublier de free line2
+			line2 = ft_strsplit(line, ' ');
 			if (ft_strstr(line2[0], "default_color"))
 				default_color(line2[2], rt);
 			else if (ft_strstr(line2[0], "object"))
 				objects(line2[2], rt, fd);
+			line2_free(line2);
 		}
 		ft_strdel(&line);
 	}

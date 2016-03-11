@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 16:08:30 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/02 12:10:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:21:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,24 @@
 
 char	*ft_strstr(const char *s1, const char *s2)
 {
-	int		i;
-	int		i2;
-	int		i3;
-	char	*s3;
+	size_t	length_s1;
+	size_t	length_s2;
+	size_t	i;
 
 	i = 0;
-	i3 = 0;
-	s3 = (char *)malloc(sizeof(char) * ft_strlen(s2) + 1);
-	if (ft_memcmp(s1, s2, ft_strlen(s2)) == 0)
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	if (s2[0] == '\0')
 		return ((char *)s1);
-	while (s1[i] != '\0')
+	length_s1 = ft_strlen(s1);
+	length_s2 = ft_strlen(s2);
+	if (length_s1 < length_s2)
+		return (NULL);
+	while (i <= length_s1 - length_s2)
 	{
-		i2 = 0;
-		while (s2[i2++] == s1[i++])
-			if (s2[i2] == '\0')
-			{
-				s3 = &((char *)s1)[i3];
-				return (s3);
-			}
-		i3++;
-		i = i3;
+		if (ft_memcmp(&s1[i], &s2[0], length_s2) == 0)
+			return ((char *)&s1[i]);
+		i++;
 	}
 	return (NULL);
 }

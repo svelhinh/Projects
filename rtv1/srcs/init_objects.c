@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/10 17:21:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/11 12:11:22 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	camera_init(int fd, t_rt *rt)
 			rt->r.dir.y = ft_atof(line2[2]);
 		else if (ft_strstr(line2[0], "r_dir_z"))
 			rt->r.dir.z = ft_atof(line2[2]);
+		line2_free(line2);
 		ft_strdel(&line);
 	}
 }
@@ -59,6 +60,8 @@ void	sphere_init(int fd, t_rt *rt)
 			rt->s[i].radius = ft_atof(line2[2]);
 		else if (ft_strstr(line2[0], "color"))
 			rt->s[i].color = ft_atoi_base(line2[2], 16);
+		line2_free(line2);
+		ft_strdel(&line);
 	}
 	i++;
 }
@@ -82,6 +85,8 @@ void	plane_init(int fd, t_rt *rt)
 			rt->p[i].pos.z = ft_atof(line2[2]);
 		else if (ft_strstr(line2[0], "color"))
 			rt->p[i].color = ft_atoi_base(line2[2], 16);
+		line2_free(line2);
+		ft_strdel(&line);
 	}
 	i++;
 }
