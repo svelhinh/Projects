@@ -3,10 +3,18 @@ default_color : 0
 object : camera
 x_pos : 0
 y_pos : 0
-z_pos : 0
+z_pos : -10000
 r_dir_x : 0
 r_dir_y : 0
 r_dir_z : 1
+
+object : cone
+x_pos : 600
+y_pos : 300
+z_pos : 0
+axis : y
+radius : 0
+color : 5698
 
 object : cylinder
 x_pos : 650

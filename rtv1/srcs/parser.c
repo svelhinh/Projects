@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 16:55:26 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/13 11:12:58 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ static void	default_color(char *color, t_rt *rt)
 
 static void	objects(char *object, t_rt *rt, int fd)
 {
-	if (ft_strstr(object, "camera"))
+	if (!ft_strcmp(object, "camera"))
 		camera_init(fd, rt);
-	else if (ft_strstr(object, "sphere"))
+	else if (!ft_strcmp(object, "sphere"))
 		sphere_init(fd, rt);
-	else if (ft_strstr(object, "plane"))
+	else if (!ft_strcmp(object, "plane"))
 		plane_init(fd, rt);
-	else if (ft_strstr(object, "cylinder"))
+	else if (!ft_strcmp(object, "cylinder"))
 		cylinder_init(fd, rt);
+	else if (!ft_strcmp(object, "cone"))
+		cone_init(fd, rt);
 	else
 		ft_exit("\033[31mThis object doesn't exit\n");
 }
@@ -60,9 +62,9 @@ void		parsing_file(char *file, t_rt *rt)
 		if (line[0])
 		{
 			line2 = ft_strsplit(line, ' ');
-			if (ft_strstr(line2[0], "default_color"))
+			if (!ft_strcmp(line2[0], "default_color"))
 				default_color(line2[2], rt);
-			else if (ft_strstr(line2[0], "object"))
+			else if (!ft_strcmp(line2[0], "object"))
 				objects(line2[2], rt, fd);
 			line2_free(line2);
 		}

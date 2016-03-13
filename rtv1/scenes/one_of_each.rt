@@ -1,0 +1,37 @@
+default_color : 0
+
+object : camera
+x_pos : 0
+y_pos : 0
+z_pos : -10000
+r_dir_x : 0
+r_dir_y : 0
+r_dir_z : 1
+
+object : cone
+x_pos : 800
+y_pos : 100
+z_pos : 0
+axis : y
+radius : 0
+color : 5698
+
+object : cylinder
+x_pos : 0
+y_pos : 300
+z_pos : -50
+radius : 100
+color : df8800
+
+object : plane
+x_pos : 0
+y_pos : 600
+z_pos : 10
+color : 757063
+
+object : sphere
+x_pos : 300
+y_pos : 200
+z_pos : 0
+radius : 150
+color : EC1D00

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 16:56:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/13 11:16:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*intersect_sphere(char *object)
 {
-	if (!ft_strstr(object, "sphere"))
+	if (ft_strcmp(object, "sphere"))
 	{
 		(object) ? (ft_strdel(&object)) : (0);
 		object = ft_strdup("sphere");
@@ -24,7 +24,7 @@ static char	*intersect_sphere(char *object)
 
 static char	*intersect_plane(char *object)
 {
-	if (!ft_strstr(object, "plane"))
+	if (ft_strcmp(object, "plane"))
 	{
 		(object) ? (ft_strdel(&object)) : (0);
 		object = ft_strdup("plane");
@@ -34,10 +34,20 @@ static char	*intersect_plane(char *object)
 
 static char	*intersect_cylinder(char *object)
 {
-	if (!ft_strstr(object, "cylinder"))
+	if (ft_strcmp(object, "cylinder"))
 	{
 		(object) ? (ft_strdel(&object)) : (0);
 		object = ft_strdup("cylinder");
+	}
+	return (object);
+}
+
+static char	*intersect_cone(char *object)
+{
+	if (ft_strcmp(object, "cone"))
+	{
+		(object) ? (ft_strdel(&object)) : (0);
+		object = ft_strdup("cone");
 	}
 	return (object);
 }
@@ -53,6 +63,7 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	*currentobj = -1;
 	imax = (rt->nbp > rt->nbs) ? (rt->nbp) : (rt->nbs);
 	imax = (rt->nbc > imax) ? (rt->nbc) : (imax);
+	imax = (rt->nbco > imax) ? (rt->nbco) : (imax);
 	while (i < imax)
 	{
 		if (i < rt->nbs && sphere(&rt->r, &rt->s[i], &t))
@@ -69,6 +80,11 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 		{
 			*currentobj = i;
 			object = intersect_cylinder(object);
+		}
+		if (i < rt->nbco && cone(&rt->r, &rt->co[i], &t))
+		{
+			*currentobj = i;
+			object = intersect_cone(object);
 		}
 		i++;
 	}

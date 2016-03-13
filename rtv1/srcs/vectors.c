@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 11:10:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 16:36:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/13 11:10:44 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ float		vectordot(t_vector3d *v1, t_vector3d *v2, int i)
 	float	resx;
 	float	resy;
 	float	resz;
+	float	result;
 
 	resx = v1->x * v2->x;
 	resy = v1->y * v2->y;
@@ -37,5 +38,13 @@ float		vectordot(t_vector3d *v1, t_vector3d *v2, int i)
 	resx = (i == 1) ? (0) : (resx);
 	resy = (i == 2) ? (0) : (resy);
 	resz = (i == 3) ? (0) : (resz);
-	return (resx + resy + resz);
+	if (i == 'x')
+		result = -resx + resy + resz;
+	else if (i == 'y')
+		result = resx - resy + resz;
+	else if (i == 'z')
+		result = resx + resy - resz;
+	else
+		result = resx + resy + resz;
+	return (result);
 }

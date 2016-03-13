@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:54:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 16:58:35 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/13 11:13:16 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_sphere_tab(char *file, t_rt *rt)
 		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line))
 	{
-		rt->nbs += (ft_strstr(line, "object : sphere")) ? (1) : (0);
+		rt->nbs += (!ft_strcmp(line, "object : sphere")) ? (1) : (0);
 		ft_strdel(&line);
 	}
 	if (!(rt->s = (t_sphere *)malloc(sizeof(t_sphere) * rt->nbs)))
@@ -53,7 +53,7 @@ static void	init_plane_tab(char *file, t_rt *rt)
 		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line))
 	{
-		rt->nbp += (ft_strstr(line, "object : plane")) ? (1) : (0);
+		rt->nbp += (!ft_strcmp(line, "object : plane")) ? (1) : (0);
 		ft_strdel(&line);
 	}
 	if (!(rt->p = (t_plane *)malloc(sizeof(t_plane) * rt->nbp)))
@@ -81,7 +81,7 @@ static void	init_cylinder_tab(char *file, t_rt *rt)
 		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line))
 	{
-		rt->nbc += (ft_strstr(line, "object : cylinder")) ? (1) : (0);
+		rt->nbc += (!ft_strcmp(line, "object : cylinder")) ? (1) : (0);
 		ft_strdel(&line);
 	}
 	if (!(rt->c = (t_cylinder *)malloc(sizeof(t_cylinder) * rt->nbc)))
@@ -93,6 +93,36 @@ static void	init_cylinder_tab(char *file, t_rt *rt)
 		rt->c[i].pos.z = 0;
 		rt->c[i].radius = 0;
 		rt->c[i].color = 0;
+		i++;
+	}
+	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
+}
+
+static void	init_cone_tab(char *file, t_rt *rt)
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	rt->nbco = 0;
+	i = 0;
+	if ((fd = open(file, O_RDONLY)) == -1)
+		ft_exit("\033[31mThis scene doesn't exist\n");
+	while (get_next_line(fd, &line))
+	{
+		rt->nbco += (!ft_strcmp(line, "object : cone")) ? (1) : (0);
+		ft_strdel(&line);
+	}
+	if (!(rt->co = (t_cone *)malloc(sizeof(t_cone) * rt->nbco)))
+		ft_exit("malloc of rt->co failed in init_cone_tab");
+	while (i < rt->nbco)
+	{
+		rt->co[i].pos.x = 0;
+		rt->co[i].pos.y = 0;
+		rt->co[i].pos.z = 0;
+		rt->co[i].axis = 'y';
+		rt->co[i].radius = 0;
+		rt->co[i].color = 0;
 		i++;
 	}
 	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
@@ -110,4 +140,5 @@ void		init_all(char *file, t_rt *rt)
 	init_sphere_tab(file, rt);
 	init_plane_tab(file, rt);
 	init_cylinder_tab(file, rt);
+	init_cone_tab(file, rt);
 }

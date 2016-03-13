@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/11 17:32:57 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/13 11:11:16 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,35 @@ int		cylinder(t_ray *r, t_cylinder *c, float *t)
 	dist = vectorsub(&c->pos, &r->start, tab[2]);
 	b = vectordot(&r->dir, &dist, tab[2]);
 	d = pow(b, 2) - vectordot(&dist, &dist, tab[2]) + pow(c->radius, 2);
+	if (d < 0)
+		return (0);
+	tab[0] = b - sqrt(d);
+	tab[1] = b + sqrt(d);
+	retval = 0;
+	if (tab[0] > 0.1 && tab[0] < *t)
+	{
+		*t = tab[0];
+		retval = 1;
+	}
+	if (tab[1] > 0.1 && tab[1] < *t)
+	{
+		*t = tab[1];
+		retval = 0;
+	}
+	return (retval);
+}
+
+int		cone(t_ray *r, t_cone *co, float *t)
+{
+	t_vector3d	dist;
+	float		tab[2];
+	float		b;
+	float		d;
+	int			retval;
+
+	dist = vectorsub(&co->pos, &r->start, 0);
+	b = vectordot(&r->dir, &dist, co->axis);
+	d = pow(b, 2) - vectordot(&dist, &dist, co->axis) + pow(co->radius, 2);
 	if (d < 0)
 		return (0);
 	tab[0] = b - sqrt(d);
