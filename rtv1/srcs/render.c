@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/13 12:27:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/13 14:26:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void			render(t_rt *rt)
 	int			x;
 	int			y;
 
+	rt->r.start.z = rt->campos.z;
 	y = 0;
 	while (y < SH)
 	{
@@ -43,7 +44,6 @@ void			render(t_rt *rt)
 		{
 			rt->r.start.x = (float)x + rt->campos.x;
 			rt->r.start.y = (float)y + rt->campos.y;
-			rt->r.start.z = rt->campos.z;
 			rt->currentobj = -1;
 			object = NULL;
 			object = intersect(rt, &rt->currentobj, object);
