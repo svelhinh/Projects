@@ -3,7 +3,7 @@ default_color : 0
 object : camera
 x_pos : 0
 y_pos : 0
-z_pos : -10000
+z_pos : -15000
 r_dir_x : 0
 r_dir_y : 0
 r_dir_z : 1
