@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/15 11:47:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 11:12:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,40 +35,52 @@ void			render(t_rt *rt)
 	float		x;
 	float		y;
 	float		z;
-	float		coeff;
-	int			level;
-	//t_vector3d	scaled;
-	//t_vector3d	newstart;
+	/*float		x2;
+	float		y2;
+	float		z2;
+	float		x3;
+	float		y3;
+	float		z3;*/
+	float		rotx;
+	//float		roty;
+	//float		rotz;
 
-	rt->materials[0].diffuse.red = 1;
-	rt->materials[0].diffuse.green = 0;
-	rt->materials[0].diffuse.blue = 0;
-	rt->lights[0].pos.x = 0;
-	rt->lights[0].pos.y = 0;
-	rt->lights[0].pos.z = 0;
-	rt->lights[0].intensity.red = 1;
-	rt->lights[0].intensity.green = 1;
-	rt->lights[0].intensity.blue = 1;
 	z = rt->campos.z;
 	y = 0;
+	rotx = 0;
+	//roty = 0;
+	//rotz = 0.05;
 	while (y < SH)
 	{
 		x = 0;
 		while (x < SW)
 		{
-			coeff = 1;
-			level = 0;
-			rt->r.start.x = x + rt->campos.x;
-			rt->r.start.y = y + rt->campos.y;
-			rt->r.start.z = z;
-			while (coeff > 0 && level < 15)
-			{
-				object = NULL;
-				object = intersect(rt, &rt->currentobj, object);
-				coeff = 0;
-			}
+			/*rt->r.dir.y = y * cos(rotx) - z * sin(rotx);
+			rt->r.dir.z = y * sin(rotx) + z * cos(rotx);
+			rt->r.dir.x = x;*/
+			/*x3 = x2 * cos(rotz) - y2 * sin(rotz);
+			y3 = x2 * sin(rotz) + y2 * cos(rotz);
+			z3 = z2;*/
+			/*x2 = x * (cos(rotx) * cos(roty) - sin(rotx) * cos(rotz) * sin(roty)) +
+				y * (-cos(rotx) * sin(roty) - sin(rotx) * cos(rotz) * cos(roty)) +
+				z * (sin(rotx) * sin(rotz));
+			y2 = x * (sin(rotx) * cos(roty) + cos(rotx) * cos(rotz) * sin(roty)) +
+				y * (-sin(rotx) * sin(roty) + cos(rotx) * cos(rotz) * cos(roty)) +
+				z * (-cos(rotx) * sin(rotz));
+			z2 = x * (sin(rotz) * sin(roty)) + y * (sin(rotz) * cos(roty)) +
+				z * cos(rotz);*/
+			/*x2 = x * cos(rot) - y * sin(rot);
+			y2 = x * sin(rot) + y * cos(rot);
+			z2 = z;*/
+			rt->r.start.x = /*x3 + */x + rt->campos.x;
+			rt->r.start.y = /*y3 + */y + rt->campos.y;
+			rt->r.start.z = /*z3*/z;
+			rt->currentobj = -1;
+			object = NULL;
+			object = intersect(rt, &rt->currentobj, object);
 			draw(rt, object, x, y);
-			ft_strdel(&object);
+			if (object)
+				ft_strdel(&object);
 			x++;
 		}
 		y++;

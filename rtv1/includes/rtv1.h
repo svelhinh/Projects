@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/14 10:36:45 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 11:45:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ typedef struct	s_light
 typedef struct	s_material
 {
 	t_colour	diffuse;
+	//float		reflection;
 }				t_material;
 typedef struct	s_sphere
 {
 	t_vector3d	pos;
 	float		radius;
-	//int			material;
+	int			material;
 	int			color;
 }				t_sphere;
 typedef struct	s_plane
@@ -94,6 +95,8 @@ typedef struct	s_rt
 	t_cone		*co;
 	t_ray		r;
 	t_vector3d	campos;
+	t_material	materials[1];
+	t_light		lights[1];
 }				t_rt;
 void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_rt *v, int x, int y);
