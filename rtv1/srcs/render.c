@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/15 16:23:35 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 17:01:38 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void			render(t_rt *rt)
 				object = intersect(rt, &rt->currentobj, object);
 				if (rt->currentobj == -1)
 					break;
+				//coef = 0;
 			}
 			draw(rt, object, x, y);
 			ft_strdel(&object);

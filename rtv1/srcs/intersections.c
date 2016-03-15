@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/15 16:25:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 17:04:22 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ static char	*intersect_cone(char *object)
 
 char		*intersect(t_rt *rt, int *currentobj, char *object)
 {
-	int		i;
-	float	t;
-	int		imax;
-	t_point	newstart;
+	int			i;
+	float		t;
+	int			imax;
+	t_point		newstart;
+	t_vector3d	n;
+	float		tmp;
 
 	i = 0;
 	t = 200000;
@@ -92,6 +94,17 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	if (*currentobj != -1)
 	{
 		newstart = vectorads(&rt->r, t);
+		n = vectordiff(newstart, rt, object, *currentobj);
+		tmp = vectordot(&n, &n, 0);
+		if (tmp)
+		{
+			tmp = 1 / sqrt(tmp);
+			n.x *= tmp;
+			n.y *= tmp;
+			n.z *= tmp;
+		}
+		else
+			*currentobj = -1;
 	}
 	return (object);
 }

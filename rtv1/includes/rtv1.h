@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/15 16:22:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 16:56:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ char			*intersect(t_rt *rt, int *currentobj, char *object);
 void			line2_free(char **line2);
 void			cone_init(int fd, t_rt *rt);
 t_point			vectorads(t_ray *r, float t);
+t_vector3d		vectordiff(t_point p, t_rt *rt, char *object, int currentobj);
 #endif

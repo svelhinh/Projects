@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 11:10:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/15 16:22:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 17:04:24 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,24 @@ t_point		vectorads(t_ray *r, float t)
 	result.x = r->start.x + t * r->dir.x;
 	result.y = r->start.y + t * r->dir.y;
 	result.z = r->start.z + t * r->dir.z;
+	return (result);
+}
+
+t_vector3d	vectordiff(t_point p, t_rt *rt, char *object, int currentobj)
+{
+	t_vector3d result;
+
+	if (!ft_strcmp(object, "sphere"))
+	{
+		result.x = p.x - rt->s[currentobj].pos.x;
+		result.y = p.y - rt->s[currentobj].pos.y;
+		result.z = p.z - rt->s[currentobj].pos.z;
+	}
+	if (!ft_strcmp(object, "plane"))
+	{
+		result.x = p.x - rt->p[currentobj].pos.x;
+		result.y = p.y - rt->p[currentobj].pos.y;
+		result.z = p.z - rt->p[currentobj].pos.z;
+	}
 	return (result);
 }
