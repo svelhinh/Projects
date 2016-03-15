@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/15 11:45:52 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 16:22:50 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,16 @@ typedef struct	s_vector3d
 	float		y;
 	float		z;
 }				t_vector3d;
-typedef struct	s_colour
+typedef struct	s_point
 {
-	float		red;
-	float		green;
-	float		blue;
-}				t_colour;
-typedef struct	s_light
-{
-	t_vector3d	pos;
-	t_colour	intensity;
-}				t_light;
-typedef struct	s_material
-{
-	t_colour	diffuse;
-	//float		reflection;
-}				t_material;
+	float		x;
+	float		y;
+	float		z;
+}				t_point;
 typedef struct	s_sphere
 {
 	t_vector3d	pos;
 	float		radius;
-	int			material;
 	int			color;
 }				t_sphere;
 typedef struct	s_plane
@@ -95,8 +84,6 @@ typedef struct	s_rt
 	t_cone		*co;
 	t_ray		r;
 	t_vector3d	campos;
-	t_material	materials[1];
-	t_light		lights[1];
 }				t_rt;
 void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_rt *v, int x, int y);
@@ -119,4 +106,5 @@ int				cone(t_ray *r, t_cone *co, float *t);
 char			*intersect(t_rt *rt, int *currentobj, char *object);
 void			line2_free(char **line2);
 void			cone_init(int fd, t_rt *rt);
+t_point			vectorads(t_ray *r, float t);
 #endif

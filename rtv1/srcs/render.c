@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/15 11:47:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 16:23:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,9 @@ void			render(t_rt *rt)
 	float		x;
 	float		y;
 	float		z;
-	float		coeff;
+	float		coef;
 	int			level;
-	//t_vector3d	scaled;
-	//t_vector3d	newstart;
 
-	rt->materials[0].diffuse.red = 1;
-	rt->materials[0].diffuse.green = 0;
-	rt->materials[0].diffuse.blue = 0;
-	rt->lights[0].pos.x = 0;
-	rt->lights[0].pos.y = 0;
-	rt->lights[0].pos.z = 0;
-	rt->lights[0].intensity.red = 1;
-	rt->lights[0].intensity.green = 1;
-	rt->lights[0].intensity.blue = 1;
 	z = rt->campos.z;
 	y = 0;
 	while (y < SH)
@@ -56,16 +45,17 @@ void			render(t_rt *rt)
 		x = 0;
 		while (x < SW)
 		{
-			coeff = 1;
+			coef = 1;
 			level = 0;
 			rt->r.start.x = x + rt->campos.x;
 			rt->r.start.y = y + rt->campos.y;
 			rt->r.start.z = z;
-			while (coeff > 0 && level < 15)
+			while (coef > 0 && level < 10)
 			{
 				object = NULL;
 				object = intersect(rt, &rt->currentobj, object);
-				coeff = 0;
+				if (rt->currentobj == -1)
+					break;
 			}
 			draw(rt, object, x, y);
 			ft_strdel(&object);

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 11:10:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/13 11:10:44 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/15 16:22:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,15 @@ float		vectordot(t_vector3d *v1, t_vector3d *v2, int i)
 		result = resx + resy - resz;
 	else
 		result = resx + resy + resz;
+	return (result);
+}
+
+t_point		vectorads(t_ray *r, float t)
+{
+	t_point result;
+
+	result.x = r->start.x + t * r->dir.x;
+	result.y = r->start.y + t * r->dir.y;
+	result.z = r->start.z + t * r->dir.z;
 	return (result);
 }
