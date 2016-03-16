@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:54:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/13 11:13:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/16 15:39:12 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,16 @@ void		init_all(char *file, t_rt *rt)
 	rt->r.dir.x = 0;
 	rt->r.dir.y = 0;
 	rt->r.dir.z = 0;
+
+	// ------------------- a modifier ---------------------------- //
+	if (!(rt->lights = (t_light *)malloc(sizeof(t_light))))
+		ft_exit("malloc of rt->lights failed in init_all");
+	rt->lights[0].pos.x = 0;
+	rt->lights[0].pos.y = 240;
+	rt->lights[0].pos.z = -100;
+	rt->lights[0].color = 0xffffff;
+	// ----------------------------------------------------------- //
+
 	init_sphere_tab(file, rt);
 	init_plane_tab(file, rt);
 	init_cylinder_tab(file, rt);

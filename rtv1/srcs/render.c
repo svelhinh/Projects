@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/15 17:01:38 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:35:34 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		draw(t_rt *rt, char *object, int x, int y)
 	if (rt->currentobj != -1)
 	{
 		if (!ft_strcmp("sphere", object))
-			mlx_pixel_put_to_image(rt->s[rt->currentobj].color, rt, x, y);
+			mlx_pixel_put_to_image(rt->/*s[rt->currentobj].color*/pixel_color, rt, x, y);
 		else if (!ft_strcmp("plane", object))
 			mlx_pixel_put_to_image(rt->p[rt->currentobj].color, rt, x, y);
 		else if (!ft_strcmp("cylinder", object))
@@ -35,8 +35,6 @@ void			render(t_rt *rt)
 	float		x;
 	float		y;
 	float		z;
-	float		coef;
-	int			level;
 
 	z = rt->campos.z;
 	y = 0;
@@ -45,18 +43,19 @@ void			render(t_rt *rt)
 		x = 0;
 		while (x < SW)
 		{
-			coef = 1;
-			level = 0;
+			rt->pixel_color = 0;
+			rt->level = 0;
+			rt->coef = 1;
+			rt->currentobj = -1;
 			rt->r.start.x = x + rt->campos.x;
 			rt->r.start.y = y + rt->campos.y;
 			rt->r.start.z = z;
-			while (coef > 0 && level < 10)
+			while (rt->coef > 0 && rt->level < 15)
 			{
-				object = NULL;
 				object = intersect(rt, &rt->currentobj, object);
 				if (rt->currentobj == -1)
-					break;
-				//coef = 0;
+					break ;
+				rt->level++;
 			}
 			draw(rt, object, x, y);
 			ft_strdel(&object);

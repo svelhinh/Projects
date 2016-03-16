@@ -8,12 +8,6 @@ r_dir_x : 0
 r_dir_y : 0
 r_dir_z : 1
 
-object : plane
-x_pos : 0
-y_pos : 700
-z_pos : 1
-color : 757063
-
 object : sphere
 x_pos : 600
 y_pos : 350
