@@ -45,18 +45,11 @@ void			render(t_rt *rt)
 		{
 			rt->pixel_color = 0;
 			rt->level = 0;
-			rt->coef = 1;
 			rt->currentobj = -1;
 			rt->r.start.x = x + rt->campos.x;
 			rt->r.start.y = y + rt->campos.y;
 			rt->r.start.z = z;
-			while (rt->coef > 0 && rt->level < 15)
-			{
-				object = intersect(rt, &rt->currentobj, object);
-				if (rt->currentobj == -1)
-					break ;
-				rt->level++;
-			}
+			object = intersect(rt, &rt->currentobj, object);
 			draw(rt, object, x, y);
 			ft_strdel(&object);
 			x++;

@@ -125,11 +125,6 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 				}
 				i++;
 			}
-			rt->coef *= 0;
-			//rt->r.start = newstart;
-			//reflect = 2 * vectordot(&rt->r.dir, &normal, 0);
-			//tmp2 = vectorscale(reflect, &normal);
-			//rt->r.dir = vectorsub(&rt->r.dir, &tmp2, 0);
 		}
 	}
 	return (object);
