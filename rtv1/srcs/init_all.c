@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:54:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/16 15:39:12 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/17 16:49:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ static void	init_sphere_tab(char *file, t_rt *rt)
 		rt->s[i].pos.y = 0;
 		rt->s[i].pos.z = 0;
 		rt->s[i].radius = 0;
-		rt->s[i].color = 0;
+		rt->s[i].color.red = 0;
+		rt->s[i].color.green = 0;
+		rt->s[i].color.blue = 0;
 		i++;
 	}
 	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
@@ -141,10 +143,12 @@ void		init_all(char *file, t_rt *rt)
 	// ------------------- a modifier ---------------------------- //
 	if (!(rt->lights = (t_light *)malloc(sizeof(t_light))))
 		ft_exit("malloc of rt->lights failed in init_all");
-	rt->lights[0].pos.x = 0;
-	rt->lights[0].pos.y = 240;
-	rt->lights[0].pos.z = -100;
-	rt->lights[0].color = 0xffffff;
+	rt->lights[0].pos.x = 350;
+	rt->lights[0].pos.y = 340;
+	rt->lights[0].pos.z = -500;
+	rt->lights[0].intensity.red = 1;
+	rt->lights[0].intensity.blue = 1;
+	rt->lights[0].intensity.green = 1;
 	// ----------------------------------------------------------- //
 
 	init_sphere_tab(file, rt);

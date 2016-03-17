@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/16 16:34:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/17 16:42:18 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,10 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	float		t;
 	int			imax;
 	float		tmp;
-	//float		reflect;
 	t_vector3d	scaled;
 	t_vector3d	newstart;
 	t_vector3d	normal;
 	t_vector3d	dist;
-	//t_vector3d	tmp2;
 	t_light		currentlight;
 	t_ray		light_ray;
 
@@ -98,7 +96,6 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	}
 	if (*currentobj != -1)
 	{
-		//ft_putnbrendl(*currentobj);
 		scaled = vectorscale(t, &rt->r.dir);
 		newstart = vectoradd(&rt->r.start, &scaled);
 		normal = vectorsub(&newstart, &rt->s[*currentobj].pos, 0);
@@ -115,21 +112,18 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 				if (vectordot(&normal, &dist, 0) > 0)
 				{
 					tmp = sqrt(vectordot(&dist, &dist, 0));
-					if (t > 0)
+					if (tmp > 0)
 					{
 						light_ray.start = newstart;
-						light_ray.dir = vectorscale((1 / t), &dist);
-						tmp = vectordot(&light_ray.dir, &normal, 0) * rt->coef;
-						rt->pixel_color += tmp * currentlight.color + rt->s[*currentobj].color;
+						light_ray.dir = vectorscale((1 / tmp), &dist);
+						tmp = vectordot(&light_ray.dir, &normal, 0)/* * rt->coef*/;
+						rt->global_color.red += tmp * currentlight.intensity.red * rt->s[*currentobj].color.red;
+						rt->global_color.green += tmp * currentlight.intensity.green * rt->s[*currentobj].color.green;
+						rt->global_color.blue += tmp * currentlight.intensity.blue * rt->s[*currentobj].color.blue;
 					}
 				}
 				i++;
 			}
-			rt->coef *= 0;
-			//rt->r.start = newstart;
-			//reflect = 2 * vectordot(&rt->r.dir, &normal, 0);
-			//tmp2 = vectorscale(reflect, &normal);
-			//rt->r.dir = vectorsub(&rt->r.dir, &tmp2, 0);
 		}
 	}
 	return (object);

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/16 16:19:22 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/17 16:41:45 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,22 @@ typedef struct	s_vector3d
 	float		y;
 	float		z;
 }				t_vector3d;
+typedef struct	s_color
+{
+	float		red;
+	float		green;
+	float		blue;
+}				t_color;
 typedef struct	s_light
 {
 	t_vector3d	pos;
-	int			color;
+	t_color		intensity;
 }				t_light;
 typedef struct	s_sphere
 {
 	t_vector3d	pos;
 	float		radius;
-	int			material;
-	int			color;
+	t_color		color;
 }				t_sphere;
 typedef struct	s_plane
 {
@@ -79,8 +84,6 @@ typedef struct	s_rt
 	int			nbco;
 	int			currentobj;
 	int			pixel_color;
-	int			level;
-	float		coef;
 	t_sphere	*s;
 	t_plane		*p;
 	t_cylinder	*c;
@@ -88,6 +91,7 @@ typedef struct	s_rt
 	t_ray		r;
 	t_vector3d	campos;
 	t_light		*lights;
+	t_color		global_color;
 }				t_rt;
 void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_rt *v, int x, int y);

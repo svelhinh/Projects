@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/16 16:35:34 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/17 16:40:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,24 @@ static void		draw(t_rt *rt, char *object, int x, int y)
 void			render(t_rt *rt)
 {
 	char		*object;
-	float		x;
-	float		y;
-	float		z;
+	int			x;
+	int			y;
 
-	z = rt->campos.z;
 	y = 0;
+	rt->r.start.z = rt->campos.z;
 	while (y < SH)
 	{
 		x = 0;
 		while (x < SW)
 		{
-			rt->pixel_color = 0;
-			rt->level = 0;
-			rt->coef = 1;
 			rt->currentobj = -1;
+			rt->global_color.red = 0;
+			rt->global_color.blue = 0;
+			rt->global_color.green = 0;
 			rt->r.start.x = x + rt->campos.x;
 			rt->r.start.y = y + rt->campos.y;
-			rt->r.start.z = z;
-			while (rt->coef > 0 && rt->level < 15)
-			{
-				object = intersect(rt, &rt->currentobj, object);
-				if (rt->currentobj == -1)
-					break ;
-				rt->level++;
-			}
+			object = intersect(rt, &rt->currentobj, object);
+			rt->pixel_color = (int)(rt->global_color.red * 255) * 0x10000 + (int)(rt->global_color.green * 255) * 0x100 + (int)(rt->global_color.blue * 255);
 			draw(rt, object, x, y);
 			ft_strdel(&object);
 			x++;

@@ -1,4 +1,4 @@
-default_color : 0
+default_color : 40adb9
 
 object : camera
 x_pos : 0
@@ -13,4 +13,18 @@ x_pos : 600
 y_pos : 350
 z_pos : 0
 radius : 150
-color : EC1D00
+color : 1 1 1
+
+object : sphere
+x_pos : 200
+y_pos : 150
+z_pos : 0
+radius : 10
+color : 1 0.5 0.5
+
+object : sphere
+x_pos : 800
+y_pos : 550
+z_pos : 0
+radius : 100
+color : 0 0 1

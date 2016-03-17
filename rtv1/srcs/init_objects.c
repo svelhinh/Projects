@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/16 14:00:08 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/17 16:44:04 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ void	sphere_init(int fd, t_rt *rt)
 		else if (!ft_strcmp(line2[0], "radius"))
 			rt->s[i].radius = ft_atof(line2[2]);
 		else if (!ft_strcmp(line2[0], "color"))
-			rt->s[i].color = ft_atoi_base(line2[2], 16);
+		{
+			rt->s[i].color.red = ft_atof(line2[2]);
+			rt->s[i].color.green = ft_atof(line2[3]);
+			rt->s[i].color.blue = ft_atof(line2[4]);
+		}
 		line2_free(line2);
 		ft_strdel(&line);
 	}
