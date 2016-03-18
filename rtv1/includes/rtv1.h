@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/17 16:41:45 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/18 13:50:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ typedef struct	s_sphere
 typedef struct	s_plane
 {
 	t_vector3d	pos;
-	int			color;
+	t_color		color;
 }				t_plane;
 typedef struct	s_cylinder
 {
 	t_vector3d	pos;
 	float		height;
 	float		radius;
-	int			color;
+	t_color		color;
 }				t_cylinder;
 typedef struct	s_cone
 {
 	t_vector3d	pos;
 	float		radius;
 	char		axis;
-	int			color;
+	t_color		color;
 }				t_cone;
 typedef struct	s_ray
 {
@@ -82,6 +82,7 @@ typedef struct	s_rt
 	int			nbp;
 	int			nbc;
 	int			nbco;
+	int			nbl;
 	int			currentobj;
 	int			pixel_color;
 	t_sphere	*s;
@@ -90,30 +91,90 @@ typedef struct	s_rt
 	t_cone		*co;
 	t_ray		r;
 	t_vector3d	campos;
-	t_light		*lights;
+	t_light		light;
 	t_color		global_color;
 }				t_rt;
+
+/*
+** ----------------------------- mlx -------------------------------------
+*/
 void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_rt *v, int x, int y);
 int				expose(t_rt *rt);
 int				key_press(int keycode, t_rt *rt);
 int				key_release(int keycode, t_rt *rt);
-void			parsing_file(char *file, t_rt *rt);
+/*
+** ------------------------------------------------------------------------
+*/
+
+/*
+** --------------------------- render -------------------------------------
+*/
 void			render(t_rt *rt);
-t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2, int i);
-float			vectordot(t_vector3d *v1, t_vector3d *v2, int i);
-void			plane_init(int fd, t_rt *rt);
-void			sphere_init(int fd, t_rt *rt);
-void			camera_init(int fd, t_rt *rt);
-void			cylinder_init(int fd, t_rt *rt);
-void			init_all(char *file, t_rt *rt);
 int				sphere(t_ray *r, t_sphere *s, float *t);
 int				plane(t_ray *r, t_plane *p, float *t);
 int				cylinder(t_ray *r, t_cylinder *c, float *t);
 int				cone(t_ray *r, t_cone *co, float *t);
 char			*intersect(t_rt *rt, int *currentobj, char *object);
-void			line2_free(char **line2);
-void			cone_init(int fd, t_rt *rt);
+/*
+** ------------------------------------------------------------------------
+*/
+
+/*
+** -------------------------- light ---------------------------------------
+*/
+void			light_sphere(t_rt *rt, float t, float tmp, int currentobj);
+void			light_plane(t_rt *rt, float t, float tmp, int currentobj);
+void			light_cylinder(t_rt *rt, float t, float tmp, int currentobj);
+void			light_cone(t_rt *rt, float t, float tmp, int currentobj);
+/*
+** ------------------------------------------------------------------------
+*/
+
+/*
+** ------------------------ vectors ---------------------------------------
+*/
+t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2, int i);
+float			vectordot(t_vector3d *v1, t_vector3d *v2, int i);
 t_vector3d		vectorscale(float c, t_vector3d *v);
 t_vector3d		vectoradd(t_vector3d *v1, t_vector3d *v2);
+/*
+** ------------------------------------------------------------------------
+*/
+
+/*
+** ------------------------ parsing ---------------------------------------
+*/
+void			global_parser(char *file, t_rt *rt);
+void			parsing_camera(int fd, t_rt *rt);
+void			parsing_light(int fd, t_rt *rt);
+void			parsing_plane(int fd, t_rt *rt);
+void			parsing_sphere(int fd, t_rt *rt);
+void			parsing_cylinder(int fd, t_rt *rt);
+void			parsing_cone(int fd, t_rt *rt);
+/*
+** -----------------------------------------------------------------------
+*/
+
+/*
+** ------------------------ initialisation -------------------------------
+*/
+void			init_all(char *file, t_rt *rt);
+void			init_light(t_rt *rt);
+void			init_camera(t_rt *rt);
+void			init_sphere(char *file, t_rt *rt);
+void			init_plane(char *file, t_rt *rt);
+void			init_cylinder(char *file, t_rt *rt);
+void			init_cone(char *file, t_rt *rt);
+/*
+** ------------------------------------------------------------------------
+*/
+
+/*
+** ------------------------ others ---------------------------------------
+*/
+void			line2_free(char **line2);
+/*
+** -------------------------------------------------------------------------
+*/
 #endif

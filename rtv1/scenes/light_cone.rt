@@ -1,0 +1,23 @@
+default_color : 40adb9
+
+object : camera
+x_pos : 0
+y_pos : 0
+z_pos : -10000
+r_dir_x : 0
+r_dir_y : 0
+r_dir_z : 1
+
+object : light
+x_pos : 500
+y_pos : 100
+z_pos : -10000
+color : 1 1 1
+
+object : cone
+x_pos : 700
+y_pos : 300
+z_pos : 0
+axis : y
+radius : 0
+color : 1 0.6 0.9

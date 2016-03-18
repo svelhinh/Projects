@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/17 16:42:18 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/18 13:51:21 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,6 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	float		t;
 	int			imax;
 	float		tmp;
-	t_vector3d	scaled;
-	t_vector3d	newstart;
-	t_vector3d	normal;
-	t_vector3d	dist;
-	t_light		currentlight;
-	t_ray		light_ray;
 
 	i = 0;
 	t = 200000;
@@ -96,35 +90,15 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	}
 	if (*currentobj != -1)
 	{
-		scaled = vectorscale(t, &rt->r.dir);
-		newstart = vectoradd(&rt->r.start, &scaled);
-		normal = vectorsub(&newstart, &rt->s[*currentobj].pos, 0);
-		tmp = vectordot(&normal, &normal, 0);
-		if (tmp != 0)
-		{
-			tmp = 1 / sqrt(tmp);
-			normal = vectorscale(tmp, &normal);
-			i = 0;
-			while (i < 1)
-			{
-				currentlight = rt->lights[i];
-				dist = vectorsub(&currentlight.pos, &newstart, 0);
-				if (vectordot(&normal, &dist, 0) > 0)
-				{
-					tmp = sqrt(vectordot(&dist, &dist, 0));
-					if (tmp > 0)
-					{
-						light_ray.start = newstart;
-						light_ray.dir = vectorscale((1 / tmp), &dist);
-						tmp = vectordot(&light_ray.dir, &normal, 0)/* * rt->coef*/;
-						rt->global_color.red += tmp * currentlight.intensity.red * rt->s[*currentobj].color.red;
-						rt->global_color.green += tmp * currentlight.intensity.green * rt->s[*currentobj].color.green;
-						rt->global_color.blue += tmp * currentlight.intensity.blue * rt->s[*currentobj].color.blue;
-					}
-				}
-				i++;
-			}
-		}
+		tmp = 0;
+		if (!ft_strcmp(object, "plane"))
+			light_plane(rt, t, tmp, *currentobj);
+		else if (!ft_strcmp(object, "cylinder"))
+			light_cylinder(rt, t, tmp, *currentobj);
+		else if (!ft_strcmp(object, "cone"))
+			light_cone(rt, t, tmp, *currentobj);
+		else if (!ft_strcmp(object, "sphere"))
+			light_sphere(rt, t, tmp, *currentobj);
 	}
 	return (object);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:45:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/17 12:19:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/18 11:07:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		main(int ac, char **av)
 		(ac > 2) ? (ft_exit("\033[31mToo many parameters\n")) :
 			(ft_exit("\033[31mNot enough parameters\n"));
 	}
-	parsing_file(av[1], &rt);
+	global_parser(av[1], &rt);
 	(!(rt.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
 	if (!(rt.win = mlx_new_window(rt.mlx, SW, SH, "RTV1")))
 		ft_exit("mlx_new_window() in main() failed");

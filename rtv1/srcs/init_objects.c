@@ -1,152 +1,137 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_objects.c                                     :+:      :+:    :+:   */
+/*   init_camera_lights.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/17 16:44:04 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/03/18 10:16:17 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/03/18 11:17:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	camera_init(int fd, t_rt *rt)
+void	init_sphere(char *file, t_rt *rt)
 {
-	char *line;
-	char **line2;
+	int		fd;
+	char	*line;
+	int		i;
 
+	rt->nbs = 0;
+	i = 0;
+	if ((fd = open(file, O_RDONLY)) == -1)
+		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line))
 	{
-		if (line[0] == '\0')
-			break ;
-		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
-			rt->campos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->campos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->campos.z = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "r_dir_x"))
-			rt->r.dir.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "r_dir_y"))
-			rt->r.dir.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "r_dir_z"))
-			rt->r.dir.z = ft_atof(line2[2]);
-		line2_free(line2);
+		rt->nbs += (!ft_strcmp(line, "object : sphere")) ? (1) : (0);
 		ft_strdel(&line);
 	}
+	if (!(rt->s = (t_sphere *)malloc(sizeof(t_sphere) * rt->nbs)))
+		ft_exit("malloc of rt->s failed in init_sphere_tab");
+	while (i < rt->nbs)
+	{
+		rt->s[i].pos.x = 0;
+		rt->s[i].pos.y = 0;
+		rt->s[i].pos.z = 0;
+		rt->s[i].radius = 0;
+		rt->s[i].color.red = 0;
+		rt->s[i].color.green = 0;
+		rt->s[i].color.blue = 0;
+		i++;
+	}
+	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 }
 
-void	sphere_init(int fd, t_rt *rt)
+void	init_plane(char *file, t_rt *rt)
 {
-	static int	i;
-	char		*line;
-	char		**line2;
+	int		fd;
+	char	*line;
+	int		i;
 
+	rt->nbp = 0;
+	i = 0;
+	if ((fd = open(file, O_RDONLY)) == -1)
+		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line))
 	{
-		if (line[0] == '\0')
-			break ;
-		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
-			rt->s[i].pos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->s[i].pos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->s[i].pos.z = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "radius"))
-			rt->s[i].radius = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "color"))
-		{
-			rt->s[i].color.red = ft_atof(line2[2]);
-			rt->s[i].color.green = ft_atof(line2[3]);
-			rt->s[i].color.blue = ft_atof(line2[4]);
-		}
-		line2_free(line2);
+		rt->nbp += (!ft_strcmp(line, "object : plane")) ? (1) : (0);
 		ft_strdel(&line);
 	}
-	i++;
+	if (!(rt->p = (t_plane *)malloc(sizeof(t_plane) * rt->nbp)))
+		ft_exit("malloc of rt->p failed in init_plane_tab");
+	while (i < rt->nbp)
+	{
+		rt->p[i].pos.x = 0;
+		rt->p[i].pos.y = 0;
+		rt->p[i].pos.z = 0;
+		rt->p[i].color.red = 0;
+		rt->p[i].color.green = 0;
+		rt->p[i].color.blue = 0;
+		i++;
+	}
+	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 }
 
-void	plane_init(int fd, t_rt *rt)
+void	init_cylinder(char *file, t_rt *rt)
 {
-	static int	i;
-	char		*line;
-	char		**line2;
+	int		fd;
+	char	*line;
+	int		i;
 
+	rt->nbc = 0;
+	i = 0;
+	if ((fd = open(file, O_RDONLY)) == -1)
+		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line))
 	{
-		if (line[0] == '\0')
-			break ;
-		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
-			rt->p[i].pos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->p[i].pos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->p[i].pos.z = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "color"))
-			rt->p[i].color = ft_atoi_base(line2[2], 16);
-		line2_free(line2);
+		rt->nbc += (!ft_strcmp(line, "object : cylinder")) ? (1) : (0);
 		ft_strdel(&line);
 	}
-	i++;
+	if (!(rt->c = (t_cylinder *)malloc(sizeof(t_cylinder) * rt->nbc)))
+		ft_exit("malloc of rt->c failed in init_cylinder_tab");
+	while (i < rt->nbc)
+	{
+		rt->c[i].pos.x = 0;
+		rt->c[i].pos.y = 0;
+		rt->c[i].pos.z = 0;
+		rt->c[i].radius = 0;
+		rt->c[i].color.red = 0;
+		rt->c[i].color.green = 0;
+		rt->c[i].color.blue = 0;
+		i++;
+	}
+	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 }
 
-void	cylinder_init(int fd, t_rt *rt)
+void	init_cone(char *file, t_rt *rt)
 {
-	static int	i;
-	char		*line;
-	char		**line2;
+	int		fd;
+	char	*line;
+	int		i;
 
+	rt->nbco = 0;
+	i = 0;
+	if ((fd = open(file, O_RDONLY)) == -1)
+		ft_exit("\033[31mThis scene doesn't exist\n");
 	while (get_next_line(fd, &line))
 	{
-		if (line[0] == '\0')
-			break ;
-		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
-			rt->c[i].pos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->c[i].pos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->c[i].pos.z = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "radius"))
-			rt->c[i].radius = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "color"))
-			rt->c[i].color = ft_atoi_base(line2[2], 16);
-		line2_free(line2);
+		rt->nbco += (!ft_strcmp(line, "object : cone")) ? (1) : (0);
 		ft_strdel(&line);
 	}
-	i++;
-}
-
-void	cone_init(int fd, t_rt *rt)
-{
-	static int	i;
-	char		*line;
-	char		**line2;
-
-	while (get_next_line(fd, &line))
+	if (!(rt->co = (t_cone *)malloc(sizeof(t_cone) * rt->nbco)))
+		ft_exit("malloc of rt->co failed in init_cone_tab");
+	while (i < rt->nbco)
 	{
-		if (line[0] == '\0')
-			break ;
-		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
-			rt->co[i].pos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->co[i].pos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->co[i].pos.z = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "axis"))
-			rt->co[i].axis = line2[2][0];
-		else if (!ft_strcmp(line2[0], "radius"))
-			rt->co[i].radius = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "color"))
-			rt->co[i].color = ft_atoi_base(line2[2], 16);
-		line2_free(line2);
-		ft_strdel(&line);
+		rt->co[i].pos.x = 0;
+		rt->co[i].pos.y = 0;
+		rt->co[i].pos.z = 0;
+		rt->co[i].axis = 'y';
+		rt->co[i].radius = 0;
+		rt->co[i].color.red = 0;
+		rt->co[i].color.green = 0;
+		rt->co[i].color.blue = 0;
+		i++;
 	}
-	i++;
+	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 }

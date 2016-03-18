@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/16 14:00:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/18 11:07:51 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,22 @@ static void	default_color(char *color, t_rt *rt)
 static void	objects(char *object, t_rt *rt, int fd)
 {
 	if (!ft_strcmp(object, "camera"))
-		camera_init(fd, rt);
+		parsing_camera(fd, rt);
 	else if (!ft_strcmp(object, "sphere"))
-		sphere_init(fd, rt);
+		parsing_sphere(fd, rt);
 	else if (!ft_strcmp(object, "plane"))
-		plane_init(fd, rt);
+		parsing_plane(fd, rt);
 	else if (!ft_strcmp(object, "cylinder"))
-		cylinder_init(fd, rt);
+		parsing_cylinder(fd, rt);
 	else if (!ft_strcmp(object, "cone"))
-		cone_init(fd, rt);
+		parsing_cone(fd, rt);
+	else if (!ft_strcmp(object, "light"))
+		parsing_light(fd, rt);
 	else
 		ft_exit("\033[31mThis object doesn't exit\n");
 }
 
-void		parsing_file(char *file, t_rt *rt)
+void		global_parser(char *file, t_rt *rt)
 {
 	int		fd;
 	char	*line;

@@ -6,14 +6,15 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/03/11 12:04:35 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/03/18 11:34:23 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rtv1
 
-SRC2 = main.c events.c parser.c render.c vectors.c init_objects.c init_all.c \
-	   objects.c intersections.c functions.c
+SRC2 = main.c events.c parser.c render.c vectors.c parsing_objects.c init_all.c \
+	   objects.c intersections.c functions.c init_camera_light.c	\
+	   parsing_camera_light.c init_objects.c light.c
 
 SRC = $(addprefix srcs/, $(SRC2))
 

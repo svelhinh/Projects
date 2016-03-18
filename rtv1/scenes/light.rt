@@ -8,6 +8,12 @@ r_dir_x : 0
 r_dir_y : 0
 r_dir_z : 1
 
+object : light
+x_pos : 200
+y_pos : 300
+z_pos : -500
+color : 1 1 1
+
 object : sphere
 x_pos : 600
 y_pos : 350
@@ -28,3 +34,9 @@ y_pos : 550
 z_pos : 0
 radius : 100
 color : 0 0 1
+
+object : plane
+x_pos : 0
+y_pos : 750
+z_pos : 1
+color : 1 1 1
