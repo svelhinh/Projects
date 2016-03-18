@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 13:50:25 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/18 16:58:01 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 		tmp = 1 / sqrt(tmp);
 		normal = vectorscale(tmp, &normal);
 		dist = vectorsub(&rt->light.pos, &newstart, 0);
+		//ft_putstr("yo");
 		if (vectordot(&normal, &dist, 0) > 0)
 		{
 			tmp = sqrt(vectordot(&dist, &dist, 0));

@@ -1,4 +1,4 @@
-#include "RaytracerChap2.h"
+#include "RayTracerChap2.h"
 
 /* [ Coeur du raytracer. L'algo du raytracing se trouve dans cette fonction, dont le rôle est de calculer ] */
 /* [ la couleur finale du pixel courant, en lui passant le rayon primaire émis.                           ] */

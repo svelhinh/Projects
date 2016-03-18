@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 11:50:07 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/18 16:52:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ void			render(t_rt *rt)
 			ft_strdel(&object);
 			x++;
 		}
+		if (y == 0.25 * SH)
+				ft_putendl("25% completed !");
+		if (y == 0.5 * SH)
+			ft_putendl("50% completed !");
+		if (y == 0.75 * SH)
+			ft_putendl("75% completed !");
+		if (y == SH - 1)
+			ft_putendl("100% completed !");
 		y++;
 	}
 }

@@ -7,7 +7,7 @@
 #ifndef __CMATERIAL_H__
 #define __CMATERIAL_H__
 
-#include "utilitylib.h"
+#include "UtilityLib.h"
 
 class CMaterial
 {

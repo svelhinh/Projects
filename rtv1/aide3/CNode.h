@@ -11,7 +11,7 @@
 #include "UtilityLib.h"
 #include "CIntersectInfo.h"
 #include "CRay.h"
-#include "RayTracerTypes.h"
+#include "RaytracerTypes.h"
 
 class CNode
 {
