@@ -71,33 +71,51 @@ vector vectorAdd(vector *v1, vector *v2){
 
 /* Check if the ray and sphere intersect */
 bool intersectRaySphere(ray *r, sphere *s, float *t){
-	
-	bool retval = false;
+	float	x;
+	float	y;
+	float	z;
+	float	e[3];
+	float	tmp;
 
-	/* A = d.d, the vector dot product of the direction */
+	x = r->start.x - s->pos.x;
+	y = r->start.y - s->pos.y;
+	z = r->start.z - s->pos.z;
+	e[0] = s->pos.x;
+	e[1] = s->pos.y;
+	e[2] = s->pos.z;
+	tmp = -((e[0] * x + e[1] * y + e[2] * z)
+			/ (e[0] * r->dir.x + e[1] * r->dir.y + e[2] * r->dir.z));
+	if (tmp < *t && tmp > 0.01)
+	{
+		*t = tmp;
+		return (1);
+	}
+	return (0);
+/*	bool retval = false;
+
+	// A = d.d, the vector dot product of the direction
 	float A = vectorDot(&r->dir, &r->dir); 
 	
-	/* We need a vector representing the distance between the start of 
-	 * the ray and the position of the circle.
-	 * This is the term (p0 - c) 
-	 */
+	// We need a vector representing the distance between the start of 
+	 // the ray and the position of the circle.
+	 //This is the term (p0 - c) 
 	vector dist = vectorSub(&r->start, &s->pos);
 	
-	/* 2d.(p0 - c) */
+	// 2d.(p0 - c)
 	float B = 2 * vectorDot(&r->dir, &dist);
 	
-	/* (p0 - c).(p0 - c) - r^2 */
+	// (p0 - c).(p0 - c) - r^2
 	float C = vectorDot(&dist, &dist) - (s->radius * s->radius);
 	
-	/* Solving the discriminant */
+	// Solving the discriminant
 	float discr = B * B - 4 * A * C;
 	
-	/* If the discriminant is negative, there are no real roots.
-	 * Return false in that case as the ray misses the sphere.
-	 * Return true in all other cases (can be one or two intersections)
-	 * t represents the distance between the start of the ray and
-	 * the point on the sphere where it intersects.
-	 */
+	// If the discriminant is negative, there are no real roots.
+	 // Return false in that case as the ray misses the sphere.
+	 //Return true in all other cases (can be one or two intersections)
+	 //t represents the distance between the start of the ray and
+	 //the point on the sphere where it intersects.
+
 	if(discr < 0)
 		retval = false;
 	else{
@@ -105,11 +123,11 @@ bool intersectRaySphere(ray *r, sphere *s, float *t){
 		float t0 = (-B + sqrtdiscr)/(2);
 		float t1 = (-B - sqrtdiscr)/(2);
 		
-		/* We want the closest one */
+		// We want the closest one
 		if(t0 > t1)
 			t0 = t1;
 
-		/* Verify t1 larger than 0 and less than the original t */
+		// Verify t1 larger than 0 and less than the original t
 		if((t0 > 0.001f) && (t0 < *t)){
 			*t = t0;
 			retval = true;
@@ -117,7 +135,7 @@ bool intersectRaySphere(ray *r, sphere *s, float *t){
 			retval = false;
 	}
 
-return retval;
+return retval;*/
 }
 
 /* Output data as PPM file */
@@ -160,14 +178,14 @@ int main(int argc, char *argv[]){
 	materials[2].diffuse.blue = 1;
 	//materials[2].reflection = 1;
 	
-	sphere spheres[3]; 
-	spheres[0].pos.x = 200;
-	spheres[0].pos.y = 300;
-	spheres[0].pos.z = 0;
-	spheres[0].radius = 100;
+	sphere spheres[1]; 
+	spheres[0].pos.x = 0;
+	spheres[0].pos.y = 750;
+	spheres[0].pos.z = 1;
+	//spheres[0].radius = 100;
 	spheres[0].material = 0;
 	
-	spheres[1].pos.x = 400;
+	/*spheres[1].pos.x = 400;
 	spheres[1].pos.y = 400;
 	spheres[1].pos.z = 0;
 	spheres[1].radius = 100;
@@ -177,7 +195,7 @@ int main(int argc, char *argv[]){
 	spheres[2].pos.y = 140;
 	spheres[2].pos.z = 0;
 	spheres[2].radius = 100;
-	spheres[2].material = 2;
+	spheres[2].material = 2;*/
 	
 	light lights[1];
 	
@@ -212,9 +230,9 @@ int main(int argc, char *argv[]){
 		for(x=0;x<WIDTH;x++)
 		{
 			
-			float red = 0;
-			float green = 0;
-			float blue = 0;
+			float red = 0.5;
+			float green = 0.5;
+			float blue = 0.5;
 			
 			//int level = 0;
 			//float coef = 1.0;

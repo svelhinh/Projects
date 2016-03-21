@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/19 14:58:44 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/21 12:32:01 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,32 @@ void	light_sphere(t_rt *rt, float t, float tmp, int currentobj)
 
 void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 {
-	t_vector3d		light_vec;		// Vecteur lumiere
-	t_vector3d		inter;			// Point d'intersection
-	t_vector3d		normal;			// Normale du vecteur directionnel du rayon
-	//t_ray			light_ray;
-	float			light_dist;		// Distance de la lumiere au point d'intersection
-	float			angle;			// Angle entre le vecteur directionnel du rayon et celui de la lumiere
-	(void)tmp;
+	t_vector3d		light_vec;
+	t_vector3d		inter;
+	float			angle;
+	float			inter_dist;
+	float			dist;
+	float			light_dist;
 
-	// Calcul point d'intersection
-	inter.x = rt->r.start.x + rt->r.dir.x * t;
-	inter.y = rt->r.start.y + rt->r.dir.y * t;
-	inter.z = rt->r.start.z + rt->r.dir.z * t;
-	// Calcul vecteur lumiere inter - rt->light.pos
+	(void)tmp;
+	(void)t;
+	dist = sqrt(pow(rt->r.start.x, 2) + pow(rt->r.start.y, 2) + pow(rt->r.start.z, 2));
+	inter.x = rt->r.start.x + rt->r.dir.x * dist;
+	inter.y = rt->r.start.y + rt->r.dir.y * dist;
+	inter.z = rt->r.start.z + rt->r.dir.z * dist;
 	light_vec = vectorsub(&inter, &rt->light.pos, 0);
-	// Normalisation du vecteur directionnel de la lumiere
 	light_dist = sqrt(pow(light_vec.x, 2) + pow(light_vec.y, 2) + pow(light_vec.z, 2));
 	light_vec.x /= light_dist;
 	light_vec.y /= light_dist;
 	light_vec.z /= light_dist;
-	// Normalisation du vecteur directionnel du rayon
-	normal.x = rt->r.dir.x / t;
-	normal.y = rt->r.dir.y / t;
-	normal.z = rt->r.dir.z / t;
-	//light_ray.dir = vectorscale(1 / sqrt(vectordot(&light_vec, &light_vec, 0)), &light_vec);
-	// Calcul de l'angle
-	angle = vectordot(&light_vec, &normal, 0);
+	inter_dist = sqrt(pow(inter.x, 2) + pow(inter.y, 2) + pow(inter.z, 2));
+	inter.x /= inter_dist;
+	inter.y /= inter_dist;
+	inter.z /= inter_dist;
+	angle = vectordot(&light_vec, &inter, 0);
 	if (angle > 0)
 	{
-		// Couleurs
+		//printf("inter.x : %f\ninter.y : %f\ninter.z : %f\n\n", inter.x, inter.y, inter.z);
 		printf("angle : %f\n", angle);
 		rt->global_color.red += angle * rt->light.intensity.red * rt->p[currentobj].color.red;
 		rt->global_color.green += angle * rt->light.intensity.green * rt->p[currentobj].color.green;
@@ -99,7 +96,7 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 		light_vec = vectorsub(&inter, &rt->light.pos, 0);
 		if (vectordot(&normal, &light_vec, 0) > 0)
 		{
-			tmp = vectordot(&light_vec, &light_vec, 0);
+			tmp = sqrt(vectordot(&light_vec, &light_vec, 0));
 			if (tmp > 0)
 			{
 				light_ray.dir = vectorscale((1 / tmp), &light_vec);
