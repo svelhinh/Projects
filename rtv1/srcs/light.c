@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/22 12:09:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/22 17:45:10 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	light_sphere(t_rt *rt, float t, float tmp, int currentobj)
 
 void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 {
-	/*t_vector3d		light_vec;		// Vecteur de la lumiere
+	t_vector3d		light_vec;		// Vecteur de la lumiere
 	t_vector3d		inter;			// Point d'intersection
 	float			angle;			// angle entre les 2 rayons (camera et lumiere)
 	float			inter_dist;		// variable utilise pour normaliser le vecteur au point d'intersection
@@ -60,7 +60,9 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 	inter.x = rt->r.start.x + rt->r.dir.x * t;		// Calcul du point d'intersection
 	inter.y = rt->r.start.y + rt->r.dir.y * t;
 	inter.z = rt->r.start.z + rt->r.dir.z * t;
+	//printf("start.x : %f\nstart.y : %f\nstart.z : %f\n\n", inter.x, inter.y, inter.z);
 	light_vec = vectorsub(&rt->light.pos, &inter, 0);	// Calcul du vecteur de la lumiere
+	//printf("start.x : %f\nstart.y : %f\nstart.z : %f\n\n", light_vec.x, light_vec.y, light_vec.z);
 	//printf("light_dist : %f\n\n", light_dist);
 	light_dist = sqrt(pow(light_vec.x, 2) + pow(light_vec.y, 2) + pow(light_vec.z, 2));		// Normalisation du vecteur de la lumiere
 	light_vec.x /= light_dist;
@@ -72,7 +74,6 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 	inter.y /= inter_dist;
 	inter.z /= inter_dist;
 	angle = vectordot(&light_vec, &inter, 0);		// Calcul de l'angle
-	printf("angle : %f\n", angle);
 	if (angle > 0)
 	{
 		//printf("inter.x : %f\ninter.y : %f\ninter.z : %f\n\n", inter.x, inter.y, inter.z);
@@ -80,8 +81,8 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 		rt->global_color.red += angle * rt->light.intensity.red * rt->p[currentobj].color.red;		// Calcul des couleurs
 		rt->global_color.green += angle * rt->light.intensity.green * rt->p[currentobj].color.green;
 		rt->global_color.blue += angle * rt->light.intensity.blue * rt->p[currentobj].color.blue;
-	}*/
-	t_vector3d	scaled;
+	}
+	/*t_vector3d	scaled;
 	t_vector3d	newstart;
 	t_vector3d	normal;
 	t_vector3d	dist;
@@ -110,7 +111,7 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 				rt->global_color.blue += tmp * rt->light.intensity.blue * rt->p[currentobj].color.blue;
 			}
 		}
-	}
+	}*/
 }
 
 void	light_cylinder(t_rt *rt, float t, float tmp, int currentobj)
