@@ -11,7 +11,7 @@ r_dir_z : 1
 object : light
 x_pos : 0
 y_pos : 0
-z_pos : -1000
+z_pos : 0
 color : 1 1 1
 
 object : sphere

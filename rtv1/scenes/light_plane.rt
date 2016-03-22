@@ -9,13 +9,13 @@ r_dir_y : 0
 r_dir_z : 1
 
 object : light
-x_pos : 200
-y_pos : 200
-z_pos : 0
+x_pos : 700
+y_pos : 700
+z_pos : -10
 color : 1 1 1
 
 object : plane
 x_pos : 0
 y_pos : 0
-z_pos : 1
+z_pos : 0.5
 color : 1 0.9 0.5

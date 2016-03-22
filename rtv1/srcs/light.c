@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/21 20:26:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/22 12:09:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	light_sphere(t_rt *rt, float t, float tmp, int currentobj)
 		if (vectordot(&normal, &dist, 0) > 0)
 		{
 			tmp = sqrt(vectordot(&dist, &dist, 0));
+			//printf("tmp = %f\n", tmp);
 			if (tmp > 0)
 			{
 				light_ray.start = newstart;
@@ -71,6 +72,7 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 	inter.y /= inter_dist;
 	inter.z /= inter_dist;
 	angle = vectordot(&light_vec, &inter, 0);		// Calcul de l'angle
+	printf("angle : %f\n", angle);
 	if (angle > 0)
 	{
 		//printf("inter.x : %f\ninter.y : %f\ninter.z : %f\n\n", inter.x, inter.y, inter.z);
@@ -80,32 +82,32 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 		rt->global_color.blue += angle * rt->light.intensity.blue * rt->p[currentobj].color.blue;
 	}*/
 	t_vector3d	scaled;
-	t_vector3d	inter;
+	t_vector3d	newstart;
 	t_vector3d	normal;
-	t_vector3d	light_vec;
+	t_vector3d	dist;
 	t_ray		light_ray;
-	float		angle;
 
 	scaled = vectorscale(t, &rt->r.dir);
-	inter = vectoradd(&rt->r.start, &scaled);
-	normal = vectorsub(&inter, &rt->p[currentobj].pos, 0);
+	newstart = vectoradd(&rt->r.start, &scaled);
+	normal = vectorsub(&newstart, &rt->p[currentobj].pos, 0);
 	tmp = vectordot(&normal, &normal, 0);
 	if (tmp != 0)
 	{
 		tmp = 1 / sqrt(tmp);
 		normal = vectorscale(tmp, &normal);
-		light_vec = vectorsub(&rt->light.pos, &inter, 0);
-		printf("yo : %f\n", vectordot(&normal, &light_vec, 0));
-		if (vectordot(&normal, &light_vec, 0) > 0)
+		dist = vectorsub(&rt->light.pos, &newstart, 0);
+		if (vectordot(&normal, &dist, 0) > 0)
 		{
-			tmp = sqrt(vectordot(&light_vec, &light_vec, 0));
+			tmp = fabs(sqrt(vectordot(&dist, &dist, 0)));
 			if (tmp > 0)
 			{
-				light_ray.dir = vectorscale((1 / tmp), &light_vec);
-				angle = vectordot(&light_ray.dir, &normal, 0);
-				rt->global_color.red += angle * rt->light.intensity.red * rt->p[currentobj].color.red;
-				rt->global_color.green += angle * rt->light.intensity.green * rt->p[currentobj].color.green;
-				rt->global_color.blue += angle * rt->light.intensity.blue * rt->p[currentobj].color.blue;
+				light_ray.start = newstart;
+				light_ray.dir = vectorscale(1 / tmp, &dist);
+				tmp = fabs(vectordot(&light_ray.dir, &normal, 0));
+				printf("tmp = %f\n", tmp);
+				rt->global_color.red += tmp * rt->light.intensity.red * rt->p[currentobj].color.red;
+				rt->global_color.green += tmp * rt->light.intensity.green * rt->p[currentobj].color.green;
+				rt->global_color.blue += tmp * rt->light.intensity.blue * rt->p[currentobj].color.blue;
 			}
 		}
 	}
