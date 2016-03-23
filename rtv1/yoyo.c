@@ -71,7 +71,7 @@ vector vectorAdd(vector *v1, vector *v2){
 
 /* Check if the ray and sphere intersect */
 bool intersectRaySphere(ray *r, sphere *s, float *t){
-	float	x;
+	/*float	x;
 	float	y;
 	float	z;
 	float	e[3];
@@ -90,8 +90,8 @@ bool intersectRaySphere(ray *r, sphere *s, float *t){
 		*t = tmp;
 		return (1);
 	}
-	return (0);
-/*	bool retval = false;
+	return (0);*/
+	bool retval = false;
 
 	// A = d.d, the vector dot product of the direction
 	float A = vectorDot(&r->dir, &r->dir); 
@@ -135,7 +135,7 @@ bool intersectRaySphere(ray *r, sphere *s, float *t){
 			retval = false;
 	}
 
-return retval;*/
+return retval;
 }
 
 /* Output data as PPM file */

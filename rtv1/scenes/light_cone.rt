@@ -10,8 +10,8 @@ r_dir_z : 1
 
 object : light
 x_pos : 500
-y_pos : 100
-z_pos : -10000
+y_pos : 300
+z_pos : -1000
 color : 1 1 1
 
 object : cone
