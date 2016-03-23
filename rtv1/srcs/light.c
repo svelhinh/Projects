@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/22 17:45:10 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/23 11:45:58 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 	if (angle > 0)
 	{
 		//printf("inter.x : %f\ninter.y : %f\ninter.z : %f\n\n", inter.x, inter.y, inter.z);
-		//printf("angle : %f\n", angle);i
+		//printf("angle : %f\n", angle);
 		rt->global_color.red += angle * rt->light.intensity.red * rt->p[currentobj].color.red;		// Calcul des couleurs
 		rt->global_color.green += angle * rt->light.intensity.green * rt->p[currentobj].color.green;
 		rt->global_color.blue += angle * rt->light.intensity.blue * rt->p[currentobj].color.blue;
