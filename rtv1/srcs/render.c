@@ -33,15 +33,26 @@ void			render(t_rt *rt)
 		x = 0;
 		while (x < SW)
 		{
+<<<<<<< HEAD
+=======
+			rt->pixel_color = 0;
+			rt->level = 0;
+>>>>>>> 9da8e16bc074a19e2f992c9425955b5289259946
 			rt->currentobj = -1;
 			rt->global_color.red = 0;
 			rt->global_color.blue = 0;
 			rt->global_color.green = 0;
 			rt->r.start.x = x + rt->campos.x;
 			rt->r.start.y = y + rt->campos.y;
+<<<<<<< HEAD
 			object = intersect(rt, &rt->currentobj, object);
 			rt->pixel_color = (int)(rt->global_color.red * 255) * 0x10000 + (int)(rt->global_color.green * 255) * 0x100 + (int)(rt->global_color.blue * 255);
 			draw(rt, x, y);
+=======
+			rt->r.start.z = z;
+			object = intersect(rt, &rt->currentobj, object);
+			draw(rt, object, x, y);
+>>>>>>> 9da8e16bc074a19e2f992c9425955b5289259946
 			ft_strdel(&object);
 			x++;
 		}
