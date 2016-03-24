@@ -9,8 +9,8 @@ r_dir_y : 0
 r_dir_z : 1
 
 object : light
-x_pos : 500
-y_pos : 500
+x_pos : 640
+y_pos : 360
 z_pos : -2000
 color : 1 1 1
 
@@ -52,6 +52,6 @@ color : 0 0 1
 
 object : plane
 x_pos : 0
-y_pos : 750
-z_pos : 1
+y_pos : 1
+z_pos : 0
 color : 1 1 1

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 11:10:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/19 12:12:19 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:12:34 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,17 @@ t_vector3d	vectoradd(t_vector3d *v1, t_vector3d *v2)
 	res.x = v1->x + v2->x;
 	res.y = v1->y + v2->y;
 	res.z = v1->z + v2->z;
+	return (res);
+}
+
+t_vector3d	normalize(t_vector3d *v1)
+{
+	t_vector3d	res;
+	float		vdist;
+
+	vdist = sqrt(vectordot(v1, v1, 0));
+	res.x = v1->x / vdist;
+	res.y = v1->y / vdist;
+	res.z = v1->z / vdist;
 	return (res);
 }

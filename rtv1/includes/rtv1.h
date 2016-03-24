@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 13:50:46 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 15:12:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2, int i);
 float			vectordot(t_vector3d *v1, t_vector3d *v2, int i);
 t_vector3d		vectorscale(float c, t_vector3d *v);
 t_vector3d		vectoradd(t_vector3d *v1, t_vector3d *v2);
+t_vector3d		normalize(t_vector3d *v1);
 /*
 ** ------------------------------------------------------------------------
 */
