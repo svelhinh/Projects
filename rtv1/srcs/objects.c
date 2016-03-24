@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/23 15:08:29 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 13:18:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,24 @@ int		sphere(t_ray *r, t_sphere *s, float *t)
 
 int		plane(t_ray *r, t_plane *p, float *t)
 {
-	t_vector3d	vec;
+	float	tmp;
+	float	A;
+	float	B;
+	float	C;
+	float	D;
+
+	A = p->pos.x;
+	B = p->pos.y;
+	C = p->pos.z;
+	D = 0;
+	tmp = -(D + A * r->start.x + B * r->start.y + C * r->start.z) / (A * r->dir.x + B * r->dir.y + C * r->dir.z);
+	if (tmp < *t && tmp > 0.01)
+	{
+		*t = tmp;
+		return (1);
+	}
+	return (0);
+	/*t_vector3d	vec;
 	float		e[3];
 	float		tmp;
 
@@ -66,7 +83,7 @@ int		plane(t_ray *r, t_plane *p, float *t)
 		*t = tmp;
 		return (1);
 	}
-	return (0);
+	return (0);*/
 }
 
 /*

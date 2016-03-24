@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/22 11:39:43 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 11:51:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	}
 	if (*currentobj != -1)
 	{
-<<<<<<< HEAD
 		tmp = 0;
 		if (!ft_strcmp(object, "plane"))
 			light_plane(rt, t, tmp, *currentobj);
@@ -100,36 +99,6 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 			light_cone(rt, t, tmp, *currentobj);
 		else if (!ft_strcmp(object, "sphere"))
 			light_sphere(rt, t, tmp, *currentobj);
-=======
-		//ft_putnbrendl(*currentobj);
-		scaled = vectorscale(t, &rt->r.dir);
-		newstart = vectoradd(&rt->r.start, &scaled);
-		normal = vectorsub(&newstart, &rt->s[*currentobj].pos, 0);
-		tmp = vectordot(&normal, &normal, 0);
-		if (tmp != 0)
-		{
-			tmp = 1 / sqrt(tmp);
-			normal = vectorscale(tmp, &normal);
-			i = 0;
-			while (i < 1)
-			{
-				currentlight = rt->lights[i];
-				dist = vectorsub(&currentlight.pos, &newstart, 0);
-				if (vectordot(&normal, &dist, 0) > 0)
-				{
-					tmp = sqrt(vectordot(&dist, &dist, 0));
-					if (t > 0)
-					{
-						light_ray.start = newstart;
-						light_ray.dir = vectorscale((1 / t), &dist);
-						tmp = vectordot(&light_ray.dir, &normal, 0) * rt->coef;
-						rt->pixel_color += tmp * currentlight.color + rt->s[*currentobj].color;
-					}
-				}
-				i++;
-			}
-		}
->>>>>>> 9da8e16bc074a19e2f992c9425955b5289259946
 	}
 	return (object);
 }
