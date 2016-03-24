@@ -41,10 +41,11 @@ radius : 100
 color : 0 0 1
 
 object : plane
-x_pos : 0
-y_pos : 1
-z_pos : 0
-color : 1 1 1
+x_norm : 0
+y_norm : 1
+z_norm : 0
+height : -350
+color : 0.12 0.56 0.1
 
 object : cylinder
 x_pos : 0

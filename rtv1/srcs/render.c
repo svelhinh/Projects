@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 18:27:09 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 19:01:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void			render(t_rt *rt)
 			rt->r.dir.x = rt->r.start.x - x;
 			rt->r.dir.y = rt->r.start.y - y;
 			object = intersect(rt, &rt->currentobj, object);
-			rt->pixel_color = (int)(rt->global_color.red * 255) * 0x10000 + (int)(rt->global_color.green * 255) * 0x100 + (int)(rt->global_color.blue * 255);
+			rt->pixel_color = (int)(rt->global_color.red * 255) * 0x10000
+				+ (int)(rt->global_color.green * 255) * 0x100
+				+ (int)(rt->global_color.blue * 255);
 			draw(rt, x, y);
 			object = intersect(rt, &rt->currentobj, object);
 			draw(rt, x, y);

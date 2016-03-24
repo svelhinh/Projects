@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 18:34:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:56:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ void	light_sphere(t_rt *rt, float t, float tmp, int currentobj)
 	}
 }
 
-void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
+void	light_plane(t_rt *rt, float t, int currentobj)
 {
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
 	t_vector3d	normal;
 	float		angle;
-	(void)tmp;
 
 	ptinter.x = rt->r.start.x + rt->r.dir.x * t;
 	ptinter.y = rt->r.start.y + rt->r.dir.y * t;
@@ -51,7 +50,6 @@ void	light_plane(t_rt *rt, float t, float tmp, int currentobj)
 	normal = normalize(&rt->p[currentobj].norm);
 	light_vec = normalize(&light_vec);
 	angle = vectordot(&normal, &light_vec, 0);
-	printf("%f\n", angle);
 	if (angle > 0)
 	{
 		rt->global_color.red += angle * rt->light.intensity.red * rt->p[currentobj].color.red;
