@@ -9,7 +9,7 @@ r_dir_y : 0
 r_dir_z : 1
 
 object : light
-x_pos : 0
+x_pos : 500
 y_pos : 0
 z_pos : 0
 color : 1 1 1

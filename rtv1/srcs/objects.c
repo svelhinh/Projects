@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 15:22:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:12:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ int		plane(t_ray *r, t_plane *p, float *t)
 	float	D;
 	float	angle;
 
-	angle = 0.002;
+	angle = 0.3;
 	A = p->pos.x;
 	B = p->pos.x + cos(angle) * p->pos.y - sin(angle) * p->pos.z;
 	C = p->pos.x + sin(angle) * p->pos.y + cos(angle) * p->pos.z;
-	D = -700;
+	D = -350;
 	tmp = -(D + A * r->start.x + B * r->start.y + C * r->start.z) / (A * r->dir.x + B * r->dir.y + C * r->dir.z);
 	if (tmp < *t && tmp > 0.01)
 	{

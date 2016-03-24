@@ -11,7 +11,7 @@ r_dir_z : 1
 object : light
 x_pos : 640
 y_pos : 360
-z_pos : -2000
+z_pos : -100
 color : 1 1 1
 
 object : cone
@@ -21,13 +21,6 @@ z_pos : 0
 axis : y
 radius : 0
 color : 0.3 0.1 0.7
-
-object : cylinder
-x_pos : 0
-y_pos : 300
-z_pos : -50
-radius : 100
-color : 1 0.9 0.3
 
 object : sphere
 x_pos : 400
