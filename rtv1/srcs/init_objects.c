@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:16:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 11:17:27 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:32:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ void	init_plane(char *file, t_rt *rt)
 		ft_exit("malloc of rt->p failed in init_plane_tab");
 	while (i < rt->nbp)
 	{
-		rt->p[i].pos.x = 0;
-		rt->p[i].pos.y = 0;
-		rt->p[i].pos.z = 0;
+		rt->p[i].norm.x = 0;
+		rt->p[i].norm.y = 0;
+		rt->p[i].norm.z = 0;
 		rt->p[i].color.red = 0;
 		rt->p[i].color.green = 0;
 		rt->p[i].color.blue = 0;
+		rt->p[i].height = 0;
 		i++;
 	}
 	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);

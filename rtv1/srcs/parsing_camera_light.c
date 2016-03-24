@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:12:20 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 11:07:53 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:25:58 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ void	parsing_camera(int fd, t_rt *rt)
 			rt->campos.y = ft_atof(line2[2]);
 		else if (!ft_strcmp(line2[0], "z_pos"))
 			rt->campos.z = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "r_dir_x"))
-			rt->r.dir.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "r_dir_y"))
-			rt->r.dir.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "r_dir_z"))
-			rt->r.dir.z = ft_atof(line2[2]);
 		line2_free(line2);
 		ft_strdel(&line);
 	}

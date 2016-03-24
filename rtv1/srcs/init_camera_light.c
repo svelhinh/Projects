@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:16:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 11:08:42 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:26:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,4 @@ void	init_camera(t_rt *rt)
 	rt->campos.x = 0;
 	rt->campos.y = 0;
 	rt->campos.z = 0;
-	rt->r.dir.x = 0;
-	rt->r.dir.y = 0;
-	rt->r.dir.z = 0;
 }

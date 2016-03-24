@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 15:12:48 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:31:22 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ typedef struct	s_sphere
 }				t_sphere;
 typedef struct	s_plane
 {
-	t_vector3d	pos;
+	t_vector3d	norm;
 	t_color		color;
+	float		height;
 }				t_plane;
 typedef struct	s_cylinder
 {

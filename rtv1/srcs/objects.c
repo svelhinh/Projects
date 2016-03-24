@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 18:12:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:31:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,37 +55,19 @@ int		plane(t_ray *r, t_plane *p, float *t)
 	float	A;
 	float	B;
 	float	C;
-	float	D;
 	float	angle;
 
 	angle = 0.3;
-	A = p->pos.x;
-	B = p->pos.x + cos(angle) * p->pos.y - sin(angle) * p->pos.z;
-	C = p->pos.x + sin(angle) * p->pos.y + cos(angle) * p->pos.z;
-	D = -350;
-	tmp = -(D + A * r->start.x + B * r->start.y + C * r->start.z) / (A * r->dir.x + B * r->dir.y + C * r->dir.z);
+	A = p->norm.x;
+	B = p->norm.x + cos(angle) * p->norm.y - sin(angle) * p->norm.z;
+	C = p->norm.x + sin(angle) * p->norm.y + cos(angle) * p->norm.z;
+	tmp = -(p->height + A * r->start.x + B * r->start.y + C * r->start.z) / (A * r->dir.x + B * r->dir.y + C * r->dir.z);
 	if (tmp < *t && tmp > 0.01)
 	{
 		*t = tmp;
 		return (1);
 	}
 	return (0);
-	/*t_vector3d	vec;
-	float		e[3];
-	float		tmp;
-
-	vec = vectorsub(&r->start, &p->pos, 0);
-	e[0] = p->pos.x;
-	e[1] = p->pos.y;
-	e[2] = p->pos.z;
-	tmp = -((e[0] * vec.x + e[1] * vec.y + e[2] * vec.z)
-			/ (e[0] * r->dir.x + e[1] * r->dir.y + e[2] * r->dir.z));
-	if (tmp < *t && tmp > 0.01)
-	{
-		*t = tmp;
-		return (1);
-	}
-	return (0);*/
 }
 
 /*

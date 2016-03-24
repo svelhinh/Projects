@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 11:16:44 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:31:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ void	parsing_plane(int fd, t_rt *rt)
 		if (line[0] == '\0')
 			break ;
 		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
-			rt->p[i].pos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->p[i].pos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->p[i].pos.z = ft_atof(line2[2]);
+		if (!ft_strcmp(line2[0], "x_norm"))
+			rt->p[i].norm.x = ft_atof(line2[2]);
+		else if (!ft_strcmp(line2[0], "y_norm"))
+			rt->p[i].norm.y = ft_atof(line2[2]);
+		else if (!ft_strcmp(line2[0], "z_norm"))
+			rt->p[i].norm.z = ft_atof(line2[2]);
+		else if (!ft_strcmp(line2[0], "height"))
+			rt->p[i].height = ft_atof(line2[2]);
 		else if (!ft_strcmp(line2[0], "color"))
 		{
 			rt->p[i].color.red = ft_atof(line2[2]);

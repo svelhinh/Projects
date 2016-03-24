@@ -4,14 +4,11 @@ object : camera
 x_pos : 0
 y_pos : 0
 z_pos : -10000
-r_dir_x : 0
-r_dir_y : 0
-r_dir_z : 1
 
 object : light
 x_pos : 640
 y_pos : 360
-z_pos : -100
+z_pos : -1000
 color : 1 1 1
 
 object : cone
@@ -48,3 +45,10 @@ x_pos : 0
 y_pos : 1
 z_pos : 0
 color : 1 1 1
+
+object : cylinder
+x_pos : 0
+y_pos : 250
+z_pos : 0
+radius : 100
+color : 1 0.9 0.3

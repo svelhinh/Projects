@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 18:00:14 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/24 18:27:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void			render(t_rt *rt)
 
 	y = 0;
 	rt->r.start.z = rt->campos.z;
+	rt->r.dir.z = 1;
 	while (y < SH)
 	{
 		x = 0;
