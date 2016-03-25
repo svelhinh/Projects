@@ -7,7 +7,7 @@ z_pos : -10000
 
 object : light
 x_pos : 640
-y_pos : 360
+y_pos : 960
 z_pos : 0
 color : 1 1 1
 

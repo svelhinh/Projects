@@ -6,9 +6,9 @@ y_pos : 0
 z_pos : -10000
 
 object : light
-x_pos : 640
+x_pos : 940
 y_pos : 360
-z_pos : -1000
+z_pos : -100
 color : 1 1 1
 
 object : cone
