@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 19:00:21 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/25 12:38:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,36 @@ int		plane(t_ray *r, t_plane *p, float *t)
  ** tab[0] = t0, tab[1] = t1, tab[2] = xyz
 */
 
-int		cylinder(t_ray *r, t_cylinder *c, float *t)
+int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 {
+	/*float	a;
+	float	b;
+	float	c;
+	float	t0;
+	float	t1;
+	int		retval;
+	float	discr;
+
+	a = cy->pos.y * pow(r->dir.y, 2) + cy->pos.z * pow(r->dir.z, 2);
+	b = cy->pos.y * 2 * r->start.y * r->dir.y + cy->pos.z * 2 * r->start.z * r->dir.z;
+	c = cy->pos.y * pow(r->start.y, 2) + cy->pos.z * pow(r->start.z, 2) - pow(cy->radius, 2);
+	discr = pow(b, 2) - 4 * a * c;
+	if (discr < 0)
+		return (0);
+	t0 = (-b - sqrt(discr)) / (2 * a);
+	t1 = (-b + sqrt(discr)) / (2 * a);
+	retval = 0;
+	if (t0 > 0.1 && t0 < *t)
+	{
+		*t = t0;
+		retval = 1;
+	}
+	if (t1 > 0.1 && t1 < *t)
+	{
+		*t = t1;
+		retval = 0;
+	}
+	return (retval);*/
 	t_vector3d	dist;
 	float		tab[3];
 	float		b;
@@ -83,15 +111,15 @@ int		cylinder(t_ray *r, t_cylinder *c, float *t)
 	int			retval;
 
 	tab[2] = 0;
-	if (c->pos.x == 0)
+	if (cy->pos.x == 0)
 		tab[2] = 1;
-	else if (c->pos.y == 0)
+	else if (cy->pos.y == 0)
 		tab[2] = 2;
-	else if (c->pos.z == 0)
+	else if (cy->pos.z == 0)
 		tab[2] = 3;
-	dist = vectorsub(&c->pos, &r->start, tab[2]);
+	dist = vectorsub(&cy->pos, &r->start, tab[2]);
 	b = vectordot(&r->dir, &dist, tab[2]);
-	d = pow(b, 2) - vectordot(&dist, &dist, tab[2]) + pow(c->radius, 2);
+	d = pow(b, 2) - vectordot(&dist, &dist, tab[2]) + pow(cy->radius, 2);
 	if (d < 0)
 		return (0);
 	tab[0] = b - sqrt(d);
