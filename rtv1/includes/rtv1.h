@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 14:53:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 18:19:07 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# define SW 1280
-# define SH 720
+# define SW 1920
+# define SH 1080
 # define ESC /*65307*/53
 
 typedef struct	s_vector3d
@@ -129,6 +129,7 @@ void			light_sphere(t_rt *rt, float t, float tmp, int currentobj);
 void			light_plane(t_rt *rt, float t, int currentobj);
 void			light_cylinder(t_rt *rt, float t, int currentobj);
 void			light_cone(t_rt *rt, float t, float tmp, int currentobj);
+int				shadows(t_rt *rt, t_ray *light, float t);
 /*
 ** ------------------------------------------------------------------------
 */

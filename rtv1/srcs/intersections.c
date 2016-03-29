@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 13:14:52 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 18:07:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,23 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 	}
 	light(rt, currentobj, object);
 	return (object);
+}
+
+int			shadows(t_rt *rt, t_ray *light, float t)
+{
+	int		i;
+	int		imax;
+
+	i = 0;
+	imax = (rt->nbs > rt->nbc) ? (rt->nbs) : (rt->nbc);
+	imax = (rt->nbco > imax) ? (rt->nbco) : (imax);
+	while (i < imax)
+	{
+		if ((i < rt->nbs && sphere(light, &rt->s[i], &t))
+				|| (i < rt->nbc && cylinder(light, &rt->c[i], &t))
+				|| (i < rt->nbco && cone(light, &rt->co[i], &t)))
+			return (1);
+		i++;
+	}
+	return (0);
 }
