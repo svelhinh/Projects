@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/25 10:32:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 11:50:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ char			*intersect(t_rt *rt, int *currentobj, char *object);
 */
 void			light_sphere(t_rt *rt, float t, float tmp, int currentobj);
 void			light_plane(t_rt *rt, float t, int currentobj);
-void			light_cylinder(t_rt *rt, float t, float tmp, int currentobj);
+void			light_cylinder(t_rt *rt, float t, int currentobj);
 void			light_cone(t_rt *rt, float t, float tmp, int currentobj);
 /*
 ** ------------------------------------------------------------------------

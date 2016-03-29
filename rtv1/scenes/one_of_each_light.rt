@@ -7,8 +7,8 @@ z_pos : -10000
 
 object : light
 x_pos : 940
-y_pos : 360
-z_pos : -100
+y_pos : 260
+z_pos : -400
 color : 1 1 1
 
 object : cone

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/25 17:34:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 11:51:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,40 +58,20 @@ void	light_plane(t_rt *rt, float t, int currentobj)
 	}
 }
 
-void	light_cylinder(t_rt *rt, float t, float tmp, int currentobj)
+void	light_cylinder(t_rt *rt, float t, int currentobj)
 {
-	/*t_vector3d	scaled;
-	t_vector3d	newstart;
-	t_vector3d	normal;
-	t_vector3d	light_vec;
-
-	scaled = vectorscale(t, &rt->r.dir);
-	newstart = vectoradd(&rt->r.start, &scaled);
-	normal = vectorsub(&newstart, &rt->c[currentobj].pos, 0);
-	tmp = 1 / sqrt(vectordot(&normal, &normal, 0));
-	normal = vectorscale(tmp, &normal);
-	light_vec = vectorsub(&rt->light.pos, &newstart, 0);
-	if (vectordot(&normal, &light_vec, 0) > 0)
-	{
-		tmp = sqrt(vectordot(&light_vec, &light_vec, 0));
-		light_vec = vectorscale((1 / tmp), &light_vec);
-		tmp = vectordot(&light_vec, &normal, 0);
-		rt->global_color.red += tmp * rt->light.intensity.red * rt->c[currentobj].color.red;
-		rt->global_color.green += tmp * rt->light.intensity.green * rt->c[currentobj].color.green;
-		rt->global_color.blue += tmp * rt->light.intensity.blue * rt->c[currentobj].color.blue;
-	}*/
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
 	t_vector3d	normalcy;
 	t_vector3d	normal;
 	float		angle;
-	(void)tmp;
 
 	ptinter.x = rt->r.start.x + rt->r.dir.x * t;
 	ptinter.y = rt->r.start.y + rt->r.dir.y * t;
 	ptinter.z = rt->r.start.z + rt->r.dir.z * t;
 	light_vec = vectorsub(&rt->light.pos, &ptinter, 0);
 	normalcy = vectorsub(&ptinter, &rt->c[currentobj].pos, 0);
+	normalcy.x = 0;
 	normal = normalize(&normalcy);
 	light_vec = normalize(&light_vec);
 	angle = vectordot(&normal, &light_vec, 0);

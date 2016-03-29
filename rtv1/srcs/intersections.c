@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 18:56:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 11:51:24 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char		*intersect(t_rt *rt, int *currentobj, char *object)
 		if (!ft_strcmp(object, "plane"))
 			light_plane(rt, t, *currentobj);
 		else if (!ft_strcmp(object, "cylinder"))
-			light_cylinder(rt, t, tmp, *currentobj);
+			light_cylinder(rt, t, *currentobj);
 		else if (!ft_strcmp(object, "cone"))
 			light_cone(rt, t, tmp, *currentobj);
 		else if (!ft_strcmp(object, "sphere"))
