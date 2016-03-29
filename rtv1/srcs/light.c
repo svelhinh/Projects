@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 11:51:14 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 12:03:16 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,12 @@ void	light_cylinder(t_rt *rt, float t, int currentobj)
 	ptinter.z = rt->r.start.z + rt->r.dir.z * t;
 	light_vec = vectorsub(&rt->light.pos, &ptinter, 0);
 	normalcy = vectorsub(&ptinter, &rt->c[currentobj].pos, 0);
-	normalcy.x = 0;
+	if (rt->c[currentobj].pos.x == 0)
+		normalcy.x = 0;
+	else if (rt->c[currentobj].pos.y == 0)
+		normalcy.y = 0;
+	else if (rt->c[currentobj].pos.z == 0)
+		normalcy.z = 0;
 	normal = normalize(&normalcy);
 	light_vec = normalize(&light_vec);
 	angle = vectordot(&normal, &light_vec, 0);

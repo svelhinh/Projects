@@ -1,0 +1,19 @@
+default_color : 40adb9
+
+object : camera
+x_pos : 0
+y_pos : 0
+z_pos : -10000
+
+object : light
+x_pos : 540
+y_pos : 460
+z_pos : -100
+color : 1 1 1
+
+object : cylinder
+x_pos : 400
+y_pos : 0
+z_pos : 0
+radius : 100
+color : 0.25 0.75 0.5

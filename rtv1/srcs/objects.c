@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 11:00:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 12:02:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,62 +76,6 @@ int		plane(t_ray *r, t_plane *p, float *t)
 
 int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 {
-	/*float	a;
-	float	b;
-	float	c;
-	float	t0;
-	float	t1;
-	int		retval;
-	float	discr;
-
-	a = pow(r->dir.y, 2) + pow(r->dir.z, 2);
-	b = 2 * (r->dir.y * r->start.y + r->dir.z * r->start.z);
-	c = pow(r->start.y, 2) + pow(r->start.z, 2) - pow(cy->radius, 2);
-	discr = pow(b, 2) - 4 * a * c;
-	if (discr < 0)
-		return (0);
-	t0 = (-b - sqrt(discr)) / (2 * a);
-	t1 = (-b + sqrt(discr)) / (2 * a);
-	retval = 0;
-	if (t0 > 0.1 && t0 < *t)
-	{
-		*t = t0;
-		retval = 1;
-	}
-	if (t1 > 0.1 && t1 < *t)
-	{
-		*t = t1;
-		retval = 0;
-	}
-	return (retval);*/
-	/*float	a;
-	float	b;
-	float	c;
-	float	t0;
-	float	t1;
-	int		retval;
-	float	discr;
-
-	a = cy->pos.y * pow(r->dir.y, 2) + cy->pos.z * pow(r->dir.z, 2);
-	b = 2 * (cy->pos.y * r->start.y * r->dir.y + cy->pos.z * r->start.z * r->dir.z);
-	c = cy->pos.y * pow(r->start.y, 2) + cy->pos.z * pow(r->start.z, 2) - pow(cy->radius, 2);
-	discr = pow(b, 2) - 4 * a * c;
-	if (discr < 0)
-		return (0);
-	t0 = (-b - sqrt(discr)) / (2 * a);
-	t1 = (-b + sqrt(discr)) / (2 * a);
-	retval = 0;
-	if (t0 > 0.1 && t0 < *t)
-	{
-		*t = t0;
-		retval = 1;
-	}
-	if (t1 > 0.1 && t1 < *t)
-	{
-		*t = t1;
-		retval = 0;
-	}
-	return (retval);*/
 	t_vector3d	dist;
 	float		tab[3];
 	float		b;
