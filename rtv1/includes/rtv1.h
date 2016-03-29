@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 13:39:33 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 14:53:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,12 +163,13 @@ void			parsing_cone(int fd, t_rt *rt);
 ** ------------------------ initialisation -------------------------------
 */
 void			init_all(char *file, t_rt *rt);
+void			count_objects(t_rt *rt, char *file);
 void			init_light(t_rt *rt);
 void			init_camera(t_rt *rt);
-void			init_sphere(char *file, t_rt *rt);
-void			init_plane(char *file, t_rt *rt);
-void			init_cylinder(char *file, t_rt *rt);
-void			init_cone(char *file, t_rt *rt);
+void			init_sphere(t_rt *rt);
+void			init_plane(t_rt *rt);
+void			init_cylinder(t_rt *rt);
+void			init_cone(t_rt *rt);
 /*
 ** ------------------------------------------------------------------------
 */
