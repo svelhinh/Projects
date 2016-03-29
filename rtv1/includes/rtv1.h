@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 11:50:56 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 13:39:33 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct	s_rt
 	int			nbl;
 	int			currentobj;
 	int			pixel_color;
+	float		t;
 	t_sphere	*s;
 	t_plane		*p;
 	t_cylinder	*c;

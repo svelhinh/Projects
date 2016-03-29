@@ -1,0 +1,180 @@
+Norme: ./srcs/backups/all/vectors.c
+Norme: ./srcs/backups/all/init_camera_lights.c
+Error (line 15): function init_light has 26 lines
+Norme: ./srcs/backups/all/main.c
+Norme: ./srcs/backups/all/render.c
+Error (line 20): comment not well formatted
+Error (line 20): comment not well placed
+Error (line 20): line has 90 characters
+Error (line 52): line has 158 characters
+Norme: ./srcs/backups/all/functions.c
+Norme: ./srcs/backups/all/parser.c
+Norme: ./srcs/backups/all/init_all.c
+Norme: ./srcs/backups/all/init_objects.c
+Error (line 15): function init_sphere has 27 lines
+Error (line 103): function init_cone has 26 lines
+Norme: ./srcs/backups/all/intersections.c
+Error (line 55): function intersect has 73 lines
+Error (line 55, col 0): intersect has 10 variables
+Error (line 119): comment not well formatted
+Error (line 119): comment not well placed
+Error (line 119): line has 84 characters
+Error (line 120): line has 113 characters
+Error (line 121): line has 119 characters
+Error (line 122): line has 116 characters
+Norme: ./srcs/backups/all/events.c
+Norme: ./srcs/backups/all/objects.c
+Error (line 15): comment not well formatted
+Error (line 48): comment not well formatted
+Error (line 76): comment not well formatted
+Error (line 80): function cylinder has 32 lines
+Norme: ./srcs/backups/all/parsing_camera_lights.c
+Norme: ./srcs/backups/render7.c
+Error (line 32): declarations in render must be at the top of the function
+Error (line 32): declarations must be followed by one empty line in render
+Error (line 32): function render has 54 lines
+Error (line 38): comment not well formatted
+Error (line 38): comment not well placed
+Error (line 45): C++ comment
+Error (line 46): C++ comment
+Error (line 47): Empty line
+Error (line 51): C++ comment
+Error (line 52): C++ comment
+Error (line 58): comment not well formatted
+Error (line 58): bad indentation
+Error (line 58): comment not well placed
+Error (line 61): comment not well formatted
+Error (line 61): bad indentation
+Error (line 61): comment not well placed
+Error (line 64): comment not well formatted
+Error (line 64): bad indentation
+Error (line 64): comment not well placed
+Error (line 64): line has 85 characters
+Error (line 65): line has 83 characters
+Error (line 67): line has 83 characters
+Error (line 68): line has 83 characters
+Error (line 72): comment not well formatted
+Error (line 72): bad indentation
+Error (line 72): comment not well placed
+Error (line 75): comment not well formatted
+Error (line 75): comment not well placed
+Error (line 76): comment not well formatted
+Error (line 76): comment not well placed
+Error (line 77): comment not well formatted
+Error (line 77): comment not well placed
+Norme: ./srcs/backups/all/parsing_objects.c
+Error (line 15): function parsing_sphere has 27 lines
+Norme: ./srcs/backups/render2.c
+Error: global scope bad aligned
+Error (line 15): comment not well formatted
+Error (line 27): comment not well formatted
+Error (line 53): comment not well formatted
+Error (line 58): declarations must be followed by one empty line in render
+Error (line 58): function render has 36 lines
+Error (line 63): C++ comment
+Error (line 64): Empty line
+Error (line 85): C++ comment
+Error (line 88): comment not well formatted
+Error (line 88): bad indentation
+Error (line 88): comment not well placed
+Norme: ./srcs/backups/render5.c
+Error: global scope bad aligned
+Error (line 15): function sphere has 26 lines
+Error (line 15, col 7): sphere has 6 variables
+Error (line 50): comment not well formatted
+Error (line 50): comment not well placed
+Error (line 50, col 11): bad character after ;
+Error (line 69): declarations in render must be at the top of the function
+Error (line 69): function render has 101 lines
+Error (line 69, col 0): render has 6 variables
+Error (line 71): comment not well formatted
+Error (line 71): bad indentation
+Error (line 71): comment not well placed
+Error (line 80): comment not well formatted
+Error (line 80): comment not well placed
+Error (line 120): line has 181 characters
+Error (line 120): C++ comment
+Error (line 133): missing newline after while
+Error (line 133): C++ comment
+Error (line 160): line has 82 characters
+Error (line 162): line has 82 characters
+Norme: ./srcs/events.c
+Norme: ./srcs/functions.c
+Norme: ./srcs/init_all.c
+Norme: ./srcs/init_camera_light.c
+Norme: ./srcs/backups/render6.c
+Error (line 18): comment not well formatted
+Error (line 18): comment not well placed
+Error (line 18, col 14): bad character after ;
+Error (line 49): comment not well formatted
+Error (line 49): comment not well placed
+Error (line 49, col 11): bad character after ;
+Error (line 68): function intersect has 30 lines
+Error (line 75): missing newline after while
+Error (line 75): C++ comment
+Error (line 102): declarations in render must be at the top of the function
+Error (line 102): function render has 58 lines
+Error (line 105): comment not well formatted
+Error (line 105): comment not well placed
+Error (line 123): comment not well formatted
+Error (line 123): comment not well placed
+Error (line 123): line has 82 characters
+Norme: ./srcs/backups/render4.c
+Error (line 30): function sphere has 28 lines
+Error (line 30, col 0): sphere has 8 variables
+Error (line 62, col 0): plane has 7 variables
+Error (line 78): line has 85 characters
+Error (line 87): function render has 77 lines
+Error (line 87, col 0): render has 9 variables
+Norme: ./srcs/backups/render3.c
+Error: global scope bad aligned
+Error (line 15): comment not well formatted
+Error (line 27): comment not well formatted
+Error (line 53, col 0): plane has 8 variables
+Error (line 71): line has 95 characters
+Error (line 74): line has 98 characters
+Error (line 80): declarations in render are bad aligned
+Error (line 80): function render has 47 lines
+Error (line 80, col 0): render has 6 variables
+Norme: ./srcs/main.c
+Norme: ./srcs/intersections.c
+Error (line 55): function intersect has 47 lines
+Norme: ./srcs/parser.c
+Norme: ./srcs/parsing_camera_light.c
+Norme: ./srcs/init_objects.c
+Error (line 15): function init_sphere has 27 lines
+Error (line 46): function init_plane has 27 lines
+Error (line 77): function init_cylinder has 27 lines
+Error (line 108): function init_cone has 28 lines
+Norme: ./srcs/objects.c
+Error (line 15): comment not well formatted
+Error (line 48): comment not well formatted
+Error (line 55, col 7): A not unixcase
+Error (line 56, col 7): B not unixcase
+Error (line 57, col 7): C not unixcase
+Error (line 64): line has 122 characters
+Error (line 73): comment not well formatted
+Error (line 77): function cylinder has 32 lines
+Norme: ./srcs/light.c
+Error (line 33): line has 93 characters
+Error (line 34): line has 99 characters
+Error (line 35): line has 96 characters
+Error (line 55): line has 95 characters
+Error (line 56): line has 101 characters
+Error (line 57): line has 98 characters
+Error (line 61): function light_cylinder has 26 lines
+Error (line 85): line has 95 characters
+Error (line 86): line has 101 characters
+Error (line 87): line has 98 characters
+Error (line 109): line has 94 characters
+Error (line 110): line has 100 characters
+Error (line 111): line has 97 characters
+Norme: ./srcs/render.c
+Error (line 23): function render has 41 lines
+Error (line 57): bad indentation
+Norme: ./srcs/vectors.c
+Norme: ./srcs/parsing_objects.c
+Error (line 15): function parsing_sphere has 27 lines
+Error (line 46): function parsing_plane has 27 lines
+Error (line 77): function parsing_cylinder has 27 lines
+Error (line 108): function parsing_cone has 29 lines

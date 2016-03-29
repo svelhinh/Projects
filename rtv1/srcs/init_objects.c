@@ -6,13 +6,13 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:16:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 18:32:26 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 14:41:58 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	init_sphere(char *file, t_rt *rt)
+void		init_sphere(char *file, t_rt *rt)
 {
 	int		fd;
 	char	*line;

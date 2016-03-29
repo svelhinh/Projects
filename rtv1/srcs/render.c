@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/24 19:01:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 14:38:24 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,31 @@ static void		draw(t_rt *rt, int x, int y)
 		mlx_pixel_put_to_image(rt->pixel_color, rt, x, y);
 	else
 		mlx_pixel_put_to_image(rt->default_color, rt, x, y);
+}
+
+static void		loading(int y)
+{
+	if (y == 0.25 * SH)
+		ft_putendl("25% completed !");
+	if (y == 0.5 * SH)
+		ft_putendl("50% completed !");
+	if (y == 0.75 * SH)
+		ft_putendl("75% completed !");
+	if (y == SH - 1)
+		ft_putendl("100% completed !");
+}
+
+static void		init(t_rt *rt, int x, int y)
+{
+	rt->pixel_color = 0;
+	rt->currentobj = -1;
+	rt->global_color.red = 0;
+	rt->global_color.blue = 0;
+	rt->global_color.green = 0;
+	rt->r.start.x = x + rt->campos.x;
+	rt->r.start.y = y + rt->campos.y;
+	rt->r.dir.x = rt->r.start.x - x;
+	rt->r.dir.y = rt->r.start.y - y;
 }
 
 void			render(t_rt *rt)
@@ -34,33 +59,16 @@ void			render(t_rt *rt)
 		x = 0;
 		while (x < SW)
 		{
-			rt->pixel_color = 0;
-			rt->currentobj = -1;
-			rt->global_color.red = 0;
-			rt->global_color.blue = 0;
-			rt->global_color.green = 0;
-			rt->r.start.x = x + rt->campos.x;
-			rt->r.start.y = y + rt->campos.y;
-			rt->r.dir.x = rt->r.start.x - x;
-			rt->r.dir.y = rt->r.start.y - y;
+			init(rt, x, y);
 			object = intersect(rt, &rt->currentobj, object);
 			rt->pixel_color = (int)(rt->global_color.red * 255) * 0x10000
 				+ (int)(rt->global_color.green * 255) * 0x100
 				+ (int)(rt->global_color.blue * 255);
 			draw(rt, x, y);
-			object = intersect(rt, &rt->currentobj, object);
-			draw(rt, x, y);
 			ft_strdel(&object);
 			x++;
 		}
-		if (y == 0.25 * SH)
-				ft_putendl("25% completed !");
-		if (y == 0.5 * SH)
-			ft_putendl("50% completed !");
-		if (y == 0.75 * SH)
-			ft_putendl("75% completed !");
-		if (y == SH - 1)
-			ft_putendl("100% completed !");
+		loading(y);
 		y++;
 	}
 }

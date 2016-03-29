@@ -6,99 +6,92 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:41:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 12:01:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 13:14:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static char	*intersect_sphere(char *object)
+static char	*intersect_sphere_plane(char *object, t_rt *rt, int i, int *cobj)
 {
-	if (ft_strcmp(object, "sphere"))
+	if (i < rt->nbs && sphere(&rt->r, &rt->s[i], &rt->t))
 	{
-		(object) ? (ft_strdel(&object)) : (0);
-		object = ft_strdup("sphere");
+		*cobj = i;
+		if (ft_strcmp(object, "sphere"))
+		{
+			(object) ? (ft_strdel(&object)) : (0);
+			object = ft_strdup("sphere");
+		}
+	}
+	if (i < rt->nbp && plane(&rt->r, &rt->p[i], &rt->t))
+	{
+		*cobj = i;
+		if (ft_strcmp(object, "plane"))
+		{
+			(object) ? (ft_strdel(&object)) : (0);
+			object = ft_strdup("plane");
+		}
 	}
 	return (object);
 }
 
-static char	*intersect_plane(char *object)
+static char	*intersect_cylinder_cone(char *object, t_rt *rt, int i, int *cobj)
 {
-	if (ft_strcmp(object, "plane"))
+	if (i < rt->nbc && cylinder(&rt->r, &rt->c[i], &rt->t))
 	{
-		(object) ? (ft_strdel(&object)) : (0);
-		object = ft_strdup("plane");
+		*cobj = i;
+		if (ft_strcmp(object, "cylinder"))
+		{
+			(object) ? (ft_strdel(&object)) : (0);
+			object = ft_strdup("cylinder");
+		}
+	}
+	if (i < rt->nbco && cone(&rt->r, &rt->co[i], &rt->t))
+	{
+		*cobj = i;
+		if (ft_strcmp(object, "cone"))
+		{
+			(object) ? (ft_strdel(&object)) : (0);
+			object = ft_strdup("cone");
+		}
 	}
 	return (object);
 }
 
-static char	*intersect_cylinder(char *object)
+static void	light(t_rt *rt, int *currentobj, char *object)
 {
-	if (ft_strcmp(object, "cylinder"))
-	{
-		(object) ? (ft_strdel(&object)) : (0);
-		object = ft_strdup("cylinder");
-	}
-	return (object);
-}
+	float	tmp;
 
-static char	*intersect_cone(char *object)
-{
-	if (ft_strcmp(object, "cone"))
+	if (*currentobj != -1)
 	{
-		(object) ? (ft_strdel(&object)) : (0);
-		object = ft_strdup("cone");
+		tmp = 0;
+		if (!ft_strcmp(object, "plane"))
+			light_plane(rt, rt->t, *currentobj);
+		else if (!ft_strcmp(object, "cylinder"))
+			light_cylinder(rt, rt->t, *currentobj);
+		else if (!ft_strcmp(object, "cone"))
+			light_cone(rt, rt->t, tmp, *currentobj);
+		else if (!ft_strcmp(object, "sphere"))
+			light_sphere(rt, rt->t, tmp, *currentobj);
 	}
-	return (object);
 }
 
 char		*intersect(t_rt *rt, int *currentobj, char *object)
 {
 	int			i;
-	float		t;
 	int			imax;
-	float		tmp;
 
 	i = 0;
-	t = 200000;
+	rt->t = 200000;
 	imax = (rt->nbp > rt->nbs) ? (rt->nbp) : (rt->nbs);
 	imax = (rt->nbc > imax) ? (rt->nbc) : (imax);
 	imax = (rt->nbco > imax) ? (rt->nbco) : (imax);
 	while (i < imax)
 	{
-		if (i < rt->nbs && sphere(&rt->r, &rt->s[i], &t))
-		{
-			*currentobj = i;
-			object = intersect_sphere(object);
-		}
-		if (i < rt->nbp && plane(&rt->r, &rt->p[i], &t))
-		{
-			*currentobj = i;
-			object = intersect_plane(object);
-		}
-		if (i < rt->nbc && cylinder(&rt->r, &rt->c[i], &t))
-		{
-			*currentobj = i;
-			object = intersect_cylinder(object);
-		}
-		if (i < rt->nbco && cone(&rt->r, &rt->co[i], &t))
-		{
-			*currentobj = i;
-			object = intersect_cone(object);
-		}
+		object = intersect_sphere_plane(object, rt, i, currentobj);
+		object = intersect_cylinder_cone(object, rt, i, currentobj);
 		i++;
 	}
-	if (*currentobj != -1)
-	{
-		tmp = 0;
-		if (!ft_strcmp(object, "plane"))
-			light_plane(rt, t, *currentobj);
-		else if (!ft_strcmp(object, "cylinder"))
-			light_cylinder(rt, t, *currentobj);
-		else if (!ft_strcmp(object, "cone"))
-			light_cone(rt, t, tmp, *currentobj);
-		else if (!ft_strcmp(object, "sphere"))
-			light_sphere(rt, t, tmp, *currentobj);
-	}
+	light(rt, currentobj, object);
 	return (object);
 }

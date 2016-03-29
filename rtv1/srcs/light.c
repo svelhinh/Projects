@@ -6,13 +6,13 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 12:03:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/29 14:36:17 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	light_sphere(t_rt *rt, float t, float tmp, int currentobj)
+void		light_sphere(t_rt *rt, float t, float tmp, int currentobj)
 {
 	t_vector3d	scaled;
 	t_vector3d	newstart;
@@ -30,13 +30,16 @@ void	light_sphere(t_rt *rt, float t, float tmp, int currentobj)
 		tmp = sqrt(vectordot(&light_vec, &light_vec, 0));
 		light_vec = vectorscale((1 / tmp), &light_vec);
 		tmp = vectordot(&light_vec, &normal, 0);
-		rt->global_color.red += tmp * rt->light.intensity.red * rt->s[currentobj].color.red;
-		rt->global_color.green += tmp * rt->light.intensity.green * rt->s[currentobj].color.green;
-		rt->global_color.blue += tmp * rt->light.intensity.blue * rt->s[currentobj].color.blue;
+		rt->global_color.red += tmp * rt->light.intensity.red
+			* rt->s[currentobj].color.red;
+		rt->global_color.green += tmp
+			* rt->light.intensity.green * rt->s[currentobj].color.green;
+		rt->global_color.blue += tmp
+			* rt->light.intensity.blue * rt->s[currentobj].color.blue;
 	}
 }
 
-void	light_plane(t_rt *rt, float t, int currentobj)
+void		light_plane(t_rt *rt, float t, int currentobj)
 {
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
@@ -52,18 +55,30 @@ void	light_plane(t_rt *rt, float t, int currentobj)
 	angle = vectordot(&normal, &light_vec, 0);
 	if (angle > 0)
 	{
-		rt->global_color.red += angle * rt->light.intensity.red * rt->p[currentobj].color.red;
-		rt->global_color.green += angle * rt->light.intensity.green * rt->p[currentobj].color.green;
-		rt->global_color.blue += angle * rt->light.intensity.blue * rt->p[currentobj].color.blue;
+		rt->global_color.red += angle * rt->light.intensity.red
+			* rt->p[currentobj].color.red;
+		rt->global_color.green += angle * rt->light.intensity.green
+			* rt->p[currentobj].color.green;
+		rt->global_color.blue += angle * rt->light.intensity.blue
+			* rt->p[currentobj].color.blue;
 	}
 }
 
-void	light_cylinder(t_rt *rt, float t, int currentobj)
+static void	light_cylinder2(t_rt *rt, float angle, int currentobj)
+{
+	rt->global_color.red += angle * rt->light.intensity.red
+		* rt->c[currentobj].color.red;
+	rt->global_color.green += angle * rt->light.intensity.green
+		* rt->c[currentobj].color.green;
+	rt->global_color.blue += angle * rt->light.intensity.blue
+		* rt->c[currentobj].color.blue;
+}
+
+void		light_cylinder(t_rt *rt, float t, int currentobj)
 {
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
 	t_vector3d	normalcy;
-	t_vector3d	normal;
 	float		angle;
 
 	ptinter.x = rt->r.start.x + rt->r.dir.x * t;
@@ -77,18 +92,13 @@ void	light_cylinder(t_rt *rt, float t, int currentobj)
 		normalcy.y = 0;
 	else if (rt->c[currentobj].pos.z == 0)
 		normalcy.z = 0;
-	normal = normalize(&normalcy);
+	normalcy = normalize(&normalcy);
 	light_vec = normalize(&light_vec);
-	angle = vectordot(&normal, &light_vec, 0);
-	if (angle > 0)
-	{
-		rt->global_color.red += angle * rt->light.intensity.red * rt->c[currentobj].color.red;
-		rt->global_color.green += angle * rt->light.intensity.green * rt->c[currentobj].color.green;
-		rt->global_color.blue += angle * rt->light.intensity.blue * rt->c[currentobj].color.blue;
-	}
+	if ((angle = vectordot(&normalcy, &light_vec, 0)) > 0)
+		light_cylinder2(rt, angle, currentobj);
 }
 
-void	light_cone(t_rt *rt, float t, float tmp, int currentobj)
+void		light_cone(t_rt *rt, float t, float tmp, int currentobj)
 {
 	t_vector3d	scaled;
 	t_vector3d	newstart;
@@ -106,8 +116,11 @@ void	light_cone(t_rt *rt, float t, float tmp, int currentobj)
 		tmp = sqrt(vectordot(&light_vec, &light_vec, 0));
 		light_vec = vectorscale((1 / tmp), &light_vec);
 		tmp = vectordot(&light_vec, &normal, 0);
-		rt->global_color.red += tmp * rt->light.intensity.red * rt->co[currentobj].color.red;
-		rt->global_color.green += tmp * rt->light.intensity.green * rt->co[currentobj].color.green;
-		rt->global_color.blue += tmp * rt->light.intensity.blue * rt->co[currentobj].color.blue;
+		rt->global_color.red += tmp * rt->light.intensity.red
+			* rt->co[currentobj].color.red;
+		rt->global_color.green += tmp * rt->light.intensity.green
+			* rt->co[currentobj].color.green;
+		rt->global_color.blue += tmp * rt->light.intensity.blue
+			* rt->co[currentobj].color.blue;
 	}
 }
