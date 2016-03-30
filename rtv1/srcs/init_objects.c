@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:16:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 12:01:46 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 17:57:21 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ void	init_plane(t_rt *rt)
 		rt->p[i].norm.x = 0;
 		rt->p[i].norm.y = 0;
 		rt->p[i].norm.z = 0;
+		rt->p[i].rot.x = 0;
+		rt->p[i].rot.y = 0;
+		rt->p[i].rot.z = 0;
 		rt->p[i].color.red = 0;
 		rt->p[i].color.green = 0;
 		rt->p[i].color.blue = 0;
@@ -79,9 +82,15 @@ void	init_cylinder(t_rt *rt)
 		ft_exit("malloc of rt->c failed in init_cylinder_tab");
 	while (i < rt->nbc)
 	{
-		rt->c[i].pos.x = 0;
-		rt->c[i].pos.y = 0;
-		rt->c[i].pos.z = 0;
+		rt->c[i].vec.x = 0;
+		rt->c[i].vec.y = 0;
+		rt->c[i].vec.z = 0;
+		rt->c[i].start.x = 0;
+		rt->c[i].start.y = 0;
+		rt->c[i].start.z = 0;
+		rt->c[i].rot.x = 0;
+		rt->c[i].rot.y = 0;
+		rt->c[i].rot.z = 0;
 		rt->c[i].radius = 0;
 		rt->c[i].color.red = 0;
 		rt->c[i].color.green = 0;
@@ -102,6 +111,9 @@ void	init_cone(t_rt *rt)
 		rt->co[i].pos.x = 0;
 		rt->co[i].pos.y = 0;
 		rt->co[i].pos.z = 0;
+		rt->co[i].rot.x = 0;
+		rt->co[i].rot.y = 0;
+		rt->co[i].rot.z = 0;
 		rt->co[i].radius = 0;
 		rt->co[i].color.red = 0;
 		rt->co[i].color.green = 0;

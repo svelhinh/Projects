@@ -1,47 +1,33 @@
 background_color : 40adb9
 
 object : camera
-x_pos : 0
-y_pos : 0
-z_pos : -10000
+pos : 0 0 -10000
 
 object : light
-x_pos : 740
-y_pos : 200
-z_pos : -400
+pos : 740 200 -400
 color : 1 1 1
 
 object : sphere
-x_pos : 600
-y_pos : 350
-z_pos : 0
+pos : 600 350 0
 radius : 150
 color : 1 1 1
 
 object : sphere
-x_pos : 200
-y_pos : 150
-z_pos : 0
+pos : 200 150 0
 radius : 10
 color : 1 0.5 0.5
 
 object : sphere
-x_pos : 800
-y_pos : 150
-z_pos : 75
+pos : 800 150 75
 radius : 100
 color : 0 0 1
 
 object : plane
-x_norm : 0
-y_norm : 1
-z_norm : 0
-height : -450
+norm : 0 1 0 -450
+rot : 0.3 0 0
 color : 1 0.9 0.5
 
 object : plane
-x_norm : 0
-y_norm : 0
-z_norm : 1
-height : 0
+norm : 0 0 1 0
+rot : 0 0 0
 color : 0.2 0.4 0.9

@@ -1,19 +1,14 @@
 background_color : 40adb9
 
 object : camera
-x_pos : 0
-y_pos : 0
-z_pos : -10000
+pos : 0 0 -10000
 
 object : light
-x_pos : 740
-y_pos : 260
-z_pos : -10000
+pos : 940 260 -10000
 color : 1 1 1
 
 object : cone
-x_pos : 500
-y_pos : 360
-z_pos : 0
+pos : 500 360 0
+rot : 0 0 0.3
 radius : 0
 color : 1 0.6 0.9

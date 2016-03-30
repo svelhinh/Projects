@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 12:01:04 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 18:06:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void		parsing_sphere(int fd, t_rt *rt)
 	while (get_next_line(fd, &line) && line[0])
 	{
 		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
+		if (!ft_strcmp(line2[0], "pos"))
+		{
 			rt->s[i].pos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->s[i].pos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->s[i].pos.z = ft_atof(line2[2]);
+			rt->s[i].pos.y = ft_atof(line2[3]);
+			rt->s[i].pos.z = ft_atof(line2[4]);
+		}
 		else if (!ft_strcmp(line2[0], "radius"))
 			rt->s[i].radius = ft_atof(line2[2]);
 		else if (!ft_strcmp(line2[0], "color"))
@@ -50,14 +50,19 @@ void		parsing_plane(int fd, t_rt *rt)
 	while (get_next_line(fd, &line) && line[0])
 	{
 		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_norm"))
+		if (!ft_strcmp(line2[0], "norm"))
+		{
 			rt->p[i].norm.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_norm"))
-			rt->p[i].norm.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_norm"))
-			rt->p[i].norm.z = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "height"))
-			rt->p[i].height = ft_atof(line2[2]);
+			rt->p[i].norm.y = ft_atof(line2[3]);
+			rt->p[i].norm.z = ft_atof(line2[4]);
+			rt->p[i].height = ft_atof(line2[5]);
+		}
+		else if (!ft_strcmp(line2[0], "rot"))
+		{
+			rt->p[i].rot.x = ft_atof(line2[2]);
+			rt->p[i].rot.y = ft_atof(line2[3]);
+			rt->p[i].rot.z = ft_atof(line2[4]);
+		}
 		else if (!ft_strcmp(line2[0], "color"))
 		{
 			rt->p[i].color.red = ft_atof(line2[2]);
@@ -79,12 +84,24 @@ void		parsing_cylinder(int fd, t_rt *rt)
 	while (get_next_line(fd, &line) && line[0])
 	{
 		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
-			rt->c[i].pos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->c[i].pos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->c[i].pos.z = ft_atof(line2[2]);
+		if (!ft_strcmp(line2[0], "vec"))
+		{
+			rt->c[i].vec.x = ft_atof(line2[2]);
+			rt->c[i].vec.y = ft_atof(line2[3]);
+			rt->c[i].vec.z = ft_atof(line2[4]);
+		}
+		else if (!ft_strcmp(line2[0], "pos"))
+		{
+			rt->c[i].start.x = ft_atof(line2[2]);
+			rt->c[i].start.y = ft_atof(line2[3]);
+			rt->c[i].start.z = ft_atof(line2[4]);
+		}
+		else if (!ft_strcmp(line2[0], "rot"))
+		{
+			rt->c[i].rot.x = ft_atof(line2[2]);
+			rt->c[i].rot.y = ft_atof(line2[3]);
+			rt->c[i].rot.z = ft_atof(line2[4]);
+		}
 		else if (!ft_strcmp(line2[0], "radius"))
 			rt->c[i].radius = ft_atof(line2[2]);
 		else if (!ft_strcmp(line2[0], "color"))
@@ -115,12 +132,18 @@ void		parsing_cone(int fd, t_rt *rt)
 	while (get_next_line(fd, &line) && line[0])
 	{
 		line2 = ft_strsplit(line, ' ');
-		if (!ft_strcmp(line2[0], "x_pos"))
+		if (!ft_strcmp(line2[0], "pos"))
+		{
 			rt->co[i].pos.x = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "y_pos"))
-			rt->co[i].pos.y = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "z_pos"))
-			rt->co[i].pos.z = ft_atof(line2[2]);
+			rt->co[i].pos.y = ft_atof(line2[3]);
+			rt->co[i].pos.z = ft_atof(line2[4]);
+		}
+		else if (!ft_strcmp(line2[0], "rot"))
+		{
+			rt->co[i].rot.x = -ft_atof(line2[2]);
+			rt->co[i].rot.y = -ft_atof(line2[3]);
+			rt->co[i].rot.z = -ft_atof(line2[4]);
+		}
 		else if (!ft_strcmp(line2[0], "radius"))
 			rt->co[i].radius = ft_atof(line2[2]);
 		else if (!ft_strcmp(line2[0], "color"))
