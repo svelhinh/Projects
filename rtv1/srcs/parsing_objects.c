@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 18:06:46 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 18:35:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void		parsing_cylinder(int fd, t_rt *rt)
 			rt->c[i].rot.x = ft_atof(line2[2]);
 			rt->c[i].rot.y = ft_atof(line2[3]);
 			rt->c[i].rot.z = ft_atof(line2[4]);
+			rt->c[i].vec = rotations(rt->c[i].vec, rt->c[i].rot.x, rt->c[i].rot.y, rt->c[i].rot.z);
 		}
 		else if (!ft_strcmp(line2[0], "radius"))
 			rt->c[i].radius = ft_atof(line2[2]);

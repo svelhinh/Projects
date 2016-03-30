@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 17:55:38 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 18:38:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,7 @@ int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 	float		tab[2];
 	t_vector3d	ptinter;
 	int			retval;
-	static int i;
 
-	if (i == 0)
-	{
-		cy->vec = rotations(cy->vec, cy->rot.x, cy->rot.y, cy->rot.z);
-		i++;
-	}
 	a = vectordot(&r->dir, &r->dir, 0) - pow(vectordot(&r->dir, &cy->vec,0), 2);
 	ptinter = vectorsub(&r->start, &cy->start, 0);
 	b = 2 * (vectordot(&r->dir, &ptinter, 0) - vectordot(&r->dir, &cy->vec, 0) * vectordot(&ptinter, &cy->vec, 0));
