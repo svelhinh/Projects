@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 11:06:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:39:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,33 @@ void		light_cylinder(t_rt *rt, float t, int cobj)
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
 	t_vector3d	normalcy;
-	t_ray		light_ray;
+	float		m;
+	t_vector3d	tmp;
+	t_vector3d	tmp2;
+	t_vector3d	x;
+	//t_ray		light_ray;
 
 	ptinter.x = rt->r.start.x + rt->r.dir.x * t;
 	ptinter.y = rt->r.start.y + rt->r.dir.y * t;
 	ptinter.z = rt->r.start.z + rt->r.dir.z * t;
 	light_vec = vectorsub(&rt->light.pos, &ptinter, 0);
-	normalcy = vectorsub(&ptinter, &rt->c[cobj].pos, 0);
-	if (rt->c[cobj].pos.x == 0)
+	x = vectorsub(&rt->r.start, &rt->c[cobj].start, 0);
+	m = vectordot(&rt->r.dir, &rt->c[cobj].pos, 0) * t + vectordot(&x, &rt->c[cobj].pos, 0);
+	tmp = vectorscale(m, &rt->c[cobj].pos);
+	tmp2 = vectorsub(&ptinter, &rt->c[cobj].pos, 0);
+	normalcy = vectorsub(&tmp2, &tmp, 0);
+	//normalcy = vectorsub(&ptinter, &rt->c[cobj].pos, 0);
+	/*if (rt->c[cobj].pos.x == 0)
 		normalcy.x = 0;
 	else if (rt->c[cobj].pos.y == 0)
 		normalcy.y = 0;
 	else if (rt->c[cobj].pos.z == 0)
-		normalcy.z = 0;
+		normalcy.z = 0;*/
 	normalcy = normalize(&normalcy);
 	light_vec = normalize(&light_vec);
-	light_ray.start = ptinter;
+	/*light_ray.start = ptinter;
 	light_ray.dir = light_vec;
-	if (!shadows(rt, &light_ray, t))
+	if (!shadows(rt, &light_ray, t))*/
 		if ((rt->angle = vectordot(&normalcy, &light_vec, 0)) > 0)
 			color(rt, rt->c[cobj].color.red, rt->c[cobj].color.green,
 					rt->c[cobj].color.blue);

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 12:33:25 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 15:19:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ static void		init(t_rt *rt, int x, int y)
 	rt->rotcam.x = 0;
 	rt->rotcam.y = 0;
 	rt->rotcam.z = 0;
-	rt->r.start = rotations(rt->r.start, rt->rotcam.x, rt->rotcam.y, rt->rotcam.z);
+	//rt->r.start = rotations(rt->r.start, rt->rotcam.x, rt->rotcam.y, rt->rotcam.z);
+	//rt->r.dir = rotations(rt->r.dir, rt->rotcam.x, rt->rotcam.y, rt->rotcam.z);
+	//printf("x : %f\ny : %f\nz : %f\n\n", rt->r.start.x, rt->r.start.y, rt->r.start.z);
 }
 
 void			render(t_rt *rt)

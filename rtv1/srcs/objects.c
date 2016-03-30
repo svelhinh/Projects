@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 12:27:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:43:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,51 @@ int		plane(t_ray *r, t_plane *p, float *t)
 
 int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 {
-	t_vector3d	dist;
+	float		a;
+	float		b;
+	float		c;
+	float		d;
+	float		tab[2];
+	t_vector3d	ptinter;
+	int			retval;
+	static int i;
+
+	if (i == 0)
+	{
+		cy->start.x = 0;
+		cy->start.y = 300;
+		cy->start.z = 0;
+		cy->rot.x = 0;
+		cy->rot.y = 0;
+		cy->rot.z = 0.5;
+		cy->pos = rotations(cy->pos, cy->rot.x, cy->rot.y, cy->rot.z);
+		i++;
+	}
+	a = vectordot(&r->dir, &r->dir, 0) - pow(vectordot(&r->dir, &cy->pos,0), 2);
+	ptinter = vectorsub(&r->start, &cy->start, 0);
+	b = 2 * (vectordot(&r->dir, &ptinter, 0) - vectordot(&r->dir, &cy->pos, 0) * vectordot(&ptinter, &cy->pos, 0));
+	c = vectordot(&ptinter, &ptinter, 0) - pow(vectordot(&ptinter, &cy->pos, 0), 2) - pow(cy->radius, 2);
+	d = pow(b, 2) - 4 * a * c;
+	if (d < 0)
+		return (0);
+	tab[0] = (-b - sqrt(d)) / (2 * a);
+	tab[1] = (-b + sqrt(d)) / (2 * a);
+	retval = 0;
+	if (tab[0] > 0.1 && tab[0] < *t && (retval = 1))
+		*t = tab[0];
+	*t = (tab[1] > 0.1 && tab[1] < *t) ? (tab[1]) : (*t);
+	return (retval);
+	/*t_vector3d	dist;
 	float		tab[3];
 	float		b;
 	float		d;
 	int			retval;
 
-	//cy->rot.x = 0;
-	//cy->rot.y = 0;
-	//cy->rot.z = 0;
+	cy->rot.x = 0;
+	cy->rot.y = 0;
+	cy->rot.z = 0.5;
 	tab[2] = 0;
+	cy->pos = rotations(cy->pos, cy->rot.x, cy->rot.y, cy->rot.z);
 	if (cy->pos.x == 0)
 		tab[2] = 1;
 	else if (cy->pos.y == 0)
@@ -91,7 +126,6 @@ int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 	else if (cy->pos.z == 0)
 		tab[2] = 3;
 	dist = vectorsub(&cy->pos, &r->start, tab[2]);
-	//dist = rotations(dist, cy->rot.x, cy->rot.y, cy->rot.z);
 	b = vectordot(&r->dir, &dist, tab[2]);
 	d = pow(b, 2) - vectordot(&dist, &dist, tab[2]) + pow(cy->radius, 2);
 	if (d < 0)
@@ -102,7 +136,7 @@ int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 	if (tab[0] > 0.1 && tab[0] < *t && (retval = 1))
 		*t = tab[0];
 	*t = (tab[1] > 0.1 && tab[1] < *t) ? (tab[1]) : (*t);
-	return (retval);
+	return (retval);*/
 }
 
 /*
@@ -119,7 +153,7 @@ int		cone(t_ray *r, t_cone *co, float *t)
 
 	co->rot.x = 0;
 	co->rot.y = 0;
-	co->rot.z = 0;
+	co->rot.z = 0.5;
 	norm = vectorsub(&co->pos, &r->start, 0);
 	norm = rotations(norm, co->rot.x, co->rot.y, co->rot.z);
 	b = vectordot(&r->dir, &norm, 'y');

@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 12:29:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 16:19:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct	s_plane
 typedef struct	s_cylinder
 {
 	t_vector3d	pos;
+	t_vector3d	start;
 	float		height;
 	float		radius;
 	t_rot		rot;
