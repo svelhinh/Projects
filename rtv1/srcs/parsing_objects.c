@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 13:42:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 15:04:50 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 12:01:04 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,6 @@ void		parsing_cone(int fd, t_rt *rt)
 			rt->co[i].pos.y = ft_atof(line2[2]);
 		else if (!ft_strcmp(line2[0], "z_pos"))
 			rt->co[i].pos.z = ft_atof(line2[2]);
-		else if (!ft_strcmp(line2[0], "axis"))
-			rt->co[i].axis = line2[2][0];
 		else if (!ft_strcmp(line2[0], "radius"))
 			rt->co[i].radius = ft_atof(line2[2]);
 		else if (!ft_strcmp(line2[0], "color"))

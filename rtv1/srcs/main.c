@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:45:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 11:07:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 10:36:29 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	mlx_pixel_put_to_image(int color, t_rt *v, int x, int y)
 	unsigned char	g;
 	unsigned char	r;
 
-	if (x < SW && x > 0 && y < SH && y > 0)
+	if (x < v->w && x > 0 && y < v->h && y > 0)
 	{
 		if (!v->endian)
 		{
@@ -54,7 +54,7 @@ int		main(int ac, char **av)
 	}
 	global_parser(av[1], &rt);
 	(!(rt.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
-	if (!(rt.win = mlx_new_window(rt.mlx, SW, SH, "RTV1")))
+	if (!(rt.win = mlx_new_window(rt.mlx, rt.w, rt.h, "RTV1")))
 		ft_exit("mlx_new_window() in main() failed");
 	mlx_hook(rt.win, 2, (1L << 0), key_press, &rt);
 	mlx_hook(rt.win, 3, (1L << 1), key_release, &rt);

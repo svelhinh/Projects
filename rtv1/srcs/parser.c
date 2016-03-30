@@ -6,30 +6,30 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 11:07:51 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 10:49:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	default_color(char *color, t_rt *rt)
+static void	background_color(char *color, t_rt *rt)
 {
 	int color2;
 	int i;
 
 	i = 0;
 	if (!color || ft_strlen(color) > 6)
-		ft_exit("\033[31mBad format for default_color\n");
+		ft_exit("\033[31mBad format for background_color\n");
 	while (color[i])
 	{
 		if (color[i] < '0' || (color[i] > '9' && color[i] < 'A')
 				|| (color[i] > 'F' && color[i] < 'a') || color[i] > 'f')
-			ft_exit("\033[31mBad format for default_color\n");
+			ft_exit("\033[31mBad format for background_color\n");
 		i++;
 	}
 	color2 = ft_atoi_base(color, 16);
 	ft_strdel(&color);
-	rt->default_color = color2;
+	rt->background_color = color2;
 }
 
 static void	objects(char *object, t_rt *rt, int fd)
@@ -64,14 +64,17 @@ void		global_parser(char *file, t_rt *rt)
 		if (line[0])
 		{
 			line2 = ft_strsplit(line, ' ');
-			if (!ft_strcmp(line2[0], "default_color"))
-				default_color(line2[2], rt);
+			if (!ft_strcmp(line2[0], "background_color"))
+				background_color(line2[2], rt);
+			else if (!ft_strcmp(line2[0], "width"))
+				rt->w = ft_atof(line2[2]);
+			else if (!ft_strcmp(line2[0], "height"))
+				rt->h = ft_atof(line2[2]);
 			else if (!ft_strcmp(line2[0], "object"))
 				objects(line2[2], rt, fd);
 			line2_free(line2);
 		}
 		ft_strdel(&line);
 	}
-	if (close(fd) == -1)
-		ft_exit("\033[31mThis scene failed to close");
+	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 }

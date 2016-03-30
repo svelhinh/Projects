@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:54:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 14:53:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 10:35:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void		init_all(char *file, t_rt *rt)
 {
-	rt->default_color = 0;
+	rt->background_color = 0;
+	rt->w = 1280;
+	rt->h = 720;
 	rt->nbs = 0;
 	rt->nbp = 0;
 	rt->nbc = 0;

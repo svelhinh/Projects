@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 10:43:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 17:03:45 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 12:27:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,15 @@ int		sphere(t_ray *r, t_sphere *s, float *t)
 
 int		plane(t_ray *r, t_plane *p, float *t)
 {
-	float	tmp;
-	float	a;
-	float	b;
-	float	c;
-	float	angle;
+	t_vector3d	norm;
+	float		tmp;
 
-	angle = 0.3;
-	a = p->norm.x;
-	b = p->norm.x + cos(angle) * p->norm.y - sin(angle) * p->norm.z;
-	c = p->norm.x + sin(angle) * p->norm.y + cos(angle) * p->norm.z;
-	tmp = -(p->height + a * r->start.x + b * r->start.y + c * r->start.z)
-		/ (a * r->dir.x + b * r->dir.y + c * r->dir.z);
+	p->rot.x = 0.3;
+	p->rot.y = 0;
+	p->rot.z = 0;
+	norm = rotations(p->norm, p->rot.x, p->rot.y, p->rot.z);
+	tmp = -(p->height + norm.x * r->start.x + norm.y * r->start.y + norm.z * r->start.z)
+		/ (norm.x * r->dir.x + norm.y * r->dir.y + norm.z * r->dir.z);
 	if (tmp < *t && tmp > 0.01)
 	{
 		*t = tmp;
@@ -83,6 +80,9 @@ int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 	float		d;
 	int			retval;
 
+	//cy->rot.x = 0;
+	//cy->rot.y = 0;
+	//cy->rot.z = 0;
 	tab[2] = 0;
 	if (cy->pos.x == 0)
 		tab[2] = 1;
@@ -91,6 +91,7 @@ int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 	else if (cy->pos.z == 0)
 		tab[2] = 3;
 	dist = vectorsub(&cy->pos, &r->start, tab[2]);
+	//dist = rotations(dist, cy->rot.x, cy->rot.y, cy->rot.z);
 	b = vectordot(&r->dir, &dist, tab[2]);
 	d = pow(b, 2) - vectordot(&dist, &dist, tab[2]) + pow(cy->radius, 2);
 	if (d < 0)
@@ -110,15 +111,19 @@ int		cylinder(t_ray *r, t_cylinder *cy, float *t)
 
 int		cone(t_ray *r, t_cone *co, float *t)
 {
-	t_vector3d	dist;
+	t_vector3d	norm;
 	float		tab[2];
 	float		b;
 	float		d;
 	int			retval;
 
-	dist = vectorsub(&co->pos, &r->start, 0);
-	b = vectordot(&r->dir, &dist, co->axis);
-	d = pow(b, 2) - vectordot(&dist, &dist, co->axis) + pow(co->radius, 2);
+	co->rot.x = 0;
+	co->rot.y = 0;
+	co->rot.z = 0;
+	norm = vectorsub(&co->pos, &r->start, 0);
+	norm = rotations(norm, co->rot.x, co->rot.y, co->rot.z);
+	b = vectordot(&r->dir, &norm, 'y');
+	d = pow(b, 2) - vectordot(&norm, &norm, 'y') + pow(co->radius, 2);
 	if (d < 0)
 		return (0);
 	tab[0] = b - sqrt(d);

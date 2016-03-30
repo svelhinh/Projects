@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 18:51:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 12:29:00 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# define SW 1920
-# define SH 1080
 # define ESC /*65307*/53
 
 typedef struct	s_vector3d
@@ -27,6 +25,12 @@ typedef struct	s_vector3d
 	float		y;
 	float		z;
 }				t_vector3d;
+typedef struct	s_rot
+{
+	float		x;
+	float		y;
+	float		z;
+}				t_rot;
 typedef struct	s_color
 {
 	float		red;
@@ -48,6 +52,7 @@ typedef struct	s_plane
 {
 	t_vector3d	norm;
 	t_color		color;
+	t_rot		rot;
 	float		height;
 }				t_plane;
 typedef struct	s_cylinder
@@ -55,13 +60,14 @@ typedef struct	s_cylinder
 	t_vector3d	pos;
 	float		height;
 	float		radius;
+	t_rot		rot;
 	t_color		color;
 }				t_cylinder;
 typedef struct	s_cone
 {
 	t_vector3d	pos;
 	float		radius;
-	char		axis;
+	t_rot		rot;
 	t_color		color;
 }				t_cone;
 typedef struct	s_ray
@@ -78,7 +84,7 @@ typedef struct	s_rt
 	int			endian;
 	int			bpp;
 	int			size_line;
-	int			default_color;
+	int			background_color;
 	int			nbs;
 	int			nbp;
 	int			nbc;
@@ -86,7 +92,10 @@ typedef struct	s_rt
 	int			nbl;
 	int			currentobj;
 	int			pixel_color;
+	float		w;
+	float		h;
 	float		t;
+	float		angle;
 	t_sphere	*s;
 	t_plane		*p;
 	t_cylinder	*c;
@@ -95,6 +104,7 @@ typedef struct	s_rt
 	t_vector3d	campos;
 	t_light		light;
 	t_color		global_color;
+	t_rot		rotcam;
 }				t_rt;
 
 /*
@@ -118,6 +128,7 @@ int				plane(t_ray *r, t_plane *p, float *t);
 int				cylinder(t_ray *r, t_cylinder *c, float *t);
 int				cone(t_ray *r, t_cone *co, float *t);
 char			*intersect(t_rt *rt, int *currentobj, char *object);
+t_vector3d		rotations(t_vector3d normal, float x, float y, float z);
 /*
 ** ------------------------------------------------------------------------
 */

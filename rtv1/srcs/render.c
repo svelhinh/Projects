@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 14:38:24 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 12:33:25 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ static void		draw(t_rt *rt, int x, int y)
 	if (rt->currentobj != -1)
 		mlx_pixel_put_to_image(rt->pixel_color, rt, x, y);
 	else
-		mlx_pixel_put_to_image(rt->default_color, rt, x, y);
+		mlx_pixel_put_to_image(rt->background_color, rt, x, y);
 }
 
-static void		loading(int y)
+static void		loading(int y, float h)
 {
-	if (y == 0.25 * SH)
+	if (y == 0.25 * h)
 		ft_putendl("25% completed !");
-	if (y == 0.5 * SH)
+	if (y == 0.5 * h)
 		ft_putendl("50% completed !");
-	if (y == 0.75 * SH)
+	if (y == 0.75 * h)
 		ft_putendl("75% completed !");
-	if (y == SH - 1)
+	if (y == h - 1)
 		ft_putendl("100% completed !");
 }
 
@@ -43,6 +43,10 @@ static void		init(t_rt *rt, int x, int y)
 	rt->r.start.y = y + rt->campos.y;
 	rt->r.dir.x = rt->r.start.x - x;
 	rt->r.dir.y = rt->r.start.y - y;
+	rt->rotcam.x = 0;
+	rt->rotcam.y = 0;
+	rt->rotcam.z = 0;
+	rt->r.start = rotations(rt->r.start, rt->rotcam.x, rt->rotcam.y, rt->rotcam.z);
 }
 
 void			render(t_rt *rt)
@@ -54,10 +58,10 @@ void			render(t_rt *rt)
 	y = 0;
 	rt->r.start.z = rt->campos.z;
 	rt->r.dir.z = 1;
-	while (y < SH)
+	while (y < rt->h)
 	{
 		x = 0;
-		while (x < SW)
+		while (x < rt->w)
 		{
 			init(rt, x, y);
 			object = intersect(rt, &rt->currentobj, object);
@@ -68,7 +72,7 @@ void			render(t_rt *rt)
 			ft_strdel(&object);
 			x++;
 		}
-		loading(y);
+		loading(y, rt->h);
 		y++;
 	}
 }

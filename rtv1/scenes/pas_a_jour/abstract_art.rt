@@ -1,12 +1,12 @@
-default_color : 0
+width : 1280
+height : 720
+
+background_color : 0
 
 object : camera
 x_pos : 0
 y_pos : 0
 z_pos : -10000
-r_dir_x : 0
-r_dir_y : 0
-r_dir_z : 1
 
 object : cone
 x_pos : 600
@@ -14,39 +14,28 @@ y_pos : 300
 z_pos : 0
 axis : y
 radius : 0
-color : 5698
+color : 0 0.33 0.6
 
 object : cylinder
 x_pos : 650
 y_pos : 0
 z_pos : 0
 radius : 100
-color : df8800
+color : 0.87 0.53 0
 
 object : cylinder
 x_pos : 0
 y_pos : 250
 z_pos : 0
 radius : 50
-color : f040
+color : 0 0.94 0.25
 
 object : plane
-x_pos : 100
-y_pos : 650
-z_pos : 3
-color : 757063
-
-object : plane
-x_pos : -100
-y_pos : 450
-z_pos : 3
-color : b5d84a
-
-object : plane
-x_pos : 100
-y_pos : 450
-z_pos : 3
-color : d56f02
+x_norm : 0
+y_norm : 1
+z_norm : 0
+height : -500
+color : 0.46 0.44 0.39
 
 object : sphere
 x_pos : 100

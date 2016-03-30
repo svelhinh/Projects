@@ -1,4 +1,4 @@
-default_color : 40adb9
+background_color : 40adb9
 
 object : camera
 x_pos : 0
@@ -16,7 +16,7 @@ x_pos : 640
 y_pos : 360
 z_pos : -300
 radius : 50
-color : 0.1 0.6 0.8
+color : 0.9 0.6 0.8
 
 object : plane
 x_norm : 0

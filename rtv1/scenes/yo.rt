@@ -1,4 +1,4 @@
-default_color : 40adb9
+background_color : 40adb9
 
 object : camera
 x_pos : 0

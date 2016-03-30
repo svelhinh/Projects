@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:16:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 14:56:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 12:01:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	init_cone(t_rt *rt)
 		rt->co[i].pos.x = 0;
 		rt->co[i].pos.y = 0;
 		rt->co[i].pos.z = 0;
-		rt->co[i].axis = 'y';
 		rt->co[i].radius = 0;
 		rt->co[i].color.red = 0;
 		rt->co[i].color.green = 0;

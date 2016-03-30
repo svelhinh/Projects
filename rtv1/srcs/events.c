@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 15:30:23 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/18 11:07:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 10:35:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		expose(t_rt *rt)
 {
-	if (!(rt->img = mlx_new_image(rt->mlx, SW, SH)))
+	if (!(rt->img = mlx_new_image(rt->mlx, rt->w, rt->h)))
 		ft_exit("mlx_new_image() in expose() failed");
 	rt->data = mlx_get_data_addr(rt->img, &rt->bpp, &rt->size_line,
 			&rt->endian);

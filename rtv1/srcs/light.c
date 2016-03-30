@@ -6,13 +6,23 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/29 18:44:18 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/30 11:06:03 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void		light_sphere(t_rt *rt, float t, float tmp, int currentobj)
+static void	color(t_rt *rt, float red, float green, float blue)
+{
+	rt->global_color.red += rt->angle * rt->light.intensity.red
+		* red;
+	rt->global_color.green += rt->angle
+		* rt->light.intensity.green * green;
+	rt->global_color.blue += rt->angle
+		* rt->light.intensity.blue * blue;
+}
+
+void		light_sphere(t_rt *rt, float t, float tmp, int cobj)
 {
 	t_vector3d	scaled;
 	t_vector3d	newstart;
@@ -22,7 +32,7 @@ void		light_sphere(t_rt *rt, float t, float tmp, int currentobj)
 
 	scaled = vectorscale(t, &rt->r.dir);
 	newstart = vectoradd(&rt->r.start, &scaled);
-	normal = vectorsub(&newstart, &rt->s[currentobj].pos, 0);
+	normal = vectorsub(&newstart, &rt->s[cobj].pos, 0);
 	tmp = 1 / sqrt(vectordot(&normal, &normal, 0));
 	normal = vectorscale(tmp, &normal);
 	light_vec = vectorsub(&rt->light.pos, &newstart, 0);
@@ -34,89 +44,63 @@ void		light_sphere(t_rt *rt, float t, float tmp, int currentobj)
 		light_ray.dir = light_vec;
 		if (!shadows(rt, &light_ray, tmp))
 		{
-			tmp = vectordot(&light_vec, &normal, 0);
-			rt->global_color.red += tmp * rt->light.intensity.red
-				* rt->s[currentobj].color.red;
-			rt->global_color.green += tmp
-				* rt->light.intensity.green * rt->s[currentobj].color.green;
-			rt->global_color.blue += tmp
-				* rt->light.intensity.blue * rt->s[currentobj].color.blue;
+			rt->angle = vectordot(&light_vec, &normal, 0);
+			color(rt, rt->s[cobj].color.red, rt->s[cobj].color.green,
+					rt->s[cobj].color.blue);
 		}
 	}
 }
 
-void		light_plane(t_rt *rt, float t, int currentobj)
+void		light_plane(t_rt *rt, float t, int cobj)
 {
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
 	t_vector3d	normal;
 	t_ray		light_ray;
-	float		angle;
 
 	ptinter.x = rt->r.start.x + rt->r.dir.x * t;
 	ptinter.y = rt->r.start.y + rt->r.dir.y * t;
 	ptinter.z = rt->r.start.z + rt->r.dir.z * t;
 	light_vec = vectorsub(&ptinter, &rt->light.pos, 0);
-	normal = normalize(&rt->p[currentobj].norm);
+	normal = normalize(&rt->p[cobj].norm);
 	light_vec = normalize(&light_vec);
 	light_ray.start = ptinter;
-	light_ray.dir.x = -light_vec.x;
-	light_ray.dir.y = -light_vec.y;
-	light_ray.dir.z = -light_vec.z;
+	light_ray.dir = vectorscale(-1, &light_vec);
 	if (!shadows(rt, &light_ray, t))
-	{
-		angle = vectordot(&normal, &light_vec, 0);
-		if (angle > 0)
-		{
-			rt->global_color.red += angle * rt->light.intensity.red
-				* rt->p[currentobj].color.red;
-			rt->global_color.green += angle * rt->light.intensity.green
-				* rt->p[currentobj].color.green;
-			rt->global_color.blue += angle * rt->light.intensity.blue
-				* rt->p[currentobj].color.blue;
-		}
-	}
+		if ((rt->angle = vectordot(&normal, &light_vec, 0)) > 0)
+			color(rt, rt->p[cobj].color.red, rt->p[cobj].color.green,
+					rt->p[cobj].color.blue);
 }
 
-static void	light_cylinder2(t_rt *rt, float angle, int currentobj)
-{
-	rt->global_color.red += angle * rt->light.intensity.red
-		* rt->c[currentobj].color.red;
-	rt->global_color.green += angle * rt->light.intensity.green
-		* rt->c[currentobj].color.green;
-	rt->global_color.blue += angle * rt->light.intensity.blue
-		* rt->c[currentobj].color.blue;
-}
-
-void		light_cylinder(t_rt *rt, float t, int currentobj)
+void		light_cylinder(t_rt *rt, float t, int cobj)
 {
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
 	t_vector3d	normalcy;
 	t_ray		light_ray;
-	float		angle;
 
 	ptinter.x = rt->r.start.x + rt->r.dir.x * t;
 	ptinter.y = rt->r.start.y + rt->r.dir.y * t;
 	ptinter.z = rt->r.start.z + rt->r.dir.z * t;
 	light_vec = vectorsub(&rt->light.pos, &ptinter, 0);
-	normalcy = vectorsub(&ptinter, &rt->c[currentobj].pos, 0);
-	if (rt->c[currentobj].pos.x == 0)
+	normalcy = vectorsub(&ptinter, &rt->c[cobj].pos, 0);
+	if (rt->c[cobj].pos.x == 0)
 		normalcy.x = 0;
-	else if (rt->c[currentobj].pos.y == 0)
+	else if (rt->c[cobj].pos.y == 0)
 		normalcy.y = 0;
-	else if (rt->c[currentobj].pos.z == 0)
+	else if (rt->c[cobj].pos.z == 0)
 		normalcy.z = 0;
 	normalcy = normalize(&normalcy);
 	light_vec = normalize(&light_vec);
 	light_ray.start = ptinter;
 	light_ray.dir = light_vec;
 	if (!shadows(rt, &light_ray, t))
-		if ((angle = vectordot(&normalcy, &light_vec, 0)) > 0)
-			light_cylinder2(rt, angle, currentobj);
+		if ((rt->angle = vectordot(&normalcy, &light_vec, 0)) > 0)
+			color(rt, rt->c[cobj].color.red, rt->c[cobj].color.green,
+					rt->c[cobj].color.blue);
 }
 
-void		light_cone(t_rt *rt, float t, float tmp, int currentobj)
+void		light_cone(t_rt *rt, float t, float tmp, int cobj)
 {
 	t_vector3d	scaled;
 	t_vector3d	newstart;
@@ -126,26 +110,21 @@ void		light_cone(t_rt *rt, float t, float tmp, int currentobj)
 
 	scaled = vectorscale(t, &rt->r.dir);
 	newstart = vectoradd(&rt->r.start, &scaled);
-	normal = vectorsub(&newstart, &rt->co[currentobj].pos, 0);
+	normal = vectorsub(&newstart, &rt->co[cobj].pos, 0);
 	tmp = 1 / sqrt(vectordot(&normal, &normal, 0));
 	normal = vectorscale(tmp, &normal);
 	light_vec = vectorsub(&rt->light.pos, &newstart, 0);
 	if (vectordot(&normal, &light_vec, 0) > 0)
 	{
-		tmp = sqrt(vectordot(&light_vec, &light_vec, 0));
 		light_ray.start = newstart;
 		tmp = sqrt(vectordot(&light_vec, &light_vec, 0));
 		light_vec = vectorscale((1 / tmp), &light_vec);
 		light_ray.dir = light_vec;
 		if (!shadows(rt, &light_ray, tmp))
 		{
-			tmp = vectordot(&light_vec, &normal, 0);
-			rt->global_color.red += tmp * rt->light.intensity.red
-				* rt->co[currentobj].color.red;
-			rt->global_color.green += tmp * rt->light.intensity.green
-				* rt->co[currentobj].color.green;
-			rt->global_color.blue += tmp * rt->light.intensity.blue
-				* rt->co[currentobj].color.blue;
+			rt->angle = vectordot(&light_vec, &normal, 0);
+			color(rt, rt->co[cobj].color.red, rt->co[cobj].color.green,
+					rt->co[cobj].color.blue);
 		}
 	}
 }
