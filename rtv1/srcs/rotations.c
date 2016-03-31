@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/30 12:03:54 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 12:38:21 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 15:22:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void		parsing_rotations(t_rt *rt, int j, int i, char **line2)
 		rt->c[i].rot.x = ft_atof(line2[2]);
 		rt->c[i].rot.y = ft_atof(line2[3]);
 		rt->c[i].rot.z = ft_atof(line2[4]);
-		rt->c[i].vec = rotations(rt->c[i].vec, rt->c[i].rot.x, rt->c[i].rot.y, rt->c[i].rot.z);
+		rt->c[i].vec = rotations(rt->c[i].vec, rt->c[i].rot.x, rt->c[i].rot.y,
+				rt->c[i].rot.z);
 	}
 	if (j == 'o')
 	{

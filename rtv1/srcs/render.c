@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 11:40:27 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 15:22:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ static void		init(t_rt *rt, int x, int y)
 	rt->r.start.y = y + rt->campos.y;
 	if (rt->rotcam.z)
 	{
-		rt->r.start.x = rt->r.start.x * cos(rt->rotcam.z) - rt->r.start.y * sin(rt->rotcam.z);
-		rt->r.start.y = rt->r.start.x * sin(rt->rotcam.z) + rt->r.start.y * cos(rt->rotcam.z);
+		rt->r.start.x = rt->r.start.x * cos(rt->rotcam.z) - rt->r.start.y
+			* sin(rt->rotcam.z);
+		rt->r.start.y = rt->r.start.x * sin(rt->rotcam.z) + rt->r.start.y
+			* cos(rt->rotcam.z);
 	}
 }
 

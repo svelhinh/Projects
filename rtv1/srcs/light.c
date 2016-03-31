@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lights.c                                           :+:      :+:    :+:   */
+/*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/18 11:26:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 17:36:12 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/03/31 15:28:22 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/03/31 15:28:23 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	color(t_rt *rt, float red, float green, float blue)
+static t_vector3d	calcul_ptinter(t_ray *r, float t)
 {
-	rt->global_color.red += rt->angle * rt->light.intensity.red
-		* red;
-	rt->global_color.green += rt->angle
-		* rt->light.intensity.green * green;
-	rt->global_color.blue += rt->angle
-		* rt->light.intensity.blue * blue;
+	t_vector3d	ptinter;
+
+	ptinter.x = r->start.x + r->dir.x * t;
+	ptinter.y = r->start.y + r->dir.y * t;
+	ptinter.z = r->start.z + r->dir.z * t;
+	return (ptinter);
 }
 
-void		light_sphere(t_rt *rt, float t, float tmp, int cobj)
+void				light_sphere(t_rt *rt, float t, float tmp, int cobj)
 {
 	t_vector3d	scaled;
 	t_vector3d	newstart;
@@ -51,16 +51,14 @@ void		light_sphere(t_rt *rt, float t, float tmp, int cobj)
 	}
 }
 
-void		light_plane(t_rt *rt, float t, int cobj)
+void				light_plane(t_rt *rt, float t, int cobj)
 {
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
 	t_vector3d	normal;
 	t_ray		light_ray;
 
-	ptinter.x = rt->r.start.x + rt->r.dir.x * t;
-	ptinter.y = rt->r.start.y + rt->r.dir.y * t;
-	ptinter.z = rt->r.start.z + rt->r.dir.z * t;
+	ptinter = calcul_ptinter(&rt->r, t);
 	light_vec = vectorsub(&ptinter, &rt->light.pos, 0);
 	normal = normalize(&rt->p[cobj].norm);
 	light_vec = normalize(&light_vec);
@@ -72,26 +70,22 @@ void		light_plane(t_rt *rt, float t, int cobj)
 					rt->p[cobj].color.blue);
 }
 
-void		light_cylinder(t_rt *rt, float t, int cobj)
+void				light_cylinder(t_rt *rt, float t, int cobj)
 {
 	t_vector3d	ptinter;
 	t_vector3d	light_vec;
 	t_vector3d	normalcy;
-	float		m;
-	t_vector3d	tmp;
-	t_vector3d	tmp2;
 	t_vector3d	x;
 	t_ray		light_ray;
 
-	ptinter.x = rt->r.start.x + rt->r.dir.x * t;
-	ptinter.y = rt->r.start.y + rt->r.dir.y * t;
-	ptinter.z = rt->r.start.z + rt->r.dir.z * t;
+	ptinter = calcul_ptinter(&rt->r, t);
 	light_vec = vectorsub(&rt->light.pos, &ptinter, 0);
 	x = vectorsub(&rt->r.start, &rt->c[cobj].start, 0);
-	m = vectordot(&rt->r.dir, &rt->c[cobj].vec, 0) * t + vectordot(&x, &rt->c[cobj].vec, 0);
-	tmp = vectorscale(m, &rt->c[cobj].vec);
-	tmp2 = vectorsub(&ptinter, &rt->c[cobj].start, 0);
-	normalcy = vectorsub(&tmp2, &tmp, 0);
+	rt->m = vectordot(&rt->r.dir, &rt->c[cobj].vec, 0) * t +
+		vectordot(&x, &rt->c[cobj].vec, 0);
+	rt->tmp = vectorscale(rt->m, &rt->c[cobj].vec);
+	rt->tmp2 = vectorsub(&ptinter, &rt->c[cobj].start, 0);
+	normalcy = vectorsub(&rt->tmp2, &rt->tmp, 0);
 	normalcy = normalize(&normalcy);
 	light_vec = normalize(&light_vec);
 	light_ray.start = ptinter;
@@ -102,7 +96,7 @@ void		light_cylinder(t_rt *rt, float t, int cobj)
 					rt->c[cobj].color.blue);
 }
 
-void		light_cone(t_rt *rt, float t, float tmp, int cobj)
+void				light_cone(t_rt *rt, float t, float tmp, int cobj)
 {
 	t_vector3d	scaled;
 	t_vector3d	newstart;

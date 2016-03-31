@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 12:34:33 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 15:30:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ typedef struct	s_rt
 	float		h;
 	float		t;
 	float		angle;
+	float		m;
+	t_vector3d	tmp;
+	t_vector3d	tmp2;
 	t_sphere	*s;
 	t_plane		*p;
 	t_cylinder	*c;
@@ -169,6 +172,7 @@ void			parsing_sphere(int fd, t_rt *rt);
 void			parsing_cylinder(int fd, t_rt *rt);
 void			parsing_cone(int fd, t_rt *rt);
 void			parsing_rotations(t_rt *rt, int j, int i, char **line2);
+void			parsing_color(t_rt *rt, int j, int i, char **line2);
 /*
 ** -----------------------------------------------------------------------
 */
@@ -192,6 +196,9 @@ void			init_cone(t_rt *rt);
 ** ------------------------ others ---------------------------------------
 */
 void			line2_free(char **line2);
+void			check_color(float r, float g, float b);
+void			color(t_rt *rt, float red, float green, float blue);
+void			missing_parameter(char **line2);
 /*
 ** -------------------------------------------------------------------------
 */

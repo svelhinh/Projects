@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 12:39:52 by svelhinh         ###   ########.fr       */
+/*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
+/*   Updated: 2016/03/31 15:28:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	objects(char *object, t_rt *rt, int fd)
 	else if (!ft_strcmp(object, "cone"))
 		parsing_cone(fd, rt);
 	else
-		ft_exit("\033[31mA defined object doesn't exit\n");
+		ft_exit("\033[31mA defined object was not found\n");
 }
 
 static void	resolution(float width, float height, t_rt *rt)
@@ -77,7 +77,9 @@ void		global_parser(char *file, t_rt *rt)
 			if (!ft_strcmp(line2[0], "background_color"))
 				background_color(line2[2], rt);
 			else if (!ft_strcmp(line2[0], "resolution"))
-				resolution(ft_atof(line2[2]), ft_atof(line2[3]), rt);
+				(line2[2] && line2[3]) ? (resolution(ft_atof(line2[2]),
+							ft_atof(line2[3]), rt)) :
+					(ft_exit("\033[31mParameter missing for resolution\n"));
 			else if (!ft_strcmp(line2[0], "object"))
 				objects(line2[2], rt, fd);
 			line2_free(line2);
