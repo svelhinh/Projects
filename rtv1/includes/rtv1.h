@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 17:16:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 12:34:33 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void			parsing_plane(int fd, t_rt *rt);
 void			parsing_sphere(int fd, t_rt *rt);
 void			parsing_cylinder(int fd, t_rt *rt);
 void			parsing_cone(int fd, t_rt *rt);
+void			parsing_rotations(t_rt *rt, int j, int i, char **line2);
 /*
 ** -----------------------------------------------------------------------
 */

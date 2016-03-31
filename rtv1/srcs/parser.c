@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 18:12:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 17:16:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 12:39:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	background_color(char *color, t_rt *rt)
 {
-	int color2;
 	int i;
 
 	i = 0;
@@ -27,15 +26,16 @@ static void	background_color(char *color, t_rt *rt)
 			ft_exit("\033[31mBad format for background_color\n");
 		i++;
 	}
-	color2 = ft_atoi_base(color, 16);
+	rt->background_color = ft_atoi_base(color, 16);
 	ft_strdel(&color);
-	rt->background_color = color2;
 }
 
 static void	objects(char *object, t_rt *rt, int fd)
 {
 	if (!ft_strcmp(object, "camera"))
 		parsing_camera(fd, rt);
+	else if (!ft_strcmp(object, "light"))
+		parsing_light(fd, rt);
 	else if (!ft_strcmp(object, "sphere"))
 		parsing_sphere(fd, rt);
 	else if (!ft_strcmp(object, "plane"))
@@ -44,10 +44,20 @@ static void	objects(char *object, t_rt *rt, int fd)
 		parsing_cylinder(fd, rt);
 	else if (!ft_strcmp(object, "cone"))
 		parsing_cone(fd, rt);
-	else if (!ft_strcmp(object, "light"))
-		parsing_light(fd, rt);
 	else
-		ft_exit("\033[31mThis object doesn't exit\n");
+		ft_exit("\033[31mA defined object doesn't exit\n");
+}
+
+static void	resolution(float width, float height, t_rt *rt)
+{
+	if (width < 7680 && width > 0)
+		rt->w = width;
+	else
+		ft_exit("\033[31mWidth too large\n");
+	if (height < 4320 && height > 0)
+		rt->h = height;
+	else
+		ft_exit("\033[31mHeight too large\n");
 }
 
 void		global_parser(char *file, t_rt *rt)
@@ -66,10 +76,8 @@ void		global_parser(char *file, t_rt *rt)
 			line2 = ft_strsplit(line, ' ');
 			if (!ft_strcmp(line2[0], "background_color"))
 				background_color(line2[2], rt);
-			else if (!ft_strcmp(line2[0], "width"))
-				rt->w = ft_atof(line2[2]);
-			else if (!ft_strcmp(line2[0], "height"))
-				rt->h = ft_atof(line2[2]);
+			else if (!ft_strcmp(line2[0], "resolution"))
+				resolution(ft_atof(line2[2]), ft_atof(line2[3]), rt);
 			else if (!ft_strcmp(line2[0], "object"))
 				objects(line2[2], rt, fd);
 			line2_free(line2);

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 11:21:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/30 18:32:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 11:40:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,11 @@ static void		init(t_rt *rt, int x, int y)
 	rt->global_color.green = 0;
 	rt->r.start.x = x + rt->campos.x;
 	rt->r.start.y = y + rt->campos.y;
-	rt->r.dir.x = rt->r.start.x - x;
-	rt->r.dir.y = rt->r.start.y - y;
-	rt->rotcam.x = 0;
-	rt->rotcam.y = 0;
-	rt->rotcam.z = 0;
-	//rt->r.start = rotations(rt->r.start, rt->rotcam.x, rt->rotcam.y, rt->rotcam.z);
-	//rt->r.dir = rotations(rt->r.dir, rt->rotcam.x, rt->rotcam.y, rt->rotcam.z);
-	//printf("x : %f\ny : %f\nz : %f\n\n", rt->r.start.x, rt->r.start.y, rt->r.start.z);
+	if (rt->rotcam.z)
+	{
+		rt->r.start.x = rt->r.start.x * cos(rt->rotcam.z) - rt->r.start.y * sin(rt->rotcam.z);
+		rt->r.start.y = rt->r.start.x * sin(rt->rotcam.z) + rt->r.start.y * cos(rt->rotcam.z);
+	}
 }
 
 void			render(t_rt *rt)
@@ -59,7 +56,6 @@ void			render(t_rt *rt)
 
 	y = 0;
 	rt->r.start.z = rt->campos.z;
-	rt->r.dir.z = 1;
 	while (y < rt->h)
 	{
 		x = 0;
