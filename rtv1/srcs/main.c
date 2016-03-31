@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:45 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 15:28:46 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 17:14:49 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int		main(int ac, char **av)
 	if (!(rt.win = mlx_new_window(rt.mlx, rt.w, rt.h, "RTV1")))
 		ft_exit("mlx_new_window() in main() failed");
 	mlx_hook(rt.win, 2, (1L << 0), key_press, &rt);
-	mlx_hook(rt.win, 3, (1L << 1), key_release, &rt);
 	expose(&rt);
 	mlx_loop(rt.mlx);
 	return (0);

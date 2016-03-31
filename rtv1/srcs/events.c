@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:27:41 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 15:38:05 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 17:14:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,5 @@ int		key_press(int keycode, t_rt *rt)
 		mlx_destroy_window(rt->mlx, rt->win);
 		exit(0);
 	}
-	return (0);
-}
-
-int		key_release(int keycode, t_rt *rt)
-{
-	(void)keycode;
-	(void)rt;
 	return (0);
 }

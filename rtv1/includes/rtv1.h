@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 15:30:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 17:14:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 # include "../libft/includes/get_next_line.h"
 # include <mlx.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <math.h>
-# define ESC /*65307*/53
+# define ESC 53
 
 typedef struct	s_vector3d
 {
