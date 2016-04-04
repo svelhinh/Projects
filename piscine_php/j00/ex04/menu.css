@@ -12,6 +12,7 @@
 li
 {
     display: none;
+	font-size: 1vw;
     margin-top: 10px;
     font-family: "Comic Sans MS";
 }
@@ -21,7 +22,14 @@ li
     display: block;
 }
 
+a
+{
+	text-decoration: none;
+	color: black;
+}
+
 li:hover
-{	
+{
 	background-color: grey;
+	font-size: 50%;
 }
