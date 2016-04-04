@@ -6,7 +6,7 @@
 <!-- By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+       -->
 <!--                                              +#+#+#+#+#+   +#+          -->
 <!-- Created: 2016/04/04 11:26:32 by svelhinh          #+#    #+#            -->
-<!-- Updated: 2016/04/04 13:09:08 by svelhinh         ###   ########.fr      -->
+<!-- Updated: 2016/04/04 14:55:46 by svelhinh         ###   ########.fr      -->
 <!--                                                                         -->
 <!-- *********************************************************************** -->
 
@@ -14,15 +14,31 @@
 <html>
 	<head>
 		<title>Day of the 42</title>
+		<meta charset="utf-8" />
 		<link rel="stylesheet" href="doft.css" />
 	</head>
 	<body>
 		<div class="header">
 			<img src="resources/day_of_the_42.png" class="title" />
-			<div class="loupe"><img src="resources/loupe.png" style="height:125px" /></div>
-			<div class="reload"><img src="resources/reload.png" style="height:30px" /></div>
-			<div class="close"><img src="resources/close.gif" style="height:30px" /></div>
+			<div class="close"><a href="https://www.relaischateaux.com/"><img src="resources/close.gif" style="height:20px"  alt="Déconnecter" title="Déconnecter"/></a></div>
+			<div class="reload"><a href="http://disney.com"><img src="resources/reload.png" style="height:20px" alt="Recommencer au début" title="Recommencer au début"/></a></div>
+			<div class="loupe"><img src="resources/loupe.png" style="height:125px" alt="Loupe" title="Loupe"/></div>
 		</div>
-		<img src="resources/cluster.jpg" class="cluster" />
+		<div class="left">
+			<img src="resources/arrow.png" style="height:75px" alt="Avancer" title="Avancer" />
+			<img src="resources/main.png" style="height:75px" alt="Prendre" title="Prendre" />
+			<img src="resources/oeil.png" style="height:75px" alt="Regarder" title="Regarder" class="eye" />
+			<img src="resources/outil.png" style="height:75px" alt="Utiliser" title="Utiliser" />
+			<img src="resources/chat-icon.png" style="height:75px" alt="Parler" title="Parler" />
+		</div>
+		<img src="resources/cluster.jpg" class="cluster"/>
+		<div class="right">
+			<img src="resources/book.png" style="height:75px" alt="Livre" title="Livre" />
+			<img src="resources/towel.png" style="height:60px" alt="Serviette" title="Serviette" />
+			<div class="brick" alt="Brique" title="Brique"></div>
+		</div>
+		<p class="green">Vous <span class="entrez">entrez</span> alors dans une grande piece remplie<br />d'<span style="text-shadow: 6px 6px 5px red">ordinateurs</span>...<br /><i>- Bonjour, vous êtes nouveau ici ?</i><br /><input><button>Répondre</button></input></p>
+		<a  href="http://www.ikea.com/"><p class="ikea"></p></a>
+		<a  href="http://www.apple.com/"><p class="apple"></p></a>
 	</body>
 </html>

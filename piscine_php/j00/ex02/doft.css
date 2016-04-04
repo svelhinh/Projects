@@ -2,42 +2,142 @@ html
 {
 	background-color: #505050;
 }
+
 .cluster
 {
 	border: 10px solid #909090;
 	box-shadow: 8px 8px 5px black;
 	border-radius: 10px;
 	float: left;
-	margin-left: 1.5%;
-	margin-top: 20px;
+	margin-left: 770px;
+	margin-top: 0.01%;
 }
+
 .header
 {
 	box-shadow: 8px 8px 5px black;
 	border-radius: 10px;
 	background-color: #909090;
 	height: 110px;
+	margin-top: 0.5%;
+	margin-left: 23%;
+	margin-right: 23%;
 }
+
 .title
 {
-	top : 0px;
-	width : 350px;
+	float: left;
+	top: 0px;
+	width: 350px;
+	margin-top: 10px;
 }
+
 .loupe
 {
-	display: inline;
-	position: absolute;
-	margin-left: 500px;
+	float: right;
+	margin-right: 20px;
 }
+
 .reload
 {
-	display: inline;
-	position: absolute;
-	margin-left: 500px;
+	float: right;
+	margin-top: 5px;
+	margin-right: -18px;
 }
+
 .close
 {
-	display: inline;
+	float: right;
+	margin-top: 88px;
+	margin-right: 10px;
+}
+
+.left
+{
+	box-shadow: 8px 8px 5px black;
+	border-radius: 10px;
+	background-color: #909090;
 	position: absolute;
-	margin-left: 500px;
+	width: 135px;
+	height: 430px;
+	text-align: center;
+	margin-top: 0.7%;
+	margin-left: 23.5%;
+	padding-top: 10px;
+}
+
+.right
+{
+	box-shadow: 8px 8px 5px black;
+	border-radius: 10px;
+	background-color: #909090;
+	width: 135px;
+	height: 430px;
+	text-align: center;
+	margin-left: 1%;
+	float: left;
+	padding-top: 10px;
+}
+
+.eye
+{
+	border: 5px solid #ff0000;
+}
+.green
+{
+	box-shadow: 8px 8px 5px black;
+	border-radius: 10px;
+	background-color: #86FD87;
+	width: 22%;
+	padding-left: 20px;
+	padding-bottom: 75px;
+	margin-left: 20%;
+	margin-top: 21%;
+	position: absolute;
+	font-size: 1.3em;
+}
+
+.entrez
+{
+	font-size: 2em;
+}
+
+.brick
+{
+	width: 120px;
+	height: 70px;
+	margin-left: 7px;
+	background-image: url("resources/brick.jpg");
+}
+
+input
+{
+	width: 80%;
+	height: 20px;
+	margin-left: 1%;
+	box-shadow: inset 0.2px 0.2px 0.2px 0.2px;
+}
+
+button
+{
+	margin-left: 1%;
+	padding: 5px;
+}
+
+.ikea
+{
+	position: absolute;
+	width: 166px;
+	height: 228px;
+	top: 465px;
+	left: 1106px;
+}
+
+.apple
+{
+	position: absolute;
+	width: 219px;
+	height: 191px;
+	top: 447px;
+	left: 1581px;
 }

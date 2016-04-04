@@ -1,0 +1,27 @@
+.menu
+{
+	margin-left: 30%;
+	margin-right: 30%;
+	text-align: center;
+	border: 5px outset #707070;
+	background-color: #909090;
+	font-size: 3vw;
+	font-family: "Comic Sans MS";
+}
+
+li
+{
+    display: none;
+    margin-top: 10px;
+    font-family: "Comic Sans MS";
+}
+
+.menu:hover li
+{
+    display: block;
+}
+
+li:hover
+{	
+	background-color: grey;
+}
