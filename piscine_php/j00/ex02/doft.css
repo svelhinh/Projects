@@ -1,0 +1,43 @@
+html
+{
+	background-color: #505050;
+}
+.cluster
+{
+	border: 10px solid #909090;
+	box-shadow: 8px 8px 5px black;
+	border-radius: 10px;
+	float: left;
+	margin-left: 1.5%;
+	margin-top: 20px;
+}
+.header
+{
+	box-shadow: 8px 8px 5px black;
+	border-radius: 10px;
+	background-color: #909090;
+	height: 110px;
+}
+.title
+{
+	top : 0px;
+	width : 350px;
+}
+.loupe
+{
+	display: inline;
+	position: absolute;
+	margin-left: 500px;
+}
+.reload
+{
+	display: inline;
+	position: absolute;
+	margin-left: 500px;
+}
+.close
+{
+	display: inline;
+	position: absolute;
+	margin-left: 500px;
+}
