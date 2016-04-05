@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 
 function ft_split($str)
@@ -15,5 +16,14 @@ function ft_split($str)
 	}
 	return $str2;
 }
+
+if ($argc == 2)
+{
+	$tab = ft_split($argv[1]);
+	print_r($tab);
+//	echo "$nb\n";
+}
+else
+	echo "Incorrect Parameters\n";
 
 ?>

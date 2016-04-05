@@ -19,12 +19,24 @@ function ft_split($str)
 
 if ($argc >= 2)
 {
-	$i = 1;
-	while ($i != $argc)
+	$l = 1;
+	while ($l != $argc)
 	{
-		$tab[$i - 1] = ft_split($argv[$i]);
-		$i++;
+		$tab[$l - 1] = ft_split($argv[$l]);
+		$l++;
 	}
+	$l = 0;
+	foreach ($tab as $i)
+	{
+		foreach ($i as $j)
+		{
+			$tab2[$l] = $j;
+			$l++;
+		}
+	}
+	sort($tab2, SORT_STRING);
+	foreach ($tab2 as $j)
+		echo "$j\n";
 }
 else
 	echo "\n";
