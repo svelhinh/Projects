@@ -1,8 +1,21 @@
 .menu
 {
-	margin-left: 30%;
-	margin-right: 30%;
+	margin-left: 10%;
+	margin-right: 50%;
 	text-align: center;
+	border: 5px outset #707070;
+	background-color: #909090;
+	font-size: 3vw;
+	font-family: "Comic Sans MS";
+}
+
+.menu2
+{
+	margin-left: 50%;
+	float: right;
+	position: absolute;
+	text-align: center;
+	width: 35%;
 	border: 5px outset #707070;
 	background-color: #909090;
 	font-size: 3vw;
@@ -15,6 +28,11 @@ li
 	font-size: 1vw;
     margin-top: 10px;
     font-family: "Comic Sans MS";
+}
+
+.menu2:hover li
+{
+    display: block;
 }
 
 .menu:hover li

@@ -10,8 +10,7 @@ if ($argc > 2)
 		if ($j > 1)
 		{
 			$tmp = explode(":", $i);
-			$tmp2 = array($tmp[0] => $tmp[1]);
-			$tab = array_merge($tab, $tmp2);
+			$tab[$tmp[0]] = $tmp[1];
 		}
 		$j++;
 	}
