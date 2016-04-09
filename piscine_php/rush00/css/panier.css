@@ -1,0 +1,70 @@
+.panier:hover .produits
+{
+	display: block;
+}
+
+.panier
+{
+	margin-left: 60%;
+	text-align: right;
+}
+
+.produits
+{
+	text-align: left;
+	display: none;
+	border: 5px solid black;
+	min-height: 10%;
+}
+
+.vin
+{
+	text-align: left;
+	width: 10%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.nom
+{
+	text-align: left;
+	position: absolute;
+	margin-top: -2.5%;
+	margin-left: 5%;
+	font-size: 1.3vw;
+}
+
+.quantite
+{
+	text-align: left;
+	position: absolute;
+	margin-top: -2.5%;
+	margin-left: 23%;
+	font-size: 1.3vw;
+}
+
+.prix
+{
+	text-align: left;
+	position: absolute;
+	margin-top: -2.5%;
+	margin-left: 30%;
+	font-size: 1.3vw;
+}
+
+.valider
+{
+	text-align: right;
+	margin-left: 30%;
+	margin-top: 8%;
+	font-size: 2vw;
+}
+
+.vider
+{
+	text-align: right;
+	margin-bottom: 1.5%;
+	margin-left: 1.5%;
+	margin-top: 7.5%;
+	font-size: 2vw;
+}
