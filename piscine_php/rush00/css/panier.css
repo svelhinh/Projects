@@ -3,6 +3,11 @@
 	display: block;
 }
 
+.panier:hover .vide
+{
+	display: block;
+}
+
 .panier
 {
 	margin-left: 60%;
@@ -19,10 +24,9 @@
 
 .vin
 {
-	text-align: left;
 	width: 10%;
 	margin-top: 2%;
-	margin-bottom: 2%;
+	margin-bottom: 5%;
 }
 
 .nom
@@ -56,15 +60,41 @@
 {
 	text-align: right;
 	margin-left: 30%;
-	margin-top: 8%;
 	font-size: 2vw;
+	position: absolute;
+	margin-top: -2.5%;
 }
 
-.vider
+.corbeille
 {
-	text-align: right;
-	margin-bottom: 1.5%;
-	margin-left: 1.5%;
-	margin-top: 7.5%;
-	font-size: 2vw;
+	position: absolute;
+	margin-top: -3%;
+}
+
+.vide
+{
+	text-align: left;
+	display: none;
+	border: 5px solid black;
+	min-height: 10%;
+	text-align: center;
+}
+
+.panier_vide
+{
+	font-size: 2.5vw;
+	font-weight: bold;
+}
+
+.line
+{
+	margin-bottom: 10%;
+}
+
+.total
+{
+	font-size: 1.5vw;
+	font-weight: bold;
+	margin-top: -2.5%;
+	position: absolute;
 }
