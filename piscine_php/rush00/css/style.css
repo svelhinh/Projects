@@ -1,0 +1,86 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+body 
+{
+	font-family: 'Montserrat', sans-serif;
+	margin: 0;
+	padding: 0;
+	background: rgb(231, 231, 231);
+}
+
+section, #title {
+	background-color: white;
+	box-shadow: 0px 10px 10px 0px #cfcfcf;
+	z-index: 2;
+}
+
+
+#title {
+	position: relative;
+	background-image:url("../img/title.png");
+	background-size: 100% auto;
+	background-position: center;
+	color: white;
+	height: 250px;
+	margin-bottom: 40px;
+	text-align: right;
+}
+
+#title a {
+	text-decoration: none;
+	color: white;
+	padding: 10px;
+}
+
+#shop{
+	display: inline-flex;
+	width:100%;
+}
+
+#side 
+{
+	width: 18%;
+}
+
+#side section
+{
+	vertical-align: middle;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 40px;
+	width: 100%;
+}
+
+#side section form {
+	padding: 5px;
+}
+
+.list
+{
+	width: 100%;
+}	
+
+#side header
+{
+	height: 60px;
+	background-color: #D50000;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	color:white;
+}
+
+#vitrine {
+	width: 70%;
+	height: 550px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 1;
+}
+
+#paiement {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 1;
+}

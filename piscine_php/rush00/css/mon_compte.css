@@ -1,0 +1,48 @@
+#mon_compte-center {
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+
+#mon_compte-infos {
+  position: absolute;
+  width: 20%;
+  height: 60%;
+  top :2%;
+  left: 50%;
+}
+
+#mon_compte-title {
+  position: absolute;
+  width: 20%;
+  height: 60%;
+  top: 2%;
+  left: 30%;
+}
+#mon_compte-commande {
+  position: relative;
+  width: 80%;
+  height: 35%;
+  top: 60%;
+  left: 10%;
+}
+
+#mc-numeros {
+  position: absolute;
+  top : 40%;
+}
+#mc-date {
+  position: absolute;
+  top : 40%;
+  left : 14%;
+}
+#mc-prix {
+  position: absolute;
+  top : 40%;
+  left : 27%;
+}
+#mc-produits {
+  position: absolute;
+  top : 40%;
+  left : 40%;
+}

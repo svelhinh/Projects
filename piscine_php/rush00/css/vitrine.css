@@ -1,0 +1,84 @@
+#vitrine-meilleursvente {
+  position : absolute;
+  top: 15%;
+  left: 12%;
+}
+
+#vitrine-prix {
+  position: absolute;
+  left : 80%;
+}
+
+.vitrine-defaut {
+  display: inline-block;
+  width: 26%;
+  height:30%;
+  margin-left: 3%;
+  position: relative;
+}
+
+#vitrine-center {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.vitrine-titre {
+  color: blue;
+  margin-top: 2%;
+  text-align: center;
+  text-decoration: underline;
+}
+.vitrine-encart {
+  width :30%;
+  height: 30%;
+  border-radius: 10px;
+}
+
+#vitrine-meilleursvente {
+  position : absolute;
+  top: 15%;
+  left: 12%;
+}
+
+#vitrine-lebonplan {
+  position : absolute;
+  top: 15%;
+  left: 55%;
+}
+
+#vitrine-lanouvelle {
+position : absolute;
+top: 55%;
+left: 55%;
+}
+
+#vitrine-laselection {
+position : absolute;
+top: 55%;
+left: 12%;
+}
+
+.vitrine-img {
+  position: absolute;
+  width: 38%;
+  height: 85%;
+  left : 30%;
+  bottom :0%;
+}
+
+.vitrine-qt {
+  position: absolute;
+    z-index: 1;
+    width: 10%;
+    right:10%;
+    bottom : 18%;
+}
+
+.vitrine-sub {
+  position: absolute;
+    z-index: 1;
+    width: 20%;
+    right:5%;
+    bottom : 8%;
+}

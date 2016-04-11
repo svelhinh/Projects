@@ -1,0 +1,43 @@
+#all {
+  width: 100%;
+  position: relative;
+  height: 70%;
+}
+
+#frame {
+  position :relative;
+  width: 100%;
+  left : 35%;
+  top : 3%;
+}
+
+#modif_account {
+  position: absolute;
+  width: 20%;
+  top : 10%;
+  left : 35%;
+  height: 10%;
+}
+
+#modif_prod {
+  position: absolute;
+  width: 20%;
+  top : 20%;
+  left : 35%;
+  height: 10%;
+}
+
+#modif_categorie {
+  position: absolute;
+  width: 20%;
+  top : 30%;
+  left : 35%;
+  height: 10%;
+}
+#modif_acceuil {
+  position: absolute;
+  width: 20%;
+  top : 40%;
+  left : 35%;
+  height: 10%;
+}
