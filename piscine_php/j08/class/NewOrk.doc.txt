@@ -1,0 +1,7 @@
+
+<- NewOrk ----------------------------------------------------------------------
+The NewOrk inherits from Ships.
+
+An instance can be contructed from coordinates and direction of the ship:
+new NewOrk( array( 'x' => 0, 'y' => 0, 'direction' => 'up' ) );
+---------------------------------------------------------------------- NewOrk ->

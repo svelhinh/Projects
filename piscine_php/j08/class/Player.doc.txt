@@ -1,0 +1,19 @@
+
+<- Player ----------------------------------------------------------------
+The Player class handles Ship instance and name's player.
+
+An instance must be contructed with a player's name and instance of ship:
+new Player( array( 'name' => 'Player1', 'ship' => $instance ) );
+
+name is a string.
+$instance is an instance of class Ship.
+
+The class provides the following methods :
+
+Player getName();
+Accessor on var name;
+
+Player getShip();
+Accessor on Instance Ship;
+
+---------------------------------------------------------------- Player ->

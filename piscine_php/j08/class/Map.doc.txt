@@ -1,0 +1,11 @@
+
+<- Map ----------------------------------------------------------------------
+The Map load the map.
+
+The map has two constants X and Y that represent the width and height.
+
+The class provides the following methods :
+
+Map   loadMap( Player $player1, Player $player2 );
+Load the page with the game.
+---------------------------------------------------------------------- Map ->

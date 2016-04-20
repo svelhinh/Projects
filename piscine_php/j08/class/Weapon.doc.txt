@@ -1,0 +1,12 @@
+
+<- Weapon ----------------------------------------------------------------------
+The Weapon is used as a trait to define a weapon.
+
+The trait provides the following methods :
+
+Weapon 		getRange();
+Get the range depending on the dice random value;
+
+Weapon 		getCharge();
+Get the weapon charge;
+---------------------------------------------------------------------- Weapon ->

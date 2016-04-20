@@ -1,0 +1,70 @@
+<- Ship ----------------------------------------------------------------------
+The Ship class handles the player's spaceship.
+
+It's an abstract class parent of the classes that will represent the ships.
+
+The class provides the following methods :
+
+Ship   shoot( $enemy_ship );
+Removes health on enemy_ship.
+
+Ship   moveup( $enemy_ship );
+Move the instance of a children's class up.
+
+Ship   movedown( $enemy_ship );
+Move the instance of a children's class down.
+
+Ship   moveleft( $enemy_ship );
+Move the instance of a children's class left.
+
+Ship   moveright( $enemy_ship );
+Move the instance of a children's class right.
+
+Ship   destructed();
+Return a variable who said if a ship has no more health or is out of the map.
+
+Ship   getName();
+Return the variable $name of a instance of a Ship's child.
+
+Ship   getX();
+Return the variable $x of a instance of a Ship's child.
+
+Ship   getY();
+Return the variable $y of a instance of a Ship's child.
+
+Ship   getDirection();
+Return the variable $direction of a instance of a Ship's child.
+
+
+Ship   getSprite();
+Return the variable $sprite of a instance of a Ship's child.
+
+Ship   getHealth();
+Return the variable $health of a instance of a Ship's child.
+
+Ship   getShield();
+Return the variable $shield of a instance of a Ship's child.
+
+Ship   getSpeed();
+Return the variable $speed of a instance of a Ship's child.
+
+Ship   setX($x);
+Set the variable $x of an instance of a Ship's child to the defined value in
+parameter.
+
+Ship   setY($y);
+Set the variable $y of an instance of a Ship's child to the defined value in
+parameter.
+
+Ship   setDirection($direction);
+Set the variable $direction of an instance of a Ship's child to the defined
+value in parameter.
+
+Ship   setHealth($health);
+Set the variable $health of an instance of a Ship's child to the defined
+value in parameter.
+
+Ship   setShield($shield);
+Set the variable $shield of an instance of a Ship's child to the defined
+value in parameter.
+---------------------------------------------------------------------- Ship ->

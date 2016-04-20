@@ -1,0 +1,7 @@
+
+<- Explozer ----------------------------------------------------------------------
+The Explozer inherits from Ships.
+
+An instance can be contructed from coordinates and direction of the ship:
+new Explozer( array( 'x' => 0, 'y' => 0, 'direction' => 'up' ) );
+---------------------------------------------------------------------- Explozer ->
