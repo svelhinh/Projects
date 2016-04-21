@@ -12,19 +12,68 @@
 
 #include "rtv1.h"
 
-void		raytracer(t_rt *rt)
+static void	put_color(t_rt *rt, int object, int i)
 {
-	int x;
-	int y;
+	if (object == 0)
+		rt->color = rt->s[i].color.r * 255 * 0x10000 +
+					rt->s[i].color.g * 255 * 0x100 +
+					rt->s[i].color.b * 255;
+	else if (object == 1)
+		rt->color = rt->p[i].color.r * 255 * 0x10000 +
+					rt->p[i].color.g * 255 * 0x100 +
+					rt->p[i].color.b * 255;
+	else if (object == 2)
+		rt->color = rt->c[i].color.r * 255 * 0x10000 +
+					rt->c[i].color.g * 255 * 0x100 +
+					rt->c[i].color.b * 255;
+	else
+		rt->color = rt->background_color;
+}
 
+static void	intersection(t_rt *rt)
+{
 	int imax;
 	int	i;
 	int	i2;
 	int	object;
 
-	imax = rt->nbs;
+	imax = (rt->nbs > rt->nbp) ? (rt->nbs) : (rt->nbp);
+	imax = (rt->nbc > imax) ? (rt->nbc) : (imax);
+	i = 0;
+	object = -1;
+	rt->t = 200000;
+	while (i < imax)
+	{
+		if (i < rt->nbs && sphere(&rt->r, &rt->s[i], &rt->t))
+		{
+			object = 0;
+			i2 = i;
+		}
+		if (i < rt->nbp && plane(&rt->r, &rt->p[i], &rt->t))
+		{
+			object = 1;
+			i2 = i;
+		}
+		if (i < rt->nbc && cylinder(&rt->r, &rt->c[i], &rt->t))
+		{
+			object = 2;
+			i2 = i;
+		}
+		i++;
+	}
+	put_color(rt, object, i2);
+}
+
+void		raytracer(t_rt *rt)
+{
+	int x;
+	int y;
 
 	y = 0;
+	rt->r.start.x = rt->campos.x;
+	rt->r.start.y = rt->campos.y;
+	rt->r.start.z = rt->campos.z;
+	rt->r.dir.z = -rt->w + rt->campos.z;
 	while (y < rt->h)
 	{
 		x = 0;
@@ -32,24 +81,7 @@ void		raytracer(t_rt *rt)
 		{
 			rt->r.dir.x = x - rt->w / 2 - rt->campos.x;
 			rt->r.dir.y = y - rt->h / 2 - rt->campos.y;
-
-			i = 0;
-			object = -1;
-			while (i < imax)
-			{
-				if (sphere(&rt->r, &rt->s[i]))
-				{
-					object = 0;
-					i2 = i;
-				}
-				i++;
-			}
-			if (object == 0)
-				rt->color = rt->s[i2].color.r * 255 * 0x10000 +
-							rt->s[i2].color.g * 255 * 0x100 +
-							rt->s[i2].color.b * 255;
-			else
-				rt->color = rt->background_color;
+			intersection(rt);
 			mlx_pixel_put_to_image(rt->color, rt, x, y);
 			x++;
 		}

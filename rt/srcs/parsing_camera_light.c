@@ -26,17 +26,14 @@ void	parsing_camera(int fd, t_rt *rt)
 			rt->campos.x = ft_atof(line2[2]);
 			rt->campos.y = ft_atof(line2[3]);
 			rt->campos.z = ft_atof(line2[4]);
-			rt->r.start.x = rt->campos.x;
-			rt->r.start.y = rt->campos.y;
-			rt->r.start.z = rt->campos.z;
 		}
 		else if (!ft_strcmp(line2[0], "rot"))
 		{
 			rt->rotcam.x = ft_atof(line2[2]);
 			rt->rotcam.y = ft_atof(line2[3]);
 			rt->rotcam.z = ft_atof(line2[4]);
-			rt->r.dir = rotations(rt->r.dir, rt->rotcam.x, rt->rotcam.y,
-					rt->rotcam.z);
+			// rt->r.dir = rotations(rt->r.dir, rt->rotcam.x, rt->rotcam.y,
+					// rt->rotcam.z);
 		}
 		line2_free(line2);
 		ft_strdel(&line);

@@ -17,14 +17,14 @@ static void	parsing_cylinder2(t_rt *rt, char **line2, int i)
 	if (!ft_strcmp(line2[0], "pos"))
 	{
 		missing_parameter(line2);
-		rt->c[i].start.x = ft_atof(line2[2]);
-		rt->c[i].start.y = ft_atof(line2[3]);
-		rt->c[i].start.z = ft_atof(line2[4]);
+		rt->c[i].pos.x = -ft_atof(line2[2]);
+		rt->c[i].pos.y = -ft_atof(line2[3]);
+		rt->c[i].pos.z = ft_atof(line2[4]);
 	}
 	else if (!ft_strcmp(line2[0], "rot"))
 	{
 		missing_parameter(line2);
-		parsing_rotations(rt, 'c', i, line2);
+		// parsing_rotations(rt, 'c', i, line2);
 	}
 	else if (!ft_strcmp(line2[0], "radius"))
 		(ft_atof(line2[2]) > 0) ? (rt->c[i].radius = ft_atof(line2[2])) :
@@ -47,13 +47,6 @@ void		parsing_cylinder(int fd, t_rt *rt)
 		line2 = ft_strsplit(line, ' ');
 		if (!line2[2])
 			ft_exit("\033[31mMissing parameter for a cylinder object\n");
-		if (!ft_strcmp(line2[0], "vec"))
-		{
-			missing_parameter(line2);
-			rt->c[i].vec.x = ft_atof(line2[2]);
-			rt->c[i].vec.y = ft_atof(line2[3]);
-			rt->c[i].vec.z = ft_atof(line2[4]);
-		}
 		parsing_cylinder2(rt, line2, i);
 		line2_free(line2);
 		ft_strdel(&line);
@@ -66,7 +59,7 @@ static void	parsing_cone2(t_rt *rt, char **line2, int i)
 	if (!ft_strcmp(line2[0], "rot"))
 	{
 		missing_parameter(line2);
-		parsing_rotations(rt, 'o', i, line2);
+		// parsing_rotations(rt, 'o', i, line2);
 	}
 	else if (!ft_strcmp(line2[0], "radius"))
 		(ft_atof(line2[2]) >= 0) ? (rt->co[i].radius = ft_atof(line2[2])) :

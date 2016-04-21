@@ -82,12 +82,9 @@ void	init_cylinder(t_rt *rt)
 		ft_exit("malloc of rt->c failed in init_cylinder_tab");
 	while (i < rt->nbc)
 	{
-		rt->c[i].vec.x = 0;
-		rt->c[i].vec.y = 0;
-		rt->c[i].vec.z = 0;
-		rt->c[i].start.x = 0;
-		rt->c[i].start.y = 0;
-		rt->c[i].start.z = 0;
+		rt->c[i].pos.x = 0;
+		rt->c[i].pos.y = 0;
+		rt->c[i].pos.z = 0;
 		rt->c[i].rot.x = 0;
 		rt->c[i].rot.y = 0;
 		rt->c[i].rot.z = 0;

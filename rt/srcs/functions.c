@@ -65,7 +65,7 @@ void	missing_parameter(char **line2)
 		ft_exit("\033[31mMissing parameter\n");
 }
 
-void	check_color(float r, float g, float b)
+void	check_color(double r, double g, double b)
 {
 	if (r < 0 || r > 1 || g < 0 || g > 1 || b < 0 || b > 1)
 		ft_exit("\033[31mColor must be between 0 and 1\n");

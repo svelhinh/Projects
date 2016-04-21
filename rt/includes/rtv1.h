@@ -16,31 +16,31 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
 # define ESC 53
+# define SPEED 30
 
 typedef struct	s_vector3d
 {
-	float		x;
-	float		y;
-	float		z;
+	double		x;
+	double		y;
+	double		z;
 }				t_vector3d;
-typedef struct	s_point
-{
-	float		x;
-	float		y;
-	float		z;
-}				t_point;
 typedef struct	s_rot
 {
-	float		x;
-	float		y;
-	float		z;
+	double		x;
+	double		y;
+	double		z;
 }				t_rot;
 typedef struct	s_color
 {
-	float		r;
-	float		g;
-	float		b;
+	double		r;
+	double		g;
+	double		b;
 }				t_color;
 typedef struct	s_light
 {
@@ -50,7 +50,7 @@ typedef struct	s_light
 typedef struct	s_sphere
 {
 	t_vector3d	pos;
-	float		radius;
+	double		radius;
 	t_color		color;
 }				t_sphere;
 typedef struct	s_plane
@@ -58,21 +58,20 @@ typedef struct	s_plane
 	t_vector3d	norm;
 	t_color		color;
 	t_rot		rot;
-	float		height;
+	double		height;
 }				t_plane;
 typedef struct	s_cylinder
 {
-	t_vector3d	vec;
-	t_vector3d	start;
-	float		height;
-	float		radius;
+	t_vector3d	pos;
+	double		height;
+	double		radius;
 	t_rot		rot;
 	t_color		color;
 }				t_cylinder;
 typedef struct	s_cone
 {
 	t_vector3d	pos;
-	float		radius;
+	double		radius;
 	t_rot		rot;
 	t_color		color;
 }				t_cone;
@@ -98,7 +97,12 @@ typedef struct	s_rt
 	int			nbp;
 	int			nbc;
 	int			nbco;
+	int			keyup;
+	int			keydown;
+	int			keyleft;
+	int			keyright;
 	char		*object;
+	double		t;
 	t_sphere	*s;
 	t_plane		*p;
 	t_cylinder	*c;
@@ -111,6 +115,7 @@ typedef struct	s_rt
 }				t_rt;
 
 int				key_press(int keycode, t_rt *rt);
+int				key_release(int keycode, t_rt *rt);
 int				expose(t_rt *rt);
 void			raytracer(t_rt *rt);
 
@@ -147,19 +152,21 @@ void			parsing_color(t_rt *rt, int j, int i, char **line2);
 
 
 /*
-**	--------------------	ROTATIONS	--------------------
+**	--------------------	OBJECTS		--------------------
 */
-void			parsing_rotations(t_rt *rt, int j, int i, char **line2);
-t_vector3d		rotations(t_vector3d normal, float x, float y, float z);
+int				sphere(t_ray *r, t_sphere *s, double *t);
+int				plane(t_ray *r, t_plane *p, double *t);
+int				cylinder(t_ray *r, t_cylinder *cy, double *t);
 /*
 **	-------------------------------------------------------
 */
 
 
 /*
-**	--------------------	OBJECTS		--------------------
+**	--------------------	VECTORS		--------------------
 */
-int				sphere(t_ray *r, t_sphere *s);
+double			vectordot(t_vector3d *v1, t_vector3d *v2/*, int i*/);
+t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2/*, int i*/);
 /*
 **	-------------------------------------------------------
 */
@@ -172,7 +179,7 @@ void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_rt *img, int x, int y);
 void			line2_free(char **line2);
 void			missing_parameter(char **line2);
-void			check_color(float r, float g, float b);
+void			check_color(double r, double g, double b);
 /*
 **	-------------------------------------------------------
 */

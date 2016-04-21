@@ -55,8 +55,8 @@ void	parsing_sphere(int fd, t_rt *rt)
 		if (!ft_strcmp(line2[0], "pos"))
 		{
 			missing_parameter(line2);
-			rt->s[i].pos.x = ft_atof(line2[2]);
-			rt->s[i].pos.y = ft_atof(line2[3]);
+			rt->s[i].pos.x = -ft_atof(line2[2]);
+			rt->s[i].pos.y = -ft_atof(line2[3]);
 			rt->s[i].pos.z = ft_atof(line2[4]);
 		}
 		else if (!ft_strcmp(line2[0], "radius"))
@@ -85,12 +85,12 @@ void	parsing_plane(int fd, t_rt *rt)
 			if (!line2[5])
 				ft_exit("\033[31mMissing parameter for a plane object\n");
 			rt->p[i].norm.x = ft_atof(line2[2]);
-			rt->p[i].norm.y = ft_atof(line2[3]);
+			rt->p[i].norm.y = -ft_atof(line2[3]);
 			rt->p[i].norm.z = ft_atof(line2[4]);
 			rt->p[i].height = ft_atof(line2[5]);
 		}
-		else if (!ft_strcmp(line2[0], "rot"))
-			parsing_rotations(rt, 'p', i, line2);
+		// else if (!ft_strcmp(line2[0], "rot"))
+			// parsing_rotations(rt, 'p', i, line2);
 		else if (!ft_strcmp(line2[0], "color"))
 			parsing_color(rt, 'p', i, line2);
 		line2_free(line2);

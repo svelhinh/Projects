@@ -21,6 +21,10 @@ void		init_all(char *file, t_rt *rt)
 	rt->nbp = 0;
 	rt->nbc = 0;
 	rt->nbco = 0;
+	rt->keyup = 0;
+	rt->keydown = 0;
+	rt->keyleft = 0;
+	rt->keyright = 0;
 	count_objects(rt, file);
 	init_camera(rt);
 	init_light(rt);

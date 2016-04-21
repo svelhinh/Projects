@@ -13,7 +13,7 @@
 NAME = rt
 
 SRC2 =	main.c events.c functions.c raytracer.c parser.c parsing_camera_light.c parsing_cylinder_cone.c \
-		parsing_objects.c init_all.c init_camera_light.c init_objects.c rotations.c objects.c
+		parsing_objects.c init_all.c init_camera_light.c init_objects.c objects.c vectors.c
 
 SRC = $(addprefix srcs/, $(SRC2))
 

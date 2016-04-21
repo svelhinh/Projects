@@ -28,6 +28,7 @@ int		main(int ac, char **av)
 	if (!(rt.win = mlx_new_window(rt.mlx, rt.w, rt.h, "RTV1")))
 		ft_exit("mlx_new_window() in main() failed");
 	mlx_hook(rt.win, 2, (1L << 0), key_press, &rt);
+	mlx_hook(rt.win, 3, (1L << 1), key_release, &rt);
 	mlx_loop_hook(rt.mlx, expose, &rt);
 	mlx_loop(rt.mlx);
 	return (0);

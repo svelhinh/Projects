@@ -36,11 +36,11 @@ void		parsing_rotations(t_rt *rt, int j, int i, char **line2)
 	}
 }
 
-t_vector3d	rotations(t_vector3d normal, float x, float y, float z)
+t_vector3d	rotations(t_vector3d normal, double x, double y, double z)
 {
-	float	tmpx;
-	float	tmpy;
-	float	tmpz;
+	double	tmpx;
+	double	tmpy;
+	double	tmpz;
 
 	tmpx = normal.x;
 	tmpy = normal.y;
