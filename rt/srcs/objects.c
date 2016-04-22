@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:12:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/20 15:12:21 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/22 12:30:45 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,36 @@ int		cylinder(t_ray *r, t_cylinder *cy, double *t)
 	t0 = (b - sqrt(disc)) / (2 * a);
 	t1 = (b + sqrt(disc)) / (2 * a);
 	retval = 0;
-	if (t0 > 0.1 && t0 < *t)
+	if (t0 > 0.01 && t0 < *t)
+	{
+		*t = t0;
+		retval = 1;
+	}
+	if (t1 > 0.01 && t1 < *t)
+		*t = t1;
+	return (retval);
+}
+
+int		cone(t_ray *r, t_cone *co, double *t)
+{
+	double		t0;
+	double		t1;
+	double		a;
+	double		b;
+	double		c;
+	double		disc;
+	int			retval;
+
+	a = pow(r->dir.x, 2) + pow(r->dir.z, 2) - pow(r->dir.y, 2);
+	b = 2 * ((r->start.x - co->pos.x) * r->dir.x + (r->start.z - co->pos.z) * r->dir.z - (r->start.y - co->pos.y) * r->dir.y);
+	c = pow(r->start.x - co->pos.x, 2) + pow(r->start.z - co->pos.z, 2) - pow(r->start.y - co->pos.y, 2);
+	disc = pow(b, 2) - 4 * a * c;
+	if (disc < 0)
+		return (0);
+	t0 = (b - sqrt(disc)) / (2 * a);
+	t1 = (b + sqrt(disc)) / (2 * a);
+	retval = 0;
+	if (t0 > 0.01 && t0 < *t)
 	{
 		*t = t0;
 		retval = 1;

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:08:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/20 15:08:24 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/22 12:10:05 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ static void	put_color(t_rt *rt, int object, int i)
 		rt->color = rt->c[i].color.r * 255 * 0x10000 +
 					rt->c[i].color.g * 255 * 0x100 +
 					rt->c[i].color.b * 255;
+	else if (object == 2)
+		rt->color = rt->co[i].color.r * 255 * 0x10000 +
+					rt->co[i].color.g * 255 * 0x100 +
+					rt->co[i].color.b * 255;
 	else
 		rt->color = rt->background_color;
 }
@@ -57,6 +61,11 @@ static void	intersection(t_rt *rt)
 		if (i < rt->nbc && cylinder(&rt->r, &rt->c[i], &rt->t))
 		{
 			object = 2;
+			i2 = i;
+		}
+		if (i < rt->nbco && cone(&rt->r, &rt->co[i], &rt->t))
+		{
+			object = 3;
 			i2 = i;
 		}
 		i++;

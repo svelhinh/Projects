@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 14:43:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 17:14:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/22 12:11:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,29 +149,24 @@ void			parsing_color(t_rt *rt, int j, int i, char **line2);
 /*
 **	-------------------------------------------------------
 */
-
-
 /*
 **	--------------------	OBJECTS		--------------------
 */
 int				sphere(t_ray *r, t_sphere *s, double *t);
 int				plane(t_ray *r, t_plane *p, double *t);
 int				cylinder(t_ray *r, t_cylinder *cy, double *t);
+int				cone(t_ray *r, t_cone *co, double *t);
 /*
 **	-------------------------------------------------------
 */
-
-
 /*
 **	--------------------	VECTORS		--------------------
 */
-double			vectordot(t_vector3d *v1, t_vector3d *v2/*, int i*/);
+double				vectordot(t_vector3d *v1, t_vector3d *v2/*, int i*/);
 t_vector3d		vectorsub(t_vector3d *v1, t_vector3d *v2/*, int i*/);
 /*
 **	-------------------------------------------------------
 */
-
-
 /*
 **	-----------------	OTHER	---------------------------
 */

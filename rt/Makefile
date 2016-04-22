@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/04/20 15:10:46 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/04/22 12:08:36 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rt
 
 SRC2 =	main.c events.c functions.c raytracer.c parser.c parsing_camera_light.c parsing_cylinder_cone.c \
-		parsing_objects.c init_all.c init_camera_light.c init_objects.c objects.c vectors.c
+		parsing_objects.c init_all.c init_camera_light.c init_objects.c objects.c
 
 SRC = $(addprefix srcs/, $(SRC2))
 

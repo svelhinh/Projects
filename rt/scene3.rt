@@ -1,0 +1,10 @@
+resolution : 640 480
+
+background_color : 555555
+
+object : camera
+pos : 0 0 2000
+
+object : cone
+pos : 0 0 0
+color : 0.9 0.9 0
