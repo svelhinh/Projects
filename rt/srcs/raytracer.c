@@ -6,32 +6,37 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:08:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/22 16:44:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/22 18:33:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	put_color(t_rt *rt, int object, int i)
+static void	put_light(t_rt *rt, int object, int i)
 {
 	if (object == 0)
-		rt->color = rt->s[i].color.r * 255 * 0x10000 +
-					rt->s[i].color.g * 255 * 0x100 +
-					rt->s[i].color.b * 255;
+		light_sphere(rt, rt->t, &rt->s[i]);
 	else if (object == 1)
-		rt->color = rt->p[i].color.r * 255 * 0x10000 +
-					rt->p[i].color.g * 255 * 0x100 +
-					rt->p[i].color.b * 255;
-	else if (object == 2)
-		rt->color = rt->c[i].color.r * 255 * 0x10000 +
-					rt->c[i].color.g * 255 * 0x100 +
-					rt->c[i].color.b * 255;
-	else if (object == 3)
-		rt->color = rt->co[i].color.r * 255 * 0x10000 +
-					rt->co[i].color.g * 255 * 0x100 +
-					rt->co[i].color.b * 255;
+			light_plane(rt, rt->t, &rt->p[i]);
 	else
 		rt->color = rt->background_color;
+	// 	rt->color = rt->s[i].color.r * 255 * 0x10000 +
+	// 				rt->s[i].color.g * 255 * 0x100 +
+	// 				rt->s[i].color.b * 255;
+	// else if (object == 1)
+	// 	rt->color = rt->p[i].color.r * 255 * 0x10000 +
+	// 				rt->p[i].color.g * 255 * 0x100 +
+	// 				rt->p[i].color.b * 255;
+	// else if (object == 2)
+	// 	rt->color = rt->c[i].color.r * 255 * 0x10000 +
+	// 				rt->c[i].color.g * 255 * 0x100 +
+	// 				rt->c[i].color.b * 255;
+	// else if (object == 3)
+	// 	rt->color = rt->co[i].color.r * 255 * 0x10000 +
+	// 				rt->co[i].color.g * 255 * 0x100 +
+	// 				rt->co[i].color.b * 255;
+	// else
+	// 	rt->color = rt->background_color;
 }
 
 static void	intersection(t_rt *rt)
@@ -71,7 +76,7 @@ static void	intersection(t_rt *rt)
 		}
 		i++;
 	}
-	put_color(rt, object, i2);
+	put_light(rt, object, i2);
 }
 
 void		raytracer(t_rt *rt)
@@ -87,7 +92,7 @@ void		raytracer(t_rt *rt)
 	rt->r.dir.z = rt->w - rt->r.start.z;
 	pas = 1;
 	if (rt->keyup == 1 || rt->keydown == 1 || rt->keyleft == 1 || rt->keyright == 1)
-		pas = rt->w / 640 * 2;
+		pas = rt->w / 640 + rt->h / 480;
 	while (y < rt->h)
 	{
 		x = 0;
