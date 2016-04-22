@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:08:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/22 12:10:05 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/22 16:44:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	put_color(t_rt *rt, int object, int i)
 		rt->color = rt->c[i].color.r * 255 * 0x10000 +
 					rt->c[i].color.g * 255 * 0x100 +
 					rt->c[i].color.b * 255;
-	else if (object == 2)
+	else if (object == 3)
 		rt->color = rt->co[i].color.r * 255 * 0x10000 +
 					rt->co[i].color.g * 255 * 0x100 +
 					rt->co[i].color.b * 255;
@@ -43,6 +43,7 @@ static void	intersection(t_rt *rt)
 
 	imax = (rt->nbs > rt->nbp) ? (rt->nbs) : (rt->nbp);
 	imax = (rt->nbc > imax) ? (rt->nbc) : (imax);
+	imax = (rt->nbco > imax) ? (rt->nbco) : (imax);
 	i = 0;
 	object = -1;
 	rt->t = 200000;
@@ -77,23 +78,27 @@ void		raytracer(t_rt *rt)
 {
 	int x;
 	int y;
+	int pas;
 
 	y = 0;
 	rt->r.start.x = rt->campos.x;
 	rt->r.start.y = rt->campos.y;
 	rt->r.start.z = rt->campos.z;
-	rt->r.dir.z = -rt->w + rt->campos.z;
+	rt->r.dir.z = rt->w - rt->r.start.z;
+	pas = 1;
+	if (rt->keyup == 1 || rt->keydown == 1 || rt->keyleft == 1 || rt->keyright == 1)
+		pas = rt->w / 640 * 2;
 	while (y < rt->h)
 	{
 		x = 0;
 		while (x < rt->w)
 		{
-			rt->r.dir.x = x - rt->w / 2 - rt->campos.x;
-			rt->r.dir.y = y - rt->h / 2 - rt->campos.y;
+			rt->r.dir.x = x - (rt->w / 2 - rt->r.start.x);
+			rt->r.dir.y = y - (rt->h / 2 - rt->r.start.y);
 			intersection(rt);
 			mlx_pixel_put_to_image(rt->color, rt, x, y);
-			x++;
+			x += pas;
 		}
-		y++;
+		y += pas;
 	}
 }

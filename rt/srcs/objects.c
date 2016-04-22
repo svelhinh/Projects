@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:12:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/22 12:30:45 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/22 16:45:03 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		sphere(t_ray *r, t_sphere *s, double *t)
 	disc = pow(b, 2) - 4 * a * c;
 	if (disc < 0)
 		return (0);
-	t0 = (b - sqrt(disc)) / (2 * a);
-	t1 = (b + sqrt(disc)) / (2 * a);
+	t0 = (-b - sqrt(disc)) / (2 * a);
+	t1 = (-b + sqrt(disc)) / (2 * a);
 	retval = 0;
 	if (t0 > 0.01 && t0 < *t)
 	{
@@ -45,8 +45,9 @@ int		plane(t_ray *r, t_plane *p, double *t)
 {
 	double		tmp;
 
-	tmp = 	-(p->norm.x * r->start.x + p->norm.y * r->start.y + p->norm.z * r->start.z +
-			p->height) / (p->norm.x * r->dir.x + p->norm.y * r->dir.y + p->norm.z * r->dir.z);
+	tmp = -(p->norm.x * r->start.x + p->norm.y * r->start.y + p->norm.z *
+		r->start.z + p->height) / (p->norm.x * r->dir.x + p->norm.y * r->dir.y +
+			p->norm.z * r->dir.z);
 	if (tmp < *t && tmp > 0.01)
 	{
 		*t = tmp;
@@ -72,8 +73,8 @@ int		cylinder(t_ray *r, t_cylinder *cy, double *t)
 	disc = pow(b, 2) - 4 * a * c;
 	if (disc < 0)
 		return (0);
-	t0 = (b - sqrt(disc)) / (2 * a);
-	t1 = (b + sqrt(disc)) / (2 * a);
+	t0 = (-b - sqrt(disc)) / (2 * a);
+	t1 = (-b + sqrt(disc)) / (2 * a);
 	retval = 0;
 	if (t0 > 0.01 && t0 < *t)
 	{
@@ -95,14 +96,14 @@ int		cone(t_ray *r, t_cone *co, double *t)
 	double		disc;
 	int			retval;
 
-	a = pow(r->dir.x, 2) + pow(r->dir.z, 2) - pow(r->dir.y, 2);
-	b = 2 * ((r->start.x - co->pos.x) * r->dir.x + (r->start.z - co->pos.z) * r->dir.z - (r->start.y - co->pos.y) * r->dir.y);
-	c = pow(r->start.x - co->pos.x, 2) + pow(r->start.z - co->pos.z, 2) - pow(r->start.y - co->pos.y, 2);
+	a = pow(r->dir.x, 2) - pow(r->dir.y, 2) + pow(r->dir.z, 2);
+	b = 2 * (r->dir.x * (r->start.x - co->pos.x) - r->dir.y * (r->start.y - co->pos.y) + r->dir.z * (r->start.z - co->pos.z));
+	c = (pow(r->start.x - co->pos.x, 2) - pow(r->start.y - co->pos.y, 2) + pow(r->start.z - co->pos.z, 2));
 	disc = pow(b, 2) - 4 * a * c;
 	if (disc < 0)
 		return (0);
-	t0 = (b - sqrt(disc)) / (2 * a);
-	t1 = (b + sqrt(disc)) / (2 * a);
+	t0 = (-b - sqrt(disc)) / (2 * a);
+	t1 = (-b + sqrt(disc)) / (2 * a);
 	retval = 0;
 	if (t0 > 0.01 && t0 < *t)
 	{

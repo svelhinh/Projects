@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/20 15:52:28 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/22 16:36:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	parsing_sphere(int fd, t_rt *rt)
 		if (!ft_strcmp(line2[0], "pos"))
 		{
 			missing_parameter(line2);
-			rt->s[i].pos.x = -ft_atof(line2[2]);
-			rt->s[i].pos.y = -ft_atof(line2[3]);
+			rt->s[i].pos.x = ft_atof(line2[2]);
+			rt->s[i].pos.y = ft_atof(line2[3]);
 			rt->s[i].pos.z = ft_atof(line2[4]);
 		}
 		else if (!ft_strcmp(line2[0], "radius"))
@@ -85,7 +85,7 @@ void	parsing_plane(int fd, t_rt *rt)
 			if (!line2[5])
 				ft_exit("\033[31mMissing parameter for a plane object\n");
 			rt->p[i].norm.x = ft_atof(line2[2]);
-			rt->p[i].norm.y = -ft_atof(line2[3]);
+			rt->p[i].norm.y = ft_atof(line2[3]);
 			rt->p[i].norm.z = ft_atof(line2[4]);
 			rt->p[i].height = ft_atof(line2[5]);
 		}

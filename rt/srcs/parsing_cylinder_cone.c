@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:27:31 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/20 15:52:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/22 16:35:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	parsing_cylinder2(t_rt *rt, char **line2, int i)
 	if (!ft_strcmp(line2[0], "pos"))
 	{
 		missing_parameter(line2);
-		rt->c[i].pos.x = -ft_atof(line2[2]);
-		rt->c[i].pos.y = -ft_atof(line2[3]);
+		rt->c[i].pos.x = ft_atof(line2[2]);
+		rt->c[i].pos.y = ft_atof(line2[3]);
 		rt->c[i].pos.z = ft_atof(line2[4]);
 	}
 	else if (!ft_strcmp(line2[0], "rot"))
