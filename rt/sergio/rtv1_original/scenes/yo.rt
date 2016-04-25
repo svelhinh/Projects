@@ -1,0 +1,13 @@
+background_color : 40adb9
+
+object : camera
+pos : 0 0 -10000
+
+object : light
+pos : 500 200 -300
+color : 1 1 1
+
+object : sphere
+pos : 600 350 0
+radius : -100
+color : 1 1 1
