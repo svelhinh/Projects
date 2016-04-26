@@ -7,7 +7,7 @@ pos : 0 0 -10000
 rot : 0 0 0
 
 object : light
-pos : 640 0 -1000
+pos : 640 0 -10000
 color : 1 1 1
 
 object : sphere

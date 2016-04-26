@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:30:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 12:11:24 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/26 12:29:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int		expose(t_env *rt)
 	if (rt->keydown == 1)
 		rt->eye.z -= SPEED;
 	if (rt->keyleft == 1)
-		rt->eye.x -= SPEED;
+		rt->eye.x -= SPEED / 4;
 	if (rt->keyright == 1)
-		rt->eye.x += SPEED;
+		rt->eye.x += SPEED / 4;
 	if (!(rt->img = mlx_new_image(rt->mlx, rt->w, rt->h)))
 		ft_exit("mlx_new_image() in expose() failed");
 	rt->data = mlx_get_data_addr(rt->img, &rt->bpp, &rt->line,

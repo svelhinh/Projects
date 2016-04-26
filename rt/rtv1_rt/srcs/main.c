@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:08:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 14:31:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/26 19:02:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		main(int ac, char **av)
 	else
 		ft_exit("\033[31mFiles must have .rt extension\n");
 	(!(rt.mlx = mlx_init())) ? (ft_exit("mlx_init() failed in main()")) : (0);
-	if (!(rt.win = mlx_new_window(rt.mlx, rt.w, rt.h, "RTV1")))
+	if (!(rt.win = mlx_new_window(rt.mlx, rt.w, rt.h, "Raytracer")))
 		ft_exit("mlx_new_window() in main() failed");
 	mlx_hook(rt.win, 2, (1L << 0), key_press, &rt);
 	mlx_hook(rt.win, 3, (1L << 1), key_release, &rt);

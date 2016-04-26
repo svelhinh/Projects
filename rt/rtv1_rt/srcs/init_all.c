@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:54:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 15:36:33 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/26 11:03:07 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void		init_all(char *file, t_env *rt)
 	rt->keyright = 0;
 	count_objects(rt, file);
 	init_camera(rt);
-	// init_light(rt);
+	init_light(rt);
 }

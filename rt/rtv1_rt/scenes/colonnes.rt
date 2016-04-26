@@ -1,0 +1,89 @@
+resolution : 1280 720
+
+background_color : 0
+
+object : camera
+pos : 0 0 -2000
+
+object : light
+pos : 0 0 -1850
+
+object : plane
+pos : 0 -1 0
+radius : 150
+color : 0.6 0.6 0.6
+
+object : plane
+pos : 0 1 0
+radius : 150
+color : 0.4 0.4 0.4
+
+object : plane
+pos : 0 0 -1
+radius : 300
+color : 0.2 0.4 0.9
+
+object : sphere
+pos : 0 75 -1500
+radius : 10
+color : 0.8 0 0
+
+object : cylinder
+pos : -250 0 -500
+radius : 30
+color : 0.8 0.8 0.8
+
+object : cylinder
+pos : 250 0 -500
+radius : 30
+color : 0.8 0.8 0.8
+
+object : cylinder
+pos : -250 0 -1300
+radius : 30
+color : 0.8 0.8 0.8
+
+object : cylinder
+pos : 250 0 -1300
+radius : 30
+color : 0.8 0.8 0.8
+
+object : sphere
+pos : -250 -150 -500
+radius : 50
+color : 0.8 0.8 0.8
+
+object : sphere
+pos : -250 150 -500
+radius : 50
+color : 0.8 0.8 0.8
+
+object : sphere
+pos : 250 -150 -500
+radius : 50
+color : 0.8 0.8 0.8
+
+object : sphere
+pos : 250 150 -500
+radius : 50
+color : 0.8 0.8 0.8
+
+object : sphere
+pos : -250 -150 -1300
+radius : 50
+color : 0.8 0.8 0.8
+
+object : sphere
+pos : -250 150 -1300
+radius : 50
+color : 0.8 0.8 0.8
+
+object : sphere
+pos : 250 -150 -1300
+radius : 50
+color : 0.8 0.8 0.8
+
+object : sphere
+pos : 250 150 -1300
+radius : 50
+color : 0.8 0.8 0.8

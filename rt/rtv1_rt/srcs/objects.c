@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:12:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 18:38:15 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/26 17:12:19 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,23 @@
 
 static int distance(double a, double b, double c, double *t)
 {
-	int		retval;
 	double	disc;
 	double	t0;
 	double	t1;
+	double	tmp;
 
 	disc = pow(b, 2) - 4 * a * c;
 	if (disc < 0)
 		return (0);
 	t0 = (-b - sqrt(disc)) / (2 * a);
 	t1 = (-b + sqrt(disc)) / (2 * a);
-	retval = 0;
-	if (t0 > 0.01 && t0 < *t)
+	tmp = (t0 < t1) ? (t0) : (t1);
+	if (tmp < *t && tmp > 0.0000001)
 	{
-		*t = t0;
-		retval = 1;
+		*t = tmp;
+		return (1);
 	}
-	if (t1 > 0.01 && t1 < *t)
-		*t = t1;
-	return (retval);
+	return (0);
 }
 
 int			sphere(t_vector *r, t_figure *s, double *t, t_vector eye)
@@ -54,7 +52,7 @@ int		plane(t_vector *r, t_figure *p, double *t, t_vector eye)
 	tmp = -(-p->center.x * eye.x + p->center.y * eye.y + p->center.z *
 		eye.z + p->radius) / (-p->center.x * r->x + p->center.y * r->y +
 			p->center.z * r->z);
-	if (tmp < *t && tmp > 0.01)
+	if (tmp < *t && tmp > 0.0000001)
 	{
 		*t = tmp;
 		return (1);

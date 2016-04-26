@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 18:29:57 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/26 17:14:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-# define ESC 53
-# define SPEED 10
+# define UP 126 /*65362*/
+# define DOWN 125 /*65364*/
+# define LEFT 123 /*65361*/
+# define RIGHT 124 /*65363*/
+# define ESC 53 /*65307*/
+# define SPEED 100
 # define LIGHT 0
 # define SPHERE 1
 # define PLANE 2
@@ -74,6 +74,7 @@ typedef struct	s_env
 	double		h;
 	t_figure	*object;
 	t_vector	eye;
+	t_vector	light;
 }				t_env;
 
 void			raytracer(t_env *rt);
@@ -84,6 +85,7 @@ void			raytracer(t_env *rt);
 */
 void			init_camera(t_env *rt);
 void			init_all(char *file, t_env *rt);
+void			init_light(t_env *rt);
 /*
 **	-------------------------------------------------------
 */
@@ -94,6 +96,7 @@ void			global_parser(char *file, t_env *rt);
 void			count_objects(t_env *rt, char *file);
 void			parsing_camera(int fd, t_env *rt);
 void			parsing_objects(int fd, char *object, t_env *rt);
+void			parsing_light(int fd, t_env *rt);
 /*
 **	-------------------------------------------------------
 */
@@ -117,12 +120,29 @@ int				cone(t_vector *r, t_figure *co, double *t, t_vector eye);
 **	-------------------------------------------------------
 */
 /*
+**	-------------------	LIGHT	---------------------------
+*/
+void			light(t_env *rt, t_figure object, t_vector lpos, t_vector inter);
+/*
+**	-------------------------------------------------------
+*/
+/*
+**	-------------------	VECTORS	---------------------------
+*/
+t_vector		vecsub(t_vector *v1, t_vector *v2);
+double			vecdot(t_vector *v1, t_vector *v2);
+t_vector		normalize(t_vector *v1);
+/*
+**	-------------------------------------------------------
+*/
+/*
 **	------------	OTHER	-----------------------
 */
 void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_env *img, int x, int y);
 void			missing_parameter(char **line2);
 void			check_color(double r, double g, double b);
+t_vector		calcul_ptinter(t_vector eye, t_vector r, float t);
 /*
 **	-------------------------------------------------------
 */

@@ -53,3 +53,14 @@ void	check_color(double r, double g, double b)
 	if (r < 0 || r > 1 || g < 0 || g > 1 || b < 0 || b > 1)
 		ft_exit("\033[31mColor must be between 0 and 1\n");
 }
+
+t_vector	calcul_ptinter(t_vector eye, t_vector r, float t)
+{
+	t_vector	ptinter;
+
+	ptinter.x = eye.x + r.x * t;
+	ptinter.y = eye.y + r.y * t;
+	ptinter.z = eye.z + r.z * t;
+	return (ptinter);
+}
+

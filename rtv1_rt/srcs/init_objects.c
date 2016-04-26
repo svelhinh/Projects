@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 15:36:48 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/26 11:03:19 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	count_objects(t_env *rt, char *file)
 		rt->nbobj += (!ft_strcmp(line, "object : sphere") ||
 					!ft_strcmp(line, "object : plane") ||
 					!ft_strcmp(line, "object : cylinder") ||
-					!ft_strcmp(line, "object : cone") ||
-					!ft_strcmp(line, "object : light")) ? (1) : (0);
+					!ft_strcmp(line, "object : cone")) ? (1) : (0);
 		ft_strdel(&line);
 	}
 	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);

@@ -34,7 +34,9 @@ static void	objects(char *object, t_env *rt, int fd)
 {
 	if (!ft_strcmp(object, "camera"))
 		parsing_camera(fd, rt);
-	else if (!ft_strcmp(object, "light") || !ft_strcmp(object, "sphere") ||
+	else if (!ft_strcmp(object, "light"))
+		parsing_light(fd, rt);
+	else if (!ft_strcmp(object, "sphere") ||
 		!ft_strcmp(object, "plane") || !ft_strcmp(object, "cylinder") ||
 		!ft_strcmp(object, "cone"))
 		parsing_objects(fd, object, rt);

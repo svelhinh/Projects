@@ -12,15 +12,12 @@
 
 #include "rt.h"
 
-// void	init_light(t_env *rt)
-// {
-// 	rt->light.pos.x = 0;
-// 	rt->light.pos.y = 0;
-// 	rt->light.pos.z = 0;
-// 	rt->light.intensity.r = 0;
-// 	rt->light.intensity.g = 0;
-// 	rt->light.intensity.b = 0;
-// }
+void	init_light(t_env *rt)
+{
+	rt->light.x = 0;
+	rt->light.y = 0;
+	rt->light.z = 0;
+}
 
 void	init_camera(t_env *rt)
 {

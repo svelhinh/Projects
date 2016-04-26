@@ -1,8 +1,11 @@
 resolution : 640 480
 
-background_color : 555555
+background_color : 0
 
 object : camera
+pos : 0 0 -500
+
+object : light
 pos : 0 0 -500
 
 object : plane
