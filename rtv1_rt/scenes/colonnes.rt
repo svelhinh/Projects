@@ -7,7 +7,16 @@ pos : 0 0 -15000
 angle : 0 0 0
 
 object : light
-pos : 0 0 -8000
+pos : -250 0 -4000
+color : 0.5 0.5 0.5
+
+object : light
+pos : 250 0 -4000
+color : 0.5 0.5 0.5
+
+object : light
+pos : 0 -100 0
+color : 0.5 0.5 0.5
 
 object : plane
 pos : 0 -1 0

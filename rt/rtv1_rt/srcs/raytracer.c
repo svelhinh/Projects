@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 14:26:34 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/27 19:11:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static	void	intersection(t_env *rt, t_vector ray)
 
 	i2 = -1;
 	i = 0;
-	rt->color = rt->bg_color;
+	rt->final_color = 0;
 	while (i < rt->nbobj)
 	{
 		if ((rt->object[i].name == SPHERE && sphere(ray, rt->object[i], &rt->t, rt->eye)) ||
@@ -32,8 +32,23 @@ static	void	intersection(t_env *rt, t_vector ray)
 	}
 	if (i2 != -1)
 	{
+		i = 0;
 		inter = calcul_ptinter(rt->eye, ray, rt->t);
-		light(rt, rt->object[i2], rt->light, inter);
+		rt->color.r = 0;
+		rt->color.g = 0;
+		rt->color.b = 0;
+		while (i < rt->nblight)
+		{
+			light(rt, rt->object[i2], rt->light[i], inter);
+			i++;
+		}
+		rt->color.r /= rt->nblight;
+		rt->color.g /= rt->nblight;
+		rt->color.b /= rt->nblight;
+		rt->color.r = (rt->color.r > 0xff) ? (0xff) : (rt->color.r);
+		rt->color.g = (rt->color.g > 0xff) ? (0xff) : (rt->color.g);
+		rt->color.b = (rt->color.b > 0xff) ? (0xff) : (rt->color.b);
+		rt->final_color = (int)rt->color.r * 0x10000 + (int)rt->color.g * 0x100 + (int)rt->color.b;
 	}
 }
 
@@ -53,13 +68,13 @@ void		raytracer(t_env *rt)
 		x = 0;
 		while (x < rt->w)
 		{
-			ray.x = x - rt->w / 2 - rt->eye.x;
+			ray.x = x - rt->w / 2 - rt->eye.x + rt->xx;
 			ray.y = y - rt->h / 2 - rt->eye.y;
-			ray.z = rt->w - rt->eye.z;
+			ray.z = rt->w - rt->eye.z + rt->zz;
 			ray = rotations(ray, rt->cam_angle.x, rt->cam_angle.y, rt->cam_angle.z);
 			rt->t = 200000;
 			intersection(rt, ray);
-			mlx_pixel_put_to_image(rt->color, rt, x, y);
+			mlx_pixel_put_to_image(rt->final_color, rt, x, y);
 			x += pas;
 		}
 		y += pas;
