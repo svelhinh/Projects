@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 16:07:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/27 11:45:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	parsing_objects(int fd, char *object, t_env *rt)
 			rt->object[i].color.g = ft_atof(line2[3]);
 			rt->object[i].color.b = ft_atof(line2[4]);
 		}
-		else if (!ft_strcmp(line2[0], "rotate"))
+		else if (!ft_strcmp(line2[0], "angle"))
 		{
-			rt->object[i].rotation.x = ft_atof(line2[2]);
-			rt->object[i].rotation.y = ft_atof(line2[3]);
-			rt->object[i].rotation.z = ft_atof(line2[4]);
+			rt->object[i].angle.x = ft_atof(line2[2]);
+			rt->object[i].angle.y = ft_atof(line2[3]);
+			rt->object[i].angle.z = ft_atof(line2[4]);
 		}
 		// line2_free(line2);
 		ft_strdel(&line);

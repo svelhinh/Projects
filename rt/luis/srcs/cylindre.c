@@ -6,7 +6,7 @@
 /*   By: lnieto-m <lnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:35:32 by lnieto-m          #+#    #+#             */
-/*   Updated: 2016/04/20 15:37:53 by lnieto-m         ###   ########.fr       */
+/*   Updated: 2016/04/27 13:32:50 by lnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	cylindre2(t_env *e, t_vector inter, t_figure cylindre,
 	t_vector	lux;
 	double		cosi;
 
+	(void)fct;
 	n.x = inter.x - cylindre.center.x;
 	n.y = inter.y - cylindre.center.y;
 	n.z = 0;
@@ -28,14 +29,17 @@ static void	cylindre2(t_env *e, t_vector inter, t_figure cylindre,
 	cosi = (lux.x * n.x + lux.y * n.y + lux.z * n.z)
 		/ (sqrt(pow(lux.x, 2) + pow(lux.y, 2) + pow(lux.z, 2))
 		* sqrt(pow(n.x, 2) + pow(n.y, 2) + pow(n.z, 2)));
-	if (cosi > 0)
-	{
-		if (fct(e, inter) == 1)
-			e->color = 0;
-		else
-			e->color = RGB(cylindre.color.x * cosi, cylindre.color.y * cosi,
-							cylindre.color.z * cosi);
-	}
+	if (fct(e, inter) == 1)
+		e->color = 0;
+	else if (cosi > 0.4)
+		e->color = RGB(cylindre.color.x, cylindre.color.y
+					, cylindre.color.z);
+	else if (cosi > 0.2)
+		e->color = RGB(cylindre.color.x * 0.4, cylindre.color.y
+					* 0.4, cylindre.color.z * 0.4);
+	else if (cosi > 0)
+		e->color = RGB(cylindre.color.x * 0.2, cylindre.color.y
+					* 0.2, cylindre.color.z * 0.2);
 	else
 		e->color = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 15:41:25 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/27 11:15:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ void	parsing_camera(int fd, t_env *rt)
 			rt->eye.y = ft_atof(line2[3]);
 			rt->eye.z = ft_atof(line2[4]);
 		}
-		// else if (!ft_strcmp(line2[0], "rot"))
-		// {
-		// 	rt->rotcam.x = ft_atof(line2[2]);
-		// 	rt->rotcam.y = ft_atof(line2[3]);
-		// 	rt->rotcam.z = ft_atof(line2[4]);
-		// 	rt->r.dir = rotations(rt->r.dir, rt->rotcam.x, rt->rotcam.y,
-		// 			rt->rotcam.z);
-		// }
+		else if (!ft_strcmp(line2[0], "angle"))
+		{
+			rt->cam_angle.x = ft_atof(line2[2]);
+			rt->cam_angle.y = ft_atof(line2[3]);
+			rt->cam_angle.z = ft_atof(line2[4]);
+		}
 		// line2_free(line2);
 		ft_strdel(&line);
 	}

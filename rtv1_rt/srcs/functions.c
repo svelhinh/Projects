@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:57:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 15:41:49 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/27 12:49:22 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	check_color(double r, double g, double b)
 		ft_exit("\033[31mColor must be between 0 and 1\n");
 }
 
-t_vector	calcul_ptinter(t_vector eye, t_vector r, float t)
+t_vector	calcul_ptinter(t_vector eye, t_vector r, double t)
 {
 	t_vector	ptinter;
 
@@ -63,4 +63,3 @@ t_vector	calcul_ptinter(t_vector eye, t_vector r, float t)
 	ptinter.z = eye.z + r.z * t;
 	return (ptinter);
 }
-

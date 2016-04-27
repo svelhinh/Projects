@@ -3,10 +3,11 @@ resolution : 1280 720
 background_color : 0
 
 object : camera
-pos : 0 0 -2000
+pos : 0 0 -15000
+angle : 0 0 0
 
 object : light
-pos : 0 0 -1850
+pos : 0 0 -8000
 
 object : plane
 pos : 0 -1 0
@@ -31,6 +32,7 @@ color : 0.8 0 0
 object : cylinder
 pos : -250 0 -500
 radius : 30
+angle : 0 0 0.1
 color : 0.8 0.8 0.8
 
 object : cylinder
@@ -39,12 +41,12 @@ radius : 30
 color : 0.8 0.8 0.8
 
 object : cylinder
-pos : -250 0 -1300
+pos : -350 0 -3000
 radius : 30
 color : 0.8 0.8 0.8
 
 object : cylinder
-pos : 250 0 -1300
+pos : 350 0 -3000
 radius : 30
 color : 0.8 0.8 0.8
 
@@ -69,21 +71,21 @@ radius : 50
 color : 0.8 0.8 0.8
 
 object : sphere
-pos : -250 -150 -1300
+pos : -350 -150 -3000
 radius : 50
 color : 0.8 0.8 0.8
 
 object : sphere
-pos : -250 150 -1300
+pos : -350 150 -3000
 radius : 50
 color : 0.8 0.8 0.8
 
 object : sphere
-pos : 250 -150 -1300
+pos : 350 -150 -3000
 radius : 50
 color : 0.8 0.8 0.8
 
 object : sphere
-pos : 250 150 -1300
+pos : 350 150 -3000
 radius : 50
 color : 0.8 0.8 0.8

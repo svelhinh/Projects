@@ -6,7 +6,7 @@
 /*   By: lnieto-m <lnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:34:20 by lnieto-m          #+#    #+#             */
-/*   Updated: 2016/04/21 17:06:09 by lnieto-m         ###   ########.fr       */
+/*   Updated: 2016/04/27 13:32:17 by lnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	sphere2(t_env *e, t_vector inter, t_figure sphere,
 	t_vector	lux;
 	double		cosi;
 
+	(void)fct;
 	n.x = inter.x - sphere.center.x;
 	n.y = inter.y - sphere.center.y;
 	n.z = inter.z - sphere.center.z;
@@ -28,14 +29,17 @@ static void	sphere2(t_env *e, t_vector inter, t_figure sphere,
 	cosi = (lux.x * n.x + lux.y * n.y + lux.z * n.z)
 		/ (sqrt(pow(lux.x, 2) + pow(lux.y, 2) + pow(lux.z, 2))
 		* sqrt(pow(n.x, 2) + pow(n.y, 2) + pow(n.z, 2)));
-	if (cosi > 0)
-	{
-		if (fct(e, inter) == 1)
-			e->color = 0;
-		else
-			e->color = RGB(sphere.color.x * cosi, sphere.color.y
-						* cosi, sphere.color.z * cosi);
-	}
+	if (fct(e, inter) == 1)
+		e->color = 0;
+	else if (cosi > 0.4)
+		e->color = RGB(sphere.color.x, sphere.color.y
+					, sphere.color.z);
+	else if (cosi > 0.2)
+		e->color = RGB(sphere.color.x * 0.4, sphere.color.y
+					* 0.4, sphere.color.z * 0.4);
+	else if (cosi > 0)
+		e->color = RGB(sphere.color.x * 0.2, sphere.color.y
+					* 0.2, sphere.color.z * 0.2);
 	else
 		e->color = 0;
 }

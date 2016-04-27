@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/26 17:14:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/27 14:26:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct	s_figure
 	double		radius;
 	t_vector	center;
 	t_color		color;
-	t_vector	rotation;
+	t_vector	angle;
 }				t_figure;
 
 typedef struct	s_env
@@ -73,11 +73,13 @@ typedef struct	s_env
 	double		w;
 	double		h;
 	t_figure	*object;
+	t_vector	cam_angle;
 	t_vector	eye;
 	t_vector	light;
 }				t_env;
 
 void			raytracer(t_env *rt);
+t_vector		rotations(t_vector vec, double x, double y, double z);
 
 
 /*
@@ -112,10 +114,10 @@ int				key_release(int keycode, t_env *rt);
 /*
 **	-------------------	OBJECTS	---------------------------
 */
-int				sphere(t_vector *r, t_figure *s, double *t, t_vector eye);
-int				plane(t_vector *r, t_figure *p, double *t, t_vector eye);
-int				cylinder(t_vector *r, t_figure *cy, double *t, t_vector eye);
-int				cone(t_vector *r, t_figure *co, double *t, t_vector eye);
+int				sphere(t_vector r, t_figure s, double *t, t_vector eye);
+int				plane(t_vector r, t_figure p, double *t, t_vector eye);
+int				cylinder(t_vector r, t_figure cy, double *t, t_vector eye);
+int				cone(t_vector r, t_figure co, double *t, t_vector eye);
 /*
 **	-------------------------------------------------------
 */
@@ -142,7 +144,7 @@ void			ft_exit(char *s);
 void			mlx_pixel_put_to_image(int color, t_env *img, int x, int y);
 void			missing_parameter(char **line2);
 void			check_color(double r, double g, double b);
-t_vector		calcul_ptinter(t_vector eye, t_vector r, float t);
+t_vector		calcul_ptinter(t_vector eye, t_vector r, double t);
 /*
 **	-------------------------------------------------------
 */

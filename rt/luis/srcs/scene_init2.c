@@ -6,7 +6,7 @@
 /*   By: lnieto-m <lnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 10:57:01 by lnieto-m          #+#    #+#             */
-/*   Updated: 2016/04/21 17:17:34 by lnieto-m         ###   ########.fr       */
+/*   Updated: 2016/04/27 10:39:26 by lnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void		init2(t_env *e)
 	e->rot_cam.x = 0;
 	e->rot_cam.y = 0;
 	e->rot_cam.z = 0;
-	e->eye.x = -500;
+	e->eye.x = -4000;
 	e->eye.y = 0;
 	e->eye.z = 100;
-	e->spot1.x = -500;
+	e->spot1.x = -2000;
 	e->spot1.y = -200;
 	e->spot1.z = 200;
 	e->cone.center.x = 0;
