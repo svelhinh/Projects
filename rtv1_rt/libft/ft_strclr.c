@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 16:29:43 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/04 16:59:56 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/01/26 11:21:07 by grass-kw          #+#    #+#             */
+/*   Updated: 2015/04/09 14:34:22 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_strclr(char *s)
 {
-	if (s)
-		ft_memset(s, '\0', ft_strlen(s));
+	if (!s)
+		return ;
+	ft_bzero((void *)s, ft_strlen(s));
 }

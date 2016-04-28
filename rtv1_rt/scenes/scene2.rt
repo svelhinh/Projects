@@ -1,4 +1,4 @@
-resolution : 640 480
+resolution : 1935 1451
 
 background_color : 0
 
@@ -7,6 +7,7 @@ pos : 0 0 -500
 
 object : light
 pos : 0 0 -500
+color : 1 1 1
 
 object : plane
 pos : 0 -1 0

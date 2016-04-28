@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:32 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 18:06:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 19:03:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		count_light(t_env *rt, char *file)
 		rt->nblight += (!ft_strcmp(line, "object : light")) ? (1) : (0);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 	if (!(rt->light = (t_light *)malloc(sizeof(t_light) * rt->nblight)))
 		ft_exit("malloc of rt->light failed in count_light");

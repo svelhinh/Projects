@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/25 16:07:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 19:03:15 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	background_color(char *color, t_env *rt)
 		i++;
 	}
 	rt->bg_color = ft_atoi_base(color, 16);
-	ft_strdel(&color);
 }
 
 static void	objects(char *object, t_env *rt, int fd)
@@ -78,9 +77,10 @@ void		global_parser(char *file, t_env *rt)
 					(ft_exit("\033[31mParameter missing for resolution\n"));
 			else if (!ft_strcmp(line2[0], "object"))
 				objects(line2[2], rt, fd);
-			// line2_free(line2);
+			line2_free(line2);
 		}
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 }

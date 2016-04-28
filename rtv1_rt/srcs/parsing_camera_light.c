@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 15:15:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 19:04:04 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,23 @@ void	parsing_camera(int fd, t_env *rt)
 			rt->cam_angle.y = ft_atof(line2[3]);
 			rt->cam_angle.z = ft_atof(line2[4]);
 		}
-		// line2_free(line2);
+		line2_free(line2);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 }
+
+// static void	print_tab(char **tab)
+// {
+// 	int i;
+//
+// 	i = 0;
+// 	while (tab[i])
+// 	{
+// 		ft_putendl(tab[i]);
+// 		i++;
+// 	}
+// }
 
 void	parsing_light(int fd, t_env *rt)
 {
@@ -61,8 +74,9 @@ void	parsing_light(int fd, t_env *rt)
 			rt->light[i].color.g = ft_atof(line2[3]);
 			rt->light[i].color.b = ft_atof(line2[4]);
 		}
-		// line2_free(line2);
+		line2_free(line2);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	i++;
 }

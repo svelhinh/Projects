@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:30:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 15:59:59 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 14:15:06 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		expose(t_env *rt)
 		ft_exit("mlx_new_image() in expose() failed");
 	rt->data = mlx_get_data_addr(rt->img, &rt->bpp, &rt->line,
 			&rt->endian);
-	raytracer(rt);
+	render(rt);
 	mlx_put_image_to_window(rt->mlx, rt->win, rt->img, 0, 0);
 	mlx_destroy_image(rt->mlx, rt->img);
 	return (0);

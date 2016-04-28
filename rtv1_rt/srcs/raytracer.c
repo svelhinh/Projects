@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 19:11:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 15:26:24 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static	void	intersection(t_env *rt, t_vector ray)
 		rt->color.b = 0;
 		while (i < rt->nblight)
 		{
-			light(rt, rt->object[i2], rt->light[i], inter);
+			light(rt, rt->object[i2], rt->light[i], inter, ray);
 			i++;
 		}
 		rt->color.r /= rt->nblight;
@@ -52,18 +52,20 @@ static	void	intersection(t_env *rt, t_vector ray)
 	}
 }
 
-void		raytracer(t_env *rt)
+void		*raytracer(void *arg)
 {
 	int			x;
 	int			y;
 	int			pas;
 	t_vector	ray;
+	t_env	*rt;
 
-	y = 0;
+	rt = (t_env *)arg;
+	y = rt->start_h;
 	pas = 1;
 	if (rt->keyup == 1 || rt->keydown == 1 || rt->keyleft == 1 || rt->keyright == 1)
 		pas = rt->w / 640 + rt->h / 480;
-	while (y < rt->h)
+	while (y < rt->end_h)
 	{
 		x = 0;
 		while (x < rt->w)
@@ -79,4 +81,5 @@ void		raytracer(t_env *rt)
 		}
 		y += pas;
 	}
+	pthread_exit(0);
 }

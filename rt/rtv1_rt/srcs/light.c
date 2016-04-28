@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 19:13:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 15:39:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,28 @@ static int	shadows(t_env *rt, t_vector ray_light, t_vector inter)
 	return (0);
 }
 
-void	light(t_env *rt, t_figure object, t_light light, t_vector inter)
+static double	specular_light(t_vector n, t_vector light, t_figure object, t_vector ray)
+{
+	double		spec;
+	t_vector	r;
+
+	ray = normalize(&ray);
+	light = vecscale(&light, -1);
+	ray = normalize(&light);
+	r.x = light.x - 2 * n.x * vecdot(&n, &light);
+	r.y = light.y - 2 * n.y * vecdot(&n, &light);
+	r.z = light.z - 2 * n.z * vecdot(&n, &light);
+	r = normalize(&r);
+	spec = object.specular * pow(vecdot(&r, &ray), object.specular_power);
+	return (spec);
+}
+
+void		light(t_env *rt, t_figure object, t_light light, t_vector inter, t_vector ray)
 {
 	t_vector	n;
 	t_vector	light2;
 	double		angle;
+	double		spec;
 	t_color		tmp_color;
 	t_vector	tmp;
 	t_vector	tmp2;
@@ -68,15 +85,16 @@ void	light(t_env *rt, t_figure object, t_light light, t_vector inter)
 		+ pow(light2.z, 2)) * sqrt(pow(n.x, 2) + pow(n.y, 2) + pow(n.z, 2)));
 		if (angle > 0)
 		{
-			tmp_color.r = (int)(angle * object.color.r * light.color.r * 255);
-			tmp_color.g = (int)(angle * object.color.g * light.color.g * 255);
-			tmp_color.b = (int)(angle * object.color.b * light.color.b * 255);
+			spec = specular_light(n, light2, object, ray);
+			tmp_color.r = angle * object.color.r * 255;
+			tmp_color.g = angle * object.color.g * 255;
+			tmp_color.b = angle * object.color.b * 255;
 			tmp_color.r = (tmp_color.r > 0xff) ? (0xff) : (tmp_color.r);
 			tmp_color.g = (tmp_color.g > 0xff) ? (0xff) : (tmp_color.g);
 			tmp_color.b = (tmp_color.b > 0xff) ? (0xff) : (tmp_color.b);
-			rt->color.r += tmp_color.r + 255 * light.color.r * angle;
-			rt->color.g += tmp_color.g + 255 * light.color.g * angle;
-			rt->color.b += tmp_color.b + 255 * light.color.b * angle;
+			rt->color.r += tmp_color.r + spec + 255 * light.color.r;
+			rt->color.g += tmp_color.g + spec + 255 * light.color.g;
+			rt->color.b += tmp_color.b + spec + 255 * light.color.b;
 		}
 	}
 }

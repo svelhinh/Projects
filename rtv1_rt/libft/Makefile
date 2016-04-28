@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2016/03/02 10:32:14 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/04/28 18:57:10 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC = \
 		ft_tolower.c ft_toupper.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c \
 		ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_putrainbow.c ft_putcolor.c \
 		ft_islower.c ft_isupper.c ft_putnbrendl.c ft_itoa_base.c ft_atoi_base.c \
-		ft_ftoa.c get_next_line.c ft_atof.c
+		ft_ftoa.c get_next_line.c ft_atof.c ft_strndup.c ft_strclr.c ft_strclean.c \
+		ft_strnjoin.c
 
 OBJ = $(SRC:.c=.o)
 

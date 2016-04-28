@@ -3,24 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lnieto-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 17:29:18 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/11/27 10:01:55 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/23 15:06:15 by lnieto-m          #+#    #+#             */
+/*   Updated: 2015/11/28 14:52:03 by lnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int		ft_strncmp(const char *str1, const char *str2, int n)
 {
-	size_t i;
+	int		i;
 
 	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0' && i < n && s1[i] == s2[i])
-		i++;
-	if ((s1[i] == '\0' && s2[i] == '\0') || i == n)
+	if (n == 0)
 		return (0);
-	else
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (*str1 == '\200')
+		return (200);
+	while (n)
+	{
+		if (*str1 != *str2)
+			return (*(unsigned char *)str1 - *(unsigned char *)str2);
+		else if (*str1 == '\0')
+			return (0);
+		str1++;
+		str2++;
+		n--;
+	}
+	return (0);
 }

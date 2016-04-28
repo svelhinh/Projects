@@ -6,11 +6,27 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:57:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 12:49:22 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 16:30:20 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void	line2_free(char **line2)
+{
+	int	i;
+
+	i = 0;
+	if (!line2)
+		return ;
+	while (line2[i])
+	{
+		ft_strclean(line2[i]);
+		i++;
+	}
+	free(line2);
+	line2 = NULL;
+}
 
 void	mlx_pixel_put_to_image(int color, t_env *img, int x, int y)
 {

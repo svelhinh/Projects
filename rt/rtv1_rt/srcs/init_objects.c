@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 14:54:29 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 19:03:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	init_objects(t_env *rt)
 		rt->object[i].angle.x = 0;
 		rt->object[i].angle.y = 0;
 		rt->object[i].angle.z = 0;
+		rt->object[i].specular = 0;
+		rt->object[i].specular_power = 0;
 		i++;
 	}
 }
@@ -49,6 +51,7 @@ void		count_objects(t_env *rt, char *file)
 					!ft_strcmp(line, "object : cone")) ? (1) : (0);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 	if (!(rt->object = (t_figure *)malloc(sizeof(t_figure) * rt->nbobj)))
 		ft_exit("malloc of rt->object failed in count_objects");

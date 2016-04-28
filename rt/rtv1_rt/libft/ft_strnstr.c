@@ -3,46 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lnieto-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 16:53:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2015/12/02 11:48:51 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/23 18:40:19 by lnieto-m          #+#    #+#             */
+/*   Updated: 2015/12/03 21:43:27 by lnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_intinit(size_t *i, int *i3)
+char	*ft_strnstr(const char *haystack, const char *need, int n)
 {
-	*i = 0;
-	*i3 = 0;
-}
+	char	*cpy;
+	int		j;
+	int		i;
 
-char		*ft_strnstr(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
-	int		i2;
-	int		i3;
-	char	*s3;
-
-	ft_intinit(&i, &i3);
-	s3 = (char *)malloc(sizeof(char) * ft_strlen(s2) + 1);
-	if (ft_strcmp(s2, "") == 0)
-		return ((char *)s1);
-	while (s1[i = i3] != '\0' && i < n)
+	i = 0;
+	j = 0;
+	cpy = (char*)malloc(sizeof(*cpy) * n + 1);
+	if (cpy == NULL)
+		return (NULL);
+	ft_strncpy(cpy, haystack, n);
+	while (cpy[i])
 	{
-		i2 = 0;
-		while (s2[i2++] == s1[i++])
-		{
-			if (s2[i2] == '\0')
-			{
-				s3 = &((char *)s1)[i3];
-				return (s3);
-			}
-			if (i == n)
-				return (NULL);
-		}
-		i3++;
+		j = 0;
+		while (need[j] == cpy[i + j] && need[j])
+			j++;
+		if (!need[j])
+			return ((char*)&haystack[i]);
+		i++;
 	}
 	return (NULL);
 }

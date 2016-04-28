@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 11:45:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 19:04:10 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ void	parsing_objects(int fd, char *object, t_env *rt)
 			rt->object[i].angle.y = ft_atof(line2[3]);
 			rt->object[i].angle.z = ft_atof(line2[4]);
 		}
-		// line2_free(line2);
+		else if (!ft_strcmp(line2[0], "specular"))
+			rt->object[i].specular = ft_atof(line2[2]);
+		else if (!ft_strcmp(line2[0], "specular_power"))
+			rt->object[i].specular_power = ft_atof(line2[2]);
+		line2_free(line2);
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	i++;
 }

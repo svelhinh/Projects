@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
+#    By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/07 18:24:41 by lnieto-m          #+#    #+#              #
-#    Updated: 2016/04/27 11:08:42 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/04/28 13:37:27 by grass-kw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME = rt
 
 SRC_NAME =	main.c events.c functions.c raytracer.c objects.c init_all.c init_camera_light.c \
 			init_objects.c parser.c parsing_camera_light.c parsing_objects.c vectors.c light.c \
-			rotations.c
+			rotations.c render.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -55,13 +55,13 @@ rtv:
 	@echo -n "\033[32mRT : "
 
 clean:
-	@echo "\033[32mSuppression des objets du rtv1\033[0m"
+	@echo "\033[32mSuppression des objets du rt\033[0m"
 	@make -C libft/ clean
 	@rm -rf $(OBJ)
 	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@echo "\033[32mSuppression de l'executable du rtv1\033[0m"
+	@echo "\033[32mSuppression de l'executable du rt\033[0m"
 	@make -C libft/ fclean
 	@rm -rf $(NAME)
 

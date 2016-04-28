@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lnieto-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 14:32:13 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/18 14:52:06 by svelhinh         ###   ########.fr       */
+/*   Created: 2015/11/23 11:56:33 by lnieto-m          #+#    #+#             */
+/*   Updated: 2015/12/26 17:03:31 by lnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,28 @@
 
 int		ft_atoi(const char *str)
 {
-	int i;
-	int nbr;
-	int negative;
+	int		result;
+	int		index;
+	int		tmp;
 
-	i = 0;
-	nbr = 0;
-	negative = 0;
-	while (str[i] != '-' && str[i] != '+' && !(str[i] >= '0' && str[i] <= '9'))
+	result = 0;
+	index = 0;
+	tmp = index;
+	while (str[index] == '\t' || str[index] == ' ' || str[index] == '\n'
+			|| str[index] == '\r' || str[index] == '\f' || str[index] == '\v')
+		index++;
+	if (str[index] == '-' || str[index] == '+')
 	{
-		if (str[i] > ' ' || ft_isascii(str[i]) == 0 || str[i] == '\0')
-			return (0);
-		i++;
+		tmp = index;
+		index++;
 	}
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	negative = (str[i - 1] == '-');
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-		nbr = str[i++] - '0' + nbr * 10;
-	if (negative == 1)
-		nbr = 0 - nbr;
-	return (nbr);
+	while (str[index] <= '9' && str[index] >= '0')
+	{
+		result *= 10;
+		result += str[index] - 48;
+		index++;
+	}
+	if (str[tmp] == '-')
+		result *= -1;
+	return (result);
 }

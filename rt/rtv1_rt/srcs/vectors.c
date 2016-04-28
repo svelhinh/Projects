@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:02:14 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/26 16:59:16 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 15:25:03 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,26 @@ t_vector	vecsub(t_vector *v1, t_vector *v2)
 	result.x = v2->x - v1->x;
 	result.y = v2->y - v1->y;
 	result.z = v2->z - v1->z;
+	return (result);
+}
+
+t_vector	vecadd(t_vector *v1, t_vector *v2)
+{
+	t_vector result;
+
+	result.x = v2->x + v1->x;
+	result.y = v2->y + v1->y;
+	result.z = v2->z + v1->z;
+	return (result);
+}
+
+t_vector	vecscale(t_vector *v, double factor)
+{
+	t_vector result;
+
+	result.x = v->x * factor;
+	result.y = v->y * factor;
+	result.z = v->z * factor;
 	return (result);
 }
 

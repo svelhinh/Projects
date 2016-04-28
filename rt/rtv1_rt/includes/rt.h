@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 19:11:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/28 18:32:57 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
+# include <pthread.h>
 # define UP 126 /*65362*/
 # define DOWN 125 /*65364*/
 # define LEFT 123 /*65361*/
@@ -57,6 +58,8 @@ typedef struct	s_figure
 	t_vector	center;
 	t_color		color;
 	t_vector	angle;
+	double		specular;
+	double		specular_power;
 }				t_figure;
 
 typedef struct	s_env
@@ -86,9 +89,11 @@ typedef struct	s_env
 	t_vector	cam_angle;
 	t_vector	eye;
 	t_light		*light;
+	int			start_h;
+	int			end_h;
 }				t_env;
 
-void			raytracer(t_env *rt);
+void			*raytracer(void *arg);
 t_vector		rotations(t_vector vec, double x, double y, double z);
 
 
@@ -134,7 +139,7 @@ int				cone(t_vector r, t_figure co, double *t, t_vector eye);
 /*
 **	-------------------	LIGHT	---------------------------
 */
-void			light(t_env *rt, t_figure object, t_light light, t_vector inter);
+void			light(t_env *rt, t_figure object, t_light light, t_vector inter, t_vector ray);
 /*
 **	-------------------------------------------------------
 */
@@ -144,6 +149,8 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector inter);
 t_vector		vecsub(t_vector *v1, t_vector *v2);
 double			vecdot(t_vector *v1, t_vector *v2);
 t_vector		normalize(t_vector *v1);
+t_vector		vecadd(t_vector *v1, t_vector *v2);
+t_vector		vecscale(t_vector *v, double factor);
 /*
 **	-------------------------------------------------------
 */
@@ -155,6 +162,8 @@ void			mlx_pixel_put_to_image(int color, t_env *img, int x, int y);
 void			missing_parameter(char **line2);
 void			check_color(double r, double g, double b);
 t_vector		calcul_ptinter(t_vector eye, t_vector r, double t);
+void			render(t_env *rt);
+void			line2_free(char **line2);
 /*
 **	-------------------------------------------------------
 */
