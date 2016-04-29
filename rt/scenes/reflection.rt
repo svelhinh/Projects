@@ -1,0 +1,44 @@
+resolution : 1280 720
+
+background_color : 0
+
+object : camera
+pos : 0 0 -300
+angle : 0 0 0
+
+object : light
+pos : 100 -100 -300
+color : 0 0 0
+
+object : light
+pos : -100 -100 -300
+color : 0 0 0
+
+object : sphere
+pos : -50 0 0
+radius : 20
+specular : 200
+specular_power : 100
+shiny : 1
+color : 1 0 0
+
+object : sphere
+pos : 0 0 0
+radius : 20
+specular : 200
+shiny : 1
+specular_power : 100
+color : 0 1 0
+
+object : sphere
+pos : 50 0 0
+radius : 20
+specular : 200
+shiny : 1
+specular_power : 100
+color : 0 0 1
+
+object : plane
+pos : 0 -1 0
+radius : 25
+color : 1 1 1
