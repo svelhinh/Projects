@@ -1,0 +1,36 @@
+resolution : 1000 1000
+
+background_color : 0
+
+object : camera
+pos : 15 0 -125
+angle : 0 0 0
+
+object : light
+pos : 100 -100 100
+color : 0 0 0
+
+object : light
+pos : -100 -100 -100
+color : 0 0 0
+
+object : sphere
+pos : 25 -10 0
+radius : 20
+shiny : 1
+specular : 500
+specular_power : 300
+color : 0.4 0.4 0.4
+
+object : sphere
+pos : 0 -15 -50
+radius : 5
+shiny : 0
+specular : 200
+specular_power : 100
+color : 1 0 0
+
+object : plane
+pos : 0 -1 0
+radius : 25
+color : 1 1 1

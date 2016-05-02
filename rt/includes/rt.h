@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/29 18:32:36 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/02 16:55:18 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <pthread.h>
-# define MAXRECURSION 15
+# define MAXREFLECTION 5
 # define UP 126
 # define DOWN 125
 # define LEFT 123
@@ -100,6 +100,9 @@ typedef struct	s_env
 	t_vector	tmp_inter;
 	t_vector	tmp_center;
 	t_vector	tmp_rlight;
+	t_vector	reflect;
+	t_vector	orig_reflect;
+	int			i2;
 }				t_env;
 
 void			*raytracer(void *arg);

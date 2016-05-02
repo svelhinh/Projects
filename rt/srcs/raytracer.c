@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/29 18:53:42 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/02 17:00:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,75 +31,63 @@ static void		calcul_light(t_env *rt, int i2, t_vector ray)
 	rt->color.r = (rt->color.r > 0xff) ? (0xff) : (rt->color.r);
 	rt->color.g = (rt->color.g > 0xff) ? (0xff) : (rt->color.g);
 	rt->color.b = (rt->color.b > 0xff) ? (0xff) : (rt->color.b);
-	// if (recursion)
-	// {
-	// 	rt->tmp_color.r = rt->tmp_color.r * recursion + rt->color.r * (1 - recursion);
-	// 	rt->tmp_color.g = rt->tmp_color.g * recursion + rt->color.g * (1 - recursion);
-	// 	rt->tmp_color.b = rt->tmp_color.b * recursion + rt->color.b * (1 - recursion);
-	// }
-	// else
-	// {
-	// 	rt->tmp_color.r = rt->color.r;
-	// 	rt->tmp_color.g = rt->color.g;
-	// 	rt->tmp_color.b = rt->color.b;
-	// }
-	// rt->final_color += (int)rt->tmp_color.r * 0x10000 + (int)rt->tmp_color.g * 0x100
-	// 	+ (int)rt->tmp_color.b;
+	rt->final_color = (int)rt->color.r * 0x10000 + (int)rt->color.g * 0x100
+		+ (int)rt->color.b;
 }
 
-static	void	intersection(t_env *rt, t_vector ray, int recursion)
+static	void	intersection(t_env *rt, int reflection)
 {
 	int			i;
-	int			i2;
-	t_vector	reflect;
+	// t_vector	reflect;
 	t_vector	n;
 
-	i2 = -1;
+	rt->i2 = -1;
 	i = 0;
 	rt->t = 200000;
 	while (i < rt->nbobj)
 	{
-		if ((rt->object[i].name == SPHERE && sphere(ray, rt->object[i], &rt->t,
-				rt->eye)) ||
-			(rt->object[i].name == PLANE && plane(ray, rt->object[i], &rt->t,
-				rt->eye)) ||
-			(rt->object[i].name == CYLINDER && cylinder(ray, rt->object[i],
-				&rt->t, rt->eye)) ||
-			(rt->object[i].name == CONE && cone(ray, rt->object[i], &rt->t,
-				rt->eye)))
-			i2 = i;
+		if ((rt->object[i].name == SPHERE && sphere(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect)) ||
+			(rt->object[i].name == PLANE && plane(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect)) ||
+			(rt->object[i].name == CYLINDER && cylinder(rt->reflect, rt->object[i],
+				&rt->t, rt->orig_reflect)) ||
+			(rt->object[i].name == CONE && cone(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect)))
+			rt->i2 = i;
 		i++;
 	}
-	if (i2 != -1)
-	{
-		rt->inter = calcul_ptinter(rt->eye, ray, rt->t);
-		calcul_light(rt, i2, ray);
-		if (recursion < MAXRECURSION)
+	// if (rt->i2 != -1)
+	// {
+		// calcul_light(rt, i2, rt->reflect);
+
+
+
+		if (reflection < MAXREFLECTION && rt->object[rt->i2].shiny)
 		{
-			if (!recursion)
-			{
-				rt->tmp_color.r = rt->color.r;
-				rt->tmp_color.g = rt->color.g;
-				rt->tmp_color.b = rt->color.b;
-			}
-			if (rt->object[i2].shiny)
-			{
-				n = vecsub(&rt->object[i2].center, &rt->inter);
-				reflect.x = -2 * n.x * vecdot(&n, &ray) + ray.x;
-				reflect.y = -2 * n.y * vecdot(&n, &ray) + ray.y;
-				reflect.z = -2 * n.z * vecdot(&n, &ray) + ray.z;
-				intersection(rt, reflect, recursion + 1);
-			}
+			rt->inter = calcul_ptinter(rt->orig_reflect, rt->reflect, rt->t);
+		// 	if (!reflection)
+		// 		rt->tmp_color = rt->color;
+			if (rt->object[rt->i2].name != PLANE)
+				n = vecsub(&rt->object[rt->i2].center, &rt->inter);
+			else
+				n = rt->object[rt->i2].center;
+			rt->reflect.x = rt->reflect.x - 2 * n.x * vecdot(&n, &rt->reflect);
+			rt->reflect.y = rt->reflect.y - 2 * n.y * vecdot(&n, &rt->reflect);
+			rt->reflect.z = rt->reflect.y - 2 * n.z * vecdot(&n, &rt->reflect);
+			rt->orig_reflect = rt->inter;
+			intersection(rt, reflection + 1);
+		// }
+		// if (reflection)
+		// {
+		// 	rt->color.r = rt->color.r * reflection + rt->tmp_color.r * (1 - reflection);
+		// 	rt->color.g = rt->color.g * reflection + rt->tmp_color.g * (1 - reflection);
+		// 	rt->color.b = rt->color.b * reflection + rt->tmp_color.b * (1 - reflection);
+		// 	rt->color.r = (rt->color.r > 0xff) ? (0xff) : (rt->color.r);
+		// 	rt->color.g = (rt->color.g > 0xff) ? (0xff) : (rt->color.g);
+		// 	rt->color.b = (rt->color.b > 0xff) ? (0xff) : (rt->color.b);
 		}
-		if (recursion)
-		{
-			rt->color.r = rt->color.r * recursion + rt->tmp_color.r * (1 - recursion);
-			rt->color.g = rt->color.g * recursion + rt->tmp_color.g * (1 - recursion);
-			rt->color.b = rt->color.b * recursion + rt->tmp_color.b * (1 - recursion);
-		}
-		rt->final_color = (int)rt->color.r * 0x10000 + (int)rt->color.g * 0x100
-			+ (int)rt->color.b;
-	}
+	// }
 }
 
 static void		scan(int pas, t_env *rt)
@@ -120,7 +108,14 @@ static void		scan(int pas, t_env *rt)
 			ray = rotations(ray, rt->cam_angle.x, rt->cam_angle.y,
 				rt->cam_angle.z);
 			rt->final_color = 0;
-			intersection(rt, ray, 0);
+			rt->orig_reflect = rt->eye;
+			rt->reflect = ray;
+			intersection(rt, 0);
+			if (rt->i2 != -1 && rt->object[rt->i2].name != LIGHT)
+			{
+				rt->inter = calcul_ptinter(rt->orig_reflect, rt->reflect, rt->t);
+				calcul_light(rt, rt->i2, rt->reflect);
+			}
 			mlx_pixel_put_to_image(rt->final_color, rt, x, y);
 			x += pas;
 		}
