@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/02 17:00:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/02 17:29:07 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,14 @@ static	void	intersection(t_env *rt, int reflection)
 				n = vecsub(&rt->object[rt->i2].center, &rt->inter);
 			else
 				n = rt->object[rt->i2].center;
-			rt->reflect.x = rt->reflect.x - 2 * n.x * vecdot(&n, &rt->reflect);
-			rt->reflect.y = rt->reflect.y - 2 * n.y * vecdot(&n, &rt->reflect);
-			rt->reflect.z = rt->reflect.y - 2 * n.z * vecdot(&n, &rt->reflect);
+			t_vector tmp_reflect;
+
+			tmp_reflect.x = rt->reflect.x;
+			tmp_reflect.y = rt->reflect.y;
+			tmp_reflect.z = rt->reflect.z;
+			rt->reflect.x = tmp_reflect.x - 2 * n.x * vecdot(&n, &tmp_reflect);
+			rt->reflect.y = tmp_reflect.y - 2 * n.y * vecdot(&n, &tmp_reflect);
+			rt->reflect.z = tmp_reflect.y - 2 * n.z * vecdot(&n, &tmp_reflect);
 			rt->orig_reflect = rt->inter;
 			intersection(rt, reflection + 1);
 		// }
