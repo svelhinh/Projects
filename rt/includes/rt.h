@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/02 16:55:18 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/03 18:24:13 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <pthread.h>
-# define MAXREFLECTION 5
+# define MAXREFLECTION 2
 # define UP 126
 # define DOWN 125
 # define LEFT 123

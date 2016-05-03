@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/02 17:29:07 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/03 19:04:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		calcul_light(t_env *rt, int i2, t_vector ray)
 static	void	intersection(t_env *rt, int reflection)
 {
 	int			i;
-	// t_vector	reflect;
+	t_vector 	tmp_reflect;
 	t_vector	n;
 
 	rt->i2 = -1;
@@ -57,42 +57,23 @@ static	void	intersection(t_env *rt, int reflection)
 			rt->i2 = i;
 		i++;
 	}
-	// if (rt->i2 != -1)
-	// {
-		// calcul_light(rt, i2, rt->reflect);
-
-
-
-		if (reflection < MAXREFLECTION && rt->object[rt->i2].shiny)
-		{
-			rt->inter = calcul_ptinter(rt->orig_reflect, rt->reflect, rt->t);
-		// 	if (!reflection)
-		// 		rt->tmp_color = rt->color;
-			if (rt->object[rt->i2].name != PLANE)
-				n = vecsub(&rt->object[rt->i2].center, &rt->inter);
-			else
-				n = rt->object[rt->i2].center;
-			t_vector tmp_reflect;
-
-			tmp_reflect.x = rt->reflect.x;
-			tmp_reflect.y = rt->reflect.y;
-			tmp_reflect.z = rt->reflect.z;
-			rt->reflect.x = tmp_reflect.x - 2 * n.x * vecdot(&n, &tmp_reflect);
-			rt->reflect.y = tmp_reflect.y - 2 * n.y * vecdot(&n, &tmp_reflect);
-			rt->reflect.z = tmp_reflect.y - 2 * n.z * vecdot(&n, &tmp_reflect);
-			rt->orig_reflect = rt->inter;
-			intersection(rt, reflection + 1);
-		// }
-		// if (reflection)
-		// {
-		// 	rt->color.r = rt->color.r * reflection + rt->tmp_color.r * (1 - reflection);
-		// 	rt->color.g = rt->color.g * reflection + rt->tmp_color.g * (1 - reflection);
-		// 	rt->color.b = rt->color.b * reflection + rt->tmp_color.b * (1 - reflection);
-		// 	rt->color.r = (rt->color.r > 0xff) ? (0xff) : (rt->color.r);
-		// 	rt->color.g = (rt->color.g > 0xff) ? (0xff) : (rt->color.g);
-		// 	rt->color.b = (rt->color.b > 0xff) ? (0xff) : (rt->color.b);
-		}
-	// }
+	if (reflection < MAXREFLECTION && rt->object[rt->i2].shiny)
+	{
+		rt->inter = calcul_ptinter(rt->orig_reflect, rt->reflect, rt->t);
+		if (rt->object[rt->i2].name != PLANE)
+			n = vecsub(&rt->object[rt->i2].center, &rt->inter);
+		else
+			n = rt->object[rt->i2].center;
+		n = normalize(&n);
+		tmp_reflect.x = rt->reflect.x;
+		tmp_reflect.y = rt->reflect.y;
+		tmp_reflect.z = rt->reflect.z;
+		rt->reflect.x = tmp_reflect.x - 2 * n.x * vecdot(&n, &tmp_reflect);
+		rt->reflect.y = tmp_reflect.y - 2 * n.y * vecdot(&n, &tmp_reflect);
+		rt->reflect.z = tmp_reflect.y - 2 * n.z * vecdot(&n, &tmp_reflect);
+		rt->orig_reflect = rt->inter;
+		intersection(rt, reflection + 1);
+	}
 }
 
 static void		scan(int pas, t_env *rt)
@@ -115,8 +96,9 @@ static void		scan(int pas, t_env *rt)
 			rt->final_color = 0;
 			rt->orig_reflect = rt->eye;
 			rt->reflect = ray;
+			rt->reflect = normalize(&rt->reflect);
 			intersection(rt, 0);
-			if (rt->i2 != -1 && rt->object[rt->i2].name != LIGHT)
+			if (rt->i2 != -1)
 			{
 				rt->inter = calcul_ptinter(rt->orig_reflect, rt->reflect, rt->t);
 				calcul_light(rt, rt->i2, rt->reflect);

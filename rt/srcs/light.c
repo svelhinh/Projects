@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/02 11:01:26 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/03 19:09:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 		+ pow(n.y, 2) + pow(n.z, 2)));
 		if (rt->angle > 0)
 		{
+			// if (object.name == SPHERE && n.y > object.radius / 2 + object.center.y / 2)
+			// 	return;
 			spec = specular_light(n, light_ray, object, ray);
 			color_light(rt, spec, object, light.color);
 		}

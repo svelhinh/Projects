@@ -25,7 +25,7 @@ color : 0.4 0.4 0.4
 object : sphere
 pos : 0 -15 -50
 radius : 5
-shiny : 0
+shiny : 1
 specular : 200
 specular_power : 100
 color : 1 0 0
