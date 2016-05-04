@@ -66,9 +66,7 @@ static char		*fill(int n, char *str)
 char			*ft_itoa(int n)
 {
 	char	*str;
-	int		i;
 
-	i = 0;
 	if (n < 0)
 		str = (char*)malloc(nb_of_nb(n) + 2);
 	else

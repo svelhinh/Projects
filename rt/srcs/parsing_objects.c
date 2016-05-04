@@ -6,11 +6,29 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/29 17:12:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:08:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static void	parsing_materials(t_material *materials, char *material)
+{
+	if (!ft_strcmp(material, "glass"))
+	{
+		materials->specular = 500;
+		materials->specular_power = 200;
+		materials->shiny = 1;
+		materials->reflection = 1;
+	}
+	else if (!ft_strcmp(material, "metal"))
+	{
+		materials->specular = 500;
+		materials->specular_power = 200;
+		materials->shiny = 0;
+		materials->reflection = 0;
+	}
+}
 
 static void	parsing_options(char **tab, t_env *rt, int i)
 {
@@ -35,12 +53,9 @@ static void	parsing_options(char **tab, t_env *rt, int i)
 		rt->object[i].angle.y = ft_atof(tab[3]);
 		rt->object[i].angle.z = ft_atof(tab[4]);
 	}
-	else if (!ft_strcmp(tab[0], "specular"))
-		rt->object[i].specular = ft_atof(tab[2]);
-	else if (!ft_strcmp(tab[0], "specular_power"))
-		rt->object[i].specular_power = ft_atof(tab[2]);
-	else if (!ft_strcmp(tab[0], "shiny"))
-		rt->object[i].shiny = ft_atoi(tab[2]);
+	else if (!ft_strcmp(tab[0], "material"))
+		parsing_materials(&rt->object[i].material, tab[2]);
+
 }
 
 void		parsing_objects(int fd, char *object, t_env *rt)

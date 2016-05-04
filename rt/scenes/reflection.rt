@@ -21,37 +21,29 @@ color : 0 0 0
 object : sphere
 pos : -50 0 0
 radius : 20
-shiny : 1
-specular : 200
-specular_power : 100
+material : glass
 color : 1 0 0
 
 object : sphere
 pos : -50 -50 0
 radius : 20
-shiny : 1
-specular : 200
-specular_power : 100
+material : metal
 color : 1 0 0
 
 object : sphere
 pos : 0 0 50
 radius : 20
-specular : 200
-shiny : 1
-specular_power : 100
+material : metal
 color : 0 1 0
 
 object : sphere
 pos : 50 0 0
 radius : 20
-shiny : 1
-specular : 200
-specular_power : 100
+material : metal
 color : 0 0 1
 
 object : plane
 pos : 0 -1 0
-shiny : 0
 radius : 25
+material : metal
 color : 1 1 1

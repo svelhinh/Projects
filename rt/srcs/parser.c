@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/29 11:25:04 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:16:28 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ static void	parsing(char **tab, t_env *rt, int fd)
 			(ft_exit("\033[31mParameter missing for resolution\n"));
 	else if (!ft_strcmp(tab[0], "object"))
 		objects(tab[2], rt, fd);
+	else if (!ft_strcmp(tab[0], "reflections"))
+	{
+		if (ft_atoi(tab[2]) >= 0 && ft_atoi(tab[2]) <= 15)
+			rt->max_reflect = ft_atoi(tab[2]);
+		else
+			ft_exit("\033[31mReflections must be between 0 and 15\n");
+	}
 	tab_free(tab);
 }
 

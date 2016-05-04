@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/03 18:24:13 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:10:33 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@
 # include <math.h>
 # include <stdio.h>
 # include <pthread.h>
-# define MAXREFLECTION 2
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-# define ESC 53
+# define UP 126 /*65362*/
+# define DOWN 125 /*65364*/
+# define LEFT 123 /*65361*/
+# define RIGHT 124 /*65363*/
+# define ESC 53  /*65307*/
 # define SPEED 30
 # define LIGHT 0
 # define SPHERE 1
@@ -52,6 +51,14 @@ typedef struct	s_light
 	t_color		color;
 }				t_light;
 
+typedef struct	s_material
+{
+	double		specular;
+	double		specular_power;
+	double		shiny;
+	double		reflection;
+}				t_material;
+
 typedef struct	s_figure
 {
 	int			name;
@@ -59,9 +66,7 @@ typedef struct	s_figure
 	t_vector	center;
 	t_color		color;
 	t_vector	angle;
-	double		specular;
-	double		specular_power;
-	int			shiny;
+	t_material	material;
 }				t_figure;
 
 typedef struct	s_env
@@ -100,8 +105,12 @@ typedef struct	s_env
 	t_vector	tmp_inter;
 	t_vector	tmp_center;
 	t_vector	tmp_rlight;
-	t_vector	reflect;
 	t_vector	orig_reflect;
+	t_color		color2;
+	t_vector	reflect;
+	int			reflection;
+	double		first_reflection;
+	double		max_reflect;
 	int			i2;
 }				t_env;
 

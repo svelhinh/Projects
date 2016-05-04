@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/03 19:09:56 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:50:55 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static double	specular_light(t_vector n, t_vector light, t_figure object,
 	r.y = light.y - 2 * n.y * vecdot(&n, &light);
 	r.z = light.z - 2 * n.z * vecdot(&n, &light);
 	r = normalize(&r);
-	spec = object.specular * pow(vecdot(&r, &ray), object.specular_power);
+	spec = object.material.specular * pow(vecdot(&r, &ray), object.material.specular_power);
 	return (spec);
 }
 
@@ -81,6 +81,18 @@ static void		color_light(t_env *rt, double spec, t_figure object,
 {
 	t_color		tmp_color;
 
+	// if ((int)fabs(rt->inter.x - rt->h) % 10 < 5 && (int)fabs(rt->inter.y - rt->w) % 10 < 5 && object.name == PLANE)
+	// {
+	// 	object.color.r = 0.5;
+	// 	object.color.g = 0.5;
+	// 	object.color.b = 0.5;
+	// }
+	// if ((int)fabs(rt->inter.x - rt->h) % 10 > 5 && (int)fabs(rt->inter.y - rt->w) % 10 > 5 && object.name == PLANE)
+	// {
+	// 	object.color.r = 0.5;
+	// 	object.color.g = 0.5;
+	// 	object.color.b = 0.5;
+	// }
 	tmp_color.r = rt->angle * object.color.r * 255;
 	tmp_color.g = rt->angle * object.color.g * 255;
 	tmp_color.b = rt->angle * object.color.b * 255;
@@ -103,11 +115,15 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 	{
 		n = vecsub(&rt->tmp_center, &rt->tmp_inter);
 		n.y = (object.name == CYLINDER || object.name == CONE) ? (0) : (n.y);
-		n = (object.name == PLANE) ? (rt->tmp_center) : (n);
+		if (object.name == PLANE)
+		{
+			n = rt->tmp_center;
+			// n.x += cos(rt->inter.x) * sqrt(pow(n.x, 2) + pow(n.y, 2) + pow(n.z, 2));
+		}
 		rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
 		+ pow(light_ray.y, 2) + pow(light_ray.z, 2)) * sqrt(pow(n.x, 2)
 		+ pow(n.y, 2) + pow(n.z, 2)));
-		if (rt->angle > 0)
+		if (rt->angle > 0.0001)
 		{
 			// if (object.name == SPHERE && n.y > object.radius / 2 + object.center.y / 2)
 			// 	return;

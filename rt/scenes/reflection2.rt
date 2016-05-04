@@ -17,20 +17,17 @@ color : 0 0 0
 object : sphere
 pos : 25 -10 0
 radius : 20
-shiny : 1
-specular : 500
-specular_power : 300
+material : glass
 color : 0.4 0.4 0.4
 
 object : sphere
 pos : 0 -15 -50
 radius : 5
-shiny : 1
-specular : 200
-specular_power : 100
+material : metal
 color : 1 0 0
 
 object : plane
 pos : 0 -1 0
+material : metal
 radius : 25
 color : 1 1 1

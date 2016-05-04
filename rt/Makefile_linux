@@ -12,14 +12,15 @@
 
 NAME = rt
 
-SRC2 = main.c events.c functions.c raytracer.c objects.c init_all.c init_camera_light.c \
-			init_objects.c parser.c parsing_camera_light.c parsing_objects.c vectors.c light.c
+SRC2 =	main.c events.c functions.c raytracer.c objects.c init_all.c init_camera_light.c \
+			init_objects.c parser.c parsing_camera_light.c parsing_objects.c vectors.c light.c \
+			rotations.c render.c
 
 SRC = $(addprefix srcs/, $(SRC2))
 
 INCLUDES = includes -I libft/includes/
 
-LIB = -L/usr/include/../lib -I/usr/include -lmlx -lXext -lX11 -lm
+LIB = -L/usr/include/../lib -I/usr/include -lmlx -lXext -lX11 -lm -lpthread
 
 LIBFT = libft/libft.a
 
