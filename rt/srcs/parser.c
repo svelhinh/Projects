@@ -72,6 +72,13 @@ static void	parsing(char **tab, t_env *rt, int fd)
 		else
 			ft_exit("\033[31mReflections must be between 0 and 15\n");
 	}
+	else if (!ft_strcmp(tab[0], "refractions"))
+	{
+		if (ft_atoi(tab[2]) >= 0 && ft_atoi(tab[2]) <= 15)
+			rt->max_refract = ft_atoi(tab[2]);
+		else
+			ft_exit("\033[31mRefractions must be between 0 and 15\n");
+	}
 	tab_free(tab);
 }
 

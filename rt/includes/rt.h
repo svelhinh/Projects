@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/04 18:10:33 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/06 16:57:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ typedef struct	s_material
 {
 	double		specular;
 	double		specular_power;
-	double		shiny;
+	int			shiny;
+	int			transparent;
 	double		reflection;
+	double		refraction;
+	double		i_refract;
 }				t_material;
 
 typedef struct	s_figure
@@ -105,17 +108,26 @@ typedef struct	s_env
 	t_vector	tmp_inter;
 	t_vector	tmp_center;
 	t_vector	tmp_rlight;
-	t_vector	orig_reflect;
+	t_vector	orig;
 	t_color		color2;
-	t_vector	reflect;
+	t_color		tmp;
+	t_color		tmp2;
+	t_vector	ray;
+	t_vector	refract;
 	int			reflection;
-	double		first_reflection;
-	double		max_reflect;
+	int			refraction;
+	double		prev_refl;
+	double		prev_refr;
+	int			max_reflect;
+	int			max_refract;
+	double		prev_refract;
 	int			i2;
 }				t_env;
 
 void			*raytracer(void *arg);
 t_vector		rotations(t_vector vec, double x, double y, double z);
+void			intersection(t_env *rt, t_vector ray, t_vector origin);
+void			calcul_light(t_env *rt, int i2, t_vector ray);
 /*
 **	-------------------	INITIALISATION	---------------------------
 */
@@ -170,6 +182,13 @@ double			vecdot(t_vector *v1, t_vector *v2);
 t_vector		normalize(t_vector *v1);
 t_vector		vecadd(t_vector *v1, t_vector *v2);
 t_vector		vecscale(t_vector *v, double factor);
+/*
+**	-------------------------------------------------------
+*/
+/*
+**	-------------------	EFFECTS	---------------------------
+*/
+void			reflec_refrac(t_env *rt, int rr, t_vector rayrefl, t_vector rayrefr);
 /*
 **	-------------------------------------------------------
 */

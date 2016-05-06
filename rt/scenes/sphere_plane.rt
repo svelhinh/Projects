@@ -1,5 +1,7 @@
 resolution : 1280 720
 
+reflections : 1
+
 background_color : 0
 
 object : camera
@@ -16,8 +18,9 @@ radius : 20
 material : glass
 color : 1 0 0
 
-object : plane
-pos : 0 -1 0
-radius : 25
-material : glass
-color : 1 1 1
+object : cylinder
+pos : 0 0 300
+radius : 20
+material : metal
+angle : 0 0 1.57
+color : 0 1 0

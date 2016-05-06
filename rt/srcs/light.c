@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/04 18:50:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/06 16:08:03 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 			(rt->object[i].name == CYLINDER && cylinder(ray_light,
 				rt->object[i], &t, inter)) ||
 			(rt->object[i].name == CONE && cone(ray_light, rt->object[i], &t,
+				inter)) ||
+			(rt->object[i].name == PLANE && plane(ray_light, rt->object[i], &t,
 				inter)))
 			return (1);
 		i++;

@@ -1,0 +1,27 @@
+resolution : 640 480
+
+background_color : 0
+
+object : camera
+pos : 0 0 -100
+
+object : light
+pos : 0 -100 -100
+
+object : sphere
+pos : 0 -50 0
+radius : 30
+material : metal
+color : 1 1 0
+
+object : plane
+pos : 0 -1 0
+radius : 10
+material : metal
+color : 1 1 0
+
+object : plane
+pos : 0 -1 0
+radius : -20
+material : metal
+color : 0 1 0
