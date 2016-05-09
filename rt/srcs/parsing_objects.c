@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/06 15:59:29 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/09 17:58:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ static void	parsing_materials(t_material *materials, char *material)
 {
 	if (!ft_strcmp(material, "mirror"))
 	{
-		materials->specular = 500;
-		materials->specular_power = 200;
+		materials->specular = 0;
+		materials->specular_power = 0;
 		materials->shiny = 1;
 		materials->transparent = 0;
-		materials->reflection = 0.2;
+		materials->reflection = 0.8;
 		materials->refraction = 0;
 		materials->i_refract = 0;
 	}
 	else if (!ft_strcmp(material, "glass"))
 	{
-		materials->specular = 500;
-		materials->specular_power = 200;
+		materials->specular = 0;
+		materials->specular_power = 0;
 		materials->shiny = 1;
-		materials->transparent = 1;
-		materials->reflection = 0;
-		materials->refraction = 0.8;
+		materials->transparent = 0;
+		materials->reflection = 1;
+		materials->refraction = 0;
 		materials->i_refract = 1.3;
 	}
 	else if (!ft_strcmp(material, "metal"))

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/06 16:57:27 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/09 15:49:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,19 +114,19 @@ typedef struct	s_env
 	t_color		tmp2;
 	t_vector	ray;
 	t_vector	refract;
-	int			reflection;
-	int			refraction;
-	double		prev_refl;
-	double		prev_refr;
+	t_color		color_reflect;
+	t_color		color_refract;
+	double		first_reflec;
+	double		first_refrac;
+	int			rfl;
+	int			rfr;
 	int			max_reflect;
 	int			max_refract;
-	double		prev_refract;
-	int			i2;
 }				t_env;
 
 void			*raytracer(void *arg);
 t_vector		rotations(t_vector vec, double x, double y, double z);
-void			intersection(t_env *rt, t_vector ray, t_vector origin);
+int				intersection(t_env *rt, t_vector ray, t_vector origin);
 void			calcul_light(t_env *rt, int i2, t_vector ray);
 /*
 **	-------------------	INITIALISATION	---------------------------
@@ -188,7 +188,9 @@ t_vector		vecscale(t_vector *v, double factor);
 /*
 **	-------------------	EFFECTS	---------------------------
 */
-void			reflec_refrac(t_env *rt, int rr, t_vector rayrefl, t_vector rayrefr);
+void			reflec_refrac(t_env *rt, t_vector ray, t_vector origin, int rr);
+// void			reflections(t_env *rt, t_vector ray, t_vector orig, int rfl, int rfr);
+// void			refractions(t_env *rt, t_vector ray, t_vector orig, int rfl, int rfr, double prev_refr);
 /*
 **	-------------------------------------------------------
 */

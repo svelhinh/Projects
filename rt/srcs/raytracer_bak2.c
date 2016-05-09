@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/09 18:28:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/09 14:52:36 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,6 @@ static void		scan(int pas, t_env *rt)
 				rt->cam_angle.z);
 			ray = normalize(&ray);
 			i2 = intersection(rt, ray, rt->eye);
-			rt->color2.r = 0;
-			rt->color2.g = 0;
-			rt->color2.b = 0;
 			if (i2 != -1)
 			{
 				rt->inter = calcul_ptinter(rt->eye, ray, rt->t);
@@ -94,10 +91,19 @@ static void		scan(int pas, t_env *rt)
 				rt->color_refract.g = 0;
 				rt->color_refract.b = 0;
 			}
-			if ((i2 != -1 && rt->object[i2].material.shiny) ||
-			(i2 != -1 && rt->object[i2].material.transparent))
+			if (i2 != -1 && rt->object[i2].material.shiny)
 			{
-				reflec_refrac(rt, ray, rt->eye, 0);
+				reflections(rt, ray, rt->eye, 0, 0);
+				i2 = intersection(rt, ray, rt->eye);
+			}
+			if (i2 != -1 && rt->object[i2].material.transparent)
+			{
+				refractions(rt, ray, rt->eye, 0, 0, 1);
+				i2 = intersection(rt, ray, rt->eye);
+			}
+			if ((i2 != -1 && rt->object[i2].material.transparent) ||
+			(i2 != -1 && rt->object[i2].material.shiny))
+			{
 				rt->color2.r = rt->color_reflect.r + rt->color_refract.r;
 				rt->color2.g = rt->color_reflect.g + rt->color_refract.g;
 				rt->color2.b = rt->color_reflect.b + rt->color_refract.b;

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/09 18:28:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/06 16:42:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@ void		calcul_light(t_env *rt, int i2, t_vector ray)
 	rt->color.b = (rt->color.b > 0xff) ? (0xff) : (rt->color.b);
 }
 
-int		intersection(t_env *rt, t_vector ray, t_vector origin)
+void	intersection(t_env *rt, t_vector ray, t_vector origin)
 {
 	int			i;
-	int			i2;
 
-	i2 = -1;
+	rt->i2 = -1;
 	i = 0;
 	rt->t = 200000;
 	while (i < rt->nbobj)
@@ -51,18 +50,15 @@ int		intersection(t_env *rt, t_vector ray, t_vector origin)
 				&rt->t, origin)) ||
 			(rt->object[i].name == CONE && cone(ray, rt->object[i], &rt->t,
 				origin)))
-			i2 = i;
+			rt->i2 = i;
 		i++;
 	}
-	return (i2);
 }
 
 static void		scan(int pas, t_env *rt)
 {
 	int			x;
 	int			y;
-	int			i2;
-	t_vector	ray;
 
 	y = rt->start_h;
 	while (y < rt->end_h)
@@ -70,38 +66,23 @@ static void		scan(int pas, t_env *rt)
 		x = 0;
 		while (x < rt->w)
 		{
-			ray.x = x - rt->w / 2 - rt->eye.x + rt->xx;
-			ray.y = y - rt->h / 2 - rt->eye.y;
-			ray.z = rt->w - rt->eye.z + rt->zz;
-			ray = rotations(ray, rt->cam_angle.x, rt->cam_angle.y,
+			rt->ray.x = x - rt->w / 2 - rt->eye.x + rt->xx;
+			rt->ray.y = y - rt->h / 2 - rt->eye.y;
+			rt->ray.z = rt->w - rt->eye.z + rt->zz;
+			rt->ray = rotations(rt->ray, rt->cam_angle.x, rt->cam_angle.y,
 				rt->cam_angle.z);
-			ray = normalize(&ray);
-			i2 = intersection(rt, ray, rt->eye);
 			rt->color2.r = 0;
 			rt->color2.g = 0;
 			rt->color2.b = 0;
-			if (i2 != -1)
-			{
-				rt->inter = calcul_ptinter(rt->eye, ray, rt->t);
-				calcul_light(rt, i2, ray);
-				rt->color2 = rt->color;
-				rt->first_reflec = rt->object[i2].material.reflection;
-				rt->first_refrac = rt->object[i2].material.refraction;
-				rt->color_reflect.r = 0;
-				rt->color_reflect.g = 0;
-				rt->color_reflect.b = 0;
-				rt->color_refract.r = 0;
-				rt->color_refract.g = 0;
-				rt->color_refract.b = 0;
-			}
-			if ((i2 != -1 && rt->object[i2].material.shiny) ||
-			(i2 != -1 && rt->object[i2].material.transparent))
-			{
-				reflec_refrac(rt, ray, rt->eye, 0);
-				rt->color2.r = rt->color_reflect.r + rt->color_refract.r;
-				rt->color2.g = rt->color_reflect.g + rt->color_refract.g;
-				rt->color2.b = rt->color_reflect.b + rt->color_refract.b;
-			}
+			rt->final_color = 0;
+			rt->prev_refl = 1;
+			rt->prev_refr = 1;
+			rt->orig = rt->eye;
+			rt->prev_refract = 1;
+			rt->ray = normalize(&rt->ray);
+			rt->reflection = 0;
+			rt->refraction = 0;
+			reflec_refrac(rt, 0, rt->ray, rt->ray);
 			rt->final_color = (int)rt->color2.r * 0x10000 + (int)rt->color2.g * 0x100
 				+ (int)rt->color2.b;
 			mlx_pixel_put_to_image(rt->final_color, rt, x, y);
