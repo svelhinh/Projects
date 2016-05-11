@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/06 16:08:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/11 16:57:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 	{
 		if ((rt->object[i].name == SPHERE && sphere(ray_light, rt->object[i],
 				&t, inter)) ||
+			(rt->object[i].name == PLANE && plane(ray_light,
+				rt->object[i], &t, inter)) ||
 			(rt->object[i].name == CYLINDER && cylinder(ray_light,
 				rt->object[i], &t, inter)) ||
 			(rt->object[i].name == CONE && cone(ray_light, rt->object[i], &t,
 				inter)) ||
-			(rt->object[i].name == PLANE && plane(ray_light, rt->object[i], &t,
+			(rt->object[i].name == HALF_SPHERE && half_sphere(ray_light, rt->object[i], &t,
+				inter)) ||
+			(rt->object[i].name == DISK && disk(ray_light, rt->object[i], &t,
 				inter)))
 			return (1);
 		i++;
@@ -56,7 +60,7 @@ static t_vector	light_rotate(t_env *rt, t_figure object, t_light light)
 {
 	t_vector	light_ray;
 
-	if (object.name == CYLINDER || object.name == CONE)
+	if (object.name != SPHERE && object.name != PLANE && object.name != DISK)
 	{
 		rt->tmp_l_center = rotations(light.center, object.angle.x,
 			object.angle.y, object.angle.z);
@@ -83,18 +87,6 @@ static void		color_light(t_env *rt, double spec, t_figure object,
 {
 	t_color		tmp_color;
 
-	// if ((int)fabs(rt->inter.x - rt->h) % 10 < 5 && (int)fabs(rt->inter.y - rt->w) % 10 < 5 && object.name == PLANE)
-	// {
-	// 	object.color.r = 0.5;
-	// 	object.color.g = 0.5;
-	// 	object.color.b = 0.5;
-	// }
-	// if ((int)fabs(rt->inter.x - rt->h) % 10 > 5 && (int)fabs(rt->inter.y - rt->w) % 10 > 5 && object.name == PLANE)
-	// {
-	// 	object.color.r = 0.5;
-	// 	object.color.g = 0.5;
-	// 	object.color.b = 0.5;
-	// }
 	tmp_color.r = rt->angle * object.color.r * 255;
 	tmp_color.g = rt->angle * object.color.g * 255;
 	tmp_color.b = rt->angle * object.color.b * 255;
@@ -117,18 +109,12 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 	{
 		n = vecsub(&rt->tmp_center, &rt->tmp_inter);
 		n.y = (object.name == CYLINDER || object.name == CONE) ? (0) : (n.y);
-		if (object.name == PLANE)
-		{
-			n = rt->tmp_center;
-			// n.x += cos(rt->inter.x) * sqrt(pow(n.x, 2) + pow(n.y, 2) + pow(n.z, 2));
-		}
+		n = (object.name == PLANE || object.name == DISK) ? (rt->tmp_center) : (n);
 		rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
 		+ pow(light_ray.y, 2) + pow(light_ray.z, 2)) * sqrt(pow(n.x, 2)
 		+ pow(n.y, 2) + pow(n.z, 2)));
-		if (rt->angle > 0.0001)
+		if (rt->angle > 0)
 		{
-			// if (object.name == SPHERE && n.y > object.radius / 2 + object.center.y / 2)
-			// 	return;
 			spec = specular_light(n, light_ray, object, ray);
 			color_light(rt, spec, object, light.color);
 		}

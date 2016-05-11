@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:54:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/04 18:10:51 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/04/27 16:00:20 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void		init_all(char *file, t_env *rt)
 	rt->keydown = 0;
 	rt->keyleft = 0;
 	rt->keyright = 0;
-	rt->max_reflect = 0;
-	rt->max_refract = 0;
 	count_objects(rt, file);
 	init_camera(rt);
 	count_light(rt, file);

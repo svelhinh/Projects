@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/09 17:58:40 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/11 15:07:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,19 @@
 
 static void	parsing_materials(t_material *materials, char *material)
 {
-	if (!ft_strcmp(material, "mirror"))
+	if (!ft_strcmp(material, "glass"))
 	{
-		materials->specular = 0;
-		materials->specular_power = 0;
+		materials->specular = 500;
+		materials->specular_power = 200;
 		materials->shiny = 1;
-		materials->transparent = 0;
-		materials->reflection = 0.8;
-		materials->refraction = 0;
-		materials->i_refract = 0;
-	}
-	else if (!ft_strcmp(material, "glass"))
-	{
-		materials->specular = 0;
-		materials->specular_power = 0;
-		materials->shiny = 1;
-		materials->transparent = 0;
-		materials->reflection = 1;
-		materials->refraction = 0;
-		materials->i_refract = 1.3;
+		materials->reflection = 0.5;
 	}
 	else if (!ft_strcmp(material, "metal"))
 	{
-		materials->specular = 0;
-		materials->specular_power = 0;
+		materials->specular = 500;
+		materials->specular_power = 200;
 		materials->shiny = 0;
-		materials->transparent = 0;
 		materials->reflection = 0;
-		materials->refraction = 0;
-		materials->i_refract = 0;
 	}
 }
 
@@ -71,12 +55,14 @@ static void	parsing_options(char **tab, t_env *rt, int i)
 	}
 	else if (!ft_strcmp(tab[0], "material"))
 		parsing_materials(&rt->object[i].material, tab[2]);
-
+	else if (!ft_strcmp(tab[0], "separation"))
+		rt->object[i].separation = ft_atof(tab[2]);
+	else if (!ft_strcmp(tab[0], "size"))
+		rt->object[i].size = ft_atof(tab[2]);
 }
 
 void		parsing_objects(int fd, char *object, t_env *rt)
 {
-	static int	i;
 	char		*line;
 	char		**tab;
 
@@ -86,19 +72,23 @@ void		parsing_objects(int fd, char *object, t_env *rt)
 		if (!tab[2])
 			ft_exit("\033[31mMissing parameter for an object\n");
 		if (!ft_strcmp(object, "sphere"))
-			rt->object[i].name = SPHERE;
+			rt->object[rt->i_obj].name = SPHERE;
 		else if (!ft_strcmp(object, "plane"))
-			rt->object[i].name = PLANE;
+			rt->object[rt->i_obj].name = PLANE;
 		else if (!ft_strcmp(object, "cylinder"))
-			rt->object[i].name = CYLINDER;
+			rt->object[rt->i_obj].name = CYLINDER;
 		else if (!ft_strcmp(object, "cone"))
-			rt->object[i].name = CONE;
+			rt->object[rt->i_obj].name = CONE;
+		else if (!ft_strcmp(object, "disk"))
+			rt->object[rt->i_obj].name = DISK;
+		else if (!ft_strcmp(object, "half_sphere"))
+			rt->object[rt->i_obj].name = HALF_SPHERE;
 		else if (!ft_strcmp(object, "light"))
-			rt->object[i].name = LIGHT;
-		parsing_options(tab, rt, i);
+			rt->object[rt->i_obj].name = LIGHT;
+		parsing_options(tab, rt, rt->i_obj);
 		tab_free(tab);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
-	i++;
+	rt->i_obj++;
 }

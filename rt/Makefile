@@ -6,7 +6,7 @@
 #    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/07 18:24:41 by lnieto-m          #+#    #+#              #
-#    Updated: 2016/05/06 11:19:08 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/05/11 15:11:04 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_PATH = srcs
 
 OBJ_PATH = obj
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g
 
 CPFLAGS = -I./usr/local/include -I./libft/includes -I ./includes
 
@@ -26,7 +26,7 @@ NAME = rt
 
 SRC_NAME =	main.c events.c functions.c raytracer.c objects.c init_all.c init_camera_light.c \
 			init_objects.c parser.c parsing_camera_light.c parsing_objects.c vectors.c light.c \
-			rotations.c render.c reflec_refrac.c
+			rotations.c render.c limited_objects.c create_window.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

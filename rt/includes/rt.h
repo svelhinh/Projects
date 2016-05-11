@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/09 15:49:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/11 15:03:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <pthread.h>
+# define MAXREFLECTION 15
 # define UP 126 /*65362*/
 # define DOWN 125 /*65364*/
 # define LEFT 123 /*65361*/
@@ -30,6 +31,8 @@
 # define PLANE 2
 # define CYLINDER 3
 # define CONE 4
+# define HALF_SPHERE 5
+# define DISK 6
 
 typedef struct	s_vector
 {
@@ -55,17 +58,16 @@ typedef struct	s_material
 {
 	double		specular;
 	double		specular_power;
-	int			shiny;
-	int			transparent;
+	double		shiny;
 	double		reflection;
-	double		refraction;
-	double		i_refract;
 }				t_material;
 
 typedef struct	s_figure
 {
 	int			name;
 	double		radius;
+	double		separation;
+	double		size;
 	t_vector	center;
 	t_color		color;
 	t_vector	angle;
@@ -108,26 +110,18 @@ typedef struct	s_env
 	t_vector	tmp_inter;
 	t_vector	tmp_center;
 	t_vector	tmp_rlight;
-	t_vector	orig;
+	t_vector	orig_reflect;
 	t_color		color2;
-	t_color		tmp;
-	t_color		tmp2;
-	t_vector	ray;
-	t_vector	refract;
-	t_color		color_reflect;
-	t_color		color_refract;
-	double		first_reflec;
-	double		first_refrac;
-	int			rfl;
-	int			rfr;
-	int			max_reflect;
-	int			max_refract;
+	t_vector	reflect;
+	int			reflection;
+	double		first_reflection;
+	int			i2;
+	int			i_obj;
+	int			i_light;
 }				t_env;
 
 void			*raytracer(void *arg);
 t_vector		rotations(t_vector vec, double x, double y, double z);
-int				intersection(t_env *rt, t_vector ray, t_vector origin);
-void			calcul_light(t_env *rt, int i2, t_vector ray);
 /*
 **	-------------------	INITIALISATION	---------------------------
 */
@@ -164,6 +158,8 @@ int				sphere(t_vector r, t_figure s, double *t, t_vector eye);
 int				plane(t_vector r, t_figure p, double *t, t_vector eye);
 int				cylinder(t_vector r, t_figure cy, double *t, t_vector eye);
 int				cone(t_vector r, t_figure co, double *t, t_vector eye);
+int				half_sphere(t_vector r, t_figure s, double *t, t_vector eye);
+int				disk(t_vector r, t_figure d, double *t, t_vector eye);
 /*
 **	-------------------------------------------------------
 */
@@ -186,15 +182,6 @@ t_vector		vecscale(t_vector *v, double factor);
 **	-------------------------------------------------------
 */
 /*
-**	-------------------	EFFECTS	---------------------------
-*/
-void			reflec_refrac(t_env *rt, t_vector ray, t_vector origin, int rr);
-// void			reflections(t_env *rt, t_vector ray, t_vector orig, int rfl, int rfr);
-// void			refractions(t_env *rt, t_vector ray, t_vector orig, int rfl, int rfr, double prev_refr);
-/*
-**	-------------------------------------------------------
-*/
-/*
 **	------------	OTHER	-----------------------
 */
 void			ft_exit(char *s);
@@ -204,6 +191,7 @@ void			check_color(double r, double g, double b);
 t_vector		calcul_ptinter(t_vector eye, t_vector r, double t);
 void			render(t_env *rt);
 void			tab_free(char **tab);
+void			create_window(char *s);
 /*
 **	-------------------------------------------------------
 */

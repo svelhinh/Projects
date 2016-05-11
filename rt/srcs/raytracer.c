@@ -6,13 +6,13 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/09 18:28:06 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/11 15:06:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		calcul_light(t_env *rt, int i2, t_vector ray)
+static void		calcul_light(t_env *rt, int i2, t_vector ray)
 {
 	int			i;
 
@@ -33,35 +33,68 @@ void		calcul_light(t_env *rt, int i2, t_vector ray)
 	rt->color.b = (rt->color.b > 0xff) ? (0xff) : (rt->color.b);
 }
 
-int		intersection(t_env *rt, t_vector ray, t_vector origin)
+static	void	intersection(t_env *rt)
 {
 	int			i;
-	int			i2;
+	t_vector 	tmp_reflect;
+	t_vector	n;
 
-	i2 = -1;
+	rt->i2 = -1;
 	i = 0;
 	rt->t = 200000;
 	while (i < rt->nbobj)
 	{
-		if ((rt->object[i].name == SPHERE && sphere(ray, rt->object[i], &rt->t,
-				origin)) ||
-			(rt->object[i].name == PLANE && plane(ray, rt->object[i], &rt->t,
-				origin)) ||
-			(rt->object[i].name == CYLINDER && cylinder(ray, rt->object[i],
-				&rt->t, origin)) ||
-			(rt->object[i].name == CONE && cone(ray, rt->object[i], &rt->t,
-				origin)))
-			i2 = i;
+		if ((rt->object[i].name == SPHERE && sphere(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect)) ||
+			(rt->object[i].name == PLANE && plane(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect)) ||
+			(rt->object[i].name == CYLINDER && cylinder(rt->reflect, rt->object[i],
+				&rt->t, rt->orig_reflect)) ||
+			(rt->object[i].name == CONE && cone(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect)) ||
+			(rt->object[i].name == HALF_SPHERE && half_sphere(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect)) ||
+			(rt->object[i].name == DISK && disk(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect)))
+			rt->i2 = i;
 		i++;
 	}
-	return (i2);
+	rt->inter = calcul_ptinter(rt->orig_reflect, rt->reflect, rt->t);
+	calcul_light(rt, rt->i2, rt->reflect);
+	if (rt->reflection < MAXREFLECTION && rt->object[rt->i2].material.shiny && rt->i2 != -1)
+	{
+		if (!rt->reflection)
+		{
+			rt->color2 = rt->color;
+			rt->first_reflection = rt->object[rt->i2].material.reflection;
+		}
+		if (rt->object[rt->i2].name != PLANE)
+			n = vecsub(&rt->object[rt->i2].center, &rt->inter);
+		else
+			n = rt->object[rt->i2].center;
+		n = normalize(&n);
+		tmp_reflect.x = rt->reflect.x;
+		tmp_reflect.y = rt->reflect.y;
+		tmp_reflect.z = rt->reflect.z;
+		rt->reflect.x = -2 * n.x * vecdot(&n, &tmp_reflect) + tmp_reflect.x;
+		rt->reflect.y = -2 * n.y * vecdot(&n, &tmp_reflect) + tmp_reflect.y;
+		rt->reflect.z = -2 * n.z * vecdot(&n, &tmp_reflect) + tmp_reflect.z;
+		rt->orig_reflect = rt->inter;
+	}
+	rt->color2.r = rt->color.r * rt->first_reflection + rt->color2.r * (1 - rt->first_reflection);
+	rt->color2.g = rt->color.g * rt->first_reflection + rt->color2.g * (1 - rt->first_reflection);
+	rt->color2.b = rt->color.b * rt->first_reflection + rt->color2.b * (1 - rt->first_reflection);
+	if (rt->reflection < MAXREFLECTION && rt->object[rt->i2].material.shiny && rt->i2 != -1)
+	{
+		rt->reflection++;
+		intersection(rt);
+	}
 }
 
 static void		scan(int pas, t_env *rt)
 {
 	int			x;
 	int			y;
-	int			i2;
 	t_vector	ray;
 
 	y = rt->start_h;
@@ -75,33 +108,16 @@ static void		scan(int pas, t_env *rt)
 			ray.z = rt->w - rt->eye.z + rt->zz;
 			ray = rotations(ray, rt->cam_angle.x, rt->cam_angle.y,
 				rt->cam_angle.z);
-			ray = normalize(&ray);
-			i2 = intersection(rt, ray, rt->eye);
 			rt->color2.r = 0;
 			rt->color2.g = 0;
 			rt->color2.b = 0;
-			if (i2 != -1)
-			{
-				rt->inter = calcul_ptinter(rt->eye, ray, rt->t);
-				calcul_light(rt, i2, ray);
-				rt->color2 = rt->color;
-				rt->first_reflec = rt->object[i2].material.reflection;
-				rt->first_refrac = rt->object[i2].material.refraction;
-				rt->color_reflect.r = 0;
-				rt->color_reflect.g = 0;
-				rt->color_reflect.b = 0;
-				rt->color_refract.r = 0;
-				rt->color_refract.g = 0;
-				rt->color_refract.b = 0;
-			}
-			if ((i2 != -1 && rt->object[i2].material.shiny) ||
-			(i2 != -1 && rt->object[i2].material.transparent))
-			{
-				reflec_refrac(rt, ray, rt->eye, 0);
-				rt->color2.r = rt->color_reflect.r + rt->color_refract.r;
-				rt->color2.g = rt->color_reflect.g + rt->color_refract.g;
-				rt->color2.b = rt->color_reflect.b + rt->color_refract.b;
-			}
+			rt->final_color = 0;
+			rt->first_reflection = 1;
+			rt->orig_reflect = rt->eye;
+			rt->reflect = ray;
+			rt->reflect = normalize(&rt->reflect);
+			rt->reflection = 0;
+			intersection(rt);
 			rt->final_color = (int)rt->color2.r * 0x10000 + (int)rt->color2.g * 0x100
 				+ (int)rt->color2.b;
 			mlx_pixel_put_to_image(rt->final_color, rt, x, y);

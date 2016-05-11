@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:12:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/04 17:55:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/11 15:05:08 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int			sphere(t_vector r, t_figure s, double *t, t_vector eye)
 		(eye.z - s.center.z));
 	c = (pow(eye.x - s.center.x, 2) + pow(eye.y - s.center.y, 2) +
 		pow(eye.z - s.center.z, 2)) - pow(s.radius, 2);
-	// if (r.y > s.radius / 2 + s.center.y / 2)
-	// 	return (0);
 	return (distance(a, b, c, t));
 }
 

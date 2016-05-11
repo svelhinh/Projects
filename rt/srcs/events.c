@@ -6,7 +6,7 @@
 /*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:30:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/28 14:15:06 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/05/11 14:43:05 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int		key_press(int keycode, t_env *rt)
 		rt->keyright = 1;
 	if (keycode == DOWN)
 		rt->keydown = 1;
+	if (keycode == 36)
+		create_window("scenes/scene3.rt");
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(rt->mlx, rt->win);

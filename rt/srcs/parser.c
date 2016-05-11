@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/04 18:16:28 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/11 15:05:32 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	objects(char *object, t_env *rt, int fd)
 		parsing_light(fd, rt);
 	else if (!ft_strcmp(object, "sphere") ||
 		!ft_strcmp(object, "plane") || !ft_strcmp(object, "cylinder") ||
-		!ft_strcmp(object, "cone"))
+		!ft_strcmp(object, "cone") || !ft_strcmp(object, "half_sphere") ||
+		!ft_strcmp(object, "disk"))
 		parsing_objects(fd, object, rt);
 	else
 		ft_exit("\033[31mA defined object was not found\n");
@@ -65,20 +66,6 @@ static void	parsing(char **tab, t_env *rt, int fd)
 			(ft_exit("\033[31mParameter missing for resolution\n"));
 	else if (!ft_strcmp(tab[0], "object"))
 		objects(tab[2], rt, fd);
-	else if (!ft_strcmp(tab[0], "reflections"))
-	{
-		if (ft_atoi(tab[2]) >= 0 && ft_atoi(tab[2]) <= 15)
-			rt->max_reflect = ft_atoi(tab[2]);
-		else
-			ft_exit("\033[31mReflections must be between 0 and 15\n");
-	}
-	else if (!ft_strcmp(tab[0], "refractions"))
-	{
-		if (ft_atoi(tab[2]) >= 0 && ft_atoi(tab[2]) <= 15)
-			rt->max_refract = ft_atoi(tab[2]);
-		else
-			ft_exit("\033[31mRefractions must be between 0 and 15\n");
-	}
 	tab_free(tab);
 }
 
@@ -88,6 +75,8 @@ void		global_parser(char *file, t_env *rt)
 	char	*line;
 	char	**tab;
 
+	rt->i_obj = 0;
+	rt->i_light = 0;
 	init_all(file, rt);
 	if ((fd = open(file, O_RDONLY)) == -1)
 		ft_exit("\033[31mThis scene doesn't exist\n");
