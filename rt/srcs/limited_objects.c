@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:18:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 17:06:51 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:33:51 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,33 @@ static double	distance(double a, double b, double c)
 	return (tmp);
 }
 
-int				disk(t_vector r, t_figure d, double *t, t_vector eye)
+int			disk(t_vector r, t_figure d, double *t, t_vector eye)
 {
 	double		tmp;
-    t_vector	inter;
+	t_vector	inter;
 
-	tmp = -(-d.center.x * eye.x + d.center.y * eye.y + d.center.z *
-		eye.z + d.radius) / (-d.center.x * r.x + d.center.y * r.y +
-			d.center.z * r.z);
+	if (d.name != L_SPHERE)
+	{
+		eye = rotations(eye, d.angle.x, d.angle.y, d.angle.z);
+		r = rotations(r, d.angle.x, d.angle.y, d.angle.z);
+		d.center = rotations(d.center, d.angle.x, d.angle.y, d.angle.z);
+	}
+	tmp = -(0 * eye.x + -1 * eye.y + d.center.z * 0 + d.center.y) /
+			(0 * r.x + -1 * r.y + 0 * r.z);
 	if (tmp < *t && tmp > 0.00001)
 	{
-		inter = calcul_ptinter(eye, r, tmp);
-		if (inter.x * inter.x + inter.z * inter.z < d.size * d.size)
-		{
-			*t = tmp;
-			return (1);
-		}
+	   inter = calcul_ptinter(eye, r, tmp);
+	   if ((inter.x - d.center.x) * (inter.x - d.center.x) +
+	   (inter.z - d.center.z) * (inter.z - d.center.z) < pow(d.radius, 2))
+	   {
+		   *t = tmp;
+		   return (1);
+	   }
 	}
 	return (0);
 }
 
-int				half_sphere(t_vector r, t_figure s, double *t, t_vector eye)
+int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye)
 {
 	double		a;
 	double		b;
@@ -68,21 +74,17 @@ int				half_sphere(t_vector r, t_figure s, double *t, t_vector eye)
 	tmp = distance(a, b, c);
 	inter = calcul_ptinter(eye, r, tmp);
 	tmp_1 = s;
-	tmp_1.size = sqrt(s.radius * s.radius - s.separation * s.separation);
-	tmp_1.radius = s.center.y + s.separation;
-	tmp_1.center.x = 0;
-	tmp_1.center.y = -1;
-	tmp_1.center.z = 0;
+	tmp_1.radius = sqrt(s.radius * s.radius - s.separation * s.separation);
+	tmp_1.center.y += s.separation;
 	if (tmp < *t && tmp > 0.00001)
 	{
 		if (inter.y <= s.center.y + s.separation)
 		{
-			// return (0);
 			*t = tmp;
 			return (1);
 		}
 		if (disk(r, tmp_1, t, eye))
-			return (1);
+			return (2);
 	}
 	return (0);
 }

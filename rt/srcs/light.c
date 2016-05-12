@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 16:57:14 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:57:12 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 				rt->object[i], &t, inter)) ||
 			(rt->object[i].name == CONE && cone(ray_light, rt->object[i], &t,
 				inter)) ||
-			(rt->object[i].name == HALF_SPHERE && half_sphere(ray_light, rt->object[i], &t,
+			(rt->object[i].name == L_SPHERE && limited_sphere(ray_light, rt->object[i], &t,
 				inter)) ||
 			(rt->object[i].name == DISK && disk(ray_light, rt->object[i], &t,
 				inter)))
@@ -109,7 +109,20 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 	{
 		n = vecsub(&rt->tmp_center, &rt->tmp_inter);
 		n.y = (object.name == CYLINDER || object.name == CONE) ? (0) : (n.y);
-		n = (object.name == PLANE || object.name == DISK) ? (rt->tmp_center) : (n);
+		n = (object.name == PLANE) ? (rt->tmp_center) : (n);
+		if (object.name == DISK)
+		{
+			n.x = 0;
+			n.y = -1;
+			n.z = 0;
+			// n = rotations(n, object.angle.x, object.angle.y, object.angle.z);
+		}
+		if (rt->disk == 2)
+		{
+			n.x = 0;
+			n.y = 1;
+			n.z = 0;
+		}
 		rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
 		+ pow(light_ray.y, 2) + pow(light_ray.z, 2)) * sqrt(pow(n.x, 2)
 		+ pow(n.y, 2) + pow(n.z, 2)));

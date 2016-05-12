@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 15:06:52 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:59:13 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static	void	intersection(t_env *rt)
 	rt->i2 = -1;
 	i = 0;
 	rt->t = 200000;
+	rt->disk = 0;
 	while (i < rt->nbobj)
 	{
 		if ((rt->object[i].name == SPHERE && sphere(rt->reflect, rt->object[i], &rt->t,
@@ -52,14 +53,16 @@ static	void	intersection(t_env *rt)
 				&rt->t, rt->orig_reflect)) ||
 			(rt->object[i].name == CONE && cone(rt->reflect, rt->object[i], &rt->t,
 				rt->orig_reflect)) ||
-			(rt->object[i].name == HALF_SPHERE && half_sphere(rt->reflect, rt->object[i], &rt->t,
-				rt->orig_reflect)) ||
+			(rt->object[i].name == L_SPHERE && (rt->disk = limited_sphere(rt->reflect, rt->object[i], &rt->t,
+				rt->orig_reflect))) ||
 			(rt->object[i].name == DISK && disk(rt->reflect, rt->object[i], &rt->t,
 				rt->orig_reflect)))
 			rt->i2 = i;
 		i++;
 	}
 	rt->inter = calcul_ptinter(rt->orig_reflect, rt->reflect, rt->t);
+	if (rt->object[rt->i2].name == DISK)
+		rt->inter = vecsub(&rt->object[rt->i2].center, &rt->inter);
 	calcul_light(rt, rt->i2, rt->reflect);
 	if (rt->reflection < MAXREFLECTION && rt->object[rt->i2].material.shiny && rt->i2 != -1)
 	{

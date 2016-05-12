@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 15:03:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:24:20 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define PLANE 2
 # define CYLINDER 3
 # define CONE 4
-# define HALF_SPHERE 5
+# define L_SPHERE 5
 # define DISK 6
 
 typedef struct	s_vector
@@ -67,7 +67,6 @@ typedef struct	s_figure
 	int			name;
 	double		radius;
 	double		separation;
-	double		size;
 	t_vector	center;
 	t_color		color;
 	t_vector	angle;
@@ -118,6 +117,7 @@ typedef struct	s_env
 	int			i2;
 	int			i_obj;
 	int			i_light;
+	int			disk;
 }				t_env;
 
 void			*raytracer(void *arg);
@@ -158,7 +158,7 @@ int				sphere(t_vector r, t_figure s, double *t, t_vector eye);
 int				plane(t_vector r, t_figure p, double *t, t_vector eye);
 int				cylinder(t_vector r, t_figure cy, double *t, t_vector eye);
 int				cone(t_vector r, t_figure co, double *t, t_vector eye);
-int				half_sphere(t_vector r, t_figure s, double *t, t_vector eye);
+int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye);
 int				disk(t_vector r, t_figure d, double *t, t_vector eye);
 /*
 **	-------------------------------------------------------

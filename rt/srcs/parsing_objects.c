@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 15:07:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/12 18:25:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ static void	parsing_options(char **tab, t_env *rt, int i)
 		parsing_materials(&rt->object[i].material, tab[2]);
 	else if (!ft_strcmp(tab[0], "separation"))
 		rt->object[i].separation = ft_atof(tab[2]);
-	else if (!ft_strcmp(tab[0], "size"))
-		rt->object[i].size = ft_atof(tab[2]);
 }
 
 void		parsing_objects(int fd, char *object, t_env *rt)
@@ -82,7 +80,7 @@ void		parsing_objects(int fd, char *object, t_env *rt)
 		else if (!ft_strcmp(object, "disk"))
 			rt->object[rt->i_obj].name = DISK;
 		else if (!ft_strcmp(object, "half_sphere"))
-			rt->object[rt->i_obj].name = HALF_SPHERE;
+			rt->object[rt->i_obj].name = L_SPHERE;
 		else if (!ft_strcmp(object, "light"))
 			rt->object[rt->i_obj].name = LIGHT;
 		parsing_options(tab, rt, rt->i_obj);
