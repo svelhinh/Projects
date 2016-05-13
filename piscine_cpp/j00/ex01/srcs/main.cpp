@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/13 18:26:29 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/13 19:26:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/13 19:30:09 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(void)
     {
         std::cout << "Choose a command (ADD, SEARCH, EXIT) : ";
     	std::cin >> command;
-        if (command.compare("ADD"))
+        if (!command.compare("ADD"))
         {
             contacts.setFirst_name("yo");
             std::cout << contacts.getFirst_name() << std::endl;
