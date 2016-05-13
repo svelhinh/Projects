@@ -1,22 +1,50 @@
-resolution : 1280 720
+resolution : 640 480
 
 background_color : 0
 
 object : camera
-pos : 0 0 -250
+pos : 0 0 -200
 angle : 0 0 0
 
-object : light
-pos : 30 -100 0
+/object : light
+pos : 0 0 -90
 color : 0 0 0
 
-object : half_sphere
-pos : 0 0 0
+object : light
+pos : 0 10 -300
+color : 0 0 0
+
+/object : limited_cylinder
+pos : 40 -10 -10
 radius : 20
-separation : 0
-angle : 0.5 0 3.14
+separation : 20
+angle : 0.5 0 0
 material : metal
 color : 1 0 0
+
+/object : limited_cylinder
+pos : -40 -10 -10
+radius : 20
+separation : 20
+angle : 0.5 0 0
+material : metal
+color : 1 0 0
+
+object : limited_cylinder
+pos : 45 -10 -10
+radius : 10
+separation : 20
+angle : 0.75 0.2 1
+material : metal
+color : 1 0 0
+
+object : limited_sphere
+pos : 50 0 -10
+radius : 20
+separation : 15
+angle : 1 0.2 0.75
+material : metal
+color : 1 1 0
 
 ;object : sphere
 pos : 0 0 0
@@ -24,21 +52,14 @@ radius : 5
 material : metal
 color : 0 1 0
 
-object : disk
-pos : -40 10 0
-radius : 50
-angle : 0.5 0 1.57
-material : metal
-color : 1 1 0
-
 object : plane
 pos : 0 -1 0
 radius : 25
-material : glass
+material : metal
 color : 1 1 1
 
 object : plane
 pos : 0 0 -1
 radius : 100
-material : metal
+material : glass
 color : 1 1 1

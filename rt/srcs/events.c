@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:30:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 14:43:05 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/05/13 14:48:44 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		key_press(int keycode, t_env *rt)
 	if (keycode == DOWN)
 		rt->keydown = 1;
 	if (keycode == 36)
-		create_window("scenes/scene3.rt");
+		create_window("scenes/sphere_plane.rt");
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(rt->mlx, rt->win);

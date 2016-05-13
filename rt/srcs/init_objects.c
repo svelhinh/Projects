@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/12 18:24:33 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/13 14:22:45 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,13 @@ void		count_objects(t_env *rt, char *file)
 					!ft_strcmp(line, "object : plane") ||
 					!ft_strcmp(line, "object : cylinder") ||
 					!ft_strcmp(line, "object : cone") ||
-					!ft_strcmp(line, "object : half_sphere") ||
-					!ft_strcmp(line, "object : disk")) ? (1) : (0);
+					!ft_strcmp(line, "object : limited_sphere") ||
+					!ft_strcmp(line, "object : limited_cylinder")) ? (1) : (0);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
 	(close(fd) == -1) ? (ft_exit("\033[31mThis scene failed to close")) : (0);
 	if (!(rt->object = (t_figure *)malloc(sizeof(t_figure) * rt->nbobj)))
 		ft_exit("malloc of rt->object failed in count_objects");
-	// ft_putendl("1");
 	init_objects(rt);
-	// ft_putendl("2");
 }

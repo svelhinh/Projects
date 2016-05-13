@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/12 18:24:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/13 18:00:41 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define CYLINDER 3
 # define CONE 4
 # define L_SPHERE 5
-# define DISK 6
+# define L_CYLINDER 6
 
 typedef struct	s_vector
 {
@@ -158,8 +158,8 @@ int				sphere(t_vector r, t_figure s, double *t, t_vector eye);
 int				plane(t_vector r, t_figure p, double *t, t_vector eye);
 int				cylinder(t_vector r, t_figure cy, double *t, t_vector eye);
 int				cone(t_vector r, t_figure co, double *t, t_vector eye);
-int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye);
-int				disk(t_vector r, t_figure d, double *t, t_vector eye);
+int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk, int i);
+int				limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *disk, int i);
 /*
 **	-------------------------------------------------------
 */

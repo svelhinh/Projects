@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 15:05:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/13 11:43:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	objects(char *object, t_env *rt, int fd)
 		parsing_light(fd, rt);
 	else if (!ft_strcmp(object, "sphere") ||
 		!ft_strcmp(object, "plane") || !ft_strcmp(object, "cylinder") ||
-		!ft_strcmp(object, "cone") || !ft_strcmp(object, "half_sphere") ||
-		!ft_strcmp(object, "disk"))
+		!ft_strcmp(object, "cone") || !ft_strcmp(object, "limited_sphere") ||
+		!ft_strcmp(object, "limited_cylinder"))
 		parsing_objects(fd, object, rt);
 	else
 		ft_exit("\033[31mA defined object was not found\n");

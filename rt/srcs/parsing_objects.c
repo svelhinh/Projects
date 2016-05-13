@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/12 18:25:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/13 11:41:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	parsing_materials(t_material *materials, char *material)
 {
 	if (!ft_strcmp(material, "glass"))
 	{
-		materials->specular = 500;
-		materials->specular_power = 200;
+		materials->specular = 0;
+		materials->specular_power = 0;
 		materials->shiny = 1;
 		materials->reflection = 0.5;
 	}
@@ -77,10 +77,10 @@ void		parsing_objects(int fd, char *object, t_env *rt)
 			rt->object[rt->i_obj].name = CYLINDER;
 		else if (!ft_strcmp(object, "cone"))
 			rt->object[rt->i_obj].name = CONE;
-		else if (!ft_strcmp(object, "disk"))
-			rt->object[rt->i_obj].name = DISK;
-		else if (!ft_strcmp(object, "half_sphere"))
+		else if (!ft_strcmp(object, "limited_sphere"))
 			rt->object[rt->i_obj].name = L_SPHERE;
+		else if (!ft_strcmp(object, "limited_cylinder"))
+			rt->object[rt->i_obj].name = L_CYLINDER;
 		else if (!ft_strcmp(object, "light"))
 			rt->object[rt->i_obj].name = LIGHT;
 		parsing_options(tab, rt, rt->i_obj);

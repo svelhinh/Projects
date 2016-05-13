@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:18:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/12 18:33:51 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/13 18:19:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,13 @@ static double	distance(double a, double b, double c)
 	return (tmp);
 }
 
-int			disk(t_vector r, t_figure d, double *t, t_vector eye)
+static int		disk_calcul(t_vector r, t_figure d, double *t, t_vector eye)
 {
 	double		tmp;
 	t_vector	inter;
 
-	if (d.name != L_SPHERE)
-	{
-		eye = rotations(eye, d.angle.x, d.angle.y, d.angle.z);
-		r = rotations(r, d.angle.x, d.angle.y, d.angle.z);
-		d.center = rotations(d.center, d.angle.x, d.angle.y, d.angle.z);
-	}
-	tmp = -(0 * eye.x + -1 * eye.y + d.center.z * 0 + d.center.y) /
-			(0 * r.x + -1 * r.y + 0 * r.z);
+	tmp = -(0 * eye.x - 1 * eye.y + d.center.z * 0 + d.center.y) /
+			(0 * r.x - 1 * r.y + 0 * r.z);
 	if (tmp < *t && tmp > 0.00001)
 	{
 	   inter = calcul_ptinter(eye, r, tmp);
@@ -54,7 +48,7 @@ int			disk(t_vector r, t_figure d, double *t, t_vector eye)
 	return (0);
 }
 
-int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye)
+int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk, int i)
 {
 	double		a;
 	double		b;
@@ -83,8 +77,59 @@ int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye)
 			*t = tmp;
 			return (1);
 		}
-		if (disk(r, tmp_1, t, eye))
+		if (disk_calcul(r, tmp_1, t, eye))
+		{
+			*disk = 2;
 			return (2);
+		}
+		// if (i)
+			*disk = 0;
+	}
+	return (0);
+}
+
+int			limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *disk, int i)
+{
+	double		a;
+	double		b;
+	double		c;
+	double		tmp;
+	t_figure	tmp_1;
+	t_vector	inter;
+
+	eye = rotations(eye, cy.angle.x, cy.angle.y, cy.angle.z);
+	r = rotations(r, cy.angle.x, cy.angle.y, cy.angle.z);
+	cy.center = rotations(cy.center, cy.angle.x, cy.angle.y, cy.angle.z);
+	a = pow(r.x, 2) + pow(r.z, 2);
+	b = 2 * (r.x * (eye.x - cy.center.x) + r.z * (eye.z - cy.center.z));
+	c = pow(eye.x - cy.center.x, 2) + pow(eye.z - cy.center.z, 2) -
+		pow(cy.radius, 2);
+	tmp = distance(a, b, c);
+	inter = calcul_ptinter(eye, r, tmp);
+	tmp_1 = cy;
+	if (tmp < *t && tmp > 0.00001)
+	{
+		if (inter.y <= cy.center.y + cy.separation && inter.y >= cy.center.y - cy.separation)
+		{
+			*t = tmp;
+			return (1);
+		}
+		else if (inter.y > cy.center.y + cy.separation)
+		{
+			tmp_1.center.y += cy.separation;
+			*disk = 2;
+			if (disk_calcul(r, tmp_1, t, eye))
+				return (1);
+		}
+		else if (inter.y < cy.center.y - cy.separation)
+		{
+			tmp_1.center.y -= cy.separation;
+			*disk = 3;
+			if (disk_calcul(r, tmp_1, t, eye))
+				return (1);
+		}
+		// if (i && *disk == 3)
+			*disk = 0;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/12 18:57:12 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/13 18:00:54 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 {
 	int			i;
 	double		t;
+	int			tmp;
 
 	i = 0;
 	t = 1;
@@ -30,9 +31,9 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 			(rt->object[i].name == CONE && cone(ray_light, rt->object[i], &t,
 				inter)) ||
 			(rt->object[i].name == L_SPHERE && limited_sphere(ray_light, rt->object[i], &t,
-				inter)) ||
-			(rt->object[i].name == DISK && disk(ray_light, rt->object[i], &t,
-				inter)))
+				inter, &rt->disk, 1)) ||
+			(rt->object[i].name == L_CYLINDER && limited_cylinder(ray_light, rt->object[i], &t,
+				inter, &rt->disk, 1)))
 			return (1);
 		i++;
 	}
@@ -60,7 +61,7 @@ static t_vector	light_rotate(t_env *rt, t_figure object, t_light light)
 {
 	t_vector	light_ray;
 
-	if (object.name != SPHERE && object.name != PLANE && object.name != DISK)
+	if (object.name != SPHERE && object.name != PLANE)
 	{
 		rt->tmp_l_center = rotations(light.center, object.angle.x,
 			object.angle.y, object.angle.z);
@@ -108,19 +109,18 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 	if (!shadows(rt, rt->tmp_rlight, rt->inter))
 	{
 		n = vecsub(&rt->tmp_center, &rt->tmp_inter);
-		n.y = (object.name == CYLINDER || object.name == CONE) ? (0) : (n.y);
+		n.y = (object.name == CYLINDER || object.name == L_CYLINDER || object.name == CONE) ? (0) : (n.y);
 		n = (object.name == PLANE) ? (rt->tmp_center) : (n);
-		if (object.name == DISK)
-		{
-			n.x = 0;
-			n.y = -1;
-			n.z = 0;
-			// n = rotations(n, object.angle.x, object.angle.y, object.angle.z);
-		}
 		if (rt->disk == 2)
 		{
 			n.x = 0;
 			n.y = 1;
+			n.z = 0;
+		}
+		if (rt->disk == 3)
+		{
+			n.x = 0;
+			n.y = -1;
 			n.z = 0;
 		}
 		rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
