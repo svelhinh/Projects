@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 10:54:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/27 16:00:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/17 17:48:49 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void		init_all(char *file, t_env *rt)
 {
-	rt->bg_color = 0;
+	rt->bg_color.r = 0;
+	rt->bg_color.g = 0;
+	rt->bg_color.b = 0;
 	rt->w = 1280;
 	rt->h = 720;
 	rt->xx = 0;
@@ -25,6 +27,11 @@ void		init_all(char *file, t_env *rt)
 	rt->keydown = 0;
 	rt->keyleft = 0;
 	rt->keyright = 0;
+	rt->max_reflect = 0;
+	rt->max_refract = 0;
+	rt->menu = 0;
+	rt->rotcam = 0;
+	rt->effect = 0;
 	count_objects(rt, file);
 	init_camera(rt);
 	count_light(rt, file);

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/13 11:43:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/17 17:55:05 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static void	background_color(char *color, t_env *rt)
 {
-	int i;
+	int		i;
+	char	**tab;
 
 	i = 0;
-	if (!color || ft_strlen(color) > 6)
-		ft_exit("\033[31mBad format for background_color\n");
-	while (color[i])
-	{
-		if (color[i] < '0' || (color[i] > '9' && color[i] < 'A')
-				|| (color[i] > 'F' && color[i] < 'a') || color[i] > 'f')
-			ft_exit("\033[31mBad format for background_color\n");
-		i++;
-	}
-	rt->bg_color = ft_atoi_base(color, 16);
+	tab = ft_strsplit(color, ' ');
+	if (!ft_atof(tab[0]) || !ft_atof(tab[1]) || !ft_atof(tab[2]))
+		ft_exit("\033[31mBackground_color parameters missing\n");
+	if (ft_atof(tab[0]) <= 0 || ft_atof(tab[0]) >= 1 || ft_atof(tab[1]) <= 0 ||
+		ft_atof(tab[1]) >= 1 || ft_atof(tab[2]) <= 0 || ft_atof(tab[2]) >= 1)
+		ft_exit("\033[31mBackground_color parameters must be between 0 and 1\n");
+	rt->bg_color.r = ft_atof(tab[0]);
+	rt->bg_color.g = ft_atof(tab[1]);
+	rt->bg_color.b = ft_atof(tab[2]);
 }
 
 static void	objects(char *object, t_env *rt, int fd)
@@ -66,6 +66,20 @@ static void	parsing(char **tab, t_env *rt, int fd)
 			(ft_exit("\033[31mParameter missing for resolution\n"));
 	else if (!ft_strcmp(tab[0], "object"))
 		objects(tab[2], rt, fd);
+	else if (!ft_strcmp(tab[0], "reflections"))
+	{
+		if (ft_atoi(tab[2]) >= 0 && ft_atoi(tab[2]) <= 15)
+			rt->max_reflect = ft_atoi(tab[2]);
+		else
+			ft_exit("\033[31mReflections must be between 0 and 15\n");
+	}
+	else if (!ft_strcmp(tab[0], "refractions"))
+	{
+		if (ft_atoi(tab[2]) >= 0 && ft_atoi(tab[2]) <= 15)
+			rt->max_refract = ft_atoi(tab[2]);
+		else
+			ft_exit("\033[31mRefractions must be between 0 and 15\n");
+	}
 	tab_free(tab);
 }
 

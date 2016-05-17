@@ -6,7 +6,7 @@
 #    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/07 18:24:41 by lnieto-m          #+#    #+#              #
-#    Updated: 2016/05/11 15:11:04 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/05/17 15:37:04 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ NAME = rt
 
 SRC_NAME =	main.c events.c functions.c raytracer.c objects.c init_all.c init_camera_light.c \
 			init_objects.c parser.c parsing_camera_light.c parsing_objects.c vectors.c light.c \
-			rotations.c render.c limited_objects.c create_window.c
+			rotations.c render.c limited_objects.c create_window.c reflec_refrac.c \
+			menu.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

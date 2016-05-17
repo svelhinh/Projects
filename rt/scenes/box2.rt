@@ -27,7 +27,7 @@ color : 0 0 0
 object : sphere
 pos : 0 0 -200
 radius : 10
-material : metal
+material : glass
 color : 0 0 1
 
 object : cylinder

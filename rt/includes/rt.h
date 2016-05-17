@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/13 18:00:41 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/17 17:42:32 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define CONE 4
 # define L_SPHERE 5
 # define L_CYLINDER 6
+# define MENU 49
 
 typedef struct	s_vector
 {
@@ -58,8 +59,11 @@ typedef struct	s_material
 {
 	double		specular;
 	double		specular_power;
-	double		shiny;
+	int			shiny;
 	double		reflection;
+	int			transparent;
+	double		refraction;
+	double		i_refract;
 }				t_material;
 
 typedef struct	s_figure
@@ -67,6 +71,7 @@ typedef struct	s_figure
 	int			name;
 	double		radius;
 	double		separation;
+	double		size;
 	t_vector	center;
 	t_color		color;
 	t_vector	angle;
@@ -79,7 +84,7 @@ typedef struct	s_env
 	void		*win;
 	void		*img;
 	char		*data;
-	int			bg_color;
+	t_color		bg_color;
 	int			final_color;
 	int			bpp;
 	int			line;
@@ -113,15 +118,33 @@ typedef struct	s_env
 	t_color		color2;
 	t_vector	reflect;
 	int			reflection;
-	double		first_reflection;
+	double		first_reflec;
+	double		first_refrac;
 	int			i2;
 	int			i_obj;
 	int			i_light;
 	int			disk;
+	int			max_reflect;
+	int			max_refract;
+	double		prev_refr;
+	int			menu;
+	int			rotcam;
+	int			effect;
+	void		*wall;
+	void		*textur;
+	char		*data1;
+	int			endian1;
+	int			bpp1;
+	int			line1;
+	int			pxlh;
+	int			pxlw;
 }				t_env;
 
 void			*raytracer(void *arg);
 t_vector		rotations(t_vector vec, double x, double y, double z);
+void			reflec_refrac(t_env *rt, t_vector ray, t_vector orig);
+void			intersection(t_env *rt, t_vector ray, t_vector origin);
+void			calcul_light(t_env *rt, int i2, t_vector ray);
 /*
 **	-------------------	INITIALISATION	---------------------------
 */
@@ -160,6 +183,8 @@ int				cylinder(t_vector r, t_figure cy, double *t, t_vector eye);
 int				cone(t_vector r, t_figure co, double *t, t_vector eye);
 int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk, int i);
 int				limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *disk, int i);
+int				triangle(t_vector r, t_figure tri, double *t, t_vector eye);
+int				quadrilateral(t_vector r, t_figure tri, double *t, t_vector eye);
 /*
 **	-------------------------------------------------------
 */
@@ -192,6 +217,8 @@ t_vector		calcul_ptinter(t_vector eye, t_vector r, double t);
 void			render(t_env *rt);
 void			tab_free(char **tab);
 void			create_window(char *s);
+void 			menu(t_env *rt);
+int				my_mouse_funct(int button, int x, int y, t_env *rt);
 /*
 **	-------------------------------------------------------
 */

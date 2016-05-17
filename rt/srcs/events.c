@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:30:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/13 14:48:44 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/17 17:55:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ int		expose(t_env *rt)
 			&rt->endian);
 	render(rt);
 	mlx_put_image_to_window(rt->mlx, rt->win, rt->img, 0, 0);
+	if (rt->menu >= 1 || rt->rotcam != 0 || rt->effect >= 0)
+		menu(rt);
 	mlx_destroy_image(rt->mlx, rt->img);
 	return (0);
 }
 
 int		key_press(int keycode, t_env *rt)
 {
+	if (keycode == MENU)
+		rt->menu = (rt->menu != 1) ? 1 : 0;
 	if (keycode == LEFT)
 		rt->keyleft = 1;
 	if (keycode == UP)

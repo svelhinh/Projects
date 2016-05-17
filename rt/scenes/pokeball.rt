@@ -14,7 +14,7 @@ object : light
 pos : -100 -100 -300
 color : 0 0 0
 
-object : half_sphere
+object : limited_sphere
 pos : 0 0 0
 radius : 20
 separation : -1
@@ -22,7 +22,7 @@ angle : 0 0 0
 material : metal
 color : 1 0 0
 
-object : half_sphere
+object : limited_sphere
 pos : 0 0 0
 radius : 20
 separation : -1
@@ -31,19 +31,13 @@ material : metal
 color : 1 1 1
 
 object : sphere
-pos : 0 0 0
-radius : 19.5
-material : metal
-color : 0 0 0
-
-object : sphere
 pos : -10 0 -16
 radius : 4
 material : metal
-color : 1 1 1
+color : 0 1 0
 
 object : plane
 pos : 0 -1 0
 radius : 25
 material : metal
-color : 1 1 1
+color : 1 1 0

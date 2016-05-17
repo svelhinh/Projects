@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:18:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/13 18:19:46 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/17 15:42:55 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ static int		disk_calcul(t_vector r, t_figure d, double *t, t_vector eye)
 	double		tmp;
 	t_vector	inter;
 
-	tmp = -(0 * eye.x - 1 * eye.y + d.center.z * 0 + d.center.y) /
-			(0 * r.x - 1 * r.y + 0 * r.z);
+	tmp = -(0 * eye.x - 1 * eye.y + 0 *
+		eye.z + d.radius) / (0 * r.x + - 1 * r.y +
+			0 * r.z);
 	if (tmp < *t && tmp > 0.00001)
 	{
 	   inter = calcul_ptinter(eye, r, tmp);
 	   if ((inter.x - d.center.x) * (inter.x - d.center.x) +
-	   (inter.z - d.center.z) * (inter.z - d.center.z) < pow(d.radius, 2))
+	   (inter.z - d.center.z) * (inter.z - d.center.z) < pow(d.size, 2))
 	   {
 		   *t = tmp;
 		   return (1);
@@ -66,12 +67,12 @@ int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk
 	c = (pow(eye.x - s.center.x, 2) + pow(eye.y - s.center.y, 2) +
 		pow(eye.z - s.center.z, 2)) - pow(s.radius, 2);
 	tmp = distance(a, b, c);
-	inter = calcul_ptinter(eye, r, tmp);
-	tmp_1 = s;
-	tmp_1.radius = sqrt(s.radius * s.radius - s.separation * s.separation);
-	tmp_1.center.y += s.separation;
 	if (tmp < *t && tmp > 0.00001)
 	{
+		inter = calcul_ptinter(eye, r, tmp);
+		tmp_1 = s;
+		tmp_1.size = sqrt(s.radius * s.radius - s.separation * s.separation);
+		tmp_1.radius = tmp_1.center.y + s.separation;
 		if (inter.y <= s.center.y + s.separation)
 		{
 			*t = tmp;
@@ -83,7 +84,7 @@ int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk
 			return (2);
 		}
 		// if (i)
-			*disk = 0;
+		// 	*disk = 0;
 	}
 	return (0);
 }
@@ -107,6 +108,7 @@ int			limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *di
 	tmp = distance(a, b, c);
 	inter = calcul_ptinter(eye, r, tmp);
 	tmp_1 = cy;
+	tmp_1.size = cy.radius;
 	if (tmp < *t && tmp > 0.00001)
 	{
 		if (inter.y <= cy.center.y + cy.separation && inter.y >= cy.center.y - cy.separation)
@@ -116,20 +118,73 @@ int			limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *di
 		}
 		else if (inter.y > cy.center.y + cy.separation)
 		{
-			tmp_1.center.y += cy.separation;
-			*disk = 2;
+			tmp_1.radius = tmp_1.center.y + cy.separation;
+			// *disk = 2;
 			if (disk_calcul(r, tmp_1, t, eye))
 				return (1);
 		}
 		else if (inter.y < cy.center.y - cy.separation)
 		{
-			tmp_1.center.y -= cy.separation;
-			*disk = 3;
+			tmp_1.radius = tmp_1.center.y - cy.separation;
+			// *disk = 3;
 			if (disk_calcul(r, tmp_1, t, eye))
 				return (1);
 		}
-		// if (i && *disk == 3)
-			*disk = 0;
+		// if (i)
+		// 	*disk = 0;
 	}
 	return (0);
 }
+
+// // Pas forcement stable
+//
+// int		triangle(t_vector r, t_figure tri, double *t, t_vector eye)
+// {
+// 	t_vector	ab;
+// 	t_vector	ac;
+// 	t_vector	d;
+// 	double		sol;
+// 	double		u;
+// 	double		v;
+// 	double		tmp;
+//
+// 	ab = vecsub(&tri.a, &tri.b);
+//     ac = vecsub(&tri.a, &tri.c);
+//     if ((sol = -1 * ab.z * r.y * ac.x + ab.y * r.z * ac.x + r.x * ab.z * ac.y
+// 		+ r.y * ab.x * ac.z - r.z * ab.x * ac.y - r.x * ab.y * ac.z) == 0.00001)
+//         return (0);
+//     d = vecsub(&tri.a, &eye);
+//     v = (-1 * r.x * ab.y * d.z - r.z * ab.x * d.y + ab.y * r.z * d.x
+// 		+ r.x * ab.z * d.y + r.y * ab.x * d.z - ab.z * r.y * d.x) / sol;
+//     u = (-1 * r.y * d.x * ac.z + r.y * ac.x * d.z - ac.x * r.z * d.y
+// 		+ d.x * r.z * ac.y - r.x * ac.y * d.z + r.x * d.y * ac.z) / sol;
+//     tmp = -1 * (-1 * d.x * ab.z * ac.y + d.x * ab.y * ac.z + ab.x * ac.y * d.z
+// 		- ab.x * d.y * ac.z - ac.x * ab.y * d.z + ac.x * ab.z * d.y) / sol;
+//     if (u > 0 && v > 0 && u + v <= 1 && tmp < *t)
+// 	{
+// 		*t = tmp;
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+//
+// // Pas forcement stable
+//
+// int		quadrilateral(t_vector r, t_figure tri, double *t, t_vector eye)
+// {
+// 	t_figure	part1;
+// 	t_figure	part2;
+// 	int			ret;
+// 	int			ret2;
+//
+// 	part1 = tri;
+// 	part2 = tri;
+// 	part2.a = tri.d;
+// 	part2.b = tri.c;
+// 	part2.c = tri.b;
+// 	ret = triangle(r, part1, t, eye);
+// 	ret2 = triangle(r, part2, t, eye);
+// 	if (ret != ret2)
+// 		ret = (ret == 1) ? ret : ret2;
+// 	return (ret);
+// }

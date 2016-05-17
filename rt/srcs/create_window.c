@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_window.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 14:30:18 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/05/11 14:43:32 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/05/17 15:44:28 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	create_window(char *s)
 
 	global_parser(s, &rt1);
 	mlx_setup(&rt1);
+	mlx_mouse_hook(rt1.win, my_mouse_funct, &rt1);
 	mlx_hook(rt1.win, 2, (1L << 0), key_press, &rt1);
 	mlx_hook(rt1.win, 3, (1L << 1), key_release, &rt1);
 	mlx_loop_hook(rt1.mlx, expose, &rt1);
