@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:27:36 by lnieto-m          #+#    #+#             */
-/*   Updated: 2016/04/28 18:57:47 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/18 10:53:11 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ char				*ft_strndup(const char *s, size_t n);
 void				ft_strclean(char *s);
 void				ft_strclr(char *s);
 char				*ft_strnjoin(char const *s1, char const *s2, size_t n);
+void				ft_exit(char *s);
 
 #endif

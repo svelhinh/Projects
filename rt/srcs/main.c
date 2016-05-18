@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:08:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 14:43:11 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/05/18 10:52:38 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-void	ft_exit(char *s)
-{
-	ft_putstr_fd(s, 2);
-	exit(0);
-}
 
 int		main(int ac, char **av)
 {

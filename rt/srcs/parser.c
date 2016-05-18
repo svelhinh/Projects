@@ -6,27 +6,23 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/17 17:55:05 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/18 14:48:00 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	background_color(char *color, t_env *rt)
+static void	background_color(char **color, t_env *rt)
 {
 	int		i;
-	char	**tab;
 
 	i = 0;
-	tab = ft_strsplit(color, ' ');
-	if (!ft_atof(tab[0]) || !ft_atof(tab[1]) || !ft_atof(tab[2]))
-		ft_exit("\033[31mBackground_color parameters missing\n");
-	if (ft_atof(tab[0]) <= 0 || ft_atof(tab[0]) >= 1 || ft_atof(tab[1]) <= 0 ||
-		ft_atof(tab[1]) >= 1 || ft_atof(tab[2]) <= 0 || ft_atof(tab[2]) >= 1)
-		ft_exit("\033[31mBackground_color parameters must be between 0 and 1\n");
-	rt->bg_color.r = ft_atof(tab[0]);
-	rt->bg_color.g = ft_atof(tab[1]);
-	rt->bg_color.b = ft_atof(tab[2]);
+	if (color[5] || !color[2] || !color[3] || !color[4])
+		ft_exit("\033[31mWrong format for background_color (background_color : r [0-1] g [0-1] b [0-1])\n");
+	check_color(ft_atof(color[2]), ft_atof(color[3]), ft_atof(color[4]));
+	rt->bg_color.r = ft_atof(color[2]);
+	rt->bg_color.g = ft_atof(color[3]);
+	rt->bg_color.b = ft_atof(color[4]);
 }
 
 static void	objects(char *object, t_env *rt, int fd)
@@ -44,42 +40,51 @@ static void	objects(char *object, t_env *rt, int fd)
 		ft_exit("\033[31mA defined object was not found\n");
 }
 
-static void	resolution(float width, float height, t_env *rt)
+static void	resolution(char **resolution, t_env *rt)
 {
-	if (width < 7680 && width > 0)
-		rt->w = width;
-	else
-		ft_exit("\033[31mWidth too large\n");
-	if (height < 4320 && height > 0)
-		rt->h = height;
-	else
-		ft_exit("\033[31mHeight too large\n");
+	double width;
+	double height;
+
+	if (resolution[4] || !resolution[2] || !resolution[3])
+		ft_exit("\033[31mWrong format for resolution (resolution : w [0-7680] h [0-4320])\n");
+	width = ft_atof(resolution[2]);
+	height = ft_atof(resolution[3]);
+	if (width > 7680 || width < 640 || height > 4320 || height < 480)
+		ft_exit("\033[31mWidth must be between 640 and 7680\nHeight must be between 480 and 4320\n");
+	rt->w = width;
+	rt->h = height;
 }
 
 static void	parsing(char **tab, t_env *rt, int fd)
 {
 	if (!ft_strcmp(tab[0], "background_color"))
-		background_color(tab[2], rt);
+		background_color(tab, rt);
 	else if (!ft_strcmp(tab[0], "resolution"))
-		(tab[2] && tab[3]) ? (resolution(ft_atof(tab[2]),
-					ft_atof(tab[3]), rt)) :
-			(ft_exit("\033[31mParameter missing for resolution\n"));
-	else if (!ft_strcmp(tab[0], "object"))
-		objects(tab[2], rt, fd);
+		resolution(tab, rt);
 	else if (!ft_strcmp(tab[0], "reflections"))
 	{
-		if (ft_atoi(tab[2]) >= 0 && ft_atoi(tab[2]) <= 15)
-			rt->max_reflect = ft_atoi(tab[2]);
-		else
+		if (tab[3] || !tab[2])
+			ft_exit("\033[31mWrong format for reflections (reflections : max [0-15])\n");
+		if (ft_atoi(tab[2]) < 0 || ft_atoi(tab[2]) > 15)
 			ft_exit("\033[31mReflections must be between 0 and 15\n");
+		rt->max_reflect = ft_atoi(tab[2]);
 	}
 	else if (!ft_strcmp(tab[0], "refractions"))
 	{
-		if (ft_atoi(tab[2]) >= 0 && ft_atoi(tab[2]) <= 15)
-			rt->max_refract = ft_atoi(tab[2]);
-		else
+		if (tab[3] || !tab[2])
+			ft_exit("\033[31mWrong format for refractions (refractions : max [0-15])\n");
+		if (ft_atoi(tab[2]) < 0 || ft_atoi(tab[2]) > 15)
 			ft_exit("\033[31mRefractions must be between 0 and 15\n");
+		rt->max_refract = ft_atoi(tab[2]);
 	}
+	else if (!ft_strcmp(tab[0], "object"))
+	{
+		if (!tab[2] || tab[3])
+			ft_exit("\033[31mWrong format for an object (object : [object_name])\n");
+		objects(tab[2], rt, fd);
+	}
+	else
+		ft_exit("\033[31mWrong option\n");
 	tab_free(tab);
 }
 
@@ -99,6 +104,8 @@ void		global_parser(char *file, t_env *rt)
 		if (line[0])
 		{
 			tab = ft_strsplit(line, ' ');
+			if (!tab[0] || !tab[1])
+				ft_exit("\033[31mWrong option\n");
 			parsing(tab, rt, fd);
 		}
 		ft_strdel(&line);

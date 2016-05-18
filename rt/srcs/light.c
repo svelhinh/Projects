@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/17 15:34:21 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:19:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,18 +111,18 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 		n = vecsub(&rt->tmp_center, &rt->tmp_inter);
 		n.y = (object.name == CYLINDER || object.name == L_CYLINDER || object.name == CONE) ? (0) : (n.y);
 		n = (object.name == PLANE) ? (rt->tmp_center) : (n);
-		if (rt->disk == 2 && object.name == L_SPHERE)
+		if (rt->disk == 2 && (object.name == L_SPHERE || object.name == L_CYLINDER))
 		{
 			n.x = 0;
 			n.y = 1;
 			n.z = 0;
 		}
-		// if (rt->disk == 3)
-		// {
-		// 	n.x = 0;
-		// 	n.y = -1;
-		// 	n.z = 0;
-		// }
+		if (rt->disk == 3 && object.name == L_CYLINDER)
+		{
+			n.x = 0;
+			n.y = -1;
+			n.z = 0;
+		}
 		rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
 		+ pow(light_ray.y, 2) + pow(light_ray.z, 2)) * sqrt(pow(n.x, 2)
 		+ pow(n.y, 2) + pow(n.z, 2)));

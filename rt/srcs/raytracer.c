@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/17 17:42:28 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:41:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ static void		scan(int pas, t_env *rt)
 				rt->cam_angle.z);
 			ray = normalize(&ray);
 			intersection(rt, ray, rt->eye);
-			rt->color2.r = rt->bg_color.r;
-			rt->color2.g = rt->bg_color.g;
-			rt->color2.b = rt->bg_color.b;
+			rt->color2.r = rt->bg_color.r * 255;
+			rt->color2.g = rt->bg_color.g * 255;
+			rt->color2.b = rt->bg_color.b * 255;
 			if (rt->i2 != -1)
 			{
 				rt->inter = calcul_ptinter(rt->eye, ray, rt->t);
@@ -109,7 +109,7 @@ void			*raytracer(void *arg)
 	pas = 1;
 	if (rt->keyup == 1 || rt->keydown == 1 || rt->keyleft == 1
 		|| rt->keyright == 1)
-		pas = rt->w / 640 + rt->h / 480;
+		pas = 2;
 	scan(pas, rt);
 	pthread_exit(0);
 }

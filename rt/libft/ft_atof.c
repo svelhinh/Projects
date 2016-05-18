@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/09 14:13:24 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/03/31 14:10:48 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/18 14:54:51 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ double			ft_atof(char *s)
 
 	i = 0;
 	if (!ft_isdigit(s[i]) && s[i] != '-')
-		return (0);
+		ft_exit("\033[31mNot a number\n");
 	i = check_dot(s, i);
 	if (!s[i])
 		return (ft_atoi(s));
@@ -62,7 +62,7 @@ double			ft_atof(char *s)
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
-			return (0);
+			ft_exit("\033[31mNot a number\n");
 		i++;
 	}
 	it = ft_strsub(s, dot + 1, i);

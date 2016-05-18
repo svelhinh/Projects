@@ -28,7 +28,9 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
+ifneq ($(shell uname), Linux)
 SHELL = ZSH
+endif
 
 all: $(NAME)
 	@echo "\033[0m"
@@ -37,7 +39,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp
-	@echo -n "\033[32m="
+	@echo -n "\033[32m=\033[0m"
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CPFLAGS) -o $@ -c $<
 

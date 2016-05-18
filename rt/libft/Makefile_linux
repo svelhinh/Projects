@@ -27,7 +27,7 @@ SRC = \
 		ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_putrainbow.c ft_putcolor.c \
 		ft_islower.c ft_isupper.c ft_putnbrendl.c ft_itoa_base.c ft_atoi_base.c \
 		ft_ftoa.c get_next_line.c ft_atof.c ft_strndup.c ft_strclr.c ft_strclean.c \
-		ft_strnjoin.c
+		ft_strnjoin.c ft_exit.c
 
 OBJ = $(SRC:.c=.o)
 

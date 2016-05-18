@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_camera_light.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/11 14:33:23 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/05/18 13:16:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ static char	**split_tab(char *line)
 
 void		parsing_camera(int fd, t_env *rt)
 {
-	char *line;
-	char **tab;
+	char	*line;
+	char	**tab;
+	int		tmp;
 
+	tmp = 0;
 	while (get_next_line(fd, &line) > 0 && line[0] != '\0')
 	{
+		tmp = 1;
 		tab = split_tab(line);
 		if (!ft_strcmp(tab[0], "pos"))
 		{
@@ -53,7 +56,8 @@ void		parsing_camera(int fd, t_env *rt)
 		tab_free(tab);
 		ft_strdel(&line);
 	}
-	ft_strdel(&line);
+	if (tmp)
+		ft_strdel(&line);
 }
 
 
@@ -61,7 +65,9 @@ void		parsing_light(int fd, t_env *rt)
 {
 	char		*line;
 	char		**tab;
+	int		tmp;
 
+	tmp = 0;
 	while (get_next_line(fd, &line) > 0 && line[0] != '\0')
 	{
 		tab = split_tab(line);
@@ -81,6 +87,7 @@ void		parsing_light(int fd, t_env *rt)
 		tab_free(tab);
 		ft_strdel(&line);
 	}
-	ft_strdel(&line);
+	if (tmp)
+		ft_strdel(&line);
 	rt->i_light++;
 }

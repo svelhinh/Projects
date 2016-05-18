@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/17 14:51:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/18 15:03:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,31 @@ static void	parsing_materials(t_material *materials, char *material)
 		materials->refraction = 0;
 		materials->i_refract = 0;
 	}
+	else
+		ft_exit("\033[31mA defined material does not exist\n");
+}
+
+static void	missing_parameter_obj(char **tab)
+{
+	if (((!ft_strcmp(tab[0], "radius") ||
+	!ft_strcmp(tab[0], "material") || !ft_strcmp(tab[0], "separation")) &&
+	(!tab[2] || tab[3])) || ((!ft_strcmp(tab[0], "pos") ||
+	!ft_strcmp(tab[0], "color") || !ft_strcmp(tab[0], "angle")) &&
+	(!tab[2] || !tab[3] || !tab[4] || tab[5])) || ft_strcmp(tab[1], ":"))
+			ft_exit("\033[31mWrong format for an object\n");
 }
 
 static void	parsing_options(char **tab, t_env *rt, int i)
 {
+	if (!tab[0] || !tab[1])
+		ft_exit("\033[31mWrong format for an object\n");
+	missing_parameter_obj(tab);
 	if (!ft_strcmp(tab[0], "radius"))
+	{
+		if (ft_atof(tab[2]) <= 0)
+			ft_exit("\033[31mRadius must be positive\n");
 		rt->object[i].radius = ft_atof(tab[2]);
+	}
 	else if (!ft_strcmp(tab[0], "pos"))
 	{
 		rt->object[i].center.x = ft_atof(tab[2]);
@@ -73,15 +92,20 @@ static void	parsing_options(char **tab, t_env *rt, int i)
 		parsing_materials(&rt->object[i].material, tab[2]);
 	else if (!ft_strcmp(tab[0], "separation"))
 		rt->object[i].separation = ft_atof(tab[2]);
+	else
+		ft_exit("\033[31mWrong option for an object\n");
 }
 
 void		parsing_objects(int fd, char *object, t_env *rt)
 {
 	char		*line;
 	char		**tab;
+	int			tmp;
 
+	tmp = 0;
 	while (get_next_line(fd, &line) > 0 && line[0])
 	{
+		tmp = 1;
 		tab = ft_strsplit(line, ' ');
 		if (!tab[2])
 			ft_exit("\033[31mMissing parameter for an object\n");
@@ -103,6 +127,7 @@ void		parsing_objects(int fd, char *object, t_env *rt)
 		tab_free(tab);
 		ft_strdel(&line);
 	}
-	ft_strdel(&line);
+	if (tmp)
+		ft_strdel(&line);
 	rt->i_obj++;
 }

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:18:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/17 15:42:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/18 17:43:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk
 		if (inter.y <= s.center.y + s.separation)
 		{
 			*t = tmp;
+			*disk = 0;
 			return (1);
 		}
 		if (disk_calcul(r, tmp_1, t, eye))
@@ -83,8 +84,6 @@ int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk
 			*disk = 2;
 			return (2);
 		}
-		// if (i)
-		// 	*disk = 0;
 	}
 	return (0);
 }
@@ -114,24 +113,23 @@ int			limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *di
 		if (inter.y <= cy.center.y + cy.separation && inter.y >= cy.center.y - cy.separation)
 		{
 			*t = tmp;
+			*disk = 0;
 			return (1);
 		}
 		else if (inter.y > cy.center.y + cy.separation)
 		{
 			tmp_1.radius = tmp_1.center.y + cy.separation;
-			// *disk = 2;
+			*disk = 2;
 			if (disk_calcul(r, tmp_1, t, eye))
 				return (1);
 		}
 		else if (inter.y < cy.center.y - cy.separation)
 		{
 			tmp_1.radius = tmp_1.center.y - cy.separation;
-			// *disk = 3;
+			*disk = 3;
 			if (disk_calcul(r, tmp_1, t, eye))
 				return (1);
 		}
-		// if (i)
-		// 	*disk = 0;
 	}
 	return (0);
 }

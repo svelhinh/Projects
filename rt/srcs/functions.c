@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:57:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/29 11:21:43 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/18 13:43:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,13 @@ void		mlx_pixel_put_to_image(int color, t_env *img, int x, int y)
 
 void		missing_parameter(char **tab)
 {
-	if (ft_strcmp(tab[1], ":"))
-		ft_exit("\033[31mCharacter ':' not found\n");
-	if (!tab[2] || !tab[3] || !tab[4])
-		ft_exit("\033[31mMissing parameter\n");
+	if (!tab[0] || !tab[1] || !tab[2] || !tab[3] || !tab[4] || tab[5] ||
+		ft_strcmp(tab[1], ":"))
+	{
+		ft_putstr("\033[31mWrong option for an object light (pos : 0 0 0 / ");
+		ft_putstr("color : [0-1] [0-1] [0-1]) or camera (pos : 0 0 0 / angle ");
+		ft_exit(": 1 1 1)\n");
+	}
 }
 
 void		check_color(double r, double g, double b)
