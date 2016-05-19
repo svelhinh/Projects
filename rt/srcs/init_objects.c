@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/18 11:23:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/19 12:30:59 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	init_objects(t_env *rt)
 		rt->object[i].angle.y = 0;
 		rt->object[i].angle.z = 0;
 		rt->object[i].size = 0;
+		// rt->object[i].disk = 0;
 		rt->object[i].separation = 0;
 		rt->object[i].material.specular = 0;
 		rt->object[i].material.specular_power = 0;

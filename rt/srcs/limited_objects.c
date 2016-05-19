@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 11:18:35 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/18 17:43:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/19 17:33:51 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int		disk_calcul(t_vector r, t_figure d, double *t, t_vector eye)
 	return (0);
 }
 
-int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk, int i)
+int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk)
 {
 	double		a;
 	double		b;
@@ -82,13 +82,13 @@ int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk
 		if (disk_calcul(r, tmp_1, t, eye))
 		{
 			*disk = 2;
-			return (2);
+			return (1);
 		}
 	}
 	return (0);
 }
 
-int			limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *disk, int i)
+int			limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *disk)
 {
 	double		a;
 	double		b;
@@ -116,19 +116,23 @@ int			limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *di
 			*disk = 0;
 			return (1);
 		}
-		else if (inter.y > cy.center.y + cy.separation)
+		if (inter.y > cy.center.y + cy.separation)
 		{
 			tmp_1.radius = tmp_1.center.y + cy.separation;
-			*disk = 2;
 			if (disk_calcul(r, tmp_1, t, eye))
+			{
+				*disk = 2;
 				return (1);
+			}
 		}
-		else if (inter.y < cy.center.y - cy.separation)
+		if (inter.y < cy.center.y - cy.separation)
 		{
 			tmp_1.radius = tmp_1.center.y - cy.separation;
-			*disk = 3;
 			if (disk_calcul(r, tmp_1, t, eye))
+			{
+				*disk = 3;
 				return (1);
+			}
 		}
 	}
 	return (0);

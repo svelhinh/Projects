@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/18 17:19:37 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/19 16:58:24 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 	int			i;
 	double		t;
 	int			tmp;
+	int			disk;
 
 	i = 0;
 	t = 1;
+	disk = 0;
 	while (i < rt->nbobj)
 	{
+
 		if ((rt->object[i].name == SPHERE && sphere(ray_light, rt->object[i],
 				&t, inter)) ||
 			(rt->object[i].name == PLANE && plane(ray_light,
@@ -31,10 +34,13 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 			(rt->object[i].name == CONE && cone(ray_light, rt->object[i], &t,
 				inter)) ||
 			(rt->object[i].name == L_SPHERE && limited_sphere(ray_light, rt->object[i], &t,
-				inter, &rt->disk, 1)) ||
+				inter, &disk)) ||
 			(rt->object[i].name == L_CYLINDER && limited_cylinder(ray_light, rt->object[i], &t,
-				inter, &rt->disk, 1)))
+				inter, &disk)))
+			{
+			// printf("disk_light : %d\n", rt->object[i].disk);
 			return (1);
+			}
 		i++;
 	}
 	return (0);
@@ -111,13 +117,14 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 		n = vecsub(&rt->tmp_center, &rt->tmp_inter);
 		n.y = (object.name == CYLINDER || object.name == L_CYLINDER || object.name == CONE) ? (0) : (n.y);
 		n = (object.name == PLANE) ? (rt->tmp_center) : (n);
-		if (rt->disk == 2 && (object.name == L_SPHERE || object.name == L_CYLINDER))
+		// printf("name = %d, disk = %d\n", object.name, object.disk);
+		if ((/*object.*/rt->disk_s == 2 && object.name == L_SPHERE) || (rt->disk_cy == 2 && object.name == L_CYLINDER))
 		{
 			n.x = 0;
 			n.y = 1;
 			n.z = 0;
 		}
-		if (rt->disk == 3 && object.name == L_CYLINDER)
+		if (rt->disk_cy == 3 && object.name == L_CYLINDER)
 		{
 			n.x = 0;
 			n.y = -1;

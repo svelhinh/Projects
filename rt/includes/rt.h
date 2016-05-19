@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/17 17:42:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/19 14:46:34 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct	s_figure
 	double		radius;
 	double		separation;
 	double		size;
+	int			disk;
 	t_vector	center;
 	t_color		color;
 	t_vector	angle;
@@ -123,7 +124,8 @@ typedef struct	s_env
 	int			i2;
 	int			i_obj;
 	int			i_light;
-	int			disk;
+	int			disk_s;
+	int			disk_cy;
 	int			max_reflect;
 	int			max_refract;
 	double		prev_refr;
@@ -181,8 +183,8 @@ int				sphere(t_vector r, t_figure s, double *t, t_vector eye);
 int				plane(t_vector r, t_figure p, double *t, t_vector eye);
 int				cylinder(t_vector r, t_figure cy, double *t, t_vector eye);
 int				cone(t_vector r, t_figure co, double *t, t_vector eye);
-int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk, int i);
-int				limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *disk, int i);
+int				limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk);
+int				limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *disk);
 int				triangle(t_vector r, t_figure tri, double *t, t_vector eye);
 int				quadrilateral(t_vector r, t_figure tri, double *t, t_vector eye);
 /*

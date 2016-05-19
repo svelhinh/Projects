@@ -1,6 +1,6 @@
 resolution : 1280 720
 
-background_color : 0
+background_color : 0 0 0
 
 object : camera
 pos : -40 -40 -200

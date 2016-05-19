@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/18 17:41:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/19 19:00:38 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,18 @@ void		calcul_light(t_env *rt, int i2, t_vector ray)
 		light(rt, rt->object[i2], rt->light[i], ray);
 		i++;
 	}
-	rt->color.r /= rt->nblight;
-	rt->color.g /= rt->nblight;
-	rt->color.b /= rt->nblight;
+	if (rt->nblight != 0)
+	{
+		rt->color.r /= rt->nblight;
+		rt->color.g /= rt->nblight;
+		rt->color.b /= rt->nblight;
+	}
 	rt->color.r = (rt->color.r > 0xff) ? (0xff) : (rt->color.r);
 	rt->color.g = (rt->color.g > 0xff) ? (0xff) : (rt->color.g);
 	rt->color.b = (rt->color.b > 0xff) ? (0xff) : (rt->color.b);
+	rt->color.r = (rt->color.r < 0) ? (0) : (rt->color.r);
+	rt->color.g = (rt->color.g < 0) ? (0) : (rt->color.g);
+	rt->color.b = (rt->color.b < 0) ? (0) : (rt->color.b);
 }
 
 void	intersection(t_env *rt, t_vector ray, t_vector origin)
@@ -42,9 +48,11 @@ void	intersection(t_env *rt, t_vector ray, t_vector origin)
 	rt->i2 = -1;
 	i = 0;
 	rt->t = 200000;
-	rt->disk = 0;
+	rt->disk_cy = 0;
+	rt->disk_s = 0;
 	while (i < rt->nbobj)
 	{
+		rt->object[i].disk = 0;
 		if ((rt->object[i].name == SPHERE && sphere(ray, rt->object[i], &rt->t,
 				origin)) ||
 			(rt->object[i].name == PLANE && plane(ray, rt->object[i], &rt->t,
@@ -54,10 +62,13 @@ void	intersection(t_env *rt, t_vector ray, t_vector origin)
 			(rt->object[i].name == CONE && cone(ray, rt->object[i], &rt->t,
 				origin)) ||
 			(rt->object[i].name == L_SPHERE && limited_sphere(ray, rt->object[i], &rt->t,
-				origin, &rt->disk, 0)) ||
+				origin, &rt->/*object[i].disk.*/disk_s)) ||
 			(rt->object[i].name == L_CYLINDER && limited_cylinder(ray, rt->object[i], &rt->t,
-				origin, &rt->disk, 0)))
+				origin, &rt->disk_cy)))
+			{
+			// printf("disk : %d\n", rt->object[i].disk);
 			rt->i2 = i;
+			}
 		i++;
 	}
 }
@@ -84,13 +95,26 @@ static void		scan(int pas, t_env *rt)
 			rt->color2.r = rt->bg_color.r * 255;
 			rt->color2.g = rt->bg_color.g * 255;
 			rt->color2.b = rt->bg_color.b * 255;
+			t_color color3;
 			if (rt->i2 != -1)
 			{
 				rt->inter = calcul_ptinter(rt->eye, ray, rt->t);
 				calcul_light(rt, rt->i2, ray);
 				rt->color2 = rt->color;
 				reflec_refrac(rt, ray, rt->eye);
+				color3.r = rt->object[rt->i2].color.r * 255;
+				color3.g = rt->object[rt->i2].color.g * 255;
+				color3.b = rt->object[rt->i2].color.b * 255;
 			}
+			rt->color2.r *= 0.8;
+			rt->color2.g *= 0.8;
+			rt->color2.b *= 0.8;
+			color3.r *= 0.2;
+			color3.g *= 0.2;
+			color3.b *= 0.2;
+			rt->color2.r += color3.r;
+			rt->color2.g += color3.g;
+			rt->color2.b += color3.b;
 			rt->final_color = (int)rt->color2.r * 0x10000 + (int)rt->color2.g * 0x100
 				+ (int)rt->color2.b;
 			mlx_pixel_put_to_image(rt->final_color, rt, x, y);

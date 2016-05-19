@@ -15,18 +15,18 @@ pos : 0 -30 -300
 color : 0 0 0
 
 object : limited_cylinder
-pos : 0 -15 -25
-radius : 10
-separation : 20
-angle : 0.75 0.2 1
+pos : 0 0 -10
+radius : 15
+separation : 4
+angle : 0 0 0
 material : metal
 color : 1 0 0
 
 object : limited_cylinder
-pos : 0 0 -10
+pos : -40 0 -10
 radius : 20
-separation : 15
-angle : 1 0.2 0.75
+separation : 1
+angle : 1.57 0 0
 material : metal
 color : 1 1 0
 
@@ -37,3 +37,15 @@ separation : 15
 angle : 0.7 0 -1.57
 material : metal
 color : 0 1 0
+
+object : plane
+pos : 0 -1 0
+radius : 25
+material : metal
+color : 1 1 1
+
+object : plane
+pos : 0 0 -1
+radius : 100
+material : glass
+color : 1 1 1

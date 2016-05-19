@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_camera_light.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:32 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/18 11:27:44 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/19 17:58:42 by grass-kw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void		count_light(t_env *rt, char *file)
 	if (!tmp)
 	{
 		tmp++;
-		rt->nblight = 1;
+		rt->nblight = 0;
 	}
 	if (!(rt->light = (t_light *)malloc(sizeof(t_light) * rt->nblight)))
 		ft_exit("malloc of rt->light failed in count_light");
