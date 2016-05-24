@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/18 15:03:56 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/24 17:37:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ static void	parsing_materials(t_material *materials, char *material)
 	}
 	else if (!ft_strcmp(material, "glass"))
 	{
-		materials->specular = 0;
-		materials->specular_power = 0;
+		materials->specular = 200;
+		materials->specular_power = 200;
 		materials->shiny = 1;
 		materials->transparent = 0;
-		materials->reflection = 0.7;
+		materials->reflection = 1;
 		materials->refraction = 0;
 		materials->i_refract = 0;
 	}
 	else if (!ft_strcmp(material, "metal"))
 	{
-		materials->specular = 0;
-		materials->specular_power = 0;
+		materials->specular = 600;
+		materials->specular_power = 100;
 		materials->shiny = 0;
 		materials->transparent = 0;
 		materials->reflection = 0;
@@ -65,7 +65,7 @@ static void	parsing_options(char **tab, t_env *rt, int i)
 	missing_parameter_obj(tab);
 	if (!ft_strcmp(tab[0], "radius"))
 	{
-		if (ft_atof(tab[2]) <= 0)
+		if (ft_atof(tab[2]) <= 0 && rt->object[i].name != PLANE)
 			ft_exit("\033[31mRadius must be positive\n");
 		rt->object[i].radius = ft_atof(tab[2]);
 	}
@@ -87,6 +87,30 @@ static void	parsing_options(char **tab, t_env *rt, int i)
 		rt->object[i].angle.x = ft_atof(tab[2]);
 		rt->object[i].angle.y = ft_atof(tab[3]);
 		rt->object[i].angle.z = ft_atof(tab[4]);
+	}
+	else if (!ft_strcmp(tab[0], "a"))
+	{
+		rt->object[i].a.x = ft_atof(tab[2]);
+		rt->object[i].a.y = ft_atof(tab[3]);
+		rt->object[i].a.z = ft_atof(tab[4]);
+	}
+	else if (!ft_strcmp(tab[0], "b"))
+	{
+		rt->object[i].b.x = ft_atof(tab[2]);
+		rt->object[i].b.y = ft_atof(tab[3]);
+		rt->object[i].b.z = ft_atof(tab[4]);
+	}
+	else if (!ft_strcmp(tab[0], "c"))
+	{
+		rt->object[i].c.x = ft_atof(tab[2]);
+		rt->object[i].c.y = ft_atof(tab[3]);
+		rt->object[i].c.z = ft_atof(tab[4]);
+	}
+	else if (!ft_strcmp(tab[0], "d"))
+	{
+		rt->object[i].d.x = ft_atof(tab[2]);
+		rt->object[i].d.y = ft_atof(tab[3]);
+		rt->object[i].d.z = ft_atof(tab[4]);
 	}
 	else if (!ft_strcmp(tab[0], "material"))
 		parsing_materials(&rt->object[i].material, tab[2]);
@@ -121,6 +145,12 @@ void		parsing_objects(int fd, char *object, t_env *rt)
 			rt->object[rt->i_obj].name = L_SPHERE;
 		else if (!ft_strcmp(object, "limited_cylinder"))
 			rt->object[rt->i_obj].name = L_CYLINDER;
+		else if (!ft_strcmp(object, "limited_cone"))
+			rt->object[rt->i_obj].name = L_CONE;
+		else if (!ft_strcmp(object, "triangle"))
+			rt->object[rt->i_obj].name = TRIANGLE;
+		else if (!ft_strcmp(object, "quadrilateral"))
+			rt->object[rt->i_obj].name = QUADRILATERAL;
 		else if (!ft_strcmp(object, "light"))
 			rt->object[rt->i_obj].name = LIGHT;
 		parsing_options(tab, rt, rt->i_obj);

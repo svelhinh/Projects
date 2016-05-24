@@ -1,10 +1,6 @@
 resolution : 640 480
 
-reflections : 0
-
-refractions : 0
-
-background_color : 0 0 0
+ambient_light : 0.5
 
 object : camera
 pos : 0 0 -200

@@ -1,10 +1,10 @@
 resolution : 1280 720
 
-reflections : 2
+reflections : 10
 
-refractions : 2
+refractions : 0
 
-background_color : 0
+background_color : 0 0 0
 
 object : camera
 pos : 0 0 -400
@@ -18,33 +18,11 @@ object : light
 pos : -20 0 -100
 color : 0.5 0.5 0.5
 
-object : light
-pos : -20 0 -300
-color : 0.5 0.5 0.5
-
-object : light
-pos : 20 0 -200
-color : 0.5 0.5 0.5
-
-object : light
-pos : -20 0 -400
-color : 0.5 0.5 0.5
-
-object : light
-pos : 20 0 -500
-color : 0.5 0.5 0.5
-
 object : sphere
-pos : 25 0 -100
+pos : 0 0 0
 radius : 5
 material : metal
 color : 0 1 0
-
-/object : cylinder
-/pos : -5 0 -100
-/radius : 5
-/material : metal
-/color : 0 1 0
 
 object : plane
 pos : 0 -1 0
@@ -75,3 +53,9 @@ pos : 0 0 -1
 material : glass
 radius : 0
 color : 0 0 1
+
+object : plane
+pos : 0 0 1
+material : glass
+radius : 500
+color : 1 1 1

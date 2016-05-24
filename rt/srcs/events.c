@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lnieto-m <lnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:30:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/17 17:55:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/20 11:33:35 by lnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ int		expose(t_env *rt)
 		ft_exit("mlx_new_image() in expose() failed");
 	rt->data = mlx_get_data_addr(rt->img, &rt->bpp, &rt->line,
 			&rt->endian);
-	render(rt);
+	if (OPENCL == 1)
+		ft_opencl(rt);
+	else
+		render(rt);
 	mlx_put_image_to_window(rt->mlx, rt->win, rt->img, 0, 0);
-	if (rt->menu >= 1 || rt->rotcam != 0 || rt->effect >= 0)
+	if (rt->menu >= 1 || rt->rotcam != 0 || rt->effect >= 0)// menu et clic droit
 		menu(rt);
 	mlx_destroy_image(rt->mlx, rt->img);
 	return (0);
@@ -50,6 +53,8 @@ int		key_press(int keycode, t_env *rt)
 		create_window("scenes/sphere_plane.rt");
 	if (keycode == ESC)
 	{
+		if (OPENCL == 1)
+			cl_free(&rt->cl);
 		mlx_destroy_window(rt->mlx, rt->win);
 		exit(0);
 	}

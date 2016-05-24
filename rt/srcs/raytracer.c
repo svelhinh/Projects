@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/19 19:00:38 by grass-kw         ###   ########.fr       */
+/*   Updated: 2016/05/24 14:41:24 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	intersection(t_env *rt, t_vector ray, t_vector origin)
 	rt->disk_s = 0;
 	while (i < rt->nbobj)
 	{
-		rt->object[i].disk = 0;
 		if ((rt->object[i].name == SPHERE && sphere(ray, rt->object[i], &rt->t,
 				origin)) ||
 			(rt->object[i].name == PLANE && plane(ray, rt->object[i], &rt->t,
@@ -62,13 +61,16 @@ void	intersection(t_env *rt, t_vector ray, t_vector origin)
 			(rt->object[i].name == CONE && cone(ray, rt->object[i], &rt->t,
 				origin)) ||
 			(rt->object[i].name == L_SPHERE && limited_sphere(ray, rt->object[i], &rt->t,
-				origin, &rt->/*object[i].disk.*/disk_s)) ||
+				origin, &rt->disk_s)) ||
 			(rt->object[i].name == L_CYLINDER && limited_cylinder(ray, rt->object[i], &rt->t,
-				origin, &rt->disk_cy)))
-			{
-			// printf("disk : %d\n", rt->object[i].disk);
+				origin, &rt->disk_cy)) ||
+			(rt->object[i].name == L_CONE && limited_cone(ray, rt->object[i], &rt->t,
+				origin, &rt->disk_co)) ||
+			(rt->object[i].name == TRIANGLE && triangle(ray, rt->object[i], &rt->t,
+				origin)) ||
+			(rt->object[i].name == QUADRILATERAL && quadrilateral(ray, rt->object[i], &rt->t,
+				origin)))
 			rt->i2 = i;
-			}
 		i++;
 	}
 }
@@ -77,9 +79,11 @@ static void		scan(int pas, t_env *rt)
 {
 	int			x;
 	int			y;
+	double		diffuse;
 	t_vector	ray;
 
 	y = rt->start_h;
+	diffuse = (1 - rt->ambient) * 0.5;
 	while (y < rt->end_h)
 	{
 		x = 0;
@@ -106,12 +110,12 @@ static void		scan(int pas, t_env *rt)
 				color3.g = rt->object[rt->i2].color.g * 255;
 				color3.b = rt->object[rt->i2].color.b * 255;
 			}
-			rt->color2.r *= 0.8;
-			rt->color2.g *= 0.8;
-			rt->color2.b *= 0.8;
-			color3.r *= 0.2;
-			color3.g *= 0.2;
-			color3.b *= 0.2;
+			rt->color2.r *= diffuse;
+			rt->color2.g *= diffuse;
+			rt->color2.b *= diffuse;
+			color3.r *= rt->ambient;
+			color3.g *= rt->ambient;
+			color3.b *= rt->ambient;
 			rt->color2.r += color3.r;
 			rt->color2.g += color3.g;
 			rt->color2.b += color3.b;

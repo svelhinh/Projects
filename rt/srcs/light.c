@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/19 16:58:24 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/24 18:20:19 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,21 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 			(rt->object[i].name == L_SPHERE && limited_sphere(ray_light, rt->object[i], &t,
 				inter, &disk)) ||
 			(rt->object[i].name == L_CYLINDER && limited_cylinder(ray_light, rt->object[i], &t,
-				inter, &disk)))
-			{
-			// printf("disk_light : %d\n", rt->object[i].disk);
+				inter, &disk)) ||
+			(rt->object[i].name == L_CONE && limited_cone(ray_light, rt->object[i], &t,
+				inter, &disk)) ||
+			(rt->object[i].name == TRIANGLE && triangle(ray_light, rt->object[i], &t,
+				inter)) ||
+			(rt->object[i].name == QUADRILATERAL && quadrilateral(ray_light, rt->object[i], &t,
+				inter)))
 			return (1);
-			}
 		i++;
 	}
 	return (0);
 }
 
 static double	specular_light(t_vector n, t_vector light, t_figure object,
-	t_vector ray)
+	t_vector ray, double ambient)
 {
 	double		spec;
 	t_vector	r;
@@ -59,7 +62,8 @@ static double	specular_light(t_vector n, t_vector light, t_figure object,
 	r.y = light.y - 2 * n.y * vecdot(&n, &light);
 	r.z = light.z - 2 * n.z * vecdot(&n, &light);
 	r = normalize(&r);
-	spec = object.material.specular * pow(vecdot(&r, &ray), object.material.specular_power);
+	spec = (1 - ambient) * 0.5;
+	spec = object.material.specular * spec * pow(vecdot(&r, &ray), object.material.specular_power);
 	return (spec);
 }
 
@@ -67,7 +71,7 @@ static t_vector	light_rotate(t_env *rt, t_figure object, t_light light)
 {
 	t_vector	light_ray;
 
-	if (object.name != SPHERE && object.name != PLANE)
+	if (object.name != SPHERE && object.name != PLANE && object.name != TRIANGLE)
 	{
 		rt->tmp_l_center = rotations(light.center, object.angle.x,
 			object.angle.y, object.angle.z);
@@ -115,27 +119,35 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 	if (!shadows(rt, rt->tmp_rlight, rt->inter))
 	{
 		n = vecsub(&rt->tmp_center, &rt->tmp_inter);
-		n.y = (object.name == CYLINDER || object.name == L_CYLINDER || object.name == CONE) ? (0) : (n.y);
+		n.y = (object.name == CYLINDER || object.name == L_CYLINDER || object.name == CONE || object.name == L_CONE) ? (0) : (n.y);
 		n = (object.name == PLANE) ? (rt->tmp_center) : (n);
-		// printf("name = %d, disk = %d\n", object.name, object.disk);
-		if ((/*object.*/rt->disk_s == 2 && object.name == L_SPHERE) || (rt->disk_cy == 2 && object.name == L_CYLINDER))
+		if ((rt->disk_s == 2 && object.name == L_SPHERE) || (rt->disk_cy == 2 && object.name == L_CYLINDER) || (rt->disk_co == 2 && object.name == L_CONE))
 		{
 			n.x = 0;
 			n.y = 1;
 			n.z = 0;
 		}
-		if (rt->disk_cy == 3 && object.name == L_CYLINDER)
+		if ((rt->disk_cy == 3 && object.name == L_CYLINDER) || (rt->disk_co == 3 && object.name == L_CONE))
 		{
 			n.x = 0;
 			n.y = -1;
 			n.z = 0;
 		}
+		if (object.name == TRIANGLE/* || object.name == QUADRILATERAL*/)
+		{
+			t_vector tmp;
+			t_vector tmp2;
+
+			tmp = vecsub(&object.a, &object.b);
+			tmp2 = vecsub(&object.a, &object.c);
+			n = vecprod(&tmp, &tmp2);
+		}
 		rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
 		+ pow(light_ray.y, 2) + pow(light_ray.z, 2)) * sqrt(pow(n.x, 2)
 		+ pow(n.y, 2) + pow(n.z, 2)));
-		if (rt->angle > 0)
+		if (rt->angle > 0.0001)
 		{
-			spec = specular_light(n, light_ray, object, ray);
+			spec = specular_light(n, light_ray, object, ray, rt->ambient);
 			color_light(rt, spec, object, light.color);
 		}
 	}

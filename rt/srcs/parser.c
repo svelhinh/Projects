@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/18 14:48:00 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/24 14:40:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static void	objects(char *object, t_env *rt, int fd)
 	else if (!ft_strcmp(object, "sphere") ||
 		!ft_strcmp(object, "plane") || !ft_strcmp(object, "cylinder") ||
 		!ft_strcmp(object, "cone") || !ft_strcmp(object, "limited_sphere") ||
-		!ft_strcmp(object, "limited_cylinder"))
+		!ft_strcmp(object, "limited_cylinder") ||
+		!ft_strcmp(object, "limited_cone") ||
+		!ft_strcmp(object, "triangle") ||
+		!ft_strcmp(object, "quadrilateral"))
 		parsing_objects(fd, object, rt);
 	else
 		ft_exit("\033[31mA defined object was not found\n");
@@ -82,6 +85,12 @@ static void	parsing(char **tab, t_env *rt, int fd)
 		if (!tab[2] || tab[3])
 			ft_exit("\033[31mWrong format for an object (object : [object_name])\n");
 		objects(tab[2], rt, fd);
+	}
+	else if (!ft_strcmp(tab[0], "ambient_light"))
+	{
+		if (!tab[2] || tab[3] || ft_atof(tab[2]) > 1 || ft_atof(tab[2]) < 0)
+			ft_exit("\033[31mWrong format for ambient light (ambient_light : [0-1])\n");
+		rt->ambient = ft_atof(tab[2]);
 	}
 	else
 		ft_exit("\033[31mWrong option\n");

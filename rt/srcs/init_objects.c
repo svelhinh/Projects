@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/19 12:30:59 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/24 13:55:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ static void	init_objects(t_env *rt)
 		rt->object[i].angle.y = 0;
 		rt->object[i].angle.z = 0;
 		rt->object[i].size = 0;
+		rt->object[i].a.x = 0;
+		rt->object[i].a.y = 0;
+		rt->object[i].a.z = 0;
+		rt->object[i].b.x = 0;
+		rt->object[i].b.y = 0;
+		rt->object[i].b.z = 0;
+		rt->object[i].c.x = 0;
+		rt->object[i].c.y = 0;
+		rt->object[i].c.z = 0;
+		rt->object[i].d.x = 0;
+		rt->object[i].d.y = 0;
+		rt->object[i].d.z = 0;
 		// rt->object[i].disk = 0;
 		rt->object[i].separation = 0;
 		rt->object[i].material.specular = 0;
@@ -60,7 +72,10 @@ void		count_objects(t_env *rt, char *file)
 			!ft_strcmp(line, "object : cylinder") ||
 			!ft_strcmp(line, "object : cone") ||
 			!ft_strcmp(line, "object : limited_sphere") ||
-			!ft_strcmp(line, "object : limited_cylinder"))
+			!ft_strcmp(line, "object : limited_cylinder") ||
+			!ft_strcmp(line, "object : limited_cone") ||
+			!ft_strcmp(line, "object : triangle") ||
+			!ft_strcmp(line, "object : quadrilateral"))
 		{
 			rt->nbobj++;
 			tmp = (!tmp) ? (1) : (tmp);

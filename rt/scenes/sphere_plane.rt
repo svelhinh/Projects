@@ -23,10 +23,10 @@ material : metal
 color : 1 0 0
 
 object : limited_cylinder
-pos : 0 0 -10
+pos : 20 -10 -30
 radius : 20
 separation : 15
-angle : 1 0.2 0.75
+angle : 2 0.2 0.75
 material : metal
 color : 1 1 0
 
@@ -37,3 +37,15 @@ separation : 15
 angle : 0.7 0 -1.57
 material : metal
 color : 0 1 0
+
+object : plane
+pos : 0 -1 0
+radius : 25
+material : metal
+color : 1 1 1
+
+object : plane
+pos : 0 0 -1
+radius : 100
+material : glass
+color : 1 1 1

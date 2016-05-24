@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 14:30:18 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/05/18 17:34:52 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/20 12:49:59 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void		mlx_setup(t_env *e)
 		ft_putendl("fail to connect with X-server");
 		exit(1);
 	}
-	if ((e->win = mlx_new_window(e->mlx, e->w, e->h, "Raytracer")) == NULL)
+	if ((e->win = mlx_new_window(e->mlx, e->w, e->h, "rt_v1")) == NULL)
 	{
-		ft_putendl("fail to create window");
+		ft_putendl("fail to created window");
 		exit(1);
 	}
 	if ((e->img = mlx_new_image(e->mlx, e->w, e->h)) == NULL)
 	{
-		ft_putendl("fail to create an image");
+		ft_putendl("fail to created an image");
 		exit(1);
 	}
 	if ((e->data = mlx_get_data_addr(e->img, &(e->bpp)
@@ -43,6 +43,8 @@ void	create_window(char *s)
 
 	global_parser(s, &rt1);
 	mlx_setup(&rt1);
+	if (OPENCL == 1)
+		opencl_setup(&rt1.cl, rt1.h, rt1.w);
 	mlx_string_put(rt1.mlx, rt1.win, rt1.w / 2, rt1.h / 2, 0xFFFFFF, "LOADING...");
 	mlx_mouse_hook(rt1.win, my_mouse_funct, &rt1);
 	mlx_hook(rt1.win, 2, (1L << 0), key_press, &rt1);

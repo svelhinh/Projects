@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   vectors.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lnieto-m <lnieto-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:02:14 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/28 15:25:03 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/24 15:23:39 by lnieto-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+t_vector	vecprod(t_vector *v1, t_vector *v2)
+{
+	t_vector	result;
+
+	result.x = v1->y * v2->z - v1->z * v2->y;
+	result.y = v1->z * v2->x - v1->x * v2->z;
+	result.z = v1->x * v2->y - v1->y * v2->x;
+	return (result);
+}
 
 t_vector	vecsub(t_vector *v1, t_vector *v2)
 {

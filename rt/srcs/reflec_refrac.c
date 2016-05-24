@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/06 11:18:24 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/17 14:50:53 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/20 14:44:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ void	reflections(t_env *rt, t_vector ray, t_vector orig, int rr)
 		else
 			n = rt->object[rt->i2].center;
 		n = normalize(&n);
+		if ((rt->disk_s == 2 && rt->object[rt->i2].name == L_SPHERE) || (rt->disk_cy == 2 && rt->object[rt->i2].name == L_CYLINDER))
+		{
+			n.x = 0;
+			n.y = 1;
+			n.z = 0;
+		}
+		if (rt->disk_cy == 3 && rt->object[rt->i2].name == L_CYLINDER)
+		{
+			n.x = 0;
+			n.y = -1;
+			n.z = 0;
+		}
 		tmp_reflect.x = ray.x;
 		tmp_reflect.y = ray.y;
 		tmp_reflect.z = ray.z;
@@ -59,7 +71,20 @@ void	refractions(t_env *rt, t_vector ray, t_vector orig, int rr)
 		else
 			n = rt->object[rt->i2].center;
 		n = normalize(&n);
-		i_refract = rt->object[rt->i2].material.i_refract / rt->prev_refr;
+		if ((rt->disk_s == 2 && rt->object[rt->i2].name == L_SPHERE) || (rt->disk_cy == 2 && rt->object[rt->i2].name == L_CYLINDER))
+		{
+			n.x = 0;
+			n.y = 1;
+			n.z = 0;
+		}
+		if (rt->disk_cy == 3 && rt->object[rt->i2].name == L_CYLINDER)
+		{
+			n.x = 0;
+			n.y = -1;
+			n.z = 0;
+		}
+		if (rt->prev_refr != 0)
+			i_refract = rt->object[rt->i2].material.i_refract / rt->prev_refr;
 		rt->prev_refr = rt->object[rt->i2].material.i_refract;
 		tmp_refract.x = ray.x;
 		tmp_refract.y = ray.y;

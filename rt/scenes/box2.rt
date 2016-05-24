@@ -4,25 +4,15 @@ reflections : 2
 
 refractions : 2
 
-background_color : 0
+background_color : 0 0 0
 
 object : camera
 pos : 0 0 -400
 angle : 0 0 0
 
 object : light
-pos : 0 0 -500
-color : 0 0 0
-
-object : light
 pos : 0 0 -300
 color : 0 0 0
-
-;object : sphere
-;pos : -15 25 -25
-;radius : 15
-;material : glass
-;color : 0 1 0
 
 object : sphere
 pos : 0 0 -200
@@ -66,15 +56,3 @@ pos : 0 0 -1
 material : metal
 radius : 0
 color : 0 1 1
-
-/object : plane
-/pos : 0 0 -1
-/material : glass
-/radius : -150
-/color : 1 1 0
-
-/object : plane
-/pos : 0 0 -1
-/material : glass
-/radius : -125
-/color : 0 0 1
