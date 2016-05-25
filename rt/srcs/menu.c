@@ -30,10 +30,6 @@ static void rot_rotcam(int button, int x, int y, t_env *rt)
 
 int		my_mouse_funct(int button, int x, int y, t_env *rt)
 {
-	int fd;
-	t_env new_rt;
-
-	fd = 0;
 	if (button == 2)
 		rt->rotcam = (rt->rotcam != 1) ? 1 : 0;
 	if (rt->rotcam == 1)

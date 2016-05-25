@@ -43,6 +43,7 @@ static void	init_objects(t_env *rt)
 		rt->object[i].d.x = 0;
 		rt->object[i].d.y = 0;
 		rt->object[i].d.z = 0;
+		rt->object[i].negativ = 0;
 		// rt->object[i].disk = 0;
 		rt->object[i].separation = 0;
 		rt->object[i].material.specular = 0;

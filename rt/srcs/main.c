@@ -14,8 +14,6 @@
 
 int		main(int ac, char **av)
 {
-	t_env rt;
-
 	if (ac != 2)
 		(ac > 2) ? (ft_exit("\033[31mToo many parameters\n")) :
 			(ft_exit("\033[31mNot enough parameters\n"));

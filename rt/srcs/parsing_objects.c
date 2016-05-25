@@ -116,6 +116,8 @@ static void	parsing_options(char **tab, t_env *rt, int i)
 		parsing_materials(&rt->object[i].material, tab[2]);
 	else if (!ft_strcmp(tab[0], "separation"))
 		rt->object[i].separation = ft_atof(tab[2]);
+	else if (!ft_strcmp(tab[0], "negativ"))
+		rt->object[i].negativ = ft_atoi(tab[2]);
 	else
 		ft_exit("\033[31mWrong option for an object\n");
 }

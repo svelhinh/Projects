@@ -14,9 +14,6 @@
 
 static void	background_color(char **color, t_env *rt)
 {
-	int		i;
-
-	i = 0;
 	if (color[5] || !color[2] || !color[3] || !color[4])
 		ft_exit("\033[31mWrong format for background_color (background_color : r [0-1] g [0-1] b [0-1])\n");
 	check_color(ft_atof(color[2]), ft_atof(color[3]), ft_atof(color[4]));

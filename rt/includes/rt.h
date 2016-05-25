@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/24 17:26:55 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/25 15:32:25 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define DOWN 125 /*65364*/
 # define LEFT 123 /*65361*/
 # define RIGHT 124 /*65363*/
-# define ESC 53  /*65307*/
+# define ESC 53 /*65307*/
 # define SPEED 30
 # define LIGHT 0
 # define SPHERE 1
@@ -81,6 +81,7 @@ typedef struct			s_figure
 	double				radius;
 	double				separation;
 	double				size;
+	int					negativ;
 	t_vector			a;
 	t_vector			b;
 	t_vector			c;
@@ -207,7 +208,7 @@ int						key_release(int keycode, t_env *rt);
 */
 int						sphere(t_vector r, t_figure s, double *t, t_vector eye);
 int						plane(t_vector r, t_figure p, double *t, t_vector eye);
-int						cylinder(t_vector r, t_figure cy, double *t, t_vector eye);
+int						cylinder(t_vector r, t_figure cy, double *t, t_vector eye, t_env *rt);
 int						cone(t_vector r, t_figure co, double *t, t_vector eye);
 int						limited_sphere(t_vector r, t_figure s, double *t, t_vector eye, int *disk);
 int						limited_cylinder(t_vector r, t_figure cy, double *t, t_vector eye, int *disk);
@@ -220,7 +221,7 @@ int						quadrilateral(t_vector r, t_figure tri, double *t, t_vector eye);
 /*
 **	-------------------	LIGHT	---------------------------
 */
-void					light(t_env *rt, t_figure object, t_light light, t_vector ray);
+void					light(t_env *rt, t_figure object, t_light light, t_vector ray, int i);
 /*
 **	-------------------------------------------------------
 */

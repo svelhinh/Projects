@@ -63,7 +63,10 @@ static double	ft_atof2(char const *src, int p)
 	a = 0.0;
 	e = 0;
 	if (*s == '-')
-		(p = -1) && ++s;
+	{
+		p = -1;
+		++s;
+	}
 	if (*s == '+')
 		++s;
 	while (*s == ' ')

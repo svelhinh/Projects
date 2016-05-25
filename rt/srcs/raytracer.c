@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/24 14:41:24 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/25 16:10:07 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void		calcul_light(t_env *rt, int i2, t_vector ray)
 {
 	int			i;
+	int			j;
+	t_light		light_tmp;
 
 	i = 0;
 	rt->color.r = 0;
@@ -22,7 +24,22 @@ void		calcul_light(t_env *rt, int i2, t_vector ray)
 	rt->color.b = 0;
 	while (i < rt->nblight)
 	{
-		light(rt, rt->object[i2], rt->light[i], ray);
+		// printf("%f\n", rt->light[i].center.y);
+		light_tmp = rt->light[i];
+		// printf("light_tmp = %f\n", light_tmp.y);
+		j = 0;
+		while (j < 30)
+		{
+			light(rt, rt->object[i2], light_tmp, ray, j);
+			// printf("y1 = %f\n", rt->light[i].center.y);
+			srand(time(NULL));
+			light_tmp.center.x++;
+			light_tmp.center.y++;
+			light_tmp.center.z++;
+			// printf("y2 = %f\n", rt->light[i].center.y);
+			j++;
+		}
+		// printf("y3 = %f\n", rt->light[i].center.y);
 		i++;
 	}
 	if (rt->nblight != 0)
@@ -42,8 +59,6 @@ void		calcul_light(t_env *rt, int i2, t_vector ray)
 void	intersection(t_env *rt, t_vector ray, t_vector origin)
 {
 	int			i;
-	t_vector 	tmp_reflect;
-	t_vector	n;
 
 	rt->i2 = -1;
 	i = 0;
@@ -52,25 +67,26 @@ void	intersection(t_env *rt, t_vector ray, t_vector origin)
 	rt->disk_s = 0;
 	while (i < rt->nbobj)
 	{
-		if ((rt->object[i].name == SPHERE && sphere(ray, rt->object[i], &rt->t,
-				origin)) ||
-			(rt->object[i].name == PLANE && plane(ray, rt->object[i], &rt->t,
-				origin)) ||
-			(rt->object[i].name == CYLINDER && cylinder(ray, rt->object[i],
-				&rt->t, origin)) ||
-			(rt->object[i].name == CONE && cone(ray, rt->object[i], &rt->t,
-				origin)) ||
-			(rt->object[i].name == L_SPHERE && limited_sphere(ray, rt->object[i], &rt->t,
-				origin, &rt->disk_s)) ||
-			(rt->object[i].name == L_CYLINDER && limited_cylinder(ray, rt->object[i], &rt->t,
-				origin, &rt->disk_cy)) ||
-			(rt->object[i].name == L_CONE && limited_cone(ray, rt->object[i], &rt->t,
-				origin, &rt->disk_co)) ||
-			(rt->object[i].name == TRIANGLE && triangle(ray, rt->object[i], &rt->t,
-				origin)) ||
-			(rt->object[i].name == QUADRILATERAL && quadrilateral(ray, rt->object[i], &rt->t,
-				origin)))
-			rt->i2 = i;
+		if (!rt->object[i].negativ)
+			if ((rt->object[i].name == SPHERE && sphere(ray, rt->object[i], &rt->t,
+					origin)) ||
+				(rt->object[i].name == PLANE && plane(ray, rt->object[i], &rt->t,
+					origin)) ||
+				(rt->object[i].name == CYLINDER && cylinder(ray, rt->object[i],
+					&rt->t, origin, rt)) ||
+				(rt->object[i].name == CONE && cone(ray, rt->object[i], &rt->t,
+					origin)) ||
+				(rt->object[i].name == L_SPHERE && limited_sphere(ray, rt->object[i], &rt->t,
+					origin, &rt->disk_s)) ||
+				(rt->object[i].name == L_CYLINDER && limited_cylinder(ray, rt->object[i], &rt->t,
+					origin, &rt->disk_cy)) ||
+				(rt->object[i].name == L_CONE && limited_cone(ray, rt->object[i], &rt->t,
+					origin, &rt->disk_co)) ||
+				(rt->object[i].name == TRIANGLE && triangle(ray, rt->object[i], &rt->t,
+					origin)) ||
+				(rt->object[i].name == QUADRILATERAL && quadrilateral(ray, rt->object[i], &rt->t,
+					origin)))
+				rt->i2 = i;
 		i++;
 	}
 }

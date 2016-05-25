@@ -14,29 +14,26 @@ object : light
 pos : 0 -30 -300
 color : 0 0 0
 
-object : limited_cylinder
-pos : 0 0 -10
-radius : 15
-separation : 4
-angle : 0 0 0
-material : metal
-color : 1 0 0
-
-object : limited_cylinder
-pos : -40 0 -10
+object : cylinder
+pos : 0 0 0
 radius : 20
-separation : 1
-angle : 1.57 0 0
+angle : 0 0 0
 material : metal
 color : 1 1 0
 
-object : limited_sphere
+object : sphere
 pos : 50 -20 -10
 radius : 20
-separation : 15
-angle : 0.7 0 -1.57
+negativ : 0
 material : metal
 color : 0 1 0
+
+object : sphere
+pos : 10 0 -25
+radius : 25
+negativ : 1
+material : metal
+color : 1 0 0
 
 object : plane
 pos : 0 -1 0
