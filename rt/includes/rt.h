@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/25 15:32:25 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/26 18:22:39 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define L_CONE 7
 # define TRIANGLE 8
 # define QUADRILATERAL 9
+# define HYPERBOL 10
 # define MENU 49
 # define OPENCL 0
 
@@ -221,7 +222,7 @@ int						quadrilateral(t_vector r, t_figure tri, double *t, t_vector eye);
 /*
 **	-------------------	LIGHT	---------------------------
 */
-void					light(t_env *rt, t_figure object, t_light light, t_vector ray, int i);
+void					light(t_env *rt, t_figure object, t_light light, t_vector ray);
 /*
 **	-------------------------------------------------------
 */

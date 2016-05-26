@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/25 16:10:34 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/26 18:26:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int		shadows(t_env *rt, t_vector ray_light, t_vector inter)
 					rt->object[i], &t, inter)) ||
 				(rt->object[i].name == CYLINDER && cylinder(ray_light,
 					rt->object[i], &t, inter, rt)) ||
-				(rt->object[i].name == CONE && cone(ray_light, rt->object[i], &t,
+				((rt->object[i].name == CONE || rt->object[i].name == HYPERBOL) && cone(ray_light, rt->object[i], &t,
 					inter)) ||
 				(rt->object[i].name == L_SPHERE && limited_sphere(ray_light, rt->object[i], &t,
 					inter, &disk)) ||
@@ -108,7 +108,7 @@ static void		color_light(t_env *rt, double spec, t_figure object,
 	rt->color.b += tmp_color.b + spec * rt->angle + 255 * light.b * rt->angle;
 }
 
-void			light(t_env *rt, t_figure object, t_light light, t_vector ray, int i)
+void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 {
 	t_vector	n;
 	t_vector	light_ray;
@@ -117,40 +117,37 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray, int i)
 	light_ray = light_rotate(rt, object, light);
 	if (!shadows(rt, rt->tmp_rlight, rt->inter))
 	{
-		if (!i)
+		n = vecsub(&rt->tmp_center, &rt->tmp_inter);
+		n.y = (object.name == CYLINDER || object.name == L_CYLINDER || object.name == CONE || object.name == HYPERBOL || object.name == L_CONE) ? (0) : (n.y);
+		n = (object.name == PLANE) ? (rt->tmp_center) : (n);
+		if ((rt->disk_s == 2 && object.name == L_SPHERE) || (rt->disk_cy == 2 && object.name == L_CYLINDER) || (rt->disk_co == 2 && object.name == L_CONE))
 		{
-			n = vecsub(&rt->tmp_center, &rt->tmp_inter);
-			n.y = (object.name == CYLINDER || object.name == L_CYLINDER || object.name == CONE || object.name == L_CONE) ? (0) : (n.y);
-			n = (object.name == PLANE) ? (rt->tmp_center) : (n);
-			if ((rt->disk_s == 2 && object.name == L_SPHERE) || (rt->disk_cy == 2 && object.name == L_CYLINDER) || (rt->disk_co == 2 && object.name == L_CONE))
-			{
-				n.x = 0;
-				n.y = 1;
-				n.z = 0;
-			}
-			if ((rt->disk_cy == 3 && object.name == L_CYLINDER) || (rt->disk_co == 3 && object.name == L_CONE))
-			{
-				n.x = 0;
-				n.y = -1;
-				n.z = 0;
-			}
-			if (object.name == TRIANGLE/* || object.name == QUADRILATERAL*/)
-			{
-				t_vector tmp;
-				t_vector tmp2;
+			n.x = 0;
+			n.y = 1;
+			n.z = 0;
+		}
+		if ((rt->disk_cy == 3 && object.name == L_CYLINDER) || (rt->disk_co == 3 && object.name == L_CONE))
+		{
+			n.x = 0;
+			n.y = -1;
+			n.z = 0;
+		}
+		if (object.name == TRIANGLE/* || object.name == QUADRILATERAL*/)
+		{
+			t_vector tmp;
+			t_vector tmp2;
 
-				tmp = vecsub(&object.a, &object.b);
-				tmp2 = vecsub(&object.a, &object.c);
-				n = vecprod(&tmp, &tmp2);
-			}
-			rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
-			+ pow(light_ray.y, 2) + pow(light_ray.z, 2)) * sqrt(pow(n.x, 2)
-			+ pow(n.y, 2) + pow(n.z, 2)));
-			if (rt->angle > 0.0001)
-			{
-				spec = specular_light(n, light_ray, object, ray, rt->ambient);
-				color_light(rt, spec, object, light.color);
-			}
+			tmp = vecsub(&object.a, &object.b);
+			tmp2 = vecsub(&object.a, &object.c);
+			n = vecprod(&tmp, &tmp2);
+		}
+		rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
+		+ pow(light_ray.y, 2) + pow(light_ray.z, 2)) * sqrt(pow(n.x, 2)
+		+ pow(n.y, 2) + pow(n.z, 2)));
+		if (rt->angle > 0.0001)
+		{
+			spec = specular_light(n, light_ray, object, ray, rt->ambient);
+			color_light(rt, spec, object, light.color);
 		}
 	}
 }

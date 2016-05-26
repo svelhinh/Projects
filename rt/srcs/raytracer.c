@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/25 16:10:07 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/26 18:25:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void		calcul_light(t_env *rt, int i2, t_vector ray)
 {
 	int			i;
-	int			j;
 	t_light		light_tmp;
 
 	i = 0;
@@ -24,22 +23,8 @@ void		calcul_light(t_env *rt, int i2, t_vector ray)
 	rt->color.b = 0;
 	while (i < rt->nblight)
 	{
-		// printf("%f\n", rt->light[i].center.y);
 		light_tmp = rt->light[i];
-		// printf("light_tmp = %f\n", light_tmp.y);
-		j = 0;
-		while (j < 30)
-		{
-			light(rt, rt->object[i2], light_tmp, ray, j);
-			// printf("y1 = %f\n", rt->light[i].center.y);
-			srand(time(NULL));
-			light_tmp.center.x++;
-			light_tmp.center.y++;
-			light_tmp.center.z++;
-			// printf("y2 = %f\n", rt->light[i].center.y);
-			j++;
-		}
-		// printf("y3 = %f\n", rt->light[i].center.y);
+		light(rt, rt->object[i2], light_tmp, ray);
 		i++;
 	}
 	if (rt->nblight != 0)
@@ -74,7 +59,7 @@ void	intersection(t_env *rt, t_vector ray, t_vector origin)
 					origin)) ||
 				(rt->object[i].name == CYLINDER && cylinder(ray, rt->object[i],
 					&rt->t, origin, rt)) ||
-				(rt->object[i].name == CONE && cone(ray, rt->object[i], &rt->t,
+				((rt->object[i].name == CONE || rt->object[i].name == HYPERBOL) && cone(ray, rt->object[i], &rt->t,
 					origin)) ||
 				(rt->object[i].name == L_SPHERE && limited_sphere(ray, rt->object[i], &rt->t,
 					origin, &rt->disk_s)) ||

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:55 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/24 14:40:27 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/26 18:25:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	objects(char *object, t_env *rt, int fd)
 		!ft_strcmp(object, "limited_cylinder") ||
 		!ft_strcmp(object, "limited_cone") ||
 		!ft_strcmp(object, "triangle") ||
-		!ft_strcmp(object, "quadrilateral"))
+		!ft_strcmp(object, "quadrilateral") ||
+		!ft_strcmp(object, "hyperboloid"))
 		parsing_objects(fd, object, rt);
 	else
 		ft_exit("\033[31mA defined object was not found\n");

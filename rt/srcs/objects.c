@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 15:12:19 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/25 14:46:43 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/26 18:11:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ int			cone(t_vector r, t_figure co, double *t, t_vector eye)
 	double		b;
 	double		c;
 
+	if (co.name == CONE)
+		co.radius = 0;
 	eye = rotations(eye, co.angle.x, co.angle.y, co.angle.z);
 	r = rotations(r, co.angle.x, co.angle.y, co.angle.z);
 	co.center = rotations(co.center, co.angle.x, co.angle.y, co.angle.z);
@@ -151,6 +153,6 @@ int			cone(t_vector r, t_figure co, double *t, t_vector eye)
 	b = 2 * (r.x * (eye.x - co.center.x) - r.y * (eye.y - co.center.y) + r.z *
 		(eye.z - co.center.z));
 	c = (pow(eye.x - co.center.x, 2) - pow(eye.y - co.center.y, 2) +
-		pow(eye.z - co.center.z, 2));
+		pow(eye.z - co.center.z, 2)) - co.radius;
 	return (distance(a, b, c, t));
 }

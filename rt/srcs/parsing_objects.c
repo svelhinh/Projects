@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:15 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/24 17:37:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/26 18:28:48 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	parsing_materials(t_material *materials, char *material)
 	else if (!ft_strcmp(material, "metal"))
 	{
 		materials->specular = 600;
-		materials->specular_power = 100;
+		materials->specular_power = 500;
 		materials->shiny = 0;
 		materials->transparent = 0;
 		materials->reflection = 0;
@@ -65,7 +65,7 @@ static void	parsing_options(char **tab, t_env *rt, int i)
 	missing_parameter_obj(tab);
 	if (!ft_strcmp(tab[0], "radius"))
 	{
-		if (ft_atof(tab[2]) <= 0 && rt->object[i].name != PLANE)
+		if (ft_atof(tab[2]) <= 0 && rt->object[i].name != PLANE && rt->object[i].name != HYPERBOL)
 			ft_exit("\033[31mRadius must be positive\n");
 		rt->object[i].radius = ft_atof(tab[2]);
 	}
@@ -153,6 +153,8 @@ void		parsing_objects(int fd, char *object, t_env *rt)
 			rt->object[rt->i_obj].name = TRIANGLE;
 		else if (!ft_strcmp(object, "quadrilateral"))
 			rt->object[rt->i_obj].name = QUADRILATERAL;
+		else if (!ft_strcmp(object, "hyperboloid"))
+			rt->object[rt->i_obj].name = HYPERBOL;
 		else if (!ft_strcmp(object, "light"))
 			rt->object[rt->i_obj].name = LIGHT;
 		parsing_options(tab, rt, rt->i_obj);

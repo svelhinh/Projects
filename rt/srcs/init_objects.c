@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/24 13:55:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/26 18:23:00 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void		count_objects(t_env *rt, char *file)
 			!ft_strcmp(line, "object : limited_cylinder") ||
 			!ft_strcmp(line, "object : limited_cone") ||
 			!ft_strcmp(line, "object : triangle") ||
-			!ft_strcmp(line, "object : quadrilateral"))
+			!ft_strcmp(line, "object : quadrilateral") ||
+			!ft_strcmp(line, "object : hyperboloid"))
 		{
 			rt->nbobj++;
 			tmp = (!tmp) ? (1) : (tmp);
