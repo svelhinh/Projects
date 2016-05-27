@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/26 18:22:39 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/27 13:23:59 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define LEFT 123 /*65361*/
 # define RIGHT 124 /*65363*/
 # define ESC 53 /*65307*/
+# define MENU 49
+# define SAVE 1
 # define SPEED 30
 # define LIGHT 0
 # define SPHERE 1
@@ -42,7 +44,6 @@
 # define TRIANGLE 8
 # define QUADRILATERAL 9
 # define HYPERBOL 10
-# define MENU 49
 # define OPENCL 0
 
 typedef struct			s_vector
@@ -175,6 +176,7 @@ t_vector				rotations(t_vector vec, double x, double y, double z);
 void					reflec_refrac(t_env *rt, t_vector ray, t_vector orig);
 void					intersection(t_env *rt, t_vector ray, t_vector origin);
 void					calcul_light(t_env *rt, int i2, t_vector ray);
+void					save(t_env *rt);
 /*
 **	-------------------	INITIALISATION	---------------------------
 */

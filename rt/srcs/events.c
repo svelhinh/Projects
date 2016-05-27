@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lnieto-m <lnieto-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:30:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/20 11:33:35 by lnieto-m         ###   ########.fr       */
+/*   Updated: 2016/05/27 13:36:20 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int		key_press(int keycode, t_env *rt)
 {
 	if (keycode == MENU)
 		rt->menu = (rt->menu != 1) ? 1 : 0;
+	if (keycode == SAVE)
+		save(rt);
 	if (keycode == LEFT)
 		rt->keyleft = 1;
 	if (keycode == UP)
