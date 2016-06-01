@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 11:48:40 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/26 18:25:48 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:59:28 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void		calcul_light(t_env *rt, int i2, t_vector ray)
 {
 	int			i;
+	t_figure	object;
 	t_light		light_tmp;
 
 	i = 0;
@@ -82,6 +83,8 @@ static void		scan(int pas, t_env *rt)
 	int			y;
 	double		diffuse;
 	t_vector	ray;
+	t_color		color3;
+	t_figure	object;
 
 	y = rt->start_h;
 	diffuse = (1 - rt->ambient) * 0.5;
@@ -100,16 +103,45 @@ static void		scan(int pas, t_env *rt)
 			rt->color2.r = rt->bg_color.r * 255;
 			rt->color2.g = rt->bg_color.g * 255;
 			rt->color2.b = rt->bg_color.b * 255;
-			t_color color3;
 			if (rt->i2 != -1)
 			{
+				object = rt->object[rt->i2];
+				// if (object.name == SPHERE)
+				// {
+				// 	double n = perlin(rt->inter, 0.5, 0.5, 25);
+				// 	// printf("%f\n", perlin(rt->inter.x, rt->inter.y, rt->inter.z, 2, 2, 5));
+				// 	if (n <= -1)
+				// 	{
+				// 		object.color.r = 0;
+				// 		object.color.g = 1;
+				// 		object.color.b = 0;
+				// 	}
+				// 	else if (n > -1 && n <= 0)
+				// 	{
+				// 		object.color.r = 0;
+				// 		object.color.g = 0.7;
+				// 		object.color.b = 0;
+				// 	}
+				// 	else if (n > 0 && n <= 1)
+				// 	{
+				// 		object.color.r = 0;
+				// 		object.color.g = 0.4;
+				// 		object.color.b = 0;
+				// 	}
+				// 	else if (n > 1)
+				// 	{
+				// 		object.color.r = 0;
+				// 		object.color.g = 0;
+				// 		object.color.b = 0.7;
+				// 	}
+				// }
 				rt->inter = calcul_ptinter(rt->eye, ray, rt->t);
 				calcul_light(rt, rt->i2, ray);
 				rt->color2 = rt->color;
 				reflec_refrac(rt, ray, rt->eye);
-				color3.r = rt->object[rt->i2].color.r * 255;
-				color3.g = rt->object[rt->i2].color.g * 255;
-				color3.b = rt->object[rt->i2].color.b * 255;
+				color3.r = object.color.r * 255;
+				color3.g = object.color.g * 255;
+				color3.b = object.color.b * 255;
 			}
 			rt->color2.r *= diffuse;
 			rt->color2.g *= diffuse;

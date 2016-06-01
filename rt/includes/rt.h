@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:49:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/27 13:23:59 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:59:13 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void					reflec_refrac(t_env *rt, t_vector ray, t_vector orig);
 void					intersection(t_env *rt, t_vector ray, t_vector origin);
 void					calcul_light(t_env *rt, int i2, t_vector ray);
 void					save(t_env *rt);
+double					perlin(t_vector inter, double alpha, double beta, int n);
 /*
 **	-------------------	INITIALISATION	---------------------------
 */

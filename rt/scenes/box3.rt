@@ -8,13 +8,6 @@ object : light
 pos : 0 0 -50
 color : 0.5 0.5 0.5
 
-object : hyperboloid
-pos : 0 0 -50
-angle : 0 0 0
-radius : -250
-material : metal
-color : 1 0 0
-
 object : sphere
 pos : 0 15 -30
 radius : 10

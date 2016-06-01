@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 14:30:36 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/27 13:36:20 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/05/30 18:13:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,22 @@ int		key_press(int keycode, t_env *rt)
 		rt->menu = (rt->menu != 1) ? 1 : 0;
 	if (keycode == SAVE)
 		save(rt);
+	if (keycode == 7)
+	{
+		for(int i = 0; i < rt->nbobj; i++)
+		{
+			if (rt->object[i].name == SPHERE)
+				rt->object[i].angle.z += 0.1;
+		}
+	}
+	if (keycode == 6)
+	{
+		for(int i = 0; i < rt->nbobj; i++)
+		{
+			if (rt->object[i].name == SPHERE)
+				rt->object[i].angle.z -= 0.1;
+		}
+	}
 	if (keycode == LEFT)
 		rt->keyleft = 1;
 	if (keycode == UP)

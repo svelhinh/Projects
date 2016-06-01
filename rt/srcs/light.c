@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 10:01:53 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/05/26 18:26:27 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/06/01 16:59:46 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ void			light(t_env *rt, t_figure object, t_light light, t_vector ray)
 
 			tmp = vecsub(&object.a, &object.b);
 			tmp2 = vecsub(&object.a, &object.c);
+			tmp = normalize(&tmp);
+			tmp2 = normalize(&tmp2);
 			n = vecprod(&tmp, &tmp2);
 		}
 		rt->angle = vecdot(&n, &light_ray) / (sqrt(pow(light_ray.x, 2)
