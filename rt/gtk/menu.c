@@ -155,6 +155,7 @@ void	main_window()
 
 	// SIGNALS
 	g_signal_connect(G_OBJECT(window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+	g_signal_connect(G_OBJECT(quit), "activate", G_CALLBACK(gtk_main_quit), NULL);
 	g_signal_connect(G_OBJECT(filters), "activate", G_CALLBACK(filters_window), NULL);
 	g_signal_connect(G_OBJECT(antialiasing), "activate", G_CALLBACK(antialiasing_window), NULL);
 
