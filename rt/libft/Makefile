@@ -33,7 +33,7 @@ OBJ = $(SRC:.c=.o)
 
 INCLUDES = includes
 
-SHELL = ZSH
+# SHELL = ZSH
 
 all: $(NAME)
 		@echo -n "\033[0m"

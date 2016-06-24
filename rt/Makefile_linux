@@ -12,35 +12,60 @@
 
 NAME = rt
 
-SRC2 =	main.c events.c functions.c raytracer.c objects.c init_all.c init_camera_light.c \
-			init_objects.c parser.c parsing_camera_light.c parsing_objects.c vectors.c light.c \
-			rotations.c render.c limited_objects.c create_window.c reflec_refrac.c \
-			menu.c
+SRC2 =	other/main.c raytracer/expose.c other/functions.c raytracer/raytracer.c \
+			objects/basic/objects.c init/init_all.c init/init_camera_light.c \
+			init/init_objects.c parser/parser.c parser/parsing_camera_light.c \
+			parser/parsing_objects.c vectors/vectors.c light/light.c \
+			vectors/rotations.c objects/limited/limited_objects.c gtk/create_window.c \
+			reflections_refractions/reflec_refrac.c gtk/window.c effects/color_filter.c \
+			effects/antialiasing.c parser/parsing_materials.c init/init_materials.c \
+			vectors/vectors2.c objects/limited/triangle.c objects/limited/quadrilateral.c \
+			objects/automatic/automatics_objects.c raytracer/render.c objects/exotic/exotic.c \
+			init/init_name.c textures/procedural.c textures/textures.c gtk/open_file.c \
+			effects/cartoon.c gtk/screenshot.c gtk/antialiasing_gtk.c gtk/select_antialiasing.c \
+			gtk/draw_area.c gtk/filters.c parser/parser_options.c parser/parsing_objects2.c \
+			raytracer/raytracer2.c objects/exotic/normal_quadric.c reflections_refractions/reflections.c \
+			reflections_refractions/refractions.c objects/limited/limited_objects2.c \
+			objects/limited/limited_equations.c light/shadows.c light/light2.c
 
-SRC = $(addprefix srcs/, $(SRC2))
+OBJ_NAME = $(SRC_NAME:.c=.o)
 
-INCLUDES = includes -I libft/includes/
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
-LIB = -L/usr/include/../lib -I/usr/include -lmlx -lXext -lX11 -lm -lpthread
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
-LIBFT = libft/libft.a
-
-OBJ = $(SRC:.c=.o)
+LIBFT_PATH = libft/libft.a
 
 all: $(NAME)
-		@echo -n "\033[0m"
+	@echo "\033[0m"
 
 $(NAME): rtv $(OBJ)
-		@echo -n "\n\033[33mLIBFT : \033[0m"
-		@make -s -C libft
-		@gcc -o $(NAME) -Wall -Wextra -Werror $(OBJ) $(LIB) $(LIBFT)
+	@echo -n "\n\033[33mLIBFT : \033[0m"
+	@make -C libft/
+	@$(CC) $(LIBFT_PATH) $(LFLAGS) $(OBJ) $(GTK_LDFLAGS) -o $@
 
-%.o: %.c
-		@echo -n "\033[32m="
-		@gcc -o $@ -c $< -Wall -Wextra -Werror -I $(INCLUDES)
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@echo -n "\033[32m="
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/effects 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/gtk 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/init 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/light 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/objects 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/objects/automatic 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/objects/limited 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/objects/exotic 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/objects/basic 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/other 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/parser 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/raytracer 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/reflections_refractions 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/textures 2> /dev/null || true
+	@mkdir $(OBJ_PATH)/vectors 2> /dev/null || true
+	@$(CC) $(CFLAGS) $(CPFLAGS) $(GTK_CFLAGS) -o $@ -c $<
 
 rtv:
-		@echo -n "\033[32mRTV1 : "
+	@echo -n "\033[32mRT : "
 
 clean:
 		@echo "\033[32mSuppression des objets du rtv1\033[0m"

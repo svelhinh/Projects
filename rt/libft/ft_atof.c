@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: grass-kw <grass-kw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/24 17:52:37 by grass-kw          #+#    #+#             */
-/*   Updated: 2016/05/20 13:51:13 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/06/08 13:17:51 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		exponent(char **s, int *e, int *c)
+static void		exponent(const char **s, int *e, int *c)
 {
 	int			sign;
 	int			i;
@@ -52,44 +52,40 @@ static void		exponent_to_d(double *a, int *e)
 	}
 }
 
-static double	ft_atof2(char const *src, int p)
+static double	ft_atof2(char const *src, int p, double a)
 {
-	double		a;
 	int			e;
 	int			c;
-	char		*s;
 
-	s = (char *)src;
-	a = 0.0;
 	e = 0;
-	if (*s == '-')
+	if (*src == '-')
 	{
 		p = -1;
-		++s;
+		++src;
 	}
-	if (*s == '+')
-		++s;
-	while (*s == ' ')
-		++s;
-	while ((c = *s++) != '\0' && ft_isdigit(c))
+	if (*src == '+')
+		++src;
+	while (*src == ' ')
+		++src;
+	while ((c = *src++) != '\0' && ft_isdigit(c))
 		a = a * 10.0 + (c - '0');
 	if (c == '.')
-		while ((c = *s++) != '\0' && ft_isdigit(c))
+		while ((c = *src++) != '\0' && ft_isdigit(c))
 		{
 			a = a * 10.0 + (c - '0');
 			e = e - 1;
 		}
-	exponent(&s, &e, &c);
+	exponent(&src, &e, &c);
 	exponent_to_d(&a, &e);
 	return (p * a);
 }
 
 double			ft_atof(char const *src)
 {
-	int	p;
+	int		p;
 
 	p = 1;
 	if (!ft_isdigit(src[0]) && src[0] != '-')
 		ft_exit("\033[31mNot a number\n");
-	return (ft_atof2(src, p));
+	return (ft_atof2(src, p, 0.0));
 }
