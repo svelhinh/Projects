@@ -11,4 +11,4 @@
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/fractol/illuminati.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/fractol/salad.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/fractol/star.png" width="200">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/fractol/waterdrop.png" width="200">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/fractol/water drop.png" width="200">
