@@ -16,7 +16,7 @@
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/wolf3d/menu.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/wolf3d/pause.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/wolf3d/end.png" width="200">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/wolf3d/wolf1.gif" width="200">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/wolf3d/wolf1.gif" width="250">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/wolf3d/wolf2.gif" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/wolf3d/wolf3.gif" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/wolf3d/wolf4.gif" width="200">
