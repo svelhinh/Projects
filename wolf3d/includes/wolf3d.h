@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/22 15:02:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/18 17:02:30 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/10 14:25:52 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,4 +161,5 @@ void			event_pause(int keycode, t_ray *r);
 void			ft_floor(t_ray *r, t_coords *c);
 void			ft_sky(t_ray *r, t_coords *c);
 void			event_pause2(t_ray *r);
+void			troll(t_ray *t);
 #endif

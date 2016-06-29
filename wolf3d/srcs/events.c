@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/23 10:16:09 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/10 13:50:58 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/10 14:25:38 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int			expose(t_ray *r)
 		r->time = clock() - r->time - r->time_s;
 		r->v = 1;
 	}
+	troll(r);
 	return (0);
 }
 
