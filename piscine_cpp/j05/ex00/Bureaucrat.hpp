@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 15:14:57 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/23 16:56:38 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/06/27 12:05:14 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ public:
 
 	std::string		getName() const;
 	int				getGrade() const;
-	int				catch_exception( int grade ) const;
 	void			inc();
 	void			dec();
 
@@ -36,19 +35,25 @@ public:
 	class	GradeTooHighException : public std::exception
 	{
 	public:
-		virtual const char* what() const throw()
-		{
-			return ("Grade too high");
-		}
+		GradeTooHighException();
+		GradeTooHighException(GradeTooHighException const &rhs);
+		virtual ~GradeTooHighException() throw();
+
+		GradeTooHighException	&operator=(GradeTooHighException const &rhs);
+
+		virtual const char* what() const throw ();
 	};
 
 	class	GradeTooLowException : public std::exception
 	{
 	public:
-		virtual const char* what() const throw()
-		{
-			return ("Grade too low");
-		}
+		GradeTooLowException();
+		GradeTooLowException(GradeTooLowException const &rhs);
+		virtual ~GradeTooLowException() throw();
+
+		GradeTooLowException	&operator=(GradeTooLowException const &rhs);
+
+		virtual const char* what() const throw ();
 	};
 };
 

@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/23 17:06:07 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/23 18:21:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/06/27 12:16:44 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ public:
 	int				getGradeSign() const;
 	int				getGradeExec() const;
 	bool			getSigned() const;
-	int				catch_exception( int grade ) const;
 	void			beSigned( Bureaucrat * bc);
 
 
@@ -42,19 +41,25 @@ public:
 	class	GradeTooHighException : public std::exception
 	{
 	public:
-		virtual const char* what() const throw()
-		{
-			return ("Grade too high");
-		}
+		GradeTooHighException();
+		GradeTooHighException(GradeTooHighException const &rhs);
+		virtual ~GradeTooHighException() throw();
+
+		GradeTooHighException	&operator=(GradeTooHighException const &rhs);
+
+		virtual const char* what() const throw ();
 	};
 
 	class	GradeTooLowException : public std::exception
 	{
 	public:
-		virtual const char* what() const throw()
-		{
-			return ("Grade too low");
-		}
+		GradeTooLowException();
+		GradeTooLowException(GradeTooLowException const &rhs);
+		virtual ~GradeTooLowException() throw();
+
+		GradeTooLowException	&operator=(GradeTooLowException const &rhs);
+
+		virtual const char* what() const throw ();
 	};
 };
 

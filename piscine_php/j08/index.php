@@ -12,7 +12,7 @@
 			unset($_SESSION['player1']);
 		if (isset($_SESSION['player2']))
 			unset($_SESSION['player2']);
-		if (!$_GET['player1'] || !$_GET['player2'])
+		if (!$_GET['player1'] || !$_GET['player2'] || $_GET['player1'] === "null" || $_GET['player2'] === "null")
 			echo '<script type="text/javascript" >
 					var player1 = prompt("Nom Joueur 1 :");
 					var player2 = prompt("Nom Joueur 2 :");
@@ -21,7 +21,7 @@
 		$_SESSION['round'] = 0;
 		$ship1 = new Explozer( array('x' => 1, 'y' => 1, 'direction' => 'right') );
 		$ship2 = new NewOrk( array('x' => 148, 'y' => 98, 'direction' => 'left') );
-		if ($_GET['player1'] && $_GET['player2'])
+		if ($_GET['player1'] && $_GET['player2'] && $_GET['player1'] !== "null" && $_GET['player2'] !== "null")
 		{
 			$_SESSION['player1'] = new Player( array('name' => $_GET['player1'], 'ship' => $ship1 ) );
 			$_SESSION['player2'] = new Player( array('name' => $_GET['player2'], 'ship' => $ship2 ) );
