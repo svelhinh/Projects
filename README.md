@@ -1,5 +1,7 @@
+# WONG KAR WAI
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/wong_kar_wai/2048.png" width="250">
 # FDF
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/europe.png" width="230" text-align="center">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/europe.png" width="230">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/joconde.png" width="230">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/julia.png" width="230">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/mandelbrot.png" width="230">
