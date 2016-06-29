@@ -29,10 +29,10 @@
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/bricks.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/pokeball.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/saturn.png" width="200">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/perlin_noise.png" width="200">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/rt.gif" width="200">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/reflections_cartoon.png" width="200">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/solar_system.png" width="200">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/perlin_noise.png" width="250">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/rt.gif" width="250">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/reflections_cartoon.png" width="250">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/solar_system.png" width="250">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/bomberman.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/homer.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/rt/minion.png" width="200">
