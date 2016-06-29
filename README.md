@@ -1,9 +1,9 @@
 # FDF
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/europe.png" width="190">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/joconde.png" width="190">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/julia.png" width="190">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/mandelbrot.png" width="190">
-<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/sergio.png" width="190">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/europe.png" width="180">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/joconde.png" width="180">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/julia.png" width="180">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/mandelbrot.png" width="180">
+<img src="https://github.com/svelhinh/42_stages/blob/master/images/fdf/sergio.png" width="180">
 # FRACTOL
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/fractol/mandelbrot.png" width="200">
 <img src="https://github.com/svelhinh/42_stages/blob/master/images/fractol/julia.png" width="200">
