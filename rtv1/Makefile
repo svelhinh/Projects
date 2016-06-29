@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/03/02 10:43:21 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/03/31 15:34:19 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,21 +19,23 @@ SRC2 = main.c events.c parser.c render.c vectors.c parsing_objects.c init_all.c 
 
 SRC = $(addprefix srcs/, $(SRC2))
 
-INCLUDES = includes
+LIB = -L/usr/local/lib/ -I/usr/local/include -lmlx -framework OpenGL -framework AppKit
 
-LIB = -L/usr/include/../lib -I/usr/include -lmlx -lXext -lX11 -lm
+INCLUDES = includes
 
 LIBFT = libft/libft.a
 
 OBJ = $(SRC:.c=.o)
 
+SHELL = ZSH
+
 all: $(NAME)
-		@echo -n "\033[0m"
+	@echo "\033[0m"
 
 $(NAME): rtv $(OBJ)
 		@echo -n "\n\033[33mLIBFT : \033[0m"
-		@make -s -C libft
-		@gcc -o $(NAME) -Wall -Wextra -Werror $(OBJ) $(LIB) $(LIBFT)
+		@make -C libft
+		@gcc -o $(NAME) $(OBJ) $(LIB) $(LIBFT) -Wall -Wextra -Werror -g
 
 %.o: %.c
 		@echo -n "\033[32m="
@@ -51,10 +53,10 @@ fclean: clean
 		@rm -f $(NAME)
 
 clean_ft: clean
-	@make -s clean -C libft
+		@make clean -C libft
 
 fclean_ft: fclean
-	@make -s fclean -C libft
+		@make fclean -C libft
 
 re: fclean all
 

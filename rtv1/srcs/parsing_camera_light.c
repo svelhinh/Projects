@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:29:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/20 15:46:26 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 15:29:04 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	parsing_camera(int fd, t_rt *rt)
 	char *line;
 	char **line2;
 
-	while (get_next_line(fd, &line) > 0 && line[0] != '\0')
+	while (get_next_line(fd, &line) && line[0] != '\0')
 	{
 		line2 = ft_strsplit(line, ' ');
 		missing_parameter(line2);
@@ -45,7 +45,7 @@ void	parsing_light(int fd, t_rt *rt)
 	char		*line;
 	char		**line2;
 
-	while (get_next_line(fd, &line) > 0 && line[0] != '\0')
+	while (get_next_line(fd, &line) && line[0] != '\0')
 	{
 		line2 = ft_strsplit(line, ' ');
 		missing_parameter(line2);

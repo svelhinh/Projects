@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:28:12 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/04/20 15:46:05 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/03/31 15:28:13 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	count_objects(t_rt *rt, char *file)
 
 	if ((fd = open(file, O_RDONLY)) == -1)
 		ft_exit("\033[31mThis scene doesn't exist\n");
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &line))
 	{
 		rt->nbs += (!ft_strcmp(line, "object : sphere")) ? (1) : (0);
 		rt->nbp += (!ft_strcmp(line, "object : plane")) ? (1) : (0);
