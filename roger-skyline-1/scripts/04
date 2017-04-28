@@ -1,0 +1,18 @@
+#!/bin/bash
+tmpcrontabPath=/etc/tmpcrontab
+crontabPath=/etc/crontab
+if [ ! -e "$tmpcrontabPath" ]; then
+	cat $crontabPath > $tmpcrontabPath
+else
+	tmpcrontab_sum=`md5sum $tmpcrontabPath | awk '{print $1}'`
+	crontab_sum=`md5sum $crontabPath | awk '{print $1}'`
+	if [ "$tmpcrontab_sum" != "$crontab_sum" ]; then
+		echo "crontab was modified" | mail -s "Crontab" root
+		cat $crontabPath > $tmpcrontabPath
+	fi
+fi
+tmpfilePath=`pwd`
+crontab -l > file
+echo "0 0 * * * sudo $tmpfilePath/./04" >> file
+crontab file
+rm file

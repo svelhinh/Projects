@@ -1,0 +1,8 @@
+#!/bin/bash
+out=`apt update;apt upgrade`
+echo $out > /var/log/update_script.log
+pathscript=`pwd`
+crontab -l > file
+echo "* 4 * * 1 sudo $pathscript/./02" >> file
+crontab file
+rm file
