@@ -1,0 +1,5 @@
+Dans la page survey, on se rend compte grâce au code html de la page (source.PNG) que le formulaire est envoyé au serveur,
+avec la valeur sélectionnée à chaque fois que l'on clique sur une autre valeur dans la liste déroulante.
+
+On peut y insérer une valeur autre que les valeurs attendues (11 par exemple) et fausser le vote.
+(spoof.PNG)

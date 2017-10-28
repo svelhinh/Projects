@@ -1,0 +1,14 @@
+Quand on clique sur l'image de la nsa (nsa_img.PNG), on a accès à une page dont l'url contient une variable nommée src (url.PNG).
+
+Si le contenu de cette variabe n'est pas bien filtré, on peut l'exploiter pour y injecter du code javascript qui,
+par exemple suite à un fishing redirigera un utilisateur vers un site malveillant ou récupérera ses cookies de session.
+
+On peut constater dans l'image naive_xss.PNG qu'une attaque xss simple sera correctement filtrée.
+
+Mais que se passe t-il si on en encode notre code javascript en base64 et qu'on l'encapsule dans un data uri
+(il s'agit d'une URI qui contient directement des données et sera interprétée selon le MIME type qu'on indiquera).
+
+On peut voir sur l'image data_uri_xss.PNG que notre url ne contient pas le mot 'script' qui devait être blacklisté,
+on peut donc injecter notre code javascript ("PHNjcmlwdD5hbGVydCgnY291Y291Jyk7PC9zY3JpcHQ+" équivaut à "<script>alert('coucou');</script>").
+
+Et bingo ! (flag.PNG).

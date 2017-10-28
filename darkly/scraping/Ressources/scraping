@@ -1,0 +1,5 @@
+Grâce au robots.txt trouvé en tapant /robots.txt à la racine du site web, on peut voir qu'il existe
+un dossier /.hidden qui contient une multitude de dossiers et sous-dossiers, contenants tous un fichier README.
+En regardant le contenu de ces fichiers on remarque qu'ils contiennent tous le même type de texte.
+On peut créer un scraper qui parcourt récursivement tous les dossiers en partant de /.hidden et qui récupère un fichier README différent
+de tous ceux qui se répètent, /.hidden/whtccjokayshttvxycsvykxcfm/igeemtxnvexvxezqwntmzjltkt/lmpanswobhwcozdqixbowvbrhw/.

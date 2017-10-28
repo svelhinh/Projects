@@ -1,0 +1,6 @@
+framework module svelhinh2017 {
+  umbrella header "svelhinh2017-umbrella.h"
+
+  export *
+  module * { export * }
+}

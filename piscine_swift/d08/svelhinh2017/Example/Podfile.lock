@@ -1,0 +1,16 @@
+PODS:
+  - svelhinh2017 (0.1.0)
+
+DEPENDENCIES:
+  - svelhinh2017 (from `../`)
+
+EXTERNAL SOURCES:
+  svelhinh2017:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  svelhinh2017: 21c36917da3cc8759314602d21280e341941af5d
+
+PODFILE CHECKSUM: dab063f939b5805c318ed1b8f99ef341a3f95b7a
+
+COCOAPODS: 1.2.1

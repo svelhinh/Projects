@@ -1,0 +1,2 @@
+En faisant un reverse hash du md5 du cookie I_am_admin on peut se rendre compte qu'il s'agit de la valeur "false", par deduction on comprend
+qu'il suffit de creer un md5 du mot true pour se faire passer pour l'admin.

@@ -1,0 +1,2 @@
+Dans l'url du site, on peut remarquer qu'il y a une variable page avec le nom de la page en question.
+Si on lui passe un chemin, par exemple "../../../../../../../etc/passwd", on a accès au fichier en question.

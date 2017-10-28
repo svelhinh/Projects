@@ -1,0 +1,22 @@
+{
+  "name": "svelhinh2017",
+  "version": "0.1.0",
+  "summary": "Awesome pod",
+  "description": "This is an awesome pod for d08 of swift pool",
+  "homepage": "https://github.com/svelhinh/svelhinh2017",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "svelhinh": "svelhinh@student.42.fr"
+  },
+  "source": {
+    "git": "https://github.com/svelhinh/svelhinh2017.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "svelhinh2017/Classes/**/*"
+}

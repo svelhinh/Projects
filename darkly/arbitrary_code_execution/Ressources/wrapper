@@ -1,0 +1,3 @@
+Quand on clique sur l'image de la nsa, on a acces a une page dont l'url contient une variable nommee src.
+On utilise donc un wrapper/protocole data:// pour injecter du code a l'interieur de la page.
+src=data:text/html;base64,PHNjcmlwdD5hbGVydCgneW8nKTs8L3NjcmlwdD4=

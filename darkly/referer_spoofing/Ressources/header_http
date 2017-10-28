@@ -1,0 +1,16 @@
+Dans les commentaires de la page e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c du site on peut constater qu'il y a 2 indices:
+- You must cumming from : "https://www.nsa.gov/" to go to the next step
+- Let's use this browser : "ft_bornToSec". It will help you a lot.
+
+Le premier nous fait penser au referer, il s'agit d'une information située dans l'en-tête http d'un site indiquant sur quelle page se situait le
+lien que l'utilisateur a suivi pour accéder à la page courante. Bien qu'elle ne soit pas sûre car elle peut être changée très facilement, elle est
+utilisée sur certains sites pour aider au référencement ou pour obliger l'utilisateur à passer par une publicité avant d'accéder à la page demandée.
+
+On ajoute donc la ligne 'Referer: https://www.nsa.gov/' à notre en-tête http (screenshot: add_referer) et on envoie la requête. Le site nous indique
+qu'on est sur la bonne voie ! (screenshots: first_step_done_html, first_step_done_rendering)
+
+Le deuxième indice nous fait penser au user-agent, qui permet d'indiquer au site quel navigateur est utilisé par le visiteur, cela permet d'adapter
+le code du site selon les compatibilités avec les navigateurs.
+
+Remplaçons le user-agent de firefox par "ft_bornToSec" (screenshot: replace_user_agent).
+On renvoie la requête et obtenons notre flag (screenshots: flag, flag_rendering).
