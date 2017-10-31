@@ -1,5 +1,5 @@
 <h1>Pokemon VR</h1>
-<p><img src="https://github.com/svelhinh/Projects/blob/master/images/PokemonVR/Lancer_Pokeball.gif" width="200"></p>
+<p><img src="https://github.com/svelhinh/Projects/blob/master/images/PokemonVR/Lancer_Pokeball.gif" width="400"></p>
 <h1>RT</h1>
 <p><img src="https://github.com/svelhinh/Projects/blob/master/images/rt/earth.gif" width="200">
 <img src="https://github.com/svelhinh/Projects/blob/master/images/rt/bricks.png" width="200">
