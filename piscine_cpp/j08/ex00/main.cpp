@@ -5,29 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 13:09:25 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/28 13:31:07 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/13 11:55:22 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/13 12:03:16 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
 #include <list>
 
-int		main(void)
+int	main()
 {
-	std::list<int> lst;
+	std::list<int>	intList;
+	int				value = 20;
+	int				value2 = 0;
 
-	lst.push_back(-3);
-	lst.push_back(90);
-	lst.push_back(134);
+	intList.push_back(15);
+	intList.push_back(20);
+	intList.push_back(30);
+	intList.push_back(12);
+
 	try
 	{
-		easyfind(lst, -3);
-		std::cout << "Found" << std::endl;
+		easyfind(intList, value);
+		std::cout << value << " found in container intList" << std::endl;
 	}
 	catch (std::exception & e)
 	{
-		std::cout << "Not found" << std::endl;
+		std::cout << e.what() << ", " << value << " not found in container intList" << std::endl;
+	}
+
+	try
+	{
+		easyfind(intList, value2);
+		std::cout << value2 << " found in container intList" << std::endl;
+	}
+	catch (std::exception & e)
+	{
+		std::cout << e.what() << ", " << value2 << " not found in container intList" << std::endl;
 	}
 	return 0;
 }

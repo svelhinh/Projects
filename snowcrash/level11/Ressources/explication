@@ -1,0 +1,6 @@
+Sur le home de ce level, on trouve un script lua level11.lua.
+Quand on exécute ce script, il nous indique que l'adresse est déjà utilisée.
+Si on ouvre le script, on remarque que l'adresse est 127.0.0.1 sur le port 5151.
+On se connecte donc dessus avec la commande nc -v 127.0.0.1 5151 et il nous demande un mot de passe.
+Si on regarde le script, on s'aperçoit que le mot de passe entré par l'utilisateur est hashé avec la commande "echo "..pass.." | sha1sum".
+On peut donc injecter la commande $(getflag > /tmp/flag) au moment de la demande du mot de passe pour obtenir le flag dans /tmp/flag.

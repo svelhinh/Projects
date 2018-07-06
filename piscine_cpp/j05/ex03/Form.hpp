@@ -5,41 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/23 17:06:07 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 12:21:19 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 16:43:15 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/11 11:13:56 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
-# include <iostream>
-# include "Bureaucrat.hpp"
+#ifndef Form_hpp
+#define Form_hpp
+
+#include <string>
+#include <fstream>
+#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class	Form
+class Form
 {
-private:
-    std::string const	_name;
-	bool				_signed;
-	int const			_grade_sign;
-	int const			_grade_exec;
-protected:
-	virtual void	action() const = 0;
 public:
-    Form( std::string const name, int grade_sign, int grade_exec );
-    Form( Form const & src );
-    virtual ~Form();
+	Form( std::string const name, int gradeSign, int gradeExec );
+	Form( Form const & src );
+	virtual ~Form( void );
+
+	void	beSigned(Bureaucrat * bureaucrat);
+	void	execute( Bureaucrat const & executor );
+	virtual void	action() const = 0;
 
 	std::string		getName() const;
 	int				getGradeSign() const;
 	int				getGradeExec() const;
 	bool			getSigned() const;
-	void			beSigned( Bureaucrat * bc);
-	void			execute( Bureaucrat const & executor );
 
-
-	Form & operator = ( Form const & rhs );
+	Form & operator=( Form const & rhs );
 
 	class	GradeTooHighException : public std::exception
 	{
@@ -64,6 +60,13 @@ public:
 
 		virtual const char* what() const throw ();
 	};
+
+private:
+	Form( void );
+	std::string const	_name;
+	bool				_signed;
+	int const			_gradeSign;
+	int const			_gradeExec;
 };
 
 std::ostream & operator << ( std::ostream & o, Form const & rhs );

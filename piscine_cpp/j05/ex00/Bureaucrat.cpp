@@ -5,12 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/23 15:17:32 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/28 11:09:40 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 15:36:26 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/11 10:50:31 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+
+Bureaucrat::Bureaucrat( void )
+{
+	return;
+}
 
 Bureaucrat::Bureaucrat( std::string const name, int grade ): _name(name)
 {
@@ -19,65 +24,62 @@ Bureaucrat::Bureaucrat( std::string const name, int grade ): _name(name)
 	else if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	else
-		this->_grade = grade;
+		_grade = grade;
 	return;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const & src)
+Bureaucrat::Bureaucrat( Bureaucrat const & src ): _name(src.getName())
 {
 	*this = src;
 	return;
 }
 
-Bureaucrat::~Bureaucrat()
+Bureaucrat::~Bureaucrat( void )
 {
 	return;
 }
 
-std::string		Bureaucrat::getName() const
+void				Bureaucrat::inc( void )
 {
-	return this->_name;
-}
-
-int				Bureaucrat::getGrade() const
-{
-	return this->_grade;
-}
-
-void			Bureaucrat::inc()
-{
-	if (this->_grade - 1 < 1)
+	if (_grade == 1)
 		throw Bureaucrat::GradeTooHighException();
 	else
-		this->_grade--;
+		_grade--;
 }
 
-void			Bureaucrat::dec()
+void				Bureaucrat::dec( void )
 {
-	if (this->_grade + 1 > 150)
+	if (_grade == 150)
 		throw Bureaucrat::GradeTooLowException();
 	else
-		this->_grade++;
+		_grade++;
 }
 
-Bureaucrat & Bureaucrat::operator=(Bureaucrat const & rhs)
+std::string const	Bureaucrat::getName( void ) const
 {
-	(void)rhs;
+	return _name;
+}
+
+int					Bureaucrat::getGrade( void ) const
+{
+	return _grade;
+}
+
+Bureaucrat & Bureaucrat::operator=( Bureaucrat const & rhs )
+{
+	_grade = rhs.getGrade();
 	return *this;
 }
 
-std::ostream & operator << ( std::ostream & o, Bureaucrat const & rhs )
+std::ostream &		operator<<( std::ostream & o, Bureaucrat const & i)
 {
-	o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
+	o << i.getName() << std::string(", bureaucrat grade ") << std::to_string(i.getGrade());
 	return o;
 }
 
 
 
-
-
-
-Bureaucrat::GradeTooHighException::GradeTooHighException()
+Bureaucrat::GradeTooHighException::GradeTooHighException( void )
 {
 	return;
 }
@@ -87,24 +89,24 @@ Bureaucrat::GradeTooHighException::GradeTooHighException(GradeTooHighException c
 	*this = src;
 }
 
-Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
+Bureaucrat::GradeTooHighException::~GradeTooHighException( void ) throw ()
 {
 	return;
 }
 
-const char*		Bureaucrat::GradeTooHighException::what() const throw()
+const char*		Bureaucrat::GradeTooHighException::what( void ) const throw( void )
 {
-	return ("Grade too high");
+	return "Grade too high";
 }
 
 
 Bureaucrat::GradeTooHighException	&Bureaucrat::GradeTooHighException::operator=(GradeTooHighException const &rhs)
 {
 	(void)rhs;
-	return (*this);
+	return *this;
 }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException()
+Bureaucrat::GradeTooLowException::GradeTooLowException( void )
 {
 	return;
 }
@@ -114,18 +116,18 @@ Bureaucrat::GradeTooLowException::GradeTooLowException(GradeTooLowException cons
 	*this = src;
 }
 
-Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
+Bureaucrat::GradeTooLowException::~GradeTooLowException( void ) throw ()
 {
 	return;
 }
 
-const char*		Bureaucrat::GradeTooLowException::what() const throw()
+const char*		Bureaucrat::GradeTooLowException::what( void ) const throw()
 {
-	return ("Grade too Low");
+	return "Grade too low";
 }
 
 Bureaucrat::GradeTooLowException	&Bureaucrat::GradeTooLowException::operator=(GradeTooLowException const &rhs)
 {
 	(void)rhs;
-	return (*this);
+	return *this;
 }

@@ -5,20 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/06/27 16:31:26 by svelhinh          #+#    #+#              #
-#    Updated: 2016/06/28 11:50:16 by svelhinh         ###   ########.fr        #
+#    Created: 2017/04/08 15:07:52 by svelhinh          #+#    #+#              #
+#    Updated: 2017/04/12 15:59:07 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = g++ -Wall -Wextra -Werror
+CC = clang++
 
-NAME = whatever
+CFLAGS = -Wall -Wextra -Werror
 
-SRC = whatever.cpp
+NAME = iter
+
+SRC = iter.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
+ifneq ($(shell uname), Linux)
 SHELL = ZSH
+endif
 
 all: $(NAME)
 	@echo -n "\033[0m"
@@ -27,20 +31,18 @@ $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $@
 
 %.o: %.cpp
-	@echo -n "\033[93m"
-	@echo -n $<
-	@$(CC) -o $@ -c $<
-	@echo "\033[92m				✓\033[0m"
+	@echo -n "\033[94m"
+	@echo $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	@echo "\033[96mObjects deleted\033[0m"
+	@echo "\033[91mObj deleted\033[0m"
 	@rm -rf $(OBJ)
-	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@echo "\033[96mExecutable deleted\033[0m"
+	@echo "\033[91mExecutable deleted\033[0m"
 	@rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all rtv

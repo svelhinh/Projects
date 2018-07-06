@@ -6,11 +6,16 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/20 17:15:28 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/20 17:37:45 by svelhinh         ###   ########.fr       */
+/*   Updated: 2017/04/07 20:00:35 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Enemy.hpp"
+
+Enemy::Enemy()
+{
+	return;
+}
 
 Enemy::Enemy(int hp, std::string const & type): _hp(hp), _type(type)
 {
@@ -51,6 +56,6 @@ void			Enemy::takeDamage( int nb )
 
 Enemy & Enemy::operator=(Enemy const & rhs)
 {
-	(void)rhs;
+	_hp = rhs.getHP();
 	return *this;
 }

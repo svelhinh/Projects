@@ -5,63 +5,65 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 12:15:52 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/28 12:17:36 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/12 16:42:09 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/12 18:17:59 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARRAY_HPP
-# define ARRAY_HPP
-# include <iostream>
+#ifndef Array_hpp
+#define Array_hpp
+
+#include <iostream>
 
 template<typename T>
 class Array
 {
-	T		*_tab;
-	int		_len;
 public:
-	Array()
+	Array( void ): _size(0)
 	{
-		_tab = new T[0];
-		_len = 0;
+		_array = new T[0];
+		return;
+	}
+	Array( unsigned int n ): _size(n)
+	{
+		_array = new T[n];
+		for (size_t i = 0; i < n; i++)
+			_array[i] = T();
+		return;
+	}
+	Array( Array<T> const & src )
+	{
+		*this = src;
+		return;
+	}
+	virtual ~Array( void )
+	{
+		return;
 	}
 
-	Array(unsigned int n)
+	Array<T> & operator=( Array<T> const & rhs )
 	{
-		_tab = new T[n];
-		_len = n;
+		_array = rhs._array;
+		_size = rhs.size();
+		return *this;
 	}
 
-	Array(Array const &rhs)
+	T & operator[]( size_t const rhs )
 	{
-		_tab = new T[rhs._len];
-		for(int i = 0; i < rhs._len; i++)
-			_tab[i] = rhs._tab[i];
-		_len = rhs._len;
+		if (rhs >= 0 && rhs < _size)
+			return _array[rhs];
+		throw std::exception();
 	}
 
-	Array	&operator=(Array const &rhs)
+	size_t	size() const
 	{
-		_tab = new T[rhs._len];
-
-		for(int i = 0; i < rhs._len; i++)
-			_tab[i] = rhs._tab[i];
-		_len = rhs._len;
-		return (*this);
+		return _size;
 	}
 
-	T		&operator[](int i)
-	{
-		if (i >= _len)
-			throw std::exception();
-		else
-			return _tab[i];
-	}
+	T *_array;
 
-	int	size()
-	{
-		return (_len);
-	}
+private:
+	size_t _size;
 };
 
 #endif

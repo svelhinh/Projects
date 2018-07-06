@@ -1,0 +1,4 @@
+Sur le home du level02, on trouve un fichier level02.pcap, un fichier pcap est un fichier cree par wireshark, un programme gratuit utilise pour de l'analyse reseau.
+On ouvre ce fichier avec CloudShark, un site qui fait la meme chose que Wireshark mais en ligne.
+Si on analyse le stream du fichier em allant dans "Analysis Tools->Follow Stream", on peut voir, sous "Password:", la ligne suivante "ft_wandr...NDRel.L0L".
+Les points de cette ligne etant des delete, on a donc le mot de passe qui est "ft_waNDReL0L".

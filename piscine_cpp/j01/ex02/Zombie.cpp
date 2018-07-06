@@ -1,36 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 12:25:04 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/04 14:43:01 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 
-Zombie::Zombie(void)
+Zombie::Zombie()
 {
-    return;
+	this->name = "Toto";
+	this->type = "Walker";
+	return;
 }
 
-Zombie::~Zombie(void)
+Zombie::~Zombie()
 {
-    return;
+	return;
 }
 
-std::string Zombie::getName(void)
+void	Zombie::announce() const
 {
-	return (this->_name);
-}
-
-std::string Zombie::getType(void)
-{
-	return (this->_type);
-}
-
-void Zombie::setName(std::string name)
-{
-	this->_name = name;
-}
-
-void Zombie::setType(std::string type)
-{
-	this->_type = type;
-}
-
-void	Zombie::announce(void)
-{
-	std::cout << "<" << this->getName() << " (" << this->getType() << ")> Braiiiiiiinnnssss..." << std::endl;
+	std::cout << "<" << this->name << " (" << this->type << ")> Braiiiiiiinnnssss..." << std::endl;
 }

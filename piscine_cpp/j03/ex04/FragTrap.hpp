@@ -1,22 +1,36 @@
-#ifndef FragTrap_hpp
-#define FragTrap_hpp
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 11:15:32 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 12:05:46 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-class FragTrap : public ClapTrap
+# include <string>
+# include "ClapTrap.hpp"
+
+class FragTrap : virtual public ClapTrap
 {
 public:
-	FragTrap(std::string const name);
-	FragTrap(FragTrap const &src, std::string const name);
-	~FragTrap();
+	FragTrap(void);
+    FragTrap(std::string name);
+	FragTrap(FragTrap const & src);
+    ~FragTrap();
 
-	void			rangedAttack(std::string const & target);
-	void			meleeAttack(std::string const & target);
-	void			takeDamage(unsigned int amount);
-	void			beRepaired(unsigned int amount);
-	void			vaulthunter_dot_exe(std::string const & target);
+	void	rangedAttack(std::string const & target);
+	void	meleeAttack(std::string const & target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+	void	vaulthunter_dot_exe(std::string const & target);
 
-	FragTrap & operator = ( FragTrap const & rhs );
+	FragTrap &		operator=( FragTrap const & rhs );
 };
 
 

@@ -1,0 +1,4 @@
+John the ripper n'étant pas installé sur la vm, je l'ai installé en local et copié/collé le fichier /etc/passwd avec la commande "scp -P 4242 level00@192.168.56.101:/etc/passwd ." via ssh de la vm sur ma session locale.
+Le fichier /etc/passwd contient tous les users de la vm.
+On remarque à la ligne du flag01 une suite de caractères après le nom de l'user ressemblant à un hash.
+Je lance john the ripper et ça me sort un mot de passe décrypté en DES128 correspondant à "abcdefg".

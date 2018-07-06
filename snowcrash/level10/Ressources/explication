@@ -1,0 +1,15 @@
+Sur le home de ce level, on trouve un executable level10 et un fichier token.
+Quand on exécute level10, il nous indique qu'on doit passer un fichier et un hote en paramètre.
+Si on passe le fichier token, il nous affiche qu'on a pas les droits sur token.
+Si on execute la commande strings sur level10, on peut voir la string "Connecting to %s:6969 ..", ce qui laisse supposer que le programme essaiera de se connecter sur le port 6969.
+Donc on execute la commande suivante sur l'hote "nc -kl 6969" pour écouter une connexion sur le port 6969.
+Si on execute la commande nm sur level10, on voit qu'il utilise l'appel systeme access(), permettant de savoir si celui qui execute le programme a le droit d'ouvrir le fichier passé en paramètre.
+En cherchant sur internet, on a remarqué que l'appel à access() puis à open() peut permettre un exploit de type "Time of check to time of use", c'est-à-dire que si on arrive à changer de fichier entre l'appel à access et celui à open, on peut ouvrir le fichier qu'on veut même sans en avoir les droits.
+On crée donc un fichier /tmp/token vide sur lequel on a tous les droits.
+Ensuite, on execute les 2 commandes suivantes :
+"while true; do ln -fs /tmp/token /tmp/t; ln -fs ~/token /tmp/t; done &"
+"while true; do ./level10 /tmp/t [adresse IP de l'hote]; done"
+
+Les 2 commandes sont des boucles infinies.
+La 1ère crée un lien symbolique /tmp/t de /tmp/token puis l'écrase pour créer un lien symbolique de ~/token. L'idée étant qu'au moment de l'appel à access, le lien qui soit créé soit celui de /tmp/token (celui dont on a les droits) et qu'au moment de l'appel à open, on aie en fait celui de ~/token (celui qui contient le mot de passe du level).
+La 2ème execute le programme en boucle avec le lien symbolique pour obtenir, au bout d'un moment, le mot de passe.

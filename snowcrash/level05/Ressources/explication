@@ -1,0 +1,5 @@
+Quand on se connecte au level05, on nous prévient qu'on a un nouveau mail.
+En regardant dans le fichier /var/mail/level05, on voit que le script /usr/sbin/openarenaserver est exexuté toutes les 2 minutes avec les droits de flag05.
+En ouvrant le fichier /usr/sbin/openarenaserver, on s'apperçoit que le script exécute tout ce qui se trouve dans le dossier /opt/openarenaserver.
+On peut donc écrire la commande getflag > /tmp/flag dans un script dans le dossier /opt/openarenaserver.
+A la prochaine execution du script /usr/sbin/openarenaserver, notre script sera executé avec les droits de flag05, ce qui nous permet de récupérer le flag dans /tmp/flag.

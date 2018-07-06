@@ -1,12 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ex04.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 15:04:53 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/04 15:07:36 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <string>
 #include <iostream>
 
-int main(void)
+int	main()
 {
-    std::string brain = "HI THIS IS BRAIN";
-    std::string *pt = &brain;
-    std::string &ref = brain;
+	std::string	hi("HI THIS IS BRAIN");
+	std::string *hi_pt = &hi;
+	std::string &hi_ref = hi;
 
-    std::cout << "pointer : " << *pt << std::endl;
-    std::cout << "reference : " << ref << std::endl;
-    return 0;
+	std::cout << *hi_pt << std::endl;
+	std::cout << hi_ref << std::endl;
+
+	return 0;
 }

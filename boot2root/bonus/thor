@@ -1,0 +1,7 @@
+Turtle est une librairie graphique de python. On utilise cette commande :
+sshpass -p "Publicspeakingisveryeasy.126241207201b2149opekmq426135" scp -r thor@192.168.56.101:/home/thor .
+cette commande permet de copier le dossier de thor sur sa machine.
+Ensuite utiliser le script:
+python turtle_mainscript.py
+On decouvre successivement les lettres : SLASH 
+On le hash en MD5 et on obtient le mot de passe de zaz : 646da671ca01bb5d84dbb5fb2238dc8e

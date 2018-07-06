@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 13:56:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/05 15:28:35 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/02 10:44:19 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void		ft_check_tetri(int fd)
 		buf[v.ret] = '\0';
 		v.file = ft_strjoin(v.file, buf);
 	}
-	(v.file[ft_strlen(v.file) - 1] != '\n') ? (ft_exit()) : (0);
 	if (v.file[0] != '.' && v.file[0] != '#')
 		ft_exit();
 	ft_tmblk(v.file);

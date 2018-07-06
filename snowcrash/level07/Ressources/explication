@@ -1,0 +1,4 @@
+Sur le home du level07 on trouve un executable qui affiche la string "level07".
+Si on execute la commande strings sur cet executable, on peut s'apercevoir que pour afficher cette string, le programme utilise la fonction system pour executer la commande "/bin/echo %s" avec la variable LOGNAME qu'on peut supposer être une variable d'environnement contenant le nom du user connecté, donc level07.
+Du coup, on execute la commande "export LOGNAME="; /bin/bash"" pour terminer le echo puis exécuter un shell sur la session de celui qui a créé le fichier, donc flag07.
+On est connecté à flag07, on fait un getflag et on récupère le flag.

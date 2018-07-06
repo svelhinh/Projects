@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fonctions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 10:48:31 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/29 10:25:19 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:45:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,19 @@ int		tablen(char **s)
 	return (i);
 }
 
-void	init_var(t_xy *c, t_fdf v)
+t_xy	init_var(t_xy c, t_fdf v)
 {
-	c->j = 0;
-	c->i = 0;
-	c->y = v.y2;
-	c->x = v.x2;
-	c->ys = c->y;
-	c->xs = c->x;
-	c->cx = 50 * v.zoom;
-	c->cy = 25 * v.zoom;
-	c->min = alti_min(v.map, v.nbl, v.nbn);
-	c->max = alti_max(v.map, v.nbl, v.nbn);
+	c.j = 0;
+	c.i = 0;
+	c.y = v.y2;
+	c.x = v.x2;
+	c.ys = c.y;
+	c.xs = c.x;
+	c.cx = 50 * v.zoom;
+	c.cy = 25 * v.zoom;
+	c.min = alti_min(v.map, v.nbl, v.nbn);
+	c.max = alti_max(v.map, v.nbl, v.nbn);
+	return (c);
 }
 
 void	ft_swap(float *a, float *b)

@@ -1,0 +1,15 @@
+Sur le home de ce level, on trouve un binaire level13.
+Si on l'execute, il nous dit qu'il veut l'uid 4242 et non l'uid 2013.
+Si on fait un nm sur level13, on voit qu'il utilise un getuid.
+On essaie donc de faire une injection dynamique avec LD_PRELOAD.
+On cree un fichier /tmp/flag.c qui contient :
+#include <unistd.h>
+#include <sys/types.h>
+
+uid_t getuid(void)
+{
+	return 4242;
+}
+
+Et on le compile en librairie dynamique avec "gcc -Wall -fPIC -shared -o flag.so flag.c -ldl".
+On execute level13 avec gdb, on lance la commande "set env LD_PRELOAD=/tmp/flag.so" et on run le programme pour recuperer le flag.

@@ -1,0 +1,5 @@
+Sur le home de ce level, on trouve un executable level09 et un fichier token.
+Quand on exécute level09, il nous indique qu'on doit passer quelque chose en paramètre.
+Si on passe le fichier token, il nous affiche la string "tpmhr".
+En analysant un peu cette string, on remarque que si on applique un déchiffrement par décalage successifs, on obtient la string token.
+Si on prend cette information comme indice pour déchiffrer le contenu de token, alors on obtient le mot de passe de flag09 pour récupérer le flag de ce level.

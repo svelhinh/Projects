@@ -5,53 +5,82 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 13:32:08 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/28 13:55:41 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/13 12:05:01 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/13 15:49:40 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "span.hpp"
+#include "Span.hpp"
+#include <numeric>
 
-Span::Span(unsigned int n): _n(n), _tab()
+Span::Span( void )
 {
 	return;
 }
 
-Span::Span(Span const &rhs)
-{
-	*this = rhs;
-	return;
-}
-
-Span::~Span()
+Span::Span( unsigned int N ): _N(N)
 {
 	return;
 }
 
-Span & Span::operator=(Span const &rhs)
+Span::Span( Span const & src )
 {
-	(void)rhs;
-	return *this;
+	*this = src;
+	return;
 }
 
-void	Span::addNumber(int nb)
+Span::~Span( void )
 {
-	if (_tab.size() != _n)
-		_tab.push_back(nb);
+	return;
+}
+
+void	Span::addNumber( std::vector<int> range )
+{
+	if (_intList.size() >= _N)
+		throw std::exception();
 	else
-		throw std::exception();
+		_intList.insert(_intList.end(), range.begin(), range.end());
 }
 
-int		Span::shortestSpan()
+void	Span::addNumber( int value )
 {
-	if (_tab.size() <= 1)
+	if (_intList.size() >= _N)
 		throw std::exception();
-	return *std::min_element(_tab.begin(), _tab.end());
+	else
+		_intList.push_back(value);
 }
 
-int		Span::longestSpan()
+int		Span::shortestSpan(void)
 {
-	if (_tab.size() <= 1)
+	if (_intList.size() < 2)
 		throw std::exception();
-	return *std::max_element(_tab.begin(), _tab.end());
+	else
+	{
+		std::vector<int> 	cpy = _intList;
+
+	    std::sort(cpy.begin(), cpy.end());
+		std::adjacent_difference(cpy.begin(), cpy.end(), cpy.begin() - 1);
+		cpy.pop_back();
+	    return *std::min_element(cpy.begin(), cpy.end());
+	}
+}
+
+int		Span::longestSpan(void)
+{
+	if (_intList.size() < 2)
+		throw std::exception();
+	else
+	{
+		std::vector<int>::iterator	min = std::min_element(_intList.begin(), _intList.end());
+		std::vector<int>::iterator	max = std::max_element(_intList.begin(), _intList.end());
+
+		return (_intList[std::distance(_intList.begin(), max)] - _intList[std::distance(_intList.begin(), min)]);
+	}
+}
+
+Span & Span::operator=( Span const & rhs )
+{
+	_N = rhs._N;
+	_intList = rhs._intList;
+	return *this;
 }

@@ -1,0 +1,5 @@
+Sur le home du level06 on trouve un fichier php et un executable qui execute le fichier php.
+Si on observe le code, on peut s'apercevoir que la regex "(\[x (.*)\])/e" contient un PREG_REPLACE_EVAL (/e).
+Le PREG_REPLACE_EVAL remplace ce qu'il a à remplacer, puis évalue la string remplacée comme un code PHP.
+Ce qui veut dire qu'on peut exécuter une commande sur le serveur grâce à la fonction system().
+On crée donc un fichier dans /tmp contenant "[x {${system('getflag')}}]" et on exécute level06 avec ce fichier en paramètre pour récupérer le flag du level.

@@ -6,7 +6,7 @@
 #    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2016/06/29 11:48:16 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/05/27 14:02:22 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,8 @@ $(NAME) : $(OBJ)
 		@ranlib $(NAME)
 
 %.o: %.c
-		@echo -n "\033[93m"
-		@echo -n $<
+		@echo -n "\033[33m."
 		@gcc -o $@ -c $< -Wall -Wextra -Werror -I $(INCLUDES)
-		@echo "\033[92m				✓\033[0m"
 
 clean:
 		@echo "\033[33mSuppression Objets LIBFT\033[0m"

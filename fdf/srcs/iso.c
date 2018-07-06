@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iso.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 11:36:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/29 10:26:07 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:33:50 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	put_lines1(t_fdf v)
 {
 	t_xy	c;
 
-	init_var(&c, v);
+	c = init_var(c, v);
 	while (c.j < v.nbl && !(c.i = 0))
 	{
 		while (c.i < v.nbn - 1)
@@ -89,7 +89,7 @@ void	put_lines2(t_fdf v)
 {
 	t_xy	c;
 
-	init_var(&c, v);
+	c = init_var(c, v);
 	while (c.i < v.nbn && !(c.j = 0))
 	{
 		while (c.j < v.nbl - 1)

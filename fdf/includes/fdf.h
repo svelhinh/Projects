@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:37:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/29 10:25:34 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:23:53 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int					tablen(char **s);
 float				**read_map(char *file, int *nbl, int *nbn);
 int					key_hook(int keycode, t_fdf *v);
 int					mouse_hook(int button, int x, int y, t_fdf *v);
-void				init_var(t_xy *c, t_fdf v);
+t_xy				init_var(t_xy c, t_fdf v);
 int					alti_min(float **map, int nbl, int nbn);
 int					alti_max(float **map, int nbl, int nbn);
 void				put_lines1(t_fdf v);

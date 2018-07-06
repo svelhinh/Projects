@@ -1,3 +1,4 @@
+make re -C ..
 echo "\033[93m1 ligne vide a la fin :\033[92m"
 ./../fillit errors/e_1ligne_vide_a_la_fin
 echo "\n\033[93m1 ligne vide au debut :\033[92m"
@@ -88,3 +89,4 @@ echo "\n\033[93m21 :\n\033[92m"
 time ./../fillit yo
 rm yo
 echo "\n"
+make fclean -C ..

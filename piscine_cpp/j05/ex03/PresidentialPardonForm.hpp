@@ -5,29 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/27 12:39:41 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 12:40:19 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 19:18:56 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/11 11:15:16 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
-# include "Form.hpp"
+#ifndef PresidentialPardonForm_hpp
+#define PresidentialPardonForm_hpp
 
-class	Form;
+#include "Form.hpp"
+#include <string>
 
-class	PresidentialPardonForm : public Form
+class PresidentialPardonForm : public Form
 {
-private:
-    std::string	_target;
-protected:
-    void    action() const;
 public:
-    PresidentialPardonForm( std::string const target );
-    PresidentialPardonForm( PresidentialPardonForm const & src );
-    virtual ~PresidentialPardonForm();
+	PresidentialPardonForm( std::string target );
+	PresidentialPardonForm( PresidentialPardonForm const & src );
+	virtual ~PresidentialPardonForm( void );
 
-	PresidentialPardonForm & operator = ( PresidentialPardonForm const & rhs );
+	std::string		getTarget(void) const;
+	virtual void	action(void) const;
+
+	PresidentialPardonForm & operator=( PresidentialPardonForm const & rhs );
+
+private:
+	PresidentialPardonForm( void );
+	std::string	_target;
 };
 
 #endif

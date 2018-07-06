@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2016/02/09 17:30:14 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/02/18 14:40:07 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,18 @@ SRC = \
 
 OBJ = $(SRC:.c=.o)
 
+SHELL = ZSH
+
 all: $(NAME)
-	@echo "\033[91mIl n'y a plus rien a faire\n"
+		@echo "\033[91mCompilation de la libft terminee"
 
 $(NAME) : $(OBJ)
-		@echo "\033[93mCreation de la libft"
 		@ar rcs $(NAME) $(OBJ)
 		@ranlib $(NAME)
+		@echo
 
 %.o: %.c
+		@echo -n "\033[92m."
 		@gcc -o $@ -c $< -Wall -Wextra -Werror -I includes
 
 clean:
@@ -46,7 +49,7 @@ clean:
 		@rm -f $(OBJ)
 
 fclean: clean
-		@echo "\033[96mSuppression de la libft\n"
+		@echo "\033[96mSuppression de la libft"
 		@rm -f $(NAME)
 
 re: fclean all

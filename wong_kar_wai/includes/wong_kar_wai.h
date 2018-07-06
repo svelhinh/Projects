@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 11:33:21 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/31 20:19:02 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/31 20:09:47 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_win
 }				t_win;
 enum			e_const
 {
-	WIN_VALUE = 2048
+	WIN_VALUE = 64
 };
 int				**init_tab(int j);
 void			display(t_win *box, int **tab);

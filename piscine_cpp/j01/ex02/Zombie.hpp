@@ -1,20 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 12:25:06 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/04 14:42:02 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
-# include <iostream>
 
-class Zombie
+# include <iostream>
+# include <string>
+
+class	Zombie
 {
 public:
-	Zombie(void);
-	~Zombie(void);
-	void	announce(void);
-	std::string	getName(void);
-	void	setName(std::string name);
-	std::string	getType(void);
-	void	setType(std::string type);
-private:
-	std::string	_name;
-	std::string	_type;
+	Zombie();
+	~Zombie();
+	void	announce() const;
+	std::string	name;
+	std::string type;
 };
 
 #endif

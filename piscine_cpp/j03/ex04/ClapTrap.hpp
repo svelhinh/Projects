@@ -1,41 +1,65 @@
-#ifndef ClapTrap_hpp
-#define ClapTrap_hpp
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 15:25:30 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 12:05:42 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <iostream>
-#include <stdlib.h>
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
+
+# include <string>
 
 class ClapTrap
 {
-protected:
-	int					_hit_points;
-	int					_max_hit_points;
-	int					_energy_points;
-	int					_max_energy_points;
-	int					_level;
-	std::string			_name;
-	int					_melee_attack_damage;
-	int					_ranged_attack_damage;
-	int					_armor_damage_reduction;
-
 public:
-	ClapTrap(std::string const name);
-	ClapTrap(ClapTrap const &src, std::string const name);
-	~ClapTrap();
+	ClapTrap(void);
+    ClapTrap(std::string name);
+	ClapTrap(ClapTrap const & src);
+    ~ClapTrap();
 
-	int				getHitPoints() const;
-	int				getMaxHitPoints() const;
-	int				getEnergyPoints() const;
-	int				getMaxEnergyPoints() const;
-	int				getLevel() const;
+	void	rangedAttack(std::string const & target);
+	void	meleeAttack(std::string const & target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+
+	unsigned int	getHitPoints() const;
+	unsigned int	getMaxHitPoints() const;
+	unsigned int	getEnergyPoints() const;
+	unsigned int	getMaxEnergyPoints() const;
+	unsigned int	getLevel() const;
 	std::string		getName() const;
-	int				getMeleeAttackDamage() const;
-	int				getRangedAttackDamage() const;
-	int				getArmorDamageReduction() const;
+	unsigned int	getMeleeAttackDamage() const;
+	unsigned int	getRangedAttackDamage() const;
+	unsigned int	getArmorDamageReduction() const;
 
-	void			setHitPoints(const int hp);
-	void			setEnergyPoints(int const ep);
+	void			setHitPoints( int const hitPoints_ );
+	void			setMaxHitPoints( int const maxHitPoints_ );
+	void			setEnergyPoints( int const energyPoints_ );
+	void			setMaxEnergyPoints( int const maxEnergyPoints_ );
+	void			setLevel( int const level_ );
+	void			setName( std::string const name_ );
+	void			setMeleeAttackDamage( int const meleeAttackDamage_ );
+	void			setRangedAttackDamage( int const rangedAttackDamage_ );
+	void			setArmorDamageReduction( int const armorDamageReduction_ );
 
-	ClapTrap & operator = ( ClapTrap const & rhs );
+	ClapTrap &		operator=( ClapTrap const & rhs );
+
+protected:
+	unsigned int	hitPoints;
+	unsigned int	maxHitPoints;
+	unsigned int	energyPoints;
+	unsigned int	maxEnergyPoints;
+	unsigned int	level;
+	std::string		name;
+	unsigned int	meleeAttackDamage;
+	unsigned int	rangedAttackDamage;
+	unsigned int	armorDamageReduction;
 };
 
 

@@ -5,29 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/27 12:29:13 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 12:40:06 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 19:19:05 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/11 11:16:22 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM_HPP
-# include "Form.hpp"
+#ifndef RobotomyRequestForm_hpp
+#define RobotomyRequestForm_hpp
 
-class	Form;
+#include "Form.hpp"
+#include <string>
 
-class	RobotomyRequestForm : public Form
+class RobotomyRequestForm : public Form
 {
-private:
-    std::string	_target;
-protected:
-    void    action() const;
 public:
-    RobotomyRequestForm( std::string const target );
-    RobotomyRequestForm( RobotomyRequestForm const & src );
-    virtual ~RobotomyRequestForm();
+	RobotomyRequestForm( std::string target );
+	RobotomyRequestForm( RobotomyRequestForm const & src );
+	virtual ~RobotomyRequestForm( void );
 
-	RobotomyRequestForm & operator = ( RobotomyRequestForm const & rhs );
+	std::string		getTarget(void) const;
+
+	virtual void	action() const;
+
+	RobotomyRequestForm & operator=( RobotomyRequestForm const & rhs );
+
+private:
+	RobotomyRequestForm( void );
+	std::string	_target;
 };
 
 #endif

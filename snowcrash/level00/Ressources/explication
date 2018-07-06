@@ -1,0 +1,2 @@
+Dans /usr/sbin on trouve un fichier nommé "john" qui contient la chaîne de caractères suivante : 'cdiiddwpgswtgt'.
+Si on applique un ROT11 sur cette chaîne, ça nous donne 'nottoohardhere' qui est le mot de passe de flag00.

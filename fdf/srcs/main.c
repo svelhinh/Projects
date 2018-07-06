@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 14:57:58 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/13 10:55:26 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:24:54 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int		main(int ac, char **av)
 		v.alti = v.zoom;
 		v.y2 = 100;
 		v.x2 = 1000;
-		v.map = read_map(av[1], &v.nbl, &v.nbn);
 		commands();
+		v.map = read_map(av[1], &v.nbl, &v.nbn);
 		v.mlx = mlx_init();
 		v.win = mlx_new_window(v.mlx, v.width, v.height, av[1]);
 		v.av = av;

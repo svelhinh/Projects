@@ -5,37 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/27 12:39:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 13:50:51 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 19:19:00 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/11 11:19:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm( std::string target ): Form("PresidentialPardonForm", 145, 137), _target(target)
+PresidentialPardonForm::PresidentialPardonForm( void ): Form("presidential pardon", 25, 5), _target("obama")
 {
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const & src): Form("PresidentialPardonForm", 145, 137)
+PresidentialPardonForm::PresidentialPardonForm( std::string target ): Form("presidential pardon", 25, 5), _target(target)
+{
+	return;
+}
+
+PresidentialPardonForm::PresidentialPardonForm( PresidentialPardonForm const & src ): Form(src.getName(), src.getGradeSign(), src.getGradeExec()), _target(src.getTarget())
 {
 	*this = src;
 	return;
 }
 
-PresidentialPardonForm::~PresidentialPardonForm()
+PresidentialPardonForm::~PresidentialPardonForm( void )
 {
 	return;
 }
 
-PresidentialPardonForm & PresidentialPardonForm::operator=(PresidentialPardonForm const & rhs)
+std::string		PresidentialPardonForm::getTarget(void) const
+{
+	return _target;
+}
+
+PresidentialPardonForm & PresidentialPardonForm::operator=( PresidentialPardonForm const & rhs )
 {
 	(void)rhs;
 	return *this;
 }
 
-
-void	PresidentialPardonForm::action() const
+void	PresidentialPardonForm::action(void) const
 {
-	std::cout << this->_target << " has been pardoned by Zafod Beeblebrox" << std::endl;
+	std::cout << _target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }

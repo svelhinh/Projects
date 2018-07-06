@@ -1,12 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 11:59:27 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/05 19:49:21 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Pony.hpp"
 
-int main(void)
+int main()
 {
-    Pony pony = ponyOnTheStack("pony", 0xffffff, 12.5);
-    Pony *pony2 = ponyOnTheHeap("pony2", 0xff, 10.3);
-
-    std::cout << "Pony On The Stack : " << pony.name << ", " << pony.color << ", " << pony.height << std::endl;
-    std::cout << "Pony On The Heap : " << pony2->name << ", " << pony2->color << ", " << pony2->height << std::endl;
-    delete pony2;
-    return 0;
+	ponyOnTheStack("bob", 0xffffff, 1.7f);
+	ponyOnTheHeap("jim", 0x0, 1.2f);
+	return 0;
 }

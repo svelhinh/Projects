@@ -1,22 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Human.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 15:10:07 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/04 17:49:28 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Human.hpp"
 
-Human::Human(void)
+Human::Human(): humanBrain(*(new Brain(150, 3)))
 {
-    Brain *t = new Brain();
-	this->brain = *t;
+	return;
 }
 
-Human::~Human(void)
+Human::~Human()
 {
-    return;
+	return;
 }
 
-Brain Human::getBrain(void)
+Brain	&Human::getBrain() const
 {
-    return this->brain;
+	return this->humanBrain;
 }
 
-std::string Human::identify(void)
+std::string	Human::identify() const
 {
-    return this->brain.identify();
+	return this->humanBrain.identify();
 }

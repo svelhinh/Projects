@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 14:38:33 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/28 14:47:27 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/13 14:24:30 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/13 18:06:21 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mutantstack.hpp"
-# include <iostream>
+#include "mutantstack.cpp"
+#include <iostream>
 
 int main()
 {
@@ -21,20 +21,20 @@ int main()
 	std::cout << mstack.top() << std::endl;
 	mstack.pop();
 	std::cout << mstack.size() << std::endl;
+
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
-	//[...]
 	mstack.push(0);
-	// MutantStack<int>::iterator it = mstack.begin();
-	// MutantStack<int>::iterator ite = mstack.end();
-	// ++it;
-	// --it;
-	// while (it != ite)
-	// {
-	// std::cout << *it << std::endl;
-	// ++it;
-	// }
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
 	std::stack<int> s(mstack);
 	return 0;
 }

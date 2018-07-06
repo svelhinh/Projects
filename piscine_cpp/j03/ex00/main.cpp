@@ -1,24 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 11:15:59 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/06 13:55:30 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "FragTrap.hpp"
+#include <cstdlib>
 
-int main(void)
+int	main()
 {
-	FragTrap bob = FragTrap("bob");
-	FragTrap yo = FragTrap("yo");
+	srand(time(NULL));
 
-	bob.rangedAttack(yo.getName());
-	yo.takeDamage(bob.getRangedAttackDamage());
-	bob.meleeAttack(yo.getName());
-	yo.takeDamage(bob.getRangedAttackDamage());
-	yo.takeDamage(bob.getRangedAttackDamage());
-	yo.takeDamage(bob.getRangedAttackDamage());
-	yo.takeDamage(bob.getRangedAttackDamage());
-	yo.takeDamage(bob.getRangedAttackDamage());
-	yo.beRepaired(30);
-	yo.takeDamage(bob.getRangedAttackDamage());
-	yo.beRepaired(30);
-	yo.beRepaired(30);
-	yo.beRepaired(30);
-	yo.beRepaired(30);
-	bob.vaulthunter_dot_exe(yo.getName());
+	FragTrap	bob = FragTrap("bob");
+	FragTrap	jim = FragTrap("jim");
+
+	bob.rangedAttack(jim.getName());
+	bob.meleeAttack(jim.getName());
+	bob.takeDamage(20);
+	bob.beRepaired(12);
+	jim.vaulthunter_dot_exe(bob.getName());
+	for(int i = 0; i < 6; i++)
+		bob.vaulthunter_dot_exe(jim.getName());
 	return 0;
 }

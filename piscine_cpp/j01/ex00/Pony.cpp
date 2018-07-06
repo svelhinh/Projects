@@ -1,25 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Pony.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 12:01:24 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/05 19:48:20 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Pony.hpp"
+#include <iostream>
+#include <iomanip>
 
-Pony::Pony(std::string name, int color, double height): name(name), color(color), height(height)
+Pony::Pony(std::string const name_, int const color_, float const height_): name(name_), color(color_), height(height_)
 {
-    std::cout << "A pony was created" << std::endl;
-    return;
+	return;
 }
 
-Pony::~Pony(void)
+Pony::~Pony()
 {
-    std::cout << "A pony was deleted" << std::endl;
-    return;
+	return;
 }
 
-Pony ponyOnTheStack(std::string name, int color, double height)
+void	ponyOnTheHeap(std::string const name, int const color, float const height)
 {
-    Pony pony = Pony(name, color, height);
-    return (pony);
+	Pony	*pony = new Pony(name, color, height);
+
+	std::cout << "Pony on the heap : " << pony->name << ", 0x" << std::setbase(16) << pony->color << ", " << pony->height << std::endl;
+	delete pony;
 }
 
-Pony *ponyOnTheHeap(std::string name, int color, double height)
+void	ponyOnTheStack(std::string const name, int const color, float const height)
 {
-    Pony *pony = new Pony(name, color, height);
-    return (pony);
+	Pony	pony = Pony(name, color, height);
+
+	std::cout << "Pony on the stack : " << pony.name << ", 0x" << std::setbase(16) << pony.color << ", " << pony.height << std::endl;
 }

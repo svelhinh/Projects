@@ -5,36 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 14:39:28 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/28 15:13:16 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/13 14:28:16 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/14 15:02:25 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MUTANTSTACK_HPP
-# define MUTANTSTACK_HPP
-# include <stack>
+#ifndef mutantstack_hpp
+#define mutantstack_hpp
 
-template<typename T>
-class	MutantStack : public std::stack<T>
+#include <stack>
+#include <iterator>
+
+template< typename T >
+class MutantStack : public std::stack<T>
 {
-	class iterator
-	{
-		MutantStack	&rhs;
-		int			i;
+public:
+	MutantStack( void );
+	MutantStack( MutantStack< T > const & src );
+	virtual ~MutantStack( void );
 
-	public:
-		iterator(MutantStack &st, int i);
-		iterator(iterator const &rhs);
-		~iterator();
-		iterator	&operator=(iterator const &rhs);
-		iterator	&operator++();
-		iterator	&operator--();
-		bool		operator==(iterator const &rhs);
-		bool		operator!=(iterator const &rhs);
-		T			&operator*();
-	};
-	iterator	begin();
-	iterator	end();
+
+    class iterator
+    {
+    public:
+        T* _num;
+        iterator( void );
+        iterator( iterator const & src );
+        iterator(long num);
+        virtual ~iterator( void );
+
+        iterator& operator++( void );
+        iterator operator++( int );
+        iterator& operator--( void );
+        iterator operator--( int );
+        bool operator==(iterator rhs) const;
+        bool operator!=(iterator rhs) const;
+        T operator*() const;
+    };
+    iterator begin( void );
+    iterator end( void );
+
+	MutantStack & operator=( MutantStack const & rhs );
 };
 
 #endif

@@ -5,36 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/23 11:27:02 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/23 11:38:20 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/08 13:24:59 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/09 19:03:32 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENEMY_HPP
-# define ENEMY_HPP
-# include <iostream>
-# include <ncurses.h>
+#ifndef Enemy_hpp
+#define Enemy_hpp
 
-class Enemy
+#include "ACharacter.hpp"
+#include <string>
+
+enum e_speedLevels
 {
-private:
-	std::string const 	_shape;
-	int					_x;
-	int					_y;
+	e_speedLvl0 = 3,
+	e_speedLvl1 = 2,
+	e_speedLvl2 = 1,
+	e_speedLvl3 = 0
+};
+
+class Enemy : public ACharacter
+{
 public:
-    Enemy( int const maxx );
-	Enemy( Enemy const & src );
-	virtual ~Enemy( void );
+	Enemy(void);
+	Enemy(int pv, int x, int y, int givenScore, int color);
+    Enemy(Enemy const & src);
+    virtual ~Enemy(void);
 
-	std::string	getShape(void) const;
-	int			getX(void) const;
-	int			getY(void) const;
-	void		setX(int x);
-	void		setY(int y);
-	void		displayEnemy( void ) const;
+	int			getGivenScore(void) const;
+	void		setSpeedLevel(int score);
 
-	Enemy & operator = ( Enemy const & rhs );
+	Enemy &	operator=( Enemy const & rhs );
+
+	virtual void	shoot(void);
+	virtual void	takeDamage(int);
+	virtual void	update(void);
+
+private:
+	int _elapsedTicks;
+	int	_givenScore;
+	enum e_speedLevels	_speedLevel;
 };
 
 
-#endif
+#endif /* Enemy_hpp */

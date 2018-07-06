@@ -5,88 +5,143 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/23 15:54:05 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 13:55:34 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 15:51:08 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/10 20:00:51 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include <iostream>
 
-int		main(void)
+int	main()
 {
-	Bureaucrat *yo = new Bureaucrat("yo", 150);
-	ShrubberyCreationForm *form = new ShrubberyCreationForm("home");
-	RobotomyRequestForm *form2 = new RobotomyRequestForm("home2");
-	PresidentialPardonForm *form3 = new PresidentialPardonForm("home3");
+	srand(time(NULL));
 
-	std::cout << *form << std::endl;
 	try
 	{
-		yo->signForm(form);
-		std::cout << *form << std::endl;
+		Bureaucrat *toto = new Bureaucrat("toto", 170);
+		delete toto;
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << *yo << std::endl;
+	try
+	{
+		Bureaucrat *tata = new Bureaucrat("tata", -150);
+		delete tata;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	Bureaucrat *bob = new Bureaucrat("bob", 149);
+
+	std::cout << *bob << std::endl;
+	try
+	{
+		bob->dec();
+		std::cout << *bob << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	try
+	{
+		bob->dec();
+		std::cout << *bob << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	for (int i = 0; i < 148; i++)
 	{
 		try
 		{
-			yo->inc();
+			bob->inc();
 		}
 		catch (std::exception &e)
 		{
 			std::cout << e.what() << std::endl;
 		}
 	}
-	std::cout << *yo << std::endl;
-
-	std::cout << *form << std::endl;
+	std::cout << *bob << std::endl;
 	try
 	{
-		yo->signForm(form);
-		std::cout << *form << std::endl;
+		bob->inc();
+		std::cout << *bob << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		bob->inc();
+		std::cout << *bob << std::endl;
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
+	Bureaucrat *jim = new Bureaucrat("jim", 135);
+	Bureaucrat *robert = new Bureaucrat("robert", 142);
+
 	try
 	{
-		yo->signForm(form2);
-		std::cout << *form << std::endl;
+		ShrubberyCreationForm *formTest2 = new ShrubberyCreationForm("home");
+		jim->signForm(formTest2);
+		jim->executeForm(*formTest2);
+		robert->executeForm(*formTest2);
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
+	Bureaucrat *toto = new Bureaucrat("toto", 12);
+
 	try
 	{
-		yo->signForm(form3);
-		std::cout << *form << std::endl;
+		RobotomyRequestForm *formTest2 = new RobotomyRequestForm("moon");
+		std::cout << *toto << std::endl;
+		toto->signForm(formTest2);
+		toto->executeForm(*formTest2);
+		delete formTest2;
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
+	Bureaucrat *tata = new Bureaucrat("tata", 3);
 
-	yo->executeForm(*form);
-	yo->executeForm(*form2);
-	yo->executeForm(*form3);
+	try
+	{
+		PresidentialPardonForm *formTest2 = new PresidentialPardonForm("trump");
+		std::cout << *tata << std::endl;
+		tata->signForm(formTest2);
+		tata->executeForm(*formTest2);
+		delete formTest2;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-
-	delete yo;
-	delete form;
-	delete form2;
-	delete form3;
+	delete bob;
+	delete toto;
+	delete jim;
+	delete robert;
 	return 0;
 }

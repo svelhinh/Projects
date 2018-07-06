@@ -1,0 +1,9 @@
+Sur le home de ce level, on trouve un executable level08 et un fichier token.
+Quand on exécute level08, il nous indique qu'on doit passer en paramètre un fichier à lire.
+Si on passe le fichier token directement, il nous dit qu'on a pas les droits pour lire ce fichier.
+Si on lance la commande nm sur level08, on peut s'apercevoir que la fonction strstr et utilisée.
+On peut donc supposer qu'une recherche de string est faite quelque part.
+Si on lance la commande strings sur level08, on s'aperçoit que la string "token" est présente.
+Si on crée un fichier qui contient "token" dans son nom dans /tmp et qu'on le passe en argument de level08, il nous dit qu'on a pas les droits pour le lire alors qu'en fait on les a, alors que si on lui passe n'importe quel autre fichier ne contenant pas "token" dans son nom et dont on a les droits, il nous affiche son contenu.
+On peut donc supposer que le programme cherche si le chemin qu'on lui envoie en argument contient "token", si oui, il nous vire, sinon il nous affiche son contenu.
+Maintenant si on crée un lien symbolique qui ne contient pas "token" dans son nom sur /tmp vers token et qu'on passe en paramètre ce lien, alors le programme nous affiche le contenu de token, c'est-à-dire le mot de passe de flag08.

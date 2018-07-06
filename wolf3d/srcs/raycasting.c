@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 12:10:37 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/10 14:29:25 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/08 14:03:42 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ static void	dda(t_ray *r)
 			r->hit = 1;
 		if (r->map[r->mapx][r->mapy] == -1)
 			r->hit = -1;
-		if (r->map[r->mapx][r->mapy] == -2)
-			r->hit = -2;
 	}
 }
 

@@ -1,22 +1,40 @@
-#ifndef NinjaTrap_hpp
-#define NinjaTrap_hpp
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   NinjaTrap.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 11:15:32 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 12:05:51 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef NINJATRAP_HPP
+# define NINJATRAP_HPP
 
-class NinjaTrap : public ClapTrap
+# include <string>
+# include "ClapTrap.hpp"
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
+
+class NinjaTrap : virtual public ClapTrap
 {
 public:
-	NinjaTrap(std::string const name);
-	NinjaTrap(NinjaTrap const &src, std::string const name);
-	~NinjaTrap();
+	NinjaTrap(void);
+    NinjaTrap(std::string name);
+	NinjaTrap(NinjaTrap const & src);
+    ~NinjaTrap();
 
-	void			rangedAttack(std::string const & target);
-	void			meleeAttack(std::string const & target);
-	void			takeDamage(unsigned int amount);
-	void			beRepaired(unsigned int amount);
-	void			ninjaShoebox(std::string const & target);
+	void	rangedAttack(std::string const & target);
+	void	meleeAttack(std::string const & target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+	void	ninjaShoebox(FragTrap const & target);
+	void	ninjaShoebox(ScavTrap const & target);
+	void	ninjaShoebox(NinjaTrap const & target);
 
-	NinjaTrap & operator = ( NinjaTrap const & rhs );
+	NinjaTrap &		operator=( NinjaTrap const & rhs );
 };
 
 

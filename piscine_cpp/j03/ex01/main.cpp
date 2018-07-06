@@ -1,50 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 11:15:59 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/06 15:46:25 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
+#include <cstdlib>
+#include <iostream>
 
-int main(void)
+int	main()
 {
-	FragTrap *bob = new FragTrap("bob");
-	FragTrap *yo = new FragTrap("yo");
+	srand(time(NULL));
 
-	bob->rangedAttack(yo->getName());
-	yo->takeDamage(bob->getRangedAttackDamage());
-	bob->meleeAttack(yo->getName());
-	yo->takeDamage(bob->getRangedAttackDamage());
-	yo->takeDamage(bob->getRangedAttackDamage());
-	yo->takeDamage(bob->getRangedAttackDamage());
-	yo->takeDamage(bob->getRangedAttackDamage());
-	yo->takeDamage(bob->getRangedAttackDamage());
-	yo->beRepaired(30);
-	yo->takeDamage(bob->getRangedAttackDamage());
-	yo->beRepaired(30);
-	yo->beRepaired(30);
-	yo->beRepaired(30);
-	yo->beRepaired(30);
-	bob->vaulthunter_dot_exe(yo->getName());
+	// FRAGTRAP
+	std::cout << "\033[93mFR4G-TP :\033[94m" << std::endl << std::endl;
 
-	delete bob;
-	delete yo;
+	FragTrap	bob = FragTrap("bob");
+	FragTrap	jim = FragTrap("jim");
 
-	ScavTrap *toto = new ScavTrap("toto");
-	ScavTrap *scav = new ScavTrap("scav");
+	bob.rangedAttack(jim.getName());
+	bob.meleeAttack(jim.getName());
+	bob.takeDamage(20);
+	bob.beRepaired(12);
+	jim.vaulthunter_dot_exe(bob.getName());
+	for(int i = 0; i < 6; i++)
+		bob.vaulthunter_dot_exe(jim.getName());
 
-	toto->rangedAttack(scav->getName());
-	scav->takeDamage(toto->getRangedAttackDamage());
-	toto->meleeAttack(scav->getName());
-	scav->takeDamage(toto->getRangedAttackDamage());
-	scav->takeDamage(toto->getRangedAttackDamage());
-	scav->takeDamage(toto->getRangedAttackDamage());
-	scav->takeDamage(toto->getRangedAttackDamage());
-	scav->takeDamage(toto->getRangedAttackDamage());
-	scav->beRepaired(30);
-	scav->takeDamage(toto->getRangedAttackDamage());
-	scav->beRepaired(30);
-	scav->beRepaired(30);
-	scav->beRepaired(30);
-	scav->beRepaired(30);
-	toto->challengeNewcomer(scav->getName());
 
-	delete toto;
-	delete scav;
+
+	std::cout << std::endl << std::endl;
+
+
+
+	// SCAVTRAP
+	std::cout << "\033[93mSC4V-TP :\033[94m" << std::endl << std::endl;
+
+	ScavTrap	toto = ScavTrap("toto");
+	ScavTrap	tata = ScavTrap("tata");
+
+	toto.rangedAttack(tata.getName());
+	toto.meleeAttack(tata.getName());
+	toto.takeDamage(12);
+	toto.beRepaired(20);
+	tata.challengeNewcomer();
+	toto.challengeNewcomer();
 	return 0;
 }

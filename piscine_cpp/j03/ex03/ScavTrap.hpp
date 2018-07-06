@@ -1,22 +1,36 @@
-#ifndef ScavTrap_hpp
-#define ScavTrap_hpp
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 14:55:53 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/06 19:28:16 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+
+# include <string>
+# include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap
 {
 public:
-	ScavTrap(std::string const name);
-	ScavTrap(ScavTrap const &src, std::string const name);
-	~ScavTrap();
+	ScavTrap(void);
+    ScavTrap(std::string name);
+	ScavTrap(ScavTrap const & src);
+    ~ScavTrap();
 
-	void			rangedAttack(std::string const & target);
-	void			meleeAttack(std::string const & target);
-	void			takeDamage(unsigned int amount);
-	void			beRepaired(unsigned int amount);
-	void			challengeNewcomer(std::string const & target);
+	void	rangedAttack(std::string const & target);
+	void	meleeAttack(std::string const & target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+	void	challengeNewcomer();
 
-	ScavTrap & operator = ( ScavTrap const & rhs );
+	ScavTrap &		operator=( ScavTrap const & rhs );
 };
 
 

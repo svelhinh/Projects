@@ -1,103 +1,114 @@
-#include "NinjaTrap.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   NinjaTrap.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 16:06:35 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 11:31:18 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-NinjaTrap::NinjaTrap(std::string const name): ClapTrap(name)
+#include "NinjaTrap.hpp"
+#include <iostream>
+
+NinjaTrap::NinjaTrap(void)
 {
-	std::cout << "\033[34mNINJ4-TP " << name << " created\033[0m" << std::endl;
 	return;
 }
 
-NinjaTrap::NinjaTrap(NinjaTrap const & src, std::string const name): ClapTrap(name)
+NinjaTrap::NinjaTrap(std::string name_): ClapTrap(name_)
 {
+	std::cout << "Glitching weirdness is a term of endearment, right?" << std::endl;
+	hitPoints = 60;
+	maxHitPoints = 60;
+	energyPoints = 120;
+	maxEnergyPoints = 120;
+	level = 1;
+	meleeAttackDamage = 60;
+	rangedAttackDamage = 50;
+	return;
+}
+
+NinjaTrap::NinjaTrap(NinjaTrap const & src): ClapTrap(src)
+{
+	std::cout << "Glitching weirdness is a term of endearment, right?" << std::endl;
 	*this = src;
-	std::cout << "NINJ4-TP " << name << " created by copy" << std::endl;
 	return;
 }
 
 NinjaTrap::~NinjaTrap()
 {
-	std::cout << "\033[31mNINJ4-TP " << this->getName() << " destructed\033[0m" << std::endl;
+	std::cout << "I'll get you next time!" << std::endl;
 	return;
 }
 
-NinjaTrap & NinjaTrap::operator=(NinjaTrap const & rhs)
+void	NinjaTrap::rangedAttack(std::string const & target)
 {
-	this->_hit_points = rhs.getHitPoints();
-	this->_max_hit_points = rhs.getMaxHitPoints();
-	this->_energy_points = rhs.getEnergyPoints();
-	this->_max_energy_points = rhs.getMaxEnergyPoints();
-	this->_level = rhs.getLevel();
-	this->_name = rhs.getName();
-	this->_melee_attack_damage = rhs.getMeleeAttackDamage();
-	this->_ranged_attack_damage = rhs.getRangedAttackDamage();
-	this->_armor_damage_reduction = rhs.getArmorDamageReduction();
-	return *this;
+	std::cout << "NINJ4-TP " << name << " attacks " << target << " at range, causing " << rangedAttackDamage << " points of damage !" << std::endl;
 }
 
-void			NinjaTrap::rangedAttack(std::string const & target)
+void	NinjaTrap::meleeAttack(std::string const & target)
 {
-	std::cout << "NINJ4-TP " << this->getName() << " attacks "
-	<< target << " at range, causing " << this->getRangedAttackDamage()
-	<< " points of damage !" << std::endl;
+	std::cout << "NINJ4-TP " << name << " attacks " << target << " at melee, causing " << rangedAttackDamage << " points of damage !" << std::endl;
 }
 
-void			NinjaTrap::meleeAttack(std::string const & target)
+void	NinjaTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "NINJ4-TP " << this->getName() << " attacks "
-	<< target << " at melee, causing " << this->getRangedAttackDamage()
-	<< " points of damage !" << std::endl;
+	std::cout << "NINJ4-TP " << name << " take " << amount << " points of damage !" << std::endl;
+	hitPoints = (hitPoints - amount + armorDamageReduction > 0) ? (hitPoints - amount + armorDamageReduction) : (0);
 }
 
-void			NinjaTrap::takeDamage(unsigned int amount)
+void	NinjaTrap::beRepaired(unsigned int amount)
 {
-	int life = this->getHitPoints();
-	int shield = this->getArmorDamageReduction();
-
-	if (life + shield - (int)amount > 0)
-	{
-		this->setHitPoints(life + shield - amount);
-		std::cout << "NINJ4-TP " << this->getName() << " takes "
-		<< amount << " points of damage !" << std::endl;
-	}
-	else
-	{
-		this->setHitPoints(0);
-		std::cout << "NINJ4-TP " << this->getName() << " is dead" << std::endl;
-	}
+	std::cout << "NINJ4-TP " << name << " repairs " << amount << " points of damage !" << std::endl;
+	hitPoints = (hitPoints + amount < maxHitPoints) ? (hitPoints + amount) : (maxHitPoints);
 }
 
-void			NinjaTrap::beRepaired(unsigned int amount)
-{
-	unsigned int life = this->getHitPoints();
-	unsigned int max = this->getMaxHitPoints();
-
-	if (life + amount <= max)
-		this->setHitPoints(life + amount);
-	else
-		this->setHitPoints(max);
-	std::cout << "NINJ4-TP " << this->getName() << " has "
-	<< this->getHitPoints() << " HP" << std::endl;
-}
-
-void			NinjaTrap::ninjaShoebox(std::string const & target)
+void	NinjaTrap::ninjaShoebox(FragTrap const & target)
 {
 	std::string attacks[5] = {
-		"Ninja",
-		"Ninjaaa",
-		"Ninjaaaaaaa",
-		"Ninjaaaaaaaaaaaa",
-		"Ninjaaaaaaaaaaaaaaaaaaaaaa"
+		"Hehehehe, mwaa ha ha ha, MWAA HA HA HA!",
+		"Ha ha ha! Fall before your robot overlord!",
+		"There is no way this ends badly!",
+		"This is why I was built!",
+		"Unts unts unts unts!"
 	};
-	int	energy = this->getEnergyPoints();
-	srand(time(NULL));
 
-	if (energy - 25 >= 0)
-	{
-		this->setEnergyPoints(energy - 25);
-		std::cout << "NINJ4-TP " << this->getName() << " attacks " << target << " : \"" << attacks[rand() % 5] << "\"" << std::endl;
-	}
-	else
-	{
-		this->setEnergyPoints(0);
-		std::cout << "NINJ4-TP " << this->getName() << " is out of energy !" << std::endl;
-	}
+	std::cout << "NINJ4-TP " << name << " attacks FR4G-TP " << target.getName() << " : \"" << attacks[rand() % 5] << "\"" << std::endl;
+}
+
+void	NinjaTrap::ninjaShoebox(ScavTrap const & target)
+{
+	std::string attacks[5] = {
+		"Hehehehe, mwaa ha ha ha, MWAA HA HA HA!",
+		"Ha ha ha! Fall before your robot overlord!",
+		"There is no way this ends badly!",
+		"This is why I was built!",
+		"Unts unts unts unts!"
+	};
+
+	std::cout << "NINJ4-TP " << name << " attacks SC4V-TP " << target.getName() << " : \"" << attacks[rand() % 5] << "\"" << std::endl;
+}
+
+void	NinjaTrap::ninjaShoebox(NinjaTrap const & target)
+{
+	std::string attacks[5] = {
+		"Hehehehe, mwaa ha ha ha, MWAA HA HA HA!",
+		"Ha ha ha! Fall before your robot overlord!",
+		"There is no way this ends badly!",
+		"This is why I was built!",
+		"Unts unts unts unts!"
+	};
+
+	std::cout << "NINJ4-TP " << name << " attacks NINJ4-TP " << target.getName() << " : \"" << attacks[rand() % 5] << "\"" << std::endl;
+}
+
+
+
+NinjaTrap &	NinjaTrap::operator=( NinjaTrap const & rhs )
+{
+	ClapTrap::operator=(rhs);
+	return *this;
 }

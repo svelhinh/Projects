@@ -1,42 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ZombieEvent.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 12:40:50 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/04 14:44:39 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ZombieEvent.hpp"
 
-ZombieEvent::ZombieEvent(void)
+ZombieEvent::ZombieEvent()
 {
-    return;
+	return;
 }
 
-ZombieEvent::~ZombieEvent(void)
+ZombieEvent::~ZombieEvent()
 {
-    return;
+	return;
 }
 
 void	ZombieEvent::setZombieType(std::string type)
 {
-    this->_type = type;
+	this->type = type;
 }
 
-Zombie* ZombieEvent::newZombie(std::string name)
+Zombie* ZombieEvent::newZombie(std::string name) const
 {
-    Zombie *zombie = new Zombie();
-    zombie->setName(name);
-    zombie->setType(this->_type);
-    return zombie;
-}
-
-void	ZombieEvent::randomChump(void)
-{
-	srand (time(NULL));
-	size_t name_size = 3 + (rand() % (10 - 3));
-	std::string name;
-	char letter = 'A' + (rand() % ('Z' - 'A'));
-
-	name = name + letter;
-	for (size_t i = 1; i < name_size; i++)
-	{
-		letter = 'a' + (rand() % ('z' - 'a'));
-		name = name + letter;
-	}
-	Zombie *zombie = newZombie(name);
-    zombie->announce();
-	delete zombie;
+	Zombie	*zombie = new Zombie();
+	zombie->name = name;
+	zombie->type = this->type;
+	return zombie;
 }

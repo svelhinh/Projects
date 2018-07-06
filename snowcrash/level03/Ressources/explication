@@ -1,0 +1,8 @@
+En utilisant la commande "strings level03", on peut remarquer que la commande "/usr/bin/env echo Exploit Me" est presente.
+Comme c'est un binaire C, on en deduit que la fonction system a ete utilisee pour executer cette commande.
+Pour "tromper" le binaire, on change le PATH vers /tmp avec les commande PATH=/tmp:$PATH et export PATH.
+On cree un lien symbolique de /tmp/echo2 vers /bin/bash et un fichier /tmp/echo avec des droits d'execution pour tout le monde contenant :
+#!/bin/bash
+/tmp/echo2
+
+On execute level03 et on recupere le flag.

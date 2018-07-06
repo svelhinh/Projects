@@ -5,33 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/20 15:27:59 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/20 17:21:21 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/07 14:25:19 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 18:25:02 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VICTIM_HPP
 # define VICTIM_HPP
-# include <iostream>
-# include <cmath>
+
+# include <string>
 
 class Victim
 {
-private:
-	const std::string _name;
-	Victim();
-
 public:
-	Victim( std::string name );
-	Victim( Victim const & src );
-	virtual ~Victim( void );
+    Victim(std::string name_);
+    Victim(Victim const & src);
+    ~Victim();
 
-	std::string		getName( void ) const;
-	virtual void	getPolymorphed( void ) const;
+    virtual void	getPolymorphed() const;
 
-	Victim & operator = ( Victim const & );
+    std::string getName() const;
+
+    Victim &    operator=( Victim const & rhs );
+
+protected:
+    Victim();
+    std::string name;
 };
 
-std::ostream & operator << ( std::ostream & o, Victim const & rhs );
+std::ostream &	operator<<( std::ostream & o, Victim const & vic);
 
 #endif

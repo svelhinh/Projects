@@ -1,0 +1,12 @@
+faille dirtycow :
+
+il faut se connecter en ssh sur l'iso boot2root:
+
+ssh laurie@IP_de_l_ISO
+password : 330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4
+
+(cf  /bonus pour voir comment nous avons obtenu cette connexion)
+
+Ensuite, on copie le script dirty.c dans l'ISO, on le compile et on l'execute. On entre un password, il va nous creer un utilisateur firefart avec le password donne qui est root.
+On fait un su firefart avec le password et on est root
+

@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/06/27 16:31:31 by svelhinh          #+#    #+#              #
-#    Updated: 2016/06/27 16:31:35 by svelhinh         ###   ########.fr        #
+#    Created: 2017/04/03 11:40:57 by svelhinh          #+#    #+#              #
+#    Updated: 2017/04/03 18:19:26 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = g++
+CC = clang++
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -20,13 +20,17 @@ SRC =	megaphone.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
+ifneq ($(shell uname), Linux)
+SHELL = ZSH
+endif
+
 all: $(NAME)
 		@echo -n "\033[0m"
 
 $(NAME): $(OBJ)
 		@$(CC) -o $(NAME) $(CFLAGS) $(OBJ)
 
-%.o: %.c
+%.o: %.cpp
 		@echo -n "\033[32m="
 		@$(CC) -o $@ -c $< $(CFLAGS)
 

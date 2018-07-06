@@ -5,58 +5,118 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/23 15:54:05 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 12:21:28 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 15:51:08 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/10 19:13:27 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include <iostream>
 
-int		main(void)
+int	main()
 {
-	Bureaucrat *yo = new Bureaucrat("yo", 150);
-	Form *form = new Form("toto", 120, 120);
-
-	std::cout << "\033[33m" << *form << std::endl;
-	std::cout << "\033[36m";
 	try
 	{
-		yo->signForm(form);
-		std::cout << "\033[33m" << *form << std::endl;
+		Bureaucrat *toto = new Bureaucrat("toto", 170);
+		delete toto;
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << "\033[36m" << *yo << std::endl;
+	try
+	{
+		Bureaucrat *tata = new Bureaucrat("tata", -150);
+		delete tata;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	Bureaucrat *bob = new Bureaucrat("bob", 149);
+
+	std::cout << *bob << std::endl;
+	try
+	{
+		bob->dec();
+		std::cout << *bob << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	try
+	{
+		bob->dec();
+		std::cout << *bob << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	for (int i = 0; i < 148; i++)
 	{
 		try
 		{
-			yo->inc();
+			bob->inc();
 		}
 		catch (std::exception &e)
 		{
 			std::cout << e.what() << std::endl;
 		}
 	}
-	std::cout << "\033[36m" << *yo << std::endl;
-
-	std::cout << "\033[33m" << *form << std::endl;
-	std::cout << "\033[36m";
+	std::cout << *bob << std::endl;
 	try
 	{
-		yo->signForm(form);
-		std::cout << "\033[33m" << *form << std::endl;
+		bob->inc();
+		std::cout << *bob << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		bob->inc();
+		std::cout << *bob << std::endl;
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	delete yo;
-	delete form;
+	try
+	{
+		Form *formTest = new Form("test", 170, -1);
+		delete formTest;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	Bureaucrat *jim = new Bureaucrat("jim", 1);
+
+	try
+	{
+		Form *formTest2 = new Form("test2", 2, 50);
+		jim->signForm(formTest2);
+		jim->dec();
+		jim->dec();
+		std::cout << *jim << std::endl;
+		jim->signForm(formTest2);
+		delete formTest2;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	delete bob;
+	delete jim;
 	return 0;
 }

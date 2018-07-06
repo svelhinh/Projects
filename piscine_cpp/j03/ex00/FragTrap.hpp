@@ -1,47 +1,66 @@
-#ifndef FragTrap_hpp
-#define FragTrap_hpp
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 11:15:32 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/06 19:25:10 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <iostream>
-#include <stdlib.h>
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+
+# include <string>
 
 class FragTrap
 {
-private:
-	int					_hit_points;
-	int					_max_hit_points;
-	int					_energy_points;
-	int					_max_energy_points;
-	int					_level;
-	std::string			_name;
-	int					_melee_attack_damage;
-	int					_ranged_attack_damage;
-	int					_armor_damage_reduction;
-
 public:
-	FragTrap(std::string const name);
-	FragTrap(FragTrap const &src, std::string const name);
-	~FragTrap();
+	FragTrap(void);
+    FragTrap(std::string name);
+	FragTrap(FragTrap const & src);
+    ~FragTrap();
 
-	void			rangedAttack(std::string const & target);
-	void			meleeAttack(std::string const & target);
-	void			takeDamage(unsigned int amount);
-	void			beRepaired(unsigned int amount);
-	void			vaulthunter_dot_exe(std::string const & target);
+	void	rangedAttack(std::string const & target);
+	void	meleeAttack(std::string const & target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+	void	vaulthunter_dot_exe(std::string const & target);
 
-	int				getHitPoints() const;
-	int				getMaxHitPoints() const;
-	int				getEnergyPoints() const;
-	int				getMaxEnergyPoints() const;
-	int				getLevel() const;
+	unsigned int	getHitPoints() const;
+	unsigned int	getMaxHitPoints() const;
+	unsigned int	getEnergyPoints() const;
+	unsigned int	getMaxEnergyPoints() const;
+	unsigned int	getLevel() const;
 	std::string		getName() const;
-	int				getMeleeAttackDamage() const;
-	int				getRangedAttackDamage() const;
-	int				getArmorDamageReduction() const;
+	unsigned int	getMeleeAttackDamage() const;
+	unsigned int	getRangedAttackDamage() const;
+	unsigned int	getArmorDamageReduction() const;
 
-	void			setHitPoints(const int hp);
-	void			setEnergyPoints(int const ep);
+	void			setHitPoints( int const hitPoints_ );
+	void			setMaxHitPoints( int const maxHitPoints_ );
+	void			setEnergyPoints( int const energyPoints_ );
+	void			setMaxEnergyPoints( int const maxEnergyPoints_ );
+	void			setLevel( int const level_ );
+	void			setName( std::string const name_ );
+	void			setMeleeAttackDamage( int const meleeAttackDamage_ );
+	void			setRangedAttackDamage( int const rangedAttackDamage_ );
+	void			setArmorDamageReduction( int const armorDamageReduction_ );
 
-	FragTrap & operator = ( FragTrap const & rhs );
+	FragTrap &		operator=( FragTrap const & rhs );
+
+private:
+	unsigned int	hitPoints;
+	unsigned int	maxHitPoints;
+	unsigned int	energyPoints;
+	unsigned int	maxEnergyPoints;
+	unsigned int	level;
+	std::string		name;
+	unsigned int	meleeAttackDamage;
+	unsigned int	rangedAttackDamage;
+	unsigned int	armorDamageReduction;
 };
 
 

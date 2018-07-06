@@ -5,22 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/23 15:54:05 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 12:09:45 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/10 15:51:08 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/10 16:40:18 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include <iostream>
 
-int		main(void)
+int	main()
 {
-	Bureaucrat *yo = new Bureaucrat("yo", 149);
-
-	std::cout << *yo << std::endl;
 	try
 	{
-		yo->dec();
-		std::cout << *yo << std::endl;
+		Bureaucrat *toto = new Bureaucrat("toto", 170);
+		delete toto;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	try
+	{
+		Bureaucrat *tata = new Bureaucrat("tata", -150);
+		delete tata;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	Bureaucrat *bob = new Bureaucrat("bob", 149);
+
+	std::cout << *bob << std::endl;
+	try
+	{
+		bob->dec();
+		std::cout << *bob << std::endl;
 	}
 	catch (std::exception &e)
 	{
@@ -28,8 +49,8 @@ int		main(void)
 	}
 	try
 	{
-		yo->dec();
-		std::cout << *yo << std::endl;
+		bob->dec();
+		std::cout << *bob << std::endl;
 	}
 	catch (std::exception &e)
 	{
@@ -39,18 +60,18 @@ int		main(void)
 	{
 		try
 		{
-			yo->inc();
+			bob->inc();
 		}
 		catch (std::exception &e)
 		{
 			std::cout << e.what() << std::endl;
 		}
 	}
-	std::cout << *yo << std::endl;
+	std::cout << *bob << std::endl;
 	try
 	{
-		yo->inc();
-		std::cout << *yo << std::endl;
+		bob->inc();
+		std::cout << *bob << std::endl;
 	}
 	catch (std::exception &e)
 	{
@@ -58,14 +79,14 @@ int		main(void)
 	}
 	try
 	{
-		yo->inc();
-		std::cout << *yo << std::endl;
+		bob->inc();
+		std::cout << *bob << std::endl;
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	delete yo;
+	delete bob;
 	return 0;
 }

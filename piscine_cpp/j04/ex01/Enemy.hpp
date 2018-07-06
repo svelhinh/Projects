@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/20 17:15:20 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/20 17:37:49 by svelhinh         ###   ########.fr       */
+/*   Updated: 2017/04/07 19:59:00 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class Enemy
 {
 private:
+	Enemy();
 	int					_hp;
 	const std::string	_type;
 

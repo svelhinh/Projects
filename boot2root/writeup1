@@ -1,0 +1,5 @@
+Faille grub :
+
+Echap en lancant virtualbox, on tape live init=/bin/bash pour reset le mot de passe root
+
+https://wiki.archlinux.org/index.php/reset_root_password

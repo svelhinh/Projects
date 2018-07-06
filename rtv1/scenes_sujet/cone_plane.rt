@@ -1,0 +1,22 @@
+resolution : 1280 720
+
+background_color : 0
+
+object : camera
+pos : 0 0 -10000
+rot : 0 0 0
+
+object : light
+pos : 1280 0 -1000
+color : 1 1 1
+
+object : plane
+norm : 0 1 0 -300
+rot : 0.2 0 0
+color : 0 0 0.9
+
+object : cone
+pos : 640 200 100
+rot : 0 0 0
+radius : 0
+color : 0.9 0.9 0

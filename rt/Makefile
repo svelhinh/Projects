@@ -6,7 +6,7 @@
 #    By: lnieto-m <lnieto-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/07 18:24:41 by lnieto-m          #+#    #+#              #
-#    Updated: 2016/06/29 11:48:33 by svelhinh         ###   ########.fr        #
+#    Updated: 2016/06/12 14:12:46 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,13 +58,12 @@ all: $(NAME)
 	@echo "\033[0m"
 
 $(NAME): rtv $(OBJ)
-	@echo "\n\033[33mLIBFT : \033[0m"
+	@echo -n "\n\033[33mLIBFT : \033[0m"
 	@make -C libft/
 	@$(CC) $(LIBFT_PATH) $(LFLAGS) $(OBJ) $(GTK_LDFLAGS) -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@echo -n "\033[93m"
-	@echo -n $<
+	@echo -n "\033[32m="
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_PATH)/effects 2> /dev/null || true
 	@mkdir $(OBJ_PATH)/gtk 2> /dev/null || true
@@ -82,10 +81,9 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH)/textures 2> /dev/null || true
 	@mkdir $(OBJ_PATH)/vectors 2> /dev/null || true
 	@$(CC) $(CFLAGS) $(CPFLAGS) $(GTK_CFLAGS) -o $@ -c $<
-	@echo "\033[92m						✓\033[0m"
 
 rtv:
-	@echo "\033[96mRT : "
+	@echo -n "\033[32mRT : "
 
 clean:
 	@echo "\033[32mSuppression des objets du rt\033[0m"

@@ -5,36 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/20 15:28:01 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/20 15:50:21 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/07 14:01:26 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 18:16:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SORCERER_HPP
 # define SORCERER_HPP
-# include <iostream>
-# include <cmath>
-#include "Victim.hpp"
+
+# include <string>
+# include "Victim.hpp"
 
 class Sorcerer
 {
+public:
+    Sorcerer(std::string name_, std::string title_);
+    ~Sorcerer();
+    Sorcerer(Sorcerer const & src);
+
+	void polymorph(Victim const &) const;
+
+
+	std::string	getName() const;
+	std::string	getTitle() const;
+
+
+    Sorcerer &	operator=( Sorcerer const & rhs );
+
 private:
-	const std::string _name;
-	const std::string _title;
 	Sorcerer();
 
-public:
-	Sorcerer( std::string name, std::string title );
-	Sorcerer( Sorcerer const & src );
-	virtual ~Sorcerer( void );
-
-	std::string		getName( void ) const;
-	std::string		getTitle( void ) const;
-
-	void			polymorph(Victim const & victim) const;
-	Sorcerer & operator = ( Sorcerer const & rhs );
+	std::string	name;
+	std::string	title;
 };
 
-std::ostream & operator << ( std::ostream & o, Sorcerer const & rhs );
+std::ostream &	operator<<( std::ostream & o, Sorcerer const & sor);
 
 #endif

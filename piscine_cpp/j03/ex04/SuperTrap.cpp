@@ -1,34 +1,55 @@
-#include "SuperTrap.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   SuperTrap.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 16:20:37 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 12:04:04 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-SuperTrap::SuperTrap(std::string const name): FragTrap(name), NinjaTrap(name)
+#include "SuperTrap.hpp"
+#include <iostream>
+
+SuperTrap::SuperTrap(void)
 {
-	std::cout << "\033[34mSUPER-TP " << name << " created\033[0m" << std::endl;
 	return;
 }
 
-SuperTrap::SuperTrap(SuperTrap const & src, std::string const name): FragTrap(name), NinjaTrap(name)
+SuperTrap::SuperTrap(std::string name_): ClapTrap(name_), FragTrap(name_), NinjaTrap(name_)
 {
+	std::cout << "Look out everybody! Things are about to get awesome!" << std::endl;
+	hitPoints = 100;
+	maxHitPoints = 100;
+	energyPoints = 120;
+	maxEnergyPoints = 120;
+	level = 1;
+	meleeAttackDamage = 60;
+	rangedAttackDamage = 20;
+	armorDamageReduction = 5;
+
+	return;
+}
+
+SuperTrap::SuperTrap(SuperTrap const & src): ClapTrap(src), FragTrap(src), NinjaTrap(src)
+{
+	std::cout << "Look out everybody! Things are about to get awesome!" << std::endl;
 	*this = src;
-	std::cout << "SUPER-TP " << name << " created by copy" << std::endl;
 	return;
 }
 
 SuperTrap::~SuperTrap()
 {
-	std::cout << "\033[31mSUPER-TP " << this->getName() << " destructed\033[0m" << std::endl;
+	std::cout << "Crap happens." << std::endl;
 	return;
 }
 
-SuperTrap & SuperTrap::operator=(SuperTrap const & rhs)
+
+SuperTrap &	SuperTrap::operator=( SuperTrap const & rhs )
 {
-	this->_hit_points = rhs.getHitPoints();
-	this->_max_hit_points = rhs.getMaxHitPoints();
-	this->_energy_points = rhs.getEnergyPoints();
-	this->_max_energy_points = rhs.getMaxEnergyPoints();
-	this->_level = rhs.getLevel();
-	this->_name = rhs.getName();
-	this->_melee_attack_damage = rhs.getMeleeAttackDamage();
-	this->_ranged_attack_damage = rhs.getRangedAttackDamage();
-	this->_armor_damage_reduction = rhs.getArmorDamageReduction();
+	FragTrap::operator=(rhs);
+	NinjaTrap::operator=(rhs);
 	return *this;
 }

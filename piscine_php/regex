@@ -1,0 +1,35 @@
+/yO/i : yO insensible a la casse
+
+/yo|oy/ : yo ou oy
+
+/yo$/ : yo a la fin
+
+/^yo/ : yo au debut
+
+/y[oai]/ : yo, ya ou yi
+
+/y[a-z]/ : y + toutes les lettres entre a et z
+
+/y[^0-6]/ : y + tous sauf ce qui est entre 0 et 6
+
+/Yo(yo)?/ : yo est present 1 ou 0 fois
+
+/Yo(yo)+/ : yo est present au moins 1 fois
+
+/Yo(yo)*/ : yo est present au moins 0 fois
+
+/Yo(yo){3}/ : yo est present 3 fois
+
+/Yo(yo){3,6}/ : yo est present entre 3 et 6 fois
+
+/Yo(yo){3, }/ : yo est present au moins 3 fois
+
+/./ : n'importe quel charactere
+
+/\./ : cherche un .
+
+/\s/ : Espace blanc (\t \n \r)
+
+/\S/ : Pas d'espace blanc (\t \n \r)
+
+/.*?y/ : Tous les characteres jusqu'a ce que ca match y

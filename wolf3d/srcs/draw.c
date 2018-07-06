@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 09:35:47 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/02/10 14:21:11 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/02/10 12:01:57 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,7 @@ static void		draw(t_coords c, t_ray r)
 		if (r.hit >= 0)
 			c.color = r.texture[tex][r.h * r.texy + r.texx];
 		(r.wall == 1) ? (c.color = (c.color >> 1) & 8355711) : (0);
-		(r.hit == -1 || r.hit == -2) ?
-			(c.color = r.texture[7][r.h * r.texy + r.texx]) : (0);
+		(r.hit == -1) ? (c.color = r.texture[7][r.h * r.texy + r.texx]) : (0);
 		mlx_pixel_put_to_img(&c, &r, c.x, y);
 		y++;
 	}

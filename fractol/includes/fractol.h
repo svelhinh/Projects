@@ -6,7 +6,7 @@
 /*   By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 17:16:03 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/01/21 10:16:21 by svelhinh         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:50:30 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <complex.h>
 # include <math.h>
 # include <mlx.h>
+# include <stdio.h>
 # include "../libft/includes/libft.h"
 # define WIDTH 1000
 # define HEIGHT 700

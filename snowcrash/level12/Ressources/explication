@@ -1,0 +1,13 @@
+Sur le home de ce level, on trouve un script perl level12.pl.
+Si on l'ouvre, on remarque qu'on peut se connecter au localhost sur le port 4646.
+On remarque aussi qu'il demande 2 paramètres, x et y et qu'il execute une commande (`egrep "^$xx" /tmp/xd 2>&1`).
+On essaie donc d'y injecter une commande.
+On crée le fichier /tmp/GETFLAG qui contient :
+#!/bin/bash
+/bin/getflag > /tmp/flag
+
+On urlencode la string `/*/GETFLAG` et on execute la commande suivante :
+curl "localhost:4646/level12.pl?x=%60%2F%2A%2FGETFLAG%60"
+
+Ce qui aura pour effet d'executer le script GETFLAG.
+Le flag se situe donc dans le fichier /tmp/flag.

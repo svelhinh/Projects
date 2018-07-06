@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/20 17:47:50 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/20 18:17:17 by svelhinh         ###   ########.fr       */
+/*   Updated: 2017/04/07 19:54:37 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 class Character
 {
 private:
+	Character();
 	std::string const	_name;
 	int					_ap;
 	AWeapon				*_weapon;

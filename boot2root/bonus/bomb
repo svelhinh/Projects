@@ -1,0 +1,105 @@
+On decompile le code avec retdec.
+
+Pour la phase1, on envoie "Public speaking is very easy." au programme, soit sur l'entrée standard, soit dans un fichier.
+Le programme verifie avec strings_not_equal si la 1ere ligne du fichier a bien 29 characteres.
+On trouve cette valeur en regardant la valeur de eax et de ebx sur cette ligne :
+0x08049053 <+35>:	cmp    ebx,eax
+Ensuite, on est alle jusqu'a la ligne suivante et on a remarque que al correspond a la ligne du fichier et ecx a "Public speaking is very easy." :
+0x08049072 <+66>:	cmp    al,BYTE PTR [ecx]
+
+Phase 2 "1 2 6 24 120 720" :
+On remarque, avec la fonction read_six_numbers() que le programme attend 6 nombres séparés par des espaces et qu'il les stocke dans ebp-0x18, ebp-0x14, ebp-0x10, ebp-0xc, ebp-0x8 et ebp-0x4 avec sscanf.
+Avec la comparaison suivante, on voit que le 1er nombre doit être 1 sinon la bombe explose:
+0x08048b63 <+27>:    cmp    DWORD PTR [ebp-0x18],0x1
+Ensuite, on va jusqu'a la ligne suivante :
+0x08048b7e <+54>:    cmp    DWORD PTR [esi+ebx*4],eax
+La decompilation du code par retdec nous montre qu'on est dans une boucle infinie et qu'elle s'arrête si elle n'a pas explosé au bout des 6 nombres.
+Retdec nous montre aussi que la comparaison précédente ainsi que les initialisations qui la précèdent correspondent à :
+if (nombre_a_tester != nombre_precedent * (i + 1))
+	explosion de la bombe
+Avec i qui s'incremente de 1 à chaque boucle.
+Donc, pour chaque nombre, on vérifie combien vaut nombre_precedent * (i + 1) donc eax et on a les nombres qu'on doit envoyer au programme.
+
+Phase 3 "1 b 214" (plusieurs possibilités) :
+On remarque sur la comparaison suivante que la bombe explose si on ne lui envoie pas au moins 3 entrées :
+0x08048bbf <+39>:    cmp    eax,0x2
+0x08048bc2 <+42>:    jg     0x8048bc9 <phase_3+49>
+0x08048bc4 <+44>:    call   0x80494fc <explode_bomb>
+Avec retdec, on voit que ces entrées doivent être un int, un char et un autre int.
+Ensuite, on peut voir sur ces lignes que si la première entrée du sscanf est supérieure à 7, la bombe explose :
+0x08048bc9 <+49>:    cmp    DWORD PTR [ebp-0xc],0x7
+0x08048bcd <+53>:    ja     0x8048c88 <phase_3+240>
+...
+0x08048c88 <+240>:   mov    bl,0x78
+0x08048c8a <+242>:   call   0x80494fc <explode_bomb>
+On essaye avec le chiffre 0 et on tombe cette instruction qui nous indique que si la 3ème entrée est différente de 0x309, la bombe explose :
+0x08048be2 <+74>:    cmp    DWORD PTR [ebp-0x4],0x309
+0x08048be9 <+81>:    je     0x8048c8f <phase_3+247>
+0x08048bef <+87>:    call   0x80494fc <explode_bomb>
+On met donc la 3ème entrée à son équivalent décimal, donc 777.
+On tombe ensuite sur cette comparaison qui nous indique que si la 2ème entrée est différente de bl, la bombe explose :
+0x08048c8f <+247>:   cmp    bl,BYTE PTR [ebp-0x5]
+0x08048c92 <+250>:   je     0x8048c99 <phase_3+257>
+0x08048c94 <+252>:   call   0x80494fc <explode_bomb>
+On regarde donc ce que vaut bl, donc 0x71, ce qui vaut à 'q' en ascii.
+Avec l'indice, on sait qu'il nous faut le caractere 'b', du coup on recommence la procédure avec le chiffre 1, ce qui fonctionne, on obtient 214 et 'b'.
+
+Phase 4 "9" :
+On voit un sscanf qui prend en paramètre ce que contient l'adresse 0x8049808, c'est-à-dire "%d" et qui stocke dans ebp-0x4 l'entrée.
+On voit ensuite 2 comparaisons qui indiquent que si le retour de sscanf, donc le nombre de caracteres ne vaut pas 1 ou le nombre entrée est plus petit ou égal à 0, alors la bombe explose :
+0x08048cfe <+30>:    cmp    eax,0x1
+0x08048d01 <+33>:    jne    0x8048d09 <phase_4+41>
+0x08048d03 <+35>:    cmp    DWORD PTR [ebp-0x4],0x0
+0x08048d07 <+39>:    jg     0x8048d0e <phase_4+46>
+0x08048d09 <+41>:    call   0x80494fc <explode_bomb>
+On remarque une comparaison du retour de func4 et de 0x37 qui nous indique que si ces 2 valeurs sont différentes, la bombe explose :
+0x08048d15 <+53>:    call   0x8048ca0 <func4>
+...
+0x08048d1d <+61>:    cmp    eax,0x37
+0x08048d20 <+64>:    je     0x8048d27 <phase_4+71>
+0x08048d22 <+66>:    call   0x80494fc <explode_bomb>
+On essaie un nombre arbitraire et on regarde la valeur de eax.
+Prenons 10 par exemple, si on regarde la valeur de eax, on voit 0x59, ce qui est plus grand que 0x37, on essaie donc un nombre plus petit, disons 7, on obtient 0x15, c'est trop petit, et ainsi de suite jusqu'à obtenir 0x37 avec le chiffre 9.
+
+Phase 5 "opekmq" :
+Pour cette phase, on voit que le programme demande une string de 6 caracteres puisqu'il vérifie si le retour de string_length, donc la taille de la string envoyée, vaut bien 6, sinon la bombe explose :
+0x08048d3b <+15>:    call   0x8049018 <string_length>
+0x08048d40 <+20>:    add    esp,0x10
+0x08048d43 <+23>:    cmp    eax,0x6
+0x08048d46 <+26>:    je     0x8048d4d <phase_5+33>
+0x08048d48 <+28>:    call   0x80494fc <explode_bomb>
+Si on avance un peu dans le code, on remarque qu'une operation AND est faite sur chacun des caracteres pour que le resultat soit utilisé en tant qu'index dans une string stockée dans esi "isrveawhobpnutfg" :
+0x08048d57 <+43>:    mov    al,BYTE PTR [edx+ebx*1]
+0x08048d5a <+46>:    and    al,0xf
+0x08048d5c <+48>:    movsx  eax,al
+0x08048d5f <+51>:    mov    al,BYTE PTR [eax+esi*1]
+On stocke chaque caractere recupéré dans une string :
+0x08048d62 <+54>:    mov    BYTE PTR [edx+ecx*1],al
+Apres que tous les caracteres soient lus, on arrive a une comparaison qui verifie si notre string modifié précédemment (eax) est egale a 0x804980b ("giants" en ascii), si non, la bombe explose :
+0x08048d72 <+70>:    push   0x804980b
+0x08048d77 <+75>:    lea    eax,[ebp-0x8]
+0x08048d7a <+78>:    push   eax
+0x08048d7b <+79>:    call   0x8049030 <strings_not_equal>
+0x08048d80 <+84>:    add    esp,0x10
+0x08048d83 <+87>:    test   eax,eax
+0x08048d85 <+89>:    je     0x8048d8c <phase_5+96>
+0x08048d87 <+91>:    call   0x80494fc <explode_bomb>
+Enfin, pour trouver notre string de depart, on regarde l'index du caractere que l'on veut avoir au final dans la string "isrveawhobpnutfg" et on ajoute 0x10 (16) jusqu'a avoir un caractere printable, par exemple, on veut le caractere 'g' dont l'index est 15 (0xF), on fait donc 0xF + 0x10 = 0x1F, ce n'est pas un caractere printable donc on continue, 0x1F + 0x10 = 0x2F, celui-ci est le caractere printable '/', et ainsi de suite pour les autres caracteres.
+On voit avec l'indice que le premier caractere doit etre 'o', du coup on repete la procedure en testant toutes les possibilités pour le mot de passe final.
+
+Phase 6 "4 2 6 3 1 5" :
+Pour commencer, on voit que le programme fait appel a la fonction read_six_numbers pour verifier si on lui a bien envoyé 6 nombres.
+Ensuite il verifie si le 1er nombre (stocké dans eax) - 1 est inferieur ou egal a 5 :
+0x08048dc3 <+43>:    mov    eax,DWORD PTR [eax+edi*4]
+0x08048dc6 <+46>:    dec    eax
+0x08048dc7 <+47>:    cmp    eax,0x5
+0x08048dca <+50>:    jbe    0x8048dd1 <phase_6+57>
+0x08048dcc <+52>:    call   0x80494fc <explode_bomb>
+0x08048dd1 <+57>:    lea    ebx,[edi+0x1]
+Il faut que tous les nombres soient differents (a trouver pk plus tard)
+Du coup, on fait un script (bomb_phase_6.py) pour tester toutes les combinaisons possibles de 1, 2, 3, 4, 5 et 6 sans doublons.
+On stocke ce que print le programme bomb ainsi que la combinaison qu'on teste dans un fichier et quand le script a fini, on cherche dans ce fichier la string "Congratulations! You've defused the bomb!" pour récupérer la combinaison correspondante.
+
+
+Pour le mdp de thor, on concatène toutes les entrées, on enlève les espaces et on inverse l'avant-avant-dernier et l'avant-dernier chiffres, ce qui nous donne :
+Publicspeakingisveryeasy.126241207201b2149opekmq426135

@@ -1,30 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 14:13:35 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/04 14:57:27 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ZombieHorde.hpp"
 
-ZombieHorde::ZombieHorde(int _N): _N(_N)
+ZombieHorde::ZombieHorde(int N): hordeSize(N)
 {
-    this->_zombies = new Zombie[_N];
-	srand(time(NULL));
-	for (int i = 0; i < _N; i++)
+	this->zombies = new Zombie[N];
+	srand (time(NULL));
+	for(int i = 0; i < N; i++)
 	{
-		size_t name_size = 3 + (rand() % (10 - 3));
+		size_t nameSize = 3 + (std::rand() % (10 - 3 + 1));
 		std::string name;
 		char letter = 'A' + (rand() % ('Z' - 'A'));
 
-		name = name + letter;
-		for (size_t j = 1; j < name_size; j++)
+		name += letter;
+		for (size_t i = 1; i < nameSize; i++)
 		{
 			letter = 'a' + (rand() % ('z' - 'a'));
-			name = name + letter;
+			name += letter;
 		}
-		this->_zombies[i].setName(name);
-	    this->_zombies[i].setType("Tank");
-		this->_zombies[i].announce();
+		zombies[i].name = name;
+		zombies[i].type = "Runner";
 	}
-    return;
+	return;
 }
 
-ZombieHorde::~ZombieHorde(void)
+ZombieHorde::~ZombieHorde()
 {
-	delete [] this->_zombies;
-    return;
+	delete [] this->zombies;
+	return;
+}
+
+void	ZombieHorde::announce()
+{
+	for (int i = 0; i < this->hordeSize; i++)
+		zombies[i].announce();
 }

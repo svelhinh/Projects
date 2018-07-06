@@ -1,22 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/04 17:47:26 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/04 18:46:45 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Weapon.hpp"
 
-Weapon::Weapon(std::string type): _type(type)
+#include <iostream>
+
+Weapon::Weapon(std::string type_): type(type_)
 {
-    return;
+	return;
 }
 
-Weapon::~Weapon(void)
+Weapon::~Weapon()
 {
-    return;
+	return;
 }
 
-std::string Weapon::getType(void) const
+std::string const	&Weapon::getType() const
 {
-    std::string const &ref = this->_type;
-    return ref;
+	return this->type;
 }
 
-void Weapon::setType(std::string type)
+void		Weapon::setType(std::string type)
 {
-    this->_type = type;
+	this->type = type;
 }

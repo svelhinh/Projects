@@ -5,31 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 13:32:17 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/28 13:51:44 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/13 12:05:03 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/13 14:53:38 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
-# include <vector>
-# include <iostream>
+#ifndef span_hpp
+#define span_hpp
 
-class	Span
+#include <vector>
+
+class Span
 {
-private:
-	unsigned int		_n;
-	std::vector<int>	_tab;
 public:
-	Span(unsigned int n);
-	Span(Span const &rhs);
-	virtual ~Span();
+	Span( unsigned int N );
+	Span( Span const & src );
+	virtual ~Span( void );
 
-	void	addNumber(int nb);
-	int		shortestSpan();
-	int		longestSpan();
+	void	addNumber( std::vector<int> value );
+	void	addNumber( int value );
+	int		shortestSpan(void);
+	int		longestSpan(void);
 
-	Span & operator=(Span const &rhs);
+	Span & operator=( Span const & rhs );
+
+	std::vector<int>	_intList;
+	unsigned int	_N;
+
+private:
+	Span( void );
 };
 
 #endif

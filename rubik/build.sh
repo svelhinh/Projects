@@ -1,0 +1,1 @@
+go build -o rubik db.go Cube3x3.go Errors.go heuristics.go rubik.go utils.go #Cube2x2.go

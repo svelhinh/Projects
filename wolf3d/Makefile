@@ -6,7 +6,7 @@
 #    By: svelhinh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/09 16:51:55 by svelhinh          #+#    #+#              #
-#    Updated: 2016/02/10 12:01:17 by svelhinh         ###   ########.fr        #
+#    Updated: 2017/03/23 15:22:07 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,21 +25,28 @@ LIBFT = libft/libft.a
 
 OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
-	@echo "\033[91mIl n'y a plus rien a faire"
+SHELL = ZSH
 
-$(NAME):
-		@make re -C libft
-		@echo "\033[96mCompilation"
-		@gcc -o $(NAME) -Wall -Wextra -Werror $(SRC) $(LIB) $(LIBFT) -I $(INCLUDES)
-		@make fclean -C libft
+all: $(NAME)
+	@echo "\033[91mFin"
+
+$(NAME): $(OBJ)
+		@echo "\n\033[91mFin de la compilation du wolf3d\n\033[92mCompilation de la libft"
+		@make -C libft
+		@gcc -o $(NAME) $(OBJ) $(LIB) $(LIBFT) -g -Wall -Wextra -Werror
+
+%.o: %.c
+		@echo -n "\033[92m."
+		@gcc -o $@ -c $< -Wall -Wextra -Werror -I $(INCLUDES)
 
 clean:
-		@echo "\033[96mSuppression des objets"
+		@make clean -C libft
+		@echo "\033[96mSuppression des objets du wolf3d"
 		@rm -f $(OBJ)
 
 fclean: clean
-		@echo "\033[96mSuppression de l'executable"
+		@make fclean -C libft
+		@echo "\033[96mSuppression de l'executable wolf3d"
 		@rm -f $(NAME)
 
 re: fclean all

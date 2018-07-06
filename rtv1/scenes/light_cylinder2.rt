@@ -1,0 +1,15 @@
+background_color : 40adb9
+
+object : camera
+pos : 0 0 -10000
+
+object : light
+pos : 640 360 -1000
+color : 1 1 1
+
+object : cylinder
+vec : 1 0 0
+pos : 0 300 0
+rot : 0 0 0.5
+radius : 100
+color : 0.25 0.75 0.5

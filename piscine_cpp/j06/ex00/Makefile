@@ -5,40 +5,44 @@
 #                                                     +:+ +:+         +:+      #
 #    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/06/27 16:31:26 by svelhinh          #+#    #+#              #
-#    Updated: 2016/06/27 16:40:58 by svelhinh         ###   ########.fr        #
+#    Created: 2017/04/08 15:07:52 by svelhinh          #+#    #+#              #
+#    Updated: 2017/04/11 17:17:41 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = g++ -Wall -Wextra -Werror
+CC = clang++
 
-NAME = convert
+CFLAGS = -Wall -Wextra
 
-SRC = main.cpp
+NAME = scalar
+
+SRC =	main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
+ifneq ($(shell uname), Linux)
 SHELL = ZSH
+endif
 
 all: $(NAME)
-	@echo "\033[0m"
+	@echo -n "\033[0m"
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $@
 
 %.o: %.cpp
-	@echo -n "\033[32m=\033[0m"
-	@$(CC) -o $@ -c $<
+	@echo -n "\033[94m"
+	@echo $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	@echo "\033[32mObjects deleted\033[0m"
+	@echo "\033[91mObj deleted\033[0m"
 	@rm -rf $(OBJ)
-	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@echo "\033[32mExecutable deleted\033[0m"
+	@echo "\033[91mExecutable deleted\033[0m"
 	@rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all rtv

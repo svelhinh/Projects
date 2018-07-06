@@ -1,0 +1,49 @@
+resolution : 1920 1080
+
+background_color : 40adb9
+
+object : camera
+pos : 0 0 -10000
+rot : 0 0 0
+
+object : light
+pos : 640 360 -3000
+color : 1 1 1
+
+object : sphere
+pos : 1000 450 -600
+radius : 300
+color : 0.6 0.7 0.8
+
+object : sphere
+pos : 400 450 -1200
+radius : 50
+color : 0.8 0.2 0.2
+
+object : sphere
+pos : 800 350 -1200
+radius : 50
+color : 0.2 0.8 0.2
+
+object : plane
+norm : 0 1 0 -450
+rot : 0.4 0 -0.1
+color : 1 0.9 0.5
+
+object : plane
+norm : 0 0 1 0
+rot : 0 0 0
+color : 0.2 0.4 0.9
+
+object : cylinder
+vec : 0 1 0
+pos : 400 0 -300
+rot : 0 0 0.3
+radius : 100
+color : 0.25 0.75 0.5
+
+object : cone
+pos : 1500 100 0
+rot : 0 0 -0.3
+radius : 0
+color : 1 0.6 0.9

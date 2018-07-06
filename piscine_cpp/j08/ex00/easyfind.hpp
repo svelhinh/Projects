@@ -5,21 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/28 13:08:54 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/28 13:31:00 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/13 11:48:23 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/13 12:00:26 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
-# define EASYFIND_HPP
-# include <algorithm>
-# include <iostream>
+#ifndef easyfind_tpp
+#define easyfind_tpp
 
-template<typename T>
-void	easyfind(T dest, int src)
+#include <algorithm>
+#include <iostream>
+
+template< typename T >
+void	easyfind(T container, int value)
 {
-	typename T::iterator it = find(dest.begin(), dest.end(), src);
-	if (it == dest.end())
+	if (std::find(container.begin(), container.end(), value) == container.end())
 		throw std::exception();
 }
 

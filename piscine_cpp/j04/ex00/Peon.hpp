@@ -5,30 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/20 15:28:10 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/20 15:39:12 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/07 14:25:19 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 18:20:57 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PEON_HPP
 # define PEON_HPP
-# include <iostream>
-# include <cmath>
+
+# include <string>
 # include "Victim.hpp"
 
 class Peon : public Victim
 {
-private:
-	Peon();
-
 public:
-	Peon( std::string name );
-	Peon( Peon const & src );
-	virtual ~Peon( void );
+    Peon(std::string name_);
+    Peon(Peon const & src);
+    ~Peon();
 
-	virtual void	getPolymorphed( void ) const;
+    void	getPolymorphed() const;
 
-	Peon & operator = ( Peon const & rhs );
+    Peon &	operator=( Peon const & rhs );
+
+private:
+    Peon();
 };
 
 #endif

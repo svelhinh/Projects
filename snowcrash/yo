@@ -1,0 +1,13 @@
+aide : https://www.mattandreko.com/archives/
+http://mike-boya.github.io/blog/archives/
+
+commandes utiles :
+	- strings	->	liste toutes les strings d'un fichier (peut etre utile pour trouver les fichiers utilisés par un binaire).
+
+	- nm		->	liste les symboles (fonctions locales, globales, de librairies et variables globales) utilisés dans un programme et permet de savoir si des variables globales sont assignées dès le début ou pas.
+
+	- ltrace	->	trace les appels de fonctions faites à des librairies, peut etre utile pour savoir quels paramètres sont envoyés à des fonctions et dans quel ordre les fonctions sont appelées.
+
+	- strace	->	trace les appels système, peut etre utile de la même façon que ltrace.
+
+	- readelf	->	affiche des infos sur des fichiers elf

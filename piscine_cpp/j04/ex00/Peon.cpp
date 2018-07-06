@@ -5,14 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/20 15:31:08 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/20 15:39:39 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/07 14:24:54 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/07 18:22:18 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Peon.hpp"
+#include <iostream>
 
-Peon::Peon(std::string name): Victim(name)
+Peon::Peon()
+{
+	return;
+}
+
+Peon::Peon(std::string name_): Victim(name_)
 {
 	std::cout << "Zog zog." << std::endl;
 	return;
@@ -21,23 +27,22 @@ Peon::Peon(std::string name): Victim(name)
 Peon::Peon(Peon const & src): Victim(src)
 {
 	*this = src;
-	std::cout << "Zog zog." << std::endl;
 	return;
 }
 
-Peon::~Peon(void)
+Peon::~Peon()
 {
 	std::cout << "Bleuark..." << std::endl;
 	return;
 }
 
-void	Peon::getPolymorphed( void ) const
+void	Peon::getPolymorphed() const
 {
-	std::cout << this->getName() << " has been turned into a pink pony !" << std::endl;
+	std::cout << name << " has been turned into a pink pony !" << std::endl;
 }
 
-Peon & Peon::operator=(Peon const & rhs)
+Peon &	Peon::operator=( Peon const & rhs )
 {
-	(void)rhs;
+	name = rhs.getName();
 	return *this;
 }

@@ -1,47 +1,66 @@
-#ifndef ScavTrap_hpp
-#define ScavTrap_hpp
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/06 14:55:53 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/06 19:26:12 by svelhinh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <iostream>
-#include <stdlib.h>
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+
+# include <string>
 
 class ScavTrap
 {
-private:
-	int					_hit_points;
-	int					_max_hit_points;
-	int					_energy_points;
-	int					_max_energy_points;
-	int					_level;
-	std::string			_name;
-	int					_melee_attack_damage;
-	int					_ranged_attack_damage;
-	int					_armor_damage_reduction;
-
 public:
-	ScavTrap(std::string const name);
-	ScavTrap(ScavTrap const &src, std::string const name);
-	~ScavTrap();
+	ScavTrap(void);
+    ScavTrap(std::string name);
+	ScavTrap(ScavTrap const & src);
+    ~ScavTrap();
 
-	void			rangedAttack(std::string const & target);
-	void			meleeAttack(std::string const & target);
-	void			takeDamage(unsigned int amount);
-	void			beRepaired(unsigned int amount);
-	void			challengeNewcomer(std::string const & target);
+	void	rangedAttack(std::string const & target);
+	void	meleeAttack(std::string const & target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
+	void	challengeNewcomer();
 
-	int				getHitPoints() const;
-	int				getMaxHitPoints() const;
-	int				getEnergyPoints() const;
-	int				getMaxEnergyPoints() const;
-	int				getLevel() const;
+	unsigned int	getHitPoints() const;
+	unsigned int	getMaxHitPoints() const;
+	unsigned int	getEnergyPoints() const;
+	unsigned int	getMaxEnergyPoints() const;
+	unsigned int	getLevel() const;
 	std::string		getName() const;
-	int				getMeleeAttackDamage() const;
-	int				getRangedAttackDamage() const;
-	int				getArmorDamageReduction() const;
+	unsigned int	getMeleeAttackDamage() const;
+	unsigned int	getRangedAttackDamage() const;
+	unsigned int	getArmorDamageReduction() const;
 
-	void			setHitPoints(const int hp);
-	void			setEnergyPoints(int const ep);
+	void			setHitPoints( int const hitPoints_ );
+	void			setMaxHitPoints( int const maxHitPoints_ );
+	void			setEnergyPoints( int const energyPoints_ );
+	void			setMaxEnergyPoints( int const maxEnergyPoints_ );
+	void			setLevel( int const level_ );
+	void			setName( std::string const name_ );
+	void			setMeleeAttackDamage( int const meleeAttackDamage_ );
+	void			setRangedAttackDamage( int const rangedAttackDamage_ );
+	void			setArmorDamageReduction( int const armorDamageReduction_ );
 
-	ScavTrap & operator = ( ScavTrap const & rhs );
+	ScavTrap &		operator=( ScavTrap const & rhs );
+
+private:
+	unsigned int	hitPoints;
+	unsigned int	maxHitPoints;
+	unsigned int	energyPoints;
+	unsigned int	maxEnergyPoints;
+	unsigned int	level;
+	std::string		name;
+	unsigned int	meleeAttackDamage;
+	unsigned int	rangedAttackDamage;
+	unsigned int	armorDamageReduction;
 };
 
 

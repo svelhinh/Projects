@@ -6,7 +6,7 @@
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/20 15:47:22 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/20 16:28:32 by svelhinh         ###   ########.fr       */
+/*   Updated: 2017/04/07 19:51:07 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class AWeapon
 {
 private:
+	AWeapon();
 	const std::string	_name;
 	int					_apcost;
 	int					_damage;

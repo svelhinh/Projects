@@ -5,29 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/27 13:59:54 by svelhinh          #+#    #+#             */
-/*   Updated: 2016/06/27 14:09:09 by svelhinh         ###   ########.fr       */
+/*   Created: 2017/04/11 11:21:13 by svelhinh          #+#    #+#             */
+/*   Updated: 2017/04/11 11:49:28 by svelhinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_HPP
-# define INTERN_HPP
-# include "ShrubberyCreationForm.hpp"
-# include "RobotomyRequestForm.hpp"
-# include "PresidentialPardonForm.hpp"
+#ifndef Intern_hpp
+#define Intern_hpp
 
+#include "Form.hpp"
+#include <string>
 
 class Intern
 {
 public:
-    Intern( void );
-    Intern( Intern const & src );
-    virtual ~Intern();
+	Intern( void );
+	Intern( Intern const & src );
+	virtual ~Intern( void );
 
-    Form    *makeForm(std::string name, std::string target);
+	Form	*makeForm(std::string formName, std::string target) const;
 
-    Intern & operator = ( Intern const & rhs );
+	Intern & operator=( Intern const & rhs );
 };
-
 
 #endif
