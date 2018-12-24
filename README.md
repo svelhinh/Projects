@@ -1,6 +1,8 @@
 <h1>Pokemon VR</h1>
 <p>
-  [![Video](http://img.youtube.com/vi/2BI1HwjWDys/0.jpg)](https://www.youtube.com/watch?v=2BI1HwjWDys)
+  <a href="https://www.youtube.com/watch?v=2BI1HwjWDys
+" target="_blank"><img src="http://img.youtube.com/vi/2BI1HwjWDys/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
   <img src="https://github.com/svelhinh/Projects/blob/master/images/PokemonVR/Lancer_Pokeball.gif" width="400">
 <img src="https://github.com/svelhinh/Projects/blob/master/images/PokemonVR/User_Interface.gif" width="400">
 <img src="https://github.com/svelhinh/Projects/blob/master/images/PokemonVR/Standing_Animations.gif" width="400"></p>
