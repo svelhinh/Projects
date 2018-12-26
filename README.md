@@ -1,3 +1,18 @@
+<h1>Who's gonna die ?</h1>
+<p>Watch trailer : https://drive.google.com/file/d/10tuIM6unfviUQe2xzirfL4p8pTIQ_OYp/view</p>
+<p>Download apk : https://drive.google.com/open?id=1i5E4qo1okZ1t75rPEP3HzllYzTTWwzPza</p>
+<p><img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture2.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture3.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture4.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture5.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture6.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture7.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture8.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture9.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture10.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture11.PNG" width="200">
+<img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture12.PNG" width="200"></p>
 <h1>Pokemon VR</h1>
 <p><img src="https://github.com/svelhinh/Projects/blob/master/images/PokemonVR/Lancer_Pokeball.gif" width="400">
 <img src="https://github.com/svelhinh/Projects/blob/master/images/PokemonVR/User_Interface.gif" width="400">
