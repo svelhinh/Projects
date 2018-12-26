@@ -1,6 +1,6 @@
 <h1>Who's gonna die ?</h1>
 <p>Watch trailer : https://drive.google.com/file/d/10tuIM6unfviUQe2xzirfL4p8pTIQ_OYp/view</p>
-<p>Download apk : https://drive.google.com/open?id=1i5E4qo1okZ1t75rPEP3HzllYzTTWwzPza</p>
+<p>Download apk : https://drive.google.com/open?id=1i5E4qo1okZ1t75rPEP3HzllYzTTWwzPz</p>
 <p><img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture.PNG" width="200">
 <img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture2.PNG" width="200">
 <img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture3.PNG" width="200">
