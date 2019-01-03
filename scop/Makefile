@@ -82,11 +82,11 @@ glfw: cmake
 # endif
 
 cmake:
-# ifeq ($(OS), Darwin)
+ifeq ($(OS), Darwin)
 	brew install cmake
-# else
-# 	sudo apt install cmake
-# endif
+else
+	sudo apt install cmake
+endif
 
 clean:
 	@rm -rf $(OBJS)

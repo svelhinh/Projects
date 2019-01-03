@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: svelhinh <svelhinh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:14:36 by svelhinh          #+#    #+#              #
-#    Updated: 2018/07/03 14:55:38 by marvin           ###   ########.fr        #
+#    Updated: 2018/07/16 15:40:23 by svelhinh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC = \
 		ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_putrainbow.c ft_putcolor.c \
 		ft_islower.c ft_isupper.c ft_putnbrendl.c ft_itoa_base.c ft_atoi_base.c \
 		ft_ftoa.c get_next_line.c ft_atof.c ft_strndup.c ft_strclr.c ft_strclean.c \
-		ft_strnjoin.c ft_puterror.c ft_reverse.c ft_exit.c
+		ft_strnjoin.c ft_puterror.c ft_reverse.c
 
 OBJ = $(SRC:.c=.o)
 
