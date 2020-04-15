@@ -1,7 +1,6 @@
 <h1>MagiColor</h1>
-<p><a href="https://youtu.be/isYbgJEI0S8"><img src="https://drive.google.com/uc?export=view&id=1rzHWAj8u5PtVDjnDlwW2GM_ch4qwraIE" width="200"></a></p>
 <p><a href="https://play.google.com/store/apps/details?id=com.Ninjoy.MagiColor">Download on Google Play Store<a/></p>
-<p><img src="https://lh3.googleusercontent.com/rWrVDbVLpPlfk4OklLr0hFEP4wZJGhkF2UMUZ05bjCv5j_C27pkySdSY_ho64QbgMVs=w2924-h1476-rw" width="150"/>
+<p><a href="https://youtu.be/isYbgJEI0S8"><img src="https://drive.google.com/uc?export=view&id=1rzHWAj8u5PtVDjnDlwW2GM_ch4qwraIE" width="150"></a><img src="https://lh3.googleusercontent.com/rWrVDbVLpPlfk4OklLr0hFEP4wZJGhkF2UMUZ05bjCv5j_C27pkySdSY_ho64QbgMVs=w2924-h1476-rw" width="150"/>
 <img src="https://lh3.googleusercontent.com/e8vwU-FDqfpXa6sqGQXe2n9vYyM2xfPohl7_TmQtxWeYYhDXxtDiocYRNFiweQSfOCY=w2924-h1476-rw" width="150"/>
 <img src="https://lh3.googleusercontent.com/D4GX0dnxy7gRIGXGY6p5VZ1K9vQv5_5qVXVh6p6FUIFUlaqgBSX0aIYOYhSo2Z3_izY=w2924-h1476-rw" width="150"/>
 <img src="https://lh3.googleusercontent.com/Jgpw_0XEjSIUp70VBrn69RV8IxlCMbakFmFst5XNvN6jD5J8OiRNYLcvwXF0DAuPZZY=w2924-h1476-rw" width="150"/>
