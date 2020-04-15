@@ -1,6 +1,17 @@
+<h1>MagiColor</h1>
+<p><a href="https://youtu.be/isYbgJEI0S8"><img src="https://drive.google.com/uc?export=view&id=1rzHWAj8u5PtVDjnDlwW2GM_ch4qwraIE" width="200"></a></p>
+<p><a href="https://play.google.com/store/apps/details?id=com.Ninjoy.MagiColor">Download on Google Play Store<a/></p>
+<p><img src="https://lh3.googleusercontent.com/rWrVDbVLpPlfk4OklLr0hFEP4wZJGhkF2UMUZ05bjCv5j_C27pkySdSY_ho64QbgMVs=w2924-h1476-rw" width="150"/>
+<img src="https://lh3.googleusercontent.com/e8vwU-FDqfpXa6sqGQXe2n9vYyM2xfPohl7_TmQtxWeYYhDXxtDiocYRNFiweQSfOCY=w2924-h1476-rw" width="150"/>
+<img src="https://lh3.googleusercontent.com/D4GX0dnxy7gRIGXGY6p5VZ1K9vQv5_5qVXVh6p6FUIFUlaqgBSX0aIYOYhSo2Z3_izY=w2924-h1476-rw" width="150"/>
+<img src="https://lh3.googleusercontent.com/Jgpw_0XEjSIUp70VBrn69RV8IxlCMbakFmFst5XNvN6jD5J8OiRNYLcvwXF0DAuPZZY=w2924-h1476-rw" width="150"/>
+<img src="https://lh3.googleusercontent.com/L8EiiwobqRwDYOPnbjtFu_odrq1RYfL0KCu9np8kOOGKJBVXmctMd1nzG2EPcXmOUGE=w2924-h1476-rw" width="150"/>
+<img src="https://lh3.googleusercontent.com/syoZJYig1wY_oYBjMcQKDhUVgCzapZWhgceEkFBUt-Ske3lwThPpbKITOUu_BzESjA=w2924-h1476-rw" width="150"/>
+<img src="https://lh3.googleusercontent.com/nQ4z5dgTan10gV7NLdywUTCUd2dfDmNs5_7b3PlRU_Ppf3U1oGny5oxRgutIUav6Bxw=w2924-h1476-rw" width="150"/>
+<img src="https://lh3.googleusercontent.com/lf2ipYqtqSG3_2EbPyf7jjtmhsxaWyhEoPN-shn9K3dgqpMjMQ7iNQcpZ6fSpm3Rtmw=w2924-h1476-rw" width="150"/></p>
 <h1>Who's gonna die ?</h1>
-<p>Watch trailer : https://drive.google.com/file/d/10tuIM6unfviUQe2xzirfL4p8pTIQ_OYp/view</p>
-<p>Download apk : https://drive.google.com/open?id=1i5E4qo1okZ1t75rPEP3HzllYzTTWwzPz</p>
+<p><a href="https://drive.google.com/file/d/10tuIM6unfviUQe2xzirfL4p8pTIQ_OYp/view">Watch trailer</a></p>
+<p><a href="https://drive.google.com/open?id=1i5E4qo1okZ1t75rPEP3HzllYzTTWwzPz">Download apk</a></p>
 <p><img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture.PNG" width="200">
 <img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture2.PNG" width="200">
 <img src="https://github.com/svelhinh/Projects/blob/master/who_s_gonna_die/images/Capture3.PNG" width="200">
