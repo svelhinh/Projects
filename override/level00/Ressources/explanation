@@ -1,4 +1,0 @@
-On remarque que le programme nous demande un Password avec scanf et le récupère en int.
-Il compare ensuite notre entrée à 5276.
-Si cette comparaison est vraie, alors il nous ouvre un shell avec system.
-Donc, pour récupérer le flag, il suffit d'entrer 5276 au moment de la demande du Password et d'afficher le flag du niveau suivant qui se situe dans ../level01/.pass.
