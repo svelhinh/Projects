@@ -24,6 +24,7 @@
 <img src="https://github.com/svelhinh/Projects/blob/master/Projects/who_s_gonna_die/images/Capture11.PNG" width="200">
 <img src="https://github.com/svelhinh/Projects/blob/master/Projects/who_s_gonna_die/images/Capture12.PNG" width="200"></p>
 <h1>Pokemon VR</h1>
+<p><img src="https://github.com/svelhinh/Projects/blob/master/Projects/images/PokemonVR/Pokemon VR 2022 Animations.gif" width="400">
 <p><img src="https://github.com/svelhinh/Projects/blob/master/Projects/images/PokemonVR/Lancer_Pokeball.gif" width="400">
 <img src="https://github.com/svelhinh/Projects/blob/master/Projects/images/PokemonVR/User_Interface.gif" width="400">
 <img src="https://github.com/svelhinh/Projects/blob/master/Projects/images/PokemonVR/Standing_Animations.gif" width="400"></p>
