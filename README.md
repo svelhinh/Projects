@@ -1,3 +1,11 @@
+<img width="1613" height="2868" alt="image" src="https://github.com/user-attachments/assets/4d9eae91-180f-402e-8042-8bd97829cc03" /><h1>Eira</h1>
+<p><a href="https://play.google.com/store/apps/details?id=com.epicstarz.eira">Download on Android</a></p>
+<p><a href="https://apps.apple.com/us/app/eira-calm-focus/id6761768057">Download on iOS</a></p>
+<p><img src="https://play-lh.googleusercontent.com/doKvVxDjq4UlM52B411RimUStYqn0HJ4-tEgP1ngsem1unn54P3CLE7fKPW4TeSfIrX9_mVkT4EdI7n-UQwzVg0=w5120-h2880-rw" width="150"/>
+<img src="https://play-lh.googleusercontent.com/srs5lFkVKYkiUSxlbH860Q2xFBnyG8EYmzx1jKb1efo7YCw5YiVwZRvrq_5GR46j7UxNS6Tevj_OiNuUSqkp=w5120-h2880-rw" width="150"/>
+<img src="https://play-lh.googleusercontent.com/Kr-4BsEU-UKVM7uWiE2tdlMBW4Y3EjMJq-HSXzfPYaVxYIvvZHwkOBGXgffHLs_I12plJ749LHE_RVc8-6LppEY=w5120-h2880-rw" width="150"/>
+<img src="https://play-lh.googleusercontent.com/fnTgV8ScTBjDmluU2b8UaJKu5l_H8-DCWL_MfRAl3eYyEvFZ59JHtuDi5vipnF7cju1v6TeFFiK7CzdiF0aGK_s=w5120-h2880-rw" width="150"/>
+<img src="https://play-lh.googleusercontent.com/C0W6g3z38qPZFZaXDZF-WDPmLa6VSPTiYgTyL_J_fnpSFq-dQJqi3lxKRJ8H9NKDqrF0elQaAzIU-OiQYyCzag=w5120-h2880-rw" width="150"/></p>
 <h1>Kojo</h1>
 <p><a href="https://play.google.com/store/apps/details?id=com.ikigaidevelopment.kojo">Download on Android</a></p>
 <p><a href="https://apps.apple.com/us/app/kojo-diet-calorie-counter/id6745220685">Download on iOS</a></p>
