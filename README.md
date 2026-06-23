@@ -1,4 +1,4 @@
-<img width="1613" height="2868" alt="image" src="https://github.com/user-attachments/assets/4d9eae91-180f-402e-8042-8bd97829cc03" /><h1>Eira</h1>
+<h1>Eira</h1>
 <p><a href="https://play.google.com/store/apps/details?id=com.epicstarz.eira">Download on Android</a></p>
 <p><a href="https://apps.apple.com/us/app/eira-calm-focus/id6761768057">Download on iOS</a></p>
 <p><img src="https://play-lh.googleusercontent.com/doKvVxDjq4UlM52B411RimUStYqn0HJ4-tEgP1ngsem1unn54P3CLE7fKPW4TeSfIrX9_mVkT4EdI7n-UQwzVg0=w5120-h2880-rw" width="150"/>
